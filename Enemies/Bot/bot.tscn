@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh5h2d2pwrrpa"]
+
+[ext_resource type="Script" path="res://Enemies/Bot/bot.gd" id="1_joxph"]
+
+[sub_resource type="Gradient" id="Gradient_852cs"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f2ram"]
+gradient = SubResource("Gradient_852cs")
+width = 80
+height = 80
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nd0x0"]
+radius = 40.0
+
+[node name="Bot" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_joxph")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_f2ram")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nd0x0")
+
+[node name="StateMachine" type="Node" parent="." groups=["Bots"]]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+
+[node name="Chasing" type="Node" parent="StateMachine"]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
