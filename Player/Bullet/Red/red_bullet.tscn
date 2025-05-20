@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdwi7c12etglx"]
+
+[ext_resource type="Script" path="res://Player/Bullet/Red/red_bullet.gd" id="1_re6aq"]
+
+[sub_resource type="Gradient" id="Gradient_xbakg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.271, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cars5"]
+gradient = SubResource("Gradient_xbakg")
+width = 16
+height = 4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5nyd"]
+
+[node name="RedBullet" type="Area2D" node_paths=PackedStringArray("sprite_2d", "collision_shape_2d")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_re6aq")
+sprite_2d = NodePath("Sprite2D")
+collision_shape_2d = NodePath("CollisionShape2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_cars5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x5nyd")
