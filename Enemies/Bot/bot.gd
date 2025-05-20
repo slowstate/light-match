@@ -10,12 +10,12 @@ var MAX_HEALTH := 1
 var health := MAX_HEALTH
 var DAMAGE := 1
 var MOVE_SPEED := 300.0
-var colour: Globals.BulletColour
+var colour: Globals.Colour
 
-static func create(colour: Globals.BulletColour, position: Vector2) -> Bot:
+static func create(bot_colour: Globals.Colour, bot_position: Vector2) -> Bot:
 	var new_bot: Bot = BOT.instantiate()
-	new_bot.colour = colour
-	new_bot.global_position = position
+	new_bot.colour = bot_colour
+	new_bot.global_position = bot_position
 	return new_bot
 
 # Called when the node enters the scene tree for the first time.
@@ -31,11 +31,9 @@ func _process(delta: float) -> void:
 		sprite_2d.rotation = velocity.angle()
 		translate(velocity * delta)
 
-func _calculate_path():
-	pass
 
-
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(bullet: Bullet) -> void:
+	if bullet.colour != colour: return
 	health -= 1
 	if health <= 0:
 		queue_free()
