@@ -26,7 +26,6 @@ func _ready() -> void:
 	self.area_entered.connect(_on_area_entered)
 	
 	_set_sprite_colour()
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

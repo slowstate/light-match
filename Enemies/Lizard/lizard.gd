@@ -43,7 +43,6 @@ func _set_sprite_colour() -> void:
 
 
 func _on_area_entered(bullet: Bullet) -> void:
-	print("lizard area")
 	if bullet.colour != colour: return
 	health -= 1
 	if health <= 0:

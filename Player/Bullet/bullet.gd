@@ -26,10 +26,11 @@ func _set_sprite_colour() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if colour:
-		var velocity = direction * speed
-		sprite_2d.rotation = -velocity.angle()
-		translate(velocity * delta)
+	if !colour: return
+	
+	var velocity = direction * speed
+	sprite_2d.rotation = -velocity.angle()
+	translate(velocity * delta)
 
 
 func _on_body_entered(body: Node2D) -> void:

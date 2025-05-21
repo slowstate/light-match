@@ -24,6 +24,10 @@ Globals="*res://Common/globals.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdLinter/plugin.cfg", "res://addons/gdscript_formatter/plugin.cfg")
+
 [global_group]
 
 Bullets=""
