@@ -64,6 +64,6 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 197.0
 grow_vertical = 0
-text = "Last Updated: 20/05/2025"
+text = "Last Updated: 21/05/2025"
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

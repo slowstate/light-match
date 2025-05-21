@@ -1,5 +1,5 @@
-extends Bullet
 class_name BlueBullet
+extends Bullet
 
 const BLUE_BULLET = preload("res://Player/Bullet/Blue/blue_bullet.tscn")
 

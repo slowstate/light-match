@@ -1,34 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh5h2d2pwrrpa"]
+[gd_scene load_steps=8 format=3 uid="uid://dh5h2d2pwrrpa"]
 
 [ext_resource type="Script" path="res://Enemies/Bot/bot.gd" id="1_joxph"]
+[ext_resource type="Script" path="res://Enemies/Bot/bot_state_machine.gd" id="2_rrl0b"]
+[ext_resource type="Script" path="res://Enemies/Bot/bot_state_idle.gd" id="3_6nitm"]
+[ext_resource type="Script" path="res://Enemies/Bot/bot_state_chasing.gd" id="4_tswyn"]
 
-[sub_resource type="Gradient" id="Gradient_852cs"]
+[sub_resource type="Gradient" id="Gradient_5q8lf"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(1, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f2ram"]
-gradient = SubResource("Gradient_852cs")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ixls3"]
+gradient = SubResource("Gradient_5q8lf")
 width = 80
 height = 80
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nd0x0"]
 radius = 40.0
 
-[node name="Bot" type="Area2D"]
+[node name="Bot" type="Area2D" groups=["Bots"]]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_joxph")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_f2ram")
+texture = SubResource("GradientTexture2D_ixls3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nd0x0")
 
-[node name="StateMachine" type="Node" parent="." groups=["Bots"]]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
+script = ExtResource("2_rrl0b")
+CURRENT_STATE = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_6nitm")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="RoamTimer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
 
 [node name="Chasing" type="Node" parent="StateMachine"]
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+script = ExtResource("4_tswyn")

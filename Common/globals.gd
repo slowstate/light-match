@@ -2,7 +2,7 @@ extends Node
 
 enum Colour {None, Blue, Green, Red}
 
-static func PickRandomColour(pickable_colours: Array[Colour] = [Colour.Blue, Colour.Green, Colour.Red]) -> Colour:
+func PickRandomColour(pickable_colours: Array[Colour] = [Colour.Blue, Colour.Green, Colour.Red]) -> Colour:
 	return pickable_colours.pick_random()
 
 const ColourVisualValue: Dictionary = {

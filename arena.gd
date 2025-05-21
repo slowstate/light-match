@@ -13,7 +13,6 @@ func _process(delta: float) -> void:
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	# TODO: Swap Globals.Colour.Red for Globals.PickRandomColour()
-	var new_bot = Bot.create(Globals.Colour.Red, Vector2(randi_range(0, 3840), randi_range(0, 2160)))
-	get_tree().root.add_child(new_bot)
+	var new_enemy = Lizard.create(Globals.PickRandomColour(),Globals.PickRandomColour(), Vector2(randi_range(0, 3840), randi_range(0, 2160)))
+	get_tree().root.add_child(new_enemy)
 	enemy_spawn_timer.start(1.0)

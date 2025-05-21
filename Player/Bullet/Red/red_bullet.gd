@@ -1,5 +1,5 @@
-extends Bullet
 class_name RedBullet
+extends Bullet
 
 const RED_BULLET = preload("res://Player/Bullet/Red/red_bullet.tscn")
 

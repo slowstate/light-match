@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://clv4agc2np8fh"]
+
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard.gd" id="1_d185i"]
+[ext_resource type="Texture2D" uid="uid://bkdt74yttbbgb" path="res://Enemies/Colours/Red/enemy_red.png" id="2_dq78r"]
+[ext_resource type="Script" path="res://Enemies/Lizard/head.gd" id="3_4uj4l"]
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_machine.gd" id="3_r41pj"]
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_idle.gd" id="4_27q22"]
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_chasing.gd" id="5_o85au"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_foakt"]
+size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2oli8"]
+size = Vector2(40, 40)
+
+[node name="Lizard" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_d185i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dq78r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_foakt")
+
+[node name="Head" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_4uj4l")
+
+[node name="HeadCollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2(70, 0)
+shape = SubResource("RectangleShape2D_2oli8")
+
+[node name="HeadSprite2D" type="Sprite2D" parent="Head"]
+position = Vector2(70, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_dq78r")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
+script = ExtResource("3_r41pj")
+CURRENT_STATE = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_27q22")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+
+[node name="RoamTimer" type="Timer" parent="StateMachine/Idle"]
+
+[node name="Chasing" type="Node" parent="StateMachine"]
+script = ExtResource("5_o85au")

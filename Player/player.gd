@@ -14,8 +14,6 @@ func _ready() -> void:
 	Globals.player = self
 	
 func _physics_process(delta: float) -> void:
-	#if camera_2d.position > Vector2(0.0, 0.0):
-		#camera_2d.positionlerp()
 	var move_vec: Vector2
 	if Input.is_action_pressed("player_move_up"):
 		move_vec.y = -1
@@ -35,15 +33,19 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	# Handle shooting
+	# Handle colour switching
 	if event.is_action_pressed("player_red"):
 		current_colour = Globals.Colour.Red
 	if event.is_action_pressed("player_green"):
 		current_colour = Globals.Colour.Green
 	if event.is_action_pressed("player_blue"):
 		current_colour = Globals.Colour.Blue
+		
+	# Handle shooting
 	if event.is_action_pressed("player_shoot"):
 		_fire_bullet()
+		
+	# TODO: Add next and previous colour controls
 	#if event.is_action_pressed("player_next_colour"):
 		#var bulletColours = Globals.Colour.values()
 		
