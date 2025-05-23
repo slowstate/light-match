@@ -368,7 +368,7 @@ func _add_format_tool_item_and_command() -> void:
 	add_tool_menu_item("GDScriptFormatter: Format script", format_script)
 	var shortcut := _get_shortcut()
 	_get_editor_interface().get_command_palette().add_command(
-		"Format GDScript", "GDScript Formatter/Format GDScript", format_script, shortcut.get_as_text() if is_instance_valid(shortcut) else "None"
+		"Format GDScript", "GDScript Formatter/Format GDScript", format_script, shortcut.get_as_text() if is_instance_valid(shortcut) else "NONE"
 	)
 	_has_format_tool_item = true
 

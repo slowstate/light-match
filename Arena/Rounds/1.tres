@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Round" load_steps=2 format=3 uid="uid://dkyci3dlxwa5p"]
+
+[ext_resource type="Script" path="res://Arena/Rounds/round.gd" id="1_o2nux"]
+
+[resource]
+script = ExtResource("1_o2nux")
+total_enemies_to_spawn = 100
+spawn_bots = true
+spawn_lizards = true
+spawn_tanks = true
+spawn_oracles = true
+spawn_stars = true

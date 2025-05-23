@@ -3,6 +3,7 @@ extends Bullet
 
 const BLUE_BULLET = preload("res://Player/Bullet/Blue/blue_bullet.tscn")
 
+
 static func create(bullet_position: Vector2, bullet_direction: Vector2, bullet_damage := 1, bullet_speed := 1000.0) -> BlueBullet:
 	var new_bullet: BlueBullet = BLUE_BULLET.instantiate()
 	new_bullet.global_position = bullet_position
@@ -13,7 +14,7 @@ static func create(bullet_position: Vector2, bullet_direction: Vector2, bullet_d
 
 
 func _setup() -> void:
-	colour = Globals.Colour.Blue
-	self.body_entered.connect(_on_body_entered)
-	self.area_entered.connect(_on_area_entered)
-	super._set_sprite_colour()
+	colour = Globals.Colour.BLUE
+	self.body_entered.connect(on_body_entered)
+	self.area_entered.connect(on_area_entered)
+	set_sprite_colour()

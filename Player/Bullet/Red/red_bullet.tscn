@@ -11,7 +11,8 @@ gradient = SubResource("Gradient_xbakg")
 width = 16
 height = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x5nyd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2kna"]
+size = Vector2(16, 4)
 
 [node name="RedBullet" type="Area2D" node_paths=PackedStringArray("sprite_2d", "collision_shape_2d")]
 collision_layer = 0
@@ -21,7 +22,9 @@ sprite_2d = NodePath("Sprite2D")
 collision_shape_2d = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7, 0)
 texture = SubResource("GradientTexture2D_cars5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_x5nyd")
+position = Vector2(-7, 0)
+shape = SubResource("RectangleShape2D_d2kna")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=6 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
+[ext_resource type="PackedScene" uid="uid://dnshaeplewb85" path="res://Player/Palette/palette.tscn" id="2_ybmla"]
 
 [sub_resource type="Gradient" id="Gradient_4o03r"]
 offsets = PackedFloat32Array(1)
@@ -34,3 +35,6 @@ texture = SubResource("GradientTexture2D_f7til")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_wb7x1")
+
+[node name="Palette" parent="." instance=ExtResource("2_ybmla")]
+position = Vector2(0, -56)

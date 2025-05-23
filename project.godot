@@ -11,22 +11,24 @@ config_version=5
 [application]
 
 config/name="Colour Shooter"
-run/main_scene="res://arena.tscn"
+run/main_scene="res://Arena/arena.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Globals="*res://Common/globals.gd"
+SignalBus="*res://Common/SignalBus/signal_bus.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdLinter/plugin.cfg", "res://addons/gdscript_formatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/gdLinter/plugin.cfg", "res://addons/gdscript_formatter/plugin.cfg")
 
 [global_group]
 

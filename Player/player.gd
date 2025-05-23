@@ -1,9 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
-const MOVE_SPEED := 500.0
 const JUMP_VELOCITY := -400.0
-var current_colour := Globals.Colour.Blue
+
+var move_speed := 500.0
+var current_colour := Globals.Colour.BLUE
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var camera_2d: Camera2D = $Camera2D
@@ -26,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 		move_vec.x = 1
 	move_vec = move_vec.normalized()
 
-	velocity = move_vec * MOVE_SPEED
+	velocity = move_vec * move_speed
 	sprite_2d.rotation = -velocity.angle()
 	collision_shape_2d.rotation = -velocity.angle()
 
@@ -36,11 +37,11 @@ func _physics_process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	# Handle colour switching
 	if event.is_action_pressed("player_red"):
-		current_colour = Globals.Colour.Red
+		current_colour = Globals.Colour.RED
 	if event.is_action_pressed("player_green"):
-		current_colour = Globals.Colour.Green
+		current_colour = Globals.Colour.GREEN
 	if event.is_action_pressed("player_blue"):
-		current_colour = Globals.Colour.Blue
+		current_colour = Globals.Colour.BLUE
 
 	# Handle shooting
 	if event.is_action_pressed("player_shoot"):
@@ -55,11 +56,11 @@ func _fire_bullet():
 	var direction_vector: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	var new_bullet: Bullet
 	match current_colour:
-		Globals.Colour.Blue:
+		Globals.Colour.BLUE:
 			new_bullet = BlueBullet.create(global_position, direction_vector)
-		Globals.Colour.Green:
+		Globals.Colour.GREEN:
 			new_bullet = GreenBullet.create(global_position, direction_vector)
-		Globals.Colour.Red:
+		Globals.Colour.RED:
 			new_bullet = RedBullet.create(global_position, direction_vector)
 	if new_bullet:
 		get_tree().root.add_child(new_bullet)

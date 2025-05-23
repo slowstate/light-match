@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://duvsa2r7f53oy"]
+
+[ext_resource type="Script" path="res://Enemies/Star/star.gd" id="1_a0cwb"]
+[ext_resource type="Script" path="res://Enemies/Star/star_state_machine.gd" id="2_62ny6"]
+[ext_resource type="Texture2D" uid="uid://bkdt74yttbbgb" path="res://Enemies/Colours/Red/enemy_red.png" id="2_jdqvl"]
+[ext_resource type="Script" path="res://Enemies/Star/star_state_idle.gd" id="3_d4gsq"]
+[ext_resource type="Script" path="res://Enemies/Star/wall.gd" id="3_yfsqo"]
+[ext_resource type="Script" path="res://Enemies/Star/star_state_chasing.gd" id="4_lhp5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5tbji"]
+radius = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr1nb"]
+size = Vector2(40, 8)
+
+[node name="Star" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_a0cwb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_jdqvl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_5tbji")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall0" type="Area2D" parent="Walls"]
+position = Vector2(0, -27.5)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_yfsqo")
+
+[node name="WallSprite2D" type="Sprite2D" parent="Walls/Wall0"]
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("2_jdqvl")
+
+[node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall0"]
+shape = SubResource("RectangleShape2D_nr1nb")
+
+[node name="Wall1" type="Area2D" parent="Walls"]
+position = Vector2(30, -6)
+rotation = 1.25664
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_yfsqo")
+wall_number = 1
+
+[node name="WallSprite2D" type="Sprite2D" parent="Walls/Wall1"]
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("2_jdqvl")
+
+[node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall1"]
+shape = SubResource("RectangleShape2D_nr1nb")
+
+[node name="Wall2" type="Area2D" parent="Walls"]
+position = Vector2(18, 29)
+rotation = 2.51327
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_yfsqo")
+wall_number = 2
+
+[node name="WallSprite2D" type="Sprite2D" parent="Walls/Wall2"]
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("2_jdqvl")
+
+[node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+shape = SubResource("RectangleShape2D_nr1nb")
+
+[node name="Wall3" type="Area2D" parent="Walls"]
+position = Vector2(-18, 29)
+rotation = 3.76991
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_yfsqo")
+wall_number = 3
+
+[node name="WallSprite2D" type="Sprite2D" parent="Walls/Wall3"]
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("2_jdqvl")
+
+[node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
+shape = SubResource("RectangleShape2D_nr1nb")
+
+[node name="Wall4" type="Area2D" parent="Walls"]
+position = Vector2(-30, -6)
+rotation = 5.02655
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_yfsqo")
+wall_number = 4
+
+[node name="WallSprite2D" type="Sprite2D" parent="Walls/Wall4"]
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("2_jdqvl")
+
+[node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4"]
+shape = SubResource("RectangleShape2D_nr1nb")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("2_62ny6")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_d4gsq")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+
+[node name="RoamTimer" type="Timer" parent="StateMachine/Idle"]
+
+[node name="Chasing" type="Node" parent="StateMachine"]
+script = ExtResource("4_lhp5w")

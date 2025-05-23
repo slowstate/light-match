@@ -1,18 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh5h2d2pwrrpa"]
+[gd_scene load_steps=7 format=3 uid="uid://dh5h2d2pwrrpa"]
 
 [ext_resource type="Script" path="res://Enemies/Bot/bot.gd" id="1_joxph"]
+[ext_resource type="Texture2D" uid="uid://bkdt74yttbbgb" path="res://Enemies/Colours/Red/enemy_red.png" id="2_cvrj0"]
 [ext_resource type="Script" path="res://Enemies/Bot/bot_state_machine.gd" id="2_rrl0b"]
 [ext_resource type="Script" path="res://Enemies/Bot/bot_state_idle.gd" id="3_6nitm"]
 [ext_resource type="Script" path="res://Enemies/Bot/bot_state_chasing.gd" id="4_tswyn"]
-
-[sub_resource type="Gradient" id="Gradient_5q8lf"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ixls3"]
-gradient = SubResource("Gradient_5q8lf")
-width = 80
-height = 80
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nd0x0"]
 radius = 40.0
@@ -23,14 +15,14 @@ collision_mask = 4
 script = ExtResource("1_joxph")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_ixls3")
+texture = ExtResource("2_cvrj0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nd0x0")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_rrl0b")
-CURRENT_STATE = NodePath("Idle")
+current_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_6nitm")

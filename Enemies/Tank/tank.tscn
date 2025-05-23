@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://ua5firl6innu"]
+
+[ext_resource type="Texture2D" uid="uid://bkdt74yttbbgb" path="res://Enemies/Colours/Red/enemy_red.png" id="1_b77uh"]
+[ext_resource type="Script" path="res://Enemies/Tank/tank.gd" id="1_vdwel"]
+[ext_resource type="Script" path="res://Enemies/Tank/tank_state_machine.gd" id="3_7cjsl"]
+[ext_resource type="Script" path="res://Enemies/Tank/shield.gd" id="3_k8nc8"]
+[ext_resource type="Script" path="res://Enemies/Tank/tank_state_idle.gd" id="4_lnoqp"]
+[ext_resource type="Script" path="res://Enemies/Tank/tank_state_chasing.gd" id="5_syhry"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2qfm"]
+size = Vector2(80, 80)
+
+[sub_resource type="Gradient" id="Gradient_6xtu8"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.333333, 0.333333, 0.333333, 0.627451)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gqhg3"]
+gradient = SubResource("Gradient_6xtu8")
+width = 80
+height = 80
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5temy"]
+size = Vector2(16, 240)
+
+[node name="Tank" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_vdwel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b77uh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s2qfm")
+
+[node name="Shield" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_k8nc8")
+
+[node name="ShieldSprite2D" type="Sprite2D" parent="Shield"]
+position = Vector2(88, 0)
+scale = Vector2(0.2, 3)
+texture = SubResource("GradientTexture2D_gqhg3")
+
+[node name="ShieldCollisionShape2D" type="CollisionShape2D" parent="Shield"]
+position = Vector2(88, 0)
+shape = SubResource("RectangleShape2D_5temy")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("3_7cjsl")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_lnoqp")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="RoamTimer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Chasing" type="Node" parent="StateMachine"]
+script = ExtResource("5_syhry")

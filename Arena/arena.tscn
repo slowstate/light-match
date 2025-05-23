@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhd3exak0ojtj"]
 
-[ext_resource type="Script" path="res://arena.gd" id="1_ea2pg"]
+[ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
 [ext_resource type="Texture2D" uid="uid://bwxq8rvde0l71" path="res://tron-background-9pj5j2dwcqyn668u.jpg" id="2_46wjt"]
 
@@ -64,6 +64,6 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 197.0
 grow_vertical = 0
-text = "Last Updated: 21/05/2025"
+text = "Last Updated: 23/05/2025"
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
