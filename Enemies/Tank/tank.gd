@@ -31,12 +31,3 @@ func _set_sprite_colour() -> void:
 			sprite_2d.texture = load("res://Enemies/Colours/Green/enemy_green.png")
 		Globals.Colour.RED:
 			sprite_2d.texture = load("res://Enemies/Colours/Red/enemy_red.png")
-
-
-func _on_area_entered(area: Area2D) -> void:
-	var bullet = area as Bullet
-	if bullet.colour != colour:
-		return
-	health -= 1
-	if health <= 0:
-		queue_free()

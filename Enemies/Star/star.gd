@@ -49,12 +49,3 @@ func _rotate_star(delta, wall_rotation_speed) -> void:
 	sprite_2d.rotate(delta * wall_rotation_speed)
 	collision_shape_2d.rotate(delta * wall_rotation_speed)
 	walls.rotate(delta * wall_rotation_speed)
-
-
-func _on_area_entered(area: Area2D) -> void:
-	var bullet = area as Bullet
-	if bullet.colour != colour:
-		return
-	health -= 1
-	if health <= 0:
-		queue_free()

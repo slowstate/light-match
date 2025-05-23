@@ -18,7 +18,6 @@ func _ready() -> void:
 	palette_colour_sprites = [palette_colour_0, palette_colour_1, palette_colour_2]
 	print(str(palette_colour_sprites))
 	_generate_new_palette()
-	pass  # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +26,6 @@ func _process(delta: float) -> void:
 
 
 func on_enemy_died(enemy: Enemy) -> void:
-	print(str(enemy.colour))
 	if !enemy:
 		return
 
@@ -40,11 +38,11 @@ func on_enemy_died(enemy: Enemy) -> void:
 		current_palette_colour_index += 1
 	else:
 		# TODO: Emit palette_cleared signal
-		current_palette_colour_index = 0
 		_generate_new_palette()
 
 
 func _generate_new_palette() -> void:
+	current_palette_colour_index = 0
 	palette_colours.resize(palette_size)
 	for palette_colour in palette_colours.size():
 		var random_colour = Globals.pick_random_colour()
