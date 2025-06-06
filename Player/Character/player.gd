@@ -22,6 +22,7 @@ var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.5
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var palette: Palette = $Palette

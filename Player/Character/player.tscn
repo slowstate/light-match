@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbfe05uqpe2ww"]
+
+[ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Character/player_sprite.tscn" id="1_n7wv5"]
+[ext_resource type="PackedScene" uid="uid://dnshaeplewb85" path="res://Player/Palette/palette.tscn" id="2_ybmla"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb7x1"]
+radius = 31.0
+height = 85.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 25
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 3840
+limit_bottom = 2160
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="PlayerSprite" parent="." instance=ExtResource("1_n7wv5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wb7x1")
+
+[node name="Palette" parent="." instance=ExtResource("2_ybmla")]
+position = Vector2(0, -56)
