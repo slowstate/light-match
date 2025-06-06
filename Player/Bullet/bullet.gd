@@ -4,11 +4,17 @@ extends Area2D
 @export var sprite_2d: Sprite2D
 @export var collision_shape_2d: CollisionShape2D
 
+var bullet_id: String
 var colour: Globals.Colour
 var direction: Vector2
 var damage: int
 var speed: float
 var collision_check_ray_cast := RayCast2D.new()
+var travel_distance: float
+
+
+func _init() -> void:
+	bullet_id = Globals.generate_guid()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -49,6 +55,11 @@ func _process(delta: float) -> void:
 	if collision_check_ray_cast.is_colliding():
 		global_position = collision_check_ray_cast.get_collision_point()
 	else:
+		if travel_distance < 500:
+			travel_distance += velocity.length() * delta
+			if travel_distance >= 500:
+				damage = (UpgradeManager.on_bullet_travelled_x_pixels(self, 500) as Bullet).damage
+
 		translate(velocity * delta)
 
 

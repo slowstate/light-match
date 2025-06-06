@@ -11,12 +11,18 @@ const ORACLE: PackedScene = preload("res://Enemies/Oracle/oracle.tscn")
 
 
 static func create(
-	initial_position: Vector2, initial_colour: Globals.Colour = Globals.pick_random_colour(), initial_orb_colour: Globals.Colour = Globals.pick_random_colour()
+	initial_position: Vector2,
+	initial_health: int,
+	initial_colour: Globals.Colour = Globals.pick_random_colour(),
+	initial_orb_colour: Globals.Colour = Globals.pick_random_colour()
 ) -> Oracle:
 	var new_oracle: Oracle = ORACLE.instantiate()
 	new_oracle.global_position = initial_position
+	new_oracle.health = initial_health
 	new_oracle.colour = initial_colour
 	new_oracle.orb_colour = initial_orb_colour
+	new_oracle.move_speed = randf_range(200.0, 300.0)
+	new_oracle.rotation_speed = randf_range(1.0, 2.0)
 	return new_oracle
 
 
@@ -25,8 +31,7 @@ func _setup() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	rotate_to_target(delta, desired_rotation)
+func _update(delta: float) -> void:
 	_rotate_orbs(delta, orb_rotation_speed)
 
 

@@ -9,22 +9,23 @@ const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
 
 
 static func create(
-	initial_position: Vector2, initial_colour: Globals.Colour = Globals.pick_random_colour(), initial_head_colour: Globals.Colour = Globals.pick_random_colour()
+	initial_position: Vector2,
+	initial_health: int,
+	initial_colour: Globals.Colour = Globals.pick_random_colour(),
+	initial_head_colour: Globals.Colour = Globals.pick_random_colour()
 ) -> Lizard:
 	var new_lizard: Lizard = LIZARD.instantiate()
 	new_lizard.colour = initial_colour
+	new_lizard.health = initial_health
 	new_lizard.head_colour = initial_head_colour
 	new_lizard.global_position = initial_position
+	new_lizard.move_speed = randf_range(220.0, 300.0)
+	new_lizard.rotation_speed = randf_range(1.0, 1.5)
 	return new_lizard
 
 
 func _setup() -> void:
 	_set_sprite_colour()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	rotate_to_target(delta, desired_rotation)
 
 
 func _set_sprite_colour() -> void:

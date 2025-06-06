@@ -22,7 +22,7 @@ shape = SubResource("CircleShape2D_nd0x0")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_rrl0b")
-current_state = NodePath("Idle")
+current_state = NodePath("Chasing")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_6nitm")

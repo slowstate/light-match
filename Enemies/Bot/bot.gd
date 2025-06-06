@@ -6,21 +6,19 @@ const BOT: PackedScene = preload("res://Enemies/Bot/bot.tscn")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 
-static func create(initial_position: Vector2, initial_colour: Globals.Colour = Globals.pick_random_colour()) -> Bot:
+static func create(initial_position: Vector2, initial_health: int, initial_colour: Globals.Colour = Globals.pick_random_colour()) -> Bot:
 	var new_bot: Bot = BOT.instantiate()
 	new_bot.global_position = initial_position
+	new_bot.health = initial_health
 	new_bot.colour = initial_colour
+	new_bot.move_speed = randf_range(200.0, 300.0)
+	new_bot.rotation_speed = randf_range(2.0, 2.5)
 	return new_bot
 
 
 # Called when the node enters the scene tree for the first time.
 func _setup() -> void:
 	_set_sprite_colour()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	rotate_to_target(delta, desired_rotation)
 
 
 func _set_sprite_colour() -> void:

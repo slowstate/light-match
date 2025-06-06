@@ -1,0 +1,2 @@
+class_name ArenaStateMachine
+extends StateMachine

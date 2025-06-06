@@ -32,7 +32,8 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 
-	_if_player_is_within_distance_then_change_state_to_chasing()
+	if star.player_is_within_distance():
+		transition.emit("Chasing")
 
 	if roam_timer.is_stopped():
 		return
@@ -51,8 +52,3 @@ func _on_idle_timer_timeout() -> void:
 
 func _set_random_direction() -> void:
 	star.desired_rotation = randf() * TAU  # Sets a random desired rotation
-
-
-func _if_player_is_within_distance_then_change_state_to_chasing(distance := 500.0) -> void:
-	if (star.global_position - Globals.player.global_position).length() < distance:
-		transition.emit("Chasing")

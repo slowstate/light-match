@@ -13,7 +13,7 @@ height = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jsqd4"]
 
-[node name="Oracle" type="Area2D"]
+[node name="Oracle" type="Area2D" groups=["Oracles"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_4uhgo")
@@ -107,7 +107,7 @@ shape = SubResource("CircleShape2D_jsqd4")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_p6432")
-current_state = NodePath("Idle")
+current_state = NodePath("Chasing")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_7bvq5")

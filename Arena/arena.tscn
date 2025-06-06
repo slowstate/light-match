@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=12 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
 [ext_resource type="Texture2D" uid="uid://bwxq8rvde0l71" path="res://tron-background-9pj5j2dwcqyn668u.jpg" id="2_46wjt"]
+[ext_resource type="Script" path="res://Arena/arena_state_machine.gd" id="4_53yap"]
+[ext_resource type="Script" path="res://Arena/arena_state_round_active.gd" id="5_vs3oy"]
+[ext_resource type="Script" path="res://Arena/arena_state_upgrade_selection.gd" id="6_303ff"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4bo3i"]
 normal = Vector2(-1, 0)
@@ -14,6 +17,9 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o1cin"]
 normal = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3kqb"]
+font_size = 30
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
@@ -52,18 +58,42 @@ shape = SubResource("WorldBoundaryShape2D_hbnfl")
 position = Vector2(1920, 0)
 shape = SubResource("WorldBoundaryShape2D_o1cin")
 
-[node name="EnemySpawnTimer" type="Timer" parent="."]
-one_shot = true
+[node name="UserInterface" type="CanvasLayer" parent="."]
 
-[node name="Control" type="CanvasLayer" parent="."]
-
-[node name="LastUpdatedDateLabel" type="Label" parent="Control"]
+[node name="LastUpdatedDateLabel" type="Label" parent="UserInterface"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 197.0
 grow_vertical = 0
-text = "Last Updated: 23/05/2025"
+text = "Last Updated: 06/06/2025"
 
-[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[node name="RoundNumberLabel" type="Label" parent="UserInterface"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.5
+offset_right = 59.5
+offset_bottom = 42.0
+grow_horizontal = 2
+text = "Round 1"
+label_settings = SubResource("LabelSettings_p3kqb")
+horizontal_alignment = 1
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("4_53yap")
+current_state = NodePath("RoundActive")
+
+[node name="RoundActive" type="Node" parent="StateMachine"]
+script = ExtResource("5_vs3oy")
+
+[node name="EnemySpawnTimer" type="Timer" parent="StateMachine/RoundActive"]
+one_shot = true
+
+[node name="UpgradeSelection" type="Node" parent="StateMachine"]
+script = ExtResource("6_303ff")
+
+[node name="UpgradeSelectionInterface" type="CanvasLayer" parent="StateMachine/UpgradeSelection"]
+
+[connection signal="timeout" from="StateMachine/RoundActive/EnemySpawnTimer" to="StateMachine/RoundActive" method="_on_enemy_spawn_timer_timeout"]

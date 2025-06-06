@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqg64cgj28gpd"]
+
+[ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/upgrade_selection_menu.gd" id="1_o275p"]
+[ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/replace_upgrade_label.gd" id="2_2jnw8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mns33"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bnji2"]
+
+[sub_resource type="Gradient" id="Gradient_72vif"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.533333, 0.533333, 0.533333, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_06vhx"]
+gradient = SubResource("Gradient_72vif")
+width = 200
+height = 40
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_omnuu"]
+
+[node name="UpgradeSelectionMenu" type="Node2D"]
+z_index = 1
+position = Vector2(960, 540)
+script = ExtResource("1_o275p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -603.0
+offset_top = -150.0
+offset_right = 609.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="ReplaceUpgradeLabel" type="Label" parent="."]
+offset_left = -605.0
+offset_top = -400.0
+offset_right = -385.0
+offset_bottom = -377.0
+text = "Select an upgrade to replace"
+label_settings = SubResource("LabelSettings_mns33")
+script = ExtResource("2_2jnw8")
+
+[node name="UpgradesTriggerOrderLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -292.5
+offset_top = -181.0
+offset_right = 292.5
+offset_bottom = -158.0
+grow_horizontal = 2
+text = "Upgrades trigger from left to right. New upgrades will be added to the right."
+label_settings = SubResource("LabelSettings_bnji2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SkipBG" type="Sprite2D" parent="."]
+position = Vector2(0, 180)
+texture = SubResource("GradientTexture2D_06vhx")
+
+[node name="Button" type="Button" parent="SkipBG"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_omnuu")
+text = "Skip"
+
+[connection signal="pressed" from="SkipBG/Button" to="." method="_on_button_pressed"]

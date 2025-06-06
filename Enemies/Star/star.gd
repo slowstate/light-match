@@ -12,16 +12,22 @@ const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
 
 
 static func create(
-	initial_position: Vector2, initial_colour: Globals.Colour = Globals.pick_random_colour(), initial_wall_colours: Array[Globals.Colour] = []
+	initial_position: Vector2,
+	initial_health: int,
+	initial_colour: Globals.Colour = Globals.pick_random_colour(),
+	initial_wall_colours: Array[Globals.Colour] = []
 ) -> Star:
 	var new_star: Star = STAR.instantiate()
 	new_star.global_position = initial_position
+	new_star.health = initial_health
 	new_star.colour = initial_colour
 	new_star.wall_colours = initial_wall_colours
+	new_star.move_speed = randf_range(200.0, 300.0)
+	new_star.rotation_speed = randf_range(1.0, 2.0)
 	if new_star.wall_colours.size() < 5:
 		new_star.wall_colours.resize(5)
-		for wall_number in new_star.wall_colours.size():
-			new_star.wall_colours[wall_number] = Globals.pick_random_colour()
+	for wall_number in new_star.wall_colours.size():
+		new_star.wall_colours[wall_number] = Globals.pick_random_colour()
 	return new_star
 
 
@@ -30,8 +36,7 @@ func _setup() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	rotate_to_target(delta, desired_rotation)
+func _update(delta: float) -> void:
 	_rotate_star(delta, wall_rotation_speed)
 
 

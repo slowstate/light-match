@@ -1,0 +1,23 @@
+extends Upgrade
+
+var effect_timer: Timer
+
+
+# Called when the node enters the scene tree for the first time.
+func _init() -> void:
+	type = UpgradeManager.UpgradeTypes.POWER_DIVERTER
+	name = "Power Diverter"
+	description = "Changing gun colour increases your move speed by 10% for 1s"
+	effect_timer = super.new_timer()
+	effect_timer.connect("timeout", _on_effect_timer_timeout)
+
+
+func on_gun_colour_switch(gun_cooldown_timer: Timer) -> Timer:
+	if effect_timer.is_stopped():
+		Globals.player.move_speed *= 1.1
+		effect_timer.start(1)
+	return gun_cooldown_timer
+
+
+func _on_effect_timer_timeout() -> void:
+	Globals.player.move_speed /= 1.1

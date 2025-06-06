@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf27r8vjqk6av"]
+
+[ext_resource type="Script" path="res://Player/Upgrades/player_upgrade_button.gd" id="1_k3qr4"]
+
+[node name="PlayerUpgradeButton" type="Button"]
+custom_minimum_size = Vector2(80, 80)
+offset_right = 80.0
+offset_bottom = 80.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+disabled = true
+script = ExtResource("1_k3qr4")
+
+[node name="HoverTooltip" type="ColorRect" parent="."]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+color = Color(0, 0.0702442, 0.175677, 0.929412)
+
+[node name="HoverTooltipLabel" type="Label" parent="HoverTooltip"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -11.5
+offset_right = 28.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "sadfsdf"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="resized" from="HoverTooltip/HoverTooltipLabel" to="." method="_on_hover_tooltip_label_resized"]

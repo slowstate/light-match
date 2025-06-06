@@ -10,11 +10,11 @@ static func create(bullet_position: Vector2, bullet_direction: Vector2, bullet_d
 	new_bullet.direction = bullet_direction.normalized()
 	new_bullet.damage = bullet_damage
 	new_bullet.speed = bullet_speed
+	new_bullet.colour = Globals.Colour.RED
 	return new_bullet
 
 
 func _setup() -> void:
-	colour = Globals.Colour.RED
 	self.body_entered.connect(on_body_entered)
 	self.area_entered.connect(on_area_entered)
 	set_sprite_colour()
