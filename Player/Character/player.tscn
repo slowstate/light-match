@@ -1,0 +1,254 @@
+[gd_scene load_steps=28 format=3 uid="uid://cbfe05uqpe2ww"]
+
+[ext_resource type="Script" path="res://Player/Character/player.gd" id="1_plba5"]
+[ext_resource type="Texture2D" uid="uid://d1qhw7lk8kewq" path="res://Player/Character/Torso.png" id="2_tawvr"]
+[ext_resource type="PackedScene" uid="uid://dnshaeplewb85" path="res://Player/Palette/palette.tscn" id="2_ybmla"]
+[ext_resource type="Texture2D" uid="uid://c0l85fl55e84p" path="res://Player/Character/Torso Light.png" id="3_nitfc"]
+[ext_resource type="Texture2D" uid="uid://balk1ef8yaahl" path="res://Player/Character/Left Hand.png" id="4_pto8d"]
+[ext_resource type="Texture2D" uid="uid://cqql4t8gipxdy" path="res://Player/Character/Left Forearm.png" id="5_e42cu"]
+[ext_resource type="Texture2D" uid="uid://dpicbpqmf8jjb" path="res://Player/Character/Left Arm.png" id="6_etbbq"]
+[ext_resource type="Texture2D" uid="uid://b6cd21pswxxy2" path="res://Player/Character/Left Forearm Light.png" id="7_08m1v"]
+[ext_resource type="Texture2D" uid="uid://beqjiqgvpgf6b" path="res://Player/Character/Left Arm Light.png" id="8_sudyj"]
+[ext_resource type="Texture2D" uid="uid://dr67l8lyblpd7" path="res://Player/Character/Gun.png" id="9_tmyge"]
+[ext_resource type="Texture2D" uid="uid://bta3dt5cdqgpv" path="res://Player/Character/Gun Circle Light.png" id="10_sx52e"]
+[ext_resource type="Texture2D" uid="uid://beb44mpkdfkil" path="res://Player/Character/Gun Light 1.png" id="11_6jmg1"]
+[ext_resource type="Texture2D" uid="uid://bcrl4ihgrcv6r" path="res://Player/Character/Gun Light 2.png" id="12_q8d4c"]
+[ext_resource type="Texture2D" uid="uid://skl34k6mc6w" path="res://Player/Character/Gun Light 3.png" id="13_vhw1t"]
+[ext_resource type="Texture2D" uid="uid://kpqlod8xt1ii" path="res://Player/Character/Right Arm.png" id="14_7t4jr"]
+[ext_resource type="Texture2D" uid="uid://byu82a5bd4f4f" path="res://Player/Character/Right Forearm Light.png" id="15_kr6nq"]
+[ext_resource type="Texture2D" uid="uid://cigtid4wswlco" path="res://Player/Character/Left Shoulder.png" id="16_oyum1"]
+[ext_resource type="Texture2D" uid="uid://4dxunbip311w" path="res://Player/Character/Left Shoulder Light.png" id="17_1dixj"]
+[ext_resource type="Texture2D" uid="uid://cmwdc7ql835u0" path="res://Player/Character/Right Shoulder.png" id="18_txt8h"]
+[ext_resource type="Texture2D" uid="uid://c253mfy8iiewd" path="res://Player/Character/Right Shoulder Light.png" id="19_ga4wj"]
+[ext_resource type="Texture2D" uid="uid://c1um7m7mwmaog" path="res://Player/Character/Head.png" id="20_khl5e"]
+[ext_resource type="Texture2D" uid="uid://drferx8s8d62k" path="res://Player/Character/Head Light.png" id="21_vi4mv"]
+
+[sub_resource type="Animation" id="Animation_c2je3"]
+resource_name = "Player_Move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333, 1, 1.23333, 1.5, 1.73333, 2, 2.23333, 2.5, 2.73333, 3, 3.23333, 3.5, 3.73333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.10472, 0.0, 0.10472, 0.0, -0.10472, 0.0, 0.10472, 0.0, -0.10472, 0.0, 0.10472, 0.0, -0.10472, 0.0, 0.10472, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.33333, 2.66667, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.471239, 0.471239, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jt0vj"]
+resource_name = "Player_Shoot"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso/Gun:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Torso:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0872665, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xdsy5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso/Gun:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b1y51"]
+_data = {
+"Player_Move": SubResource("Animation_c2je3"),
+"Player_Shoot": SubResource("Animation_jt0vj"),
+"RESET": SubResource("Animation_xdsy5")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb7x1"]
+radius = 31.0
+height = 85.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("1_plba5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 3840
+limit_bottom = 2160
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1, 1)
+
+[node name="Torso" type="Sprite2D" parent="PlayerSprite"]
+position = Vector2(0, 13)
+texture = ExtResource("2_tawvr")
+
+[node name="TorsoLight" type="Sprite2D" parent="PlayerSprite/Torso"]
+position = Vector2(0, 10)
+texture = ExtResource("3_nitfc")
+
+[node name="LeftHand" type="Sprite2D" parent="PlayerSprite/Torso"]
+position = Vector2(11, -28)
+texture = ExtResource("4_pto8d")
+
+[node name="LeftForearm" type="Sprite2D" parent="PlayerSprite/Torso"]
+position = Vector2(-8, -21)
+texture = ExtResource("5_e42cu")
+
+[node name="LeftArm" type="Sprite2D" parent="PlayerSprite/Torso/LeftForearm"]
+position = Vector2(-15, 10)
+texture = ExtResource("6_etbbq")
+
+[node name="LeftForearmLight" type="Sprite2D" parent="PlayerSprite/Torso/LeftForearm/LeftArm"]
+position = Vector2(8, -7)
+texture = ExtResource("7_08m1v")
+
+[node name="LeftArmLight" type="Sprite2D" parent="PlayerSprite/Torso/LeftForearm/LeftArm"]
+position = Vector2(0, -1)
+texture = ExtResource("8_sudyj")
+
+[node name="Gun" type="Sprite2D" parent="PlayerSprite/Torso"]
+position = Vector2(22.5, -3.25)
+rotation = 0.0188265
+texture = ExtResource("9_tmyge")
+offset = Vector2(-10.5805, -39.6005)
+
+[node name="GunCircleLight" type="Sprite2D" parent="PlayerSprite/Torso/Gun"]
+position = Vector2(-4.92565, -23.1585)
+rotation = -0.102502
+scale = Vector2(1, 1)
+texture = ExtResource("10_sx52e")
+offset = Vector2(-4, -16)
+
+[node name="GunLight1" type="Sprite2D" parent="PlayerSprite/Torso/Gun"]
+position = Vector2(-5.14214, -22.8405)
+rotation = -0.0545926
+scale = Vector2(1, 1)
+texture = ExtResource("11_6jmg1")
+offset = Vector2(-8, -32)
+
+[node name="GunLight2" type="Sprite2D" parent="PlayerSprite/Torso/Gun"]
+position = Vector2(-5.00389, -24.8357)
+rotation = -0.0708309
+texture = ExtResource("12_q8d4c")
+offset = Vector2(-7, -26)
+
+[node name="GunLight3" type="Sprite2D" parent="PlayerSprite/Torso/Gun"]
+position = Vector2(-5.14214, -22.8405)
+rotation = -0.0644556
+scale = Vector2(1, 1)
+texture = ExtResource("13_vhw1t")
+offset = Vector2(-6, -24)
+
+[node name="RightArm" type="Sprite2D" parent="PlayerSprite/Torso/Gun"]
+position = Vector2(-3.62595, -14.0109)
+rotation = 0.0632526
+scale = Vector2(1, 1)
+texture = ExtResource("14_7t4jr")
+
+[node name="RightForearmLight" type="Sprite2D" parent="PlayerSprite/Torso/Gun"]
+position = Vector2(-3.62596, -14.0109)
+rotation = 0.0632526
+scale = Vector2(1, 1)
+texture = ExtResource("15_kr6nq")
+
+[node name="LeftShoulder" type="Sprite2D" parent="PlayerSprite/Torso"]
+position = Vector2(-24, -1)
+texture = ExtResource("16_oyum1")
+
+[node name="LeftShoulderLight" type="Sprite2D" parent="PlayerSprite/Torso/LeftShoulder"]
+texture = ExtResource("17_1dixj")
+
+[node name="RightShoulder" type="Sprite2D" parent="PlayerSprite/Torso"]
+position = Vector2(24, -1)
+texture = ExtResource("18_txt8h")
+offset = Vector2(0.685, 0)
+
+[node name="RightShoulderLight" type="Sprite2D" parent="PlayerSprite/Torso/RightShoulder"]
+texture = ExtResource("19_ga4wj")
+
+[node name="Head" type="Sprite2D" parent="PlayerSprite"]
+texture = ExtResource("20_khl5e")
+
+[node name="HeadLight" type="Sprite2D" parent="PlayerSprite/Head"]
+texture = ExtResource("21_vi4mv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_b1y51")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wb7x1")
+
+[node name="Palette" parent="." instance=ExtResource("2_ybmla")]
+position = Vector2(0, -56)

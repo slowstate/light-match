@@ -1,14 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://ua5firl6innu"]
+[gd_scene load_steps=25 format=3 uid="uid://ua5firl6innu"]
 
-[ext_resource type="Texture2D" uid="uid://bkdt74yttbbgb" path="res://Enemies/Colours/Red/enemy_red.png" id="1_b77uh"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank.gd" id="1_vdwel"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_machine.gd" id="3_7cjsl"]
+[ext_resource type="Texture2D" uid="uid://dev068qadnb34" path="res://Enemies/Tank/Stream.png" id="3_erh0f"]
 [ext_resource type="Script" path="res://Enemies/Tank/shield.gd" id="3_k8nc8"]
+[ext_resource type="Texture2D" uid="uid://bd706m04pxxlh" path="res://Enemies/Tank/Energy.png" id="4_a6roh"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_idle.gd" id="4_lnoqp"]
+[ext_resource type="Texture2D" uid="uid://bttbk3egeya7q" path="res://Enemies/Tank/Tank Left Leg.png" id="5_6fnmp"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_chasing.gd" id="5_syhry"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2qfm"]
-size = Vector2(80, 80)
+[ext_resource type="Texture2D" uid="uid://qrfkoor2dh7l" path="res://Enemies/Tank/Tank Left Leg-1.png" id="6_fm763"]
+[ext_resource type="Texture2D" uid="uid://dw68kgmrcpibk" path="res://Enemies/Tank/Tank Gun.png" id="7_2orve"]
+[ext_resource type="Texture2D" uid="uid://yiavaejju3jn" path="res://Enemies/Tank/Tank Body.png" id="8_n1r76"]
+[ext_resource type="Texture2D" uid="uid://dt7o1mwgeq5iq" path="res://Enemies/Tank/Tank Light 1.png" id="9_jvyxp"]
+[ext_resource type="Texture2D" uid="uid://bn1k7lyquj6lp" path="res://Enemies/Tank/Tank Light 2.png" id="10_sjja1"]
+[ext_resource type="Texture2D" uid="uid://c1gp0qjud6d2c" path="res://Enemies/Tank/Tank Light 3.png" id="11_jfo3f"]
+[ext_resource type="Texture2D" uid="uid://btg5s5qtqr73d" path="res://Enemies/Tank/Tank Light 4.png" id="12_pot40"]
+[ext_resource type="Texture2D" uid="uid://dnxh3k33vfwxl" path="res://Enemies/Tank/Tank Light 5.png" id="13_rc377"]
+[ext_resource type="Texture2D" uid="uid://wbk7k5ddxw45" path="res://Enemies/Tank/Shield.png" id="17_awigq"]
 
 [sub_resource type="Gradient" id="Gradient_6xtu8"]
 offsets = PackedFloat32Array(1)
@@ -22,23 +30,119 @@ height = 80
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5temy"]
 size = Vector2(16, 240)
 
+[sub_resource type="Animation" id="Animation_373on"]
+resource_name = "Tank_Beam"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Energy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(30, 0), Vector2(120, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Energy:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Shield2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.9, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.65), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.65)]
+}
+
+[sub_resource type="Animation" id="Animation_i3aj0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Energy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Energy:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Shield2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.65)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_voi58"]
+_data = {
+"RESET": SubResource("Animation_i3aj0"),
+"Tank_Beam": SubResource("Animation_373on")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2qfm"]
+size = Vector2(80, 80)
+
 [node name="Tank" type="Area2D"]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_vdwel")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_b77uh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_s2qfm")
 
 [node name="Shield" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_k8nc8")
 
+[node name="Stream" type="Sprite2D" parent="Shield"]
+position = Vector2(66, 0)
+rotation = -1.5708
+texture = ExtResource("3_erh0f")
+
+[node name="Energy" type="Sprite2D" parent="Shield"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(48, 0)
+rotation = -1.5708
+scale = Vector2(1, 1.34066)
+texture = ExtResource("4_a6roh")
+
 [node name="ShieldSprite2D" type="Sprite2D" parent="Shield"]
+visible = false
 position = Vector2(88, 0)
 scale = Vector2(0.2, 3)
 texture = SubResource("GradientTexture2D_gqhg3")
@@ -46,6 +150,62 @@ texture = SubResource("GradientTexture2D_gqhg3")
 [node name="ShieldCollisionShape2D" type="CollisionShape2D" parent="Shield"]
 position = Vector2(88, 0)
 shape = SubResource("RectangleShape2D_5temy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shield"]
+libraries = {
+"": SubResource("AnimationLibrary_voi58")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="TankLeftLeg" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-0.5, 23)
+rotation = -1.5708
+texture = ExtResource("5_6fnmp")
+
+[node name="TankLeftLeg-1" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.5, -23)
+rotation = -1.5708
+texture = ExtResource("6_fm763")
+
+[node name="TankGun" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(25, 0)
+rotation = -1.5708
+texture = ExtResource("7_2orve")
+
+[node name="TankBody" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.5, 0)
+rotation = -1.5708
+texture = ExtResource("8_n1r76")
+
+[node name="TankLight1" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.5, 0)
+rotation = -1.5708
+texture = ExtResource("9_jvyxp")
+
+[node name="TankLight2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.5, 14)
+rotation = -1.5708
+texture = ExtResource("10_sjja1")
+
+[node name="TankLight3" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.5, -5)
+rotation = -1.5708
+texture = ExtResource("11_jfo3f")
+
+[node name="TankLight4" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.5, 5)
+rotation = -1.5708
+texture = ExtResource("12_pot40")
+
+[node name="TankLight5" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.5, -14)
+rotation = -1.5708
+texture = ExtResource("13_rc377")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_s2qfm")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_7cjsl")
@@ -62,3 +222,9 @@ one_shot = true
 
 [node name="Chasing" type="Node" parent="StateMachine"]
 script = ExtResource("5_syhry")
+
+[node name="Shield2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.65)
+position = Vector2(87, -1)
+rotation = -1.5708
+texture = ExtResource("17_awigq")

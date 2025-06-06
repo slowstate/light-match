@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
-[ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
-[ext_resource type="Texture2D" uid="uid://bwxq8rvde0l71" path="res://tron-background-9pj5j2dwcqyn668u.jpg" id="2_46wjt"]
+[ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/Character/player.tscn" id="1_pqj1j"]
+[ext_resource type="Texture2D" uid="uid://dqs7558opf5lp" path="res://Arena/BG.png" id="2_1mo21"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4bo3i"]
 normal = Vector2(-1, 0)
@@ -18,9 +18,13 @@ normal = Vector2(0, 1)
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1920, 1080)
+texture = ExtResource("2_1mo21")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(2, 2)
-texture = ExtResource("2_46wjt")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("1_pqj1j")]

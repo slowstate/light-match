@@ -1,11 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://duvsa2r7f53oy"]
+[gd_scene load_steps=21 format=3 uid="uid://duvsa2r7f53oy"]
 
 [ext_resource type="Script" path="res://Enemies/Star/star.gd" id="1_a0cwb"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_machine.gd" id="2_62ny6"]
 [ext_resource type="Texture2D" uid="uid://bkdt74yttbbgb" path="res://Enemies/Colours/Red/enemy_red.png" id="2_jdqvl"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_idle.gd" id="3_d4gsq"]
+[ext_resource type="Texture2D" uid="uid://du6tcee4d2e6c" path="res://Enemies/Star/Star Body.png" id="3_hh7uu"]
 [ext_resource type="Script" path="res://Enemies/Star/wall.gd" id="3_yfsqo"]
+[ext_resource type="Texture2D" uid="uid://cgjhj37vdnqj" path="res://Enemies/Star/Star Light 6.png" id="4_56l85"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_chasing.gd" id="4_lhp5w"]
+[ext_resource type="Texture2D" uid="uid://bcqu0p5xce1cp" path="res://Enemies/Star/Star Shell 1.png" id="6_pwxvl"]
+[ext_resource type="Texture2D" uid="uid://dvpxrbokg15c6" path="res://Enemies/Star/Star Shell Light 1.png" id="7_joar6"]
+[ext_resource type="Texture2D" uid="uid://myhd2mq0ulj4" path="res://Enemies/Star/Star Shell 2.png" id="8_tt6t2"]
+[ext_resource type="Texture2D" uid="uid://dtlffnwerr7y3" path="res://Enemies/Star/Star Shell Light 2.png" id="9_jvais"]
+[ext_resource type="Texture2D" uid="uid://drv6ho0eho4fd" path="res://Enemies/Star/Star Shell 4.png" id="10_sa7mq"]
+[ext_resource type="Texture2D" uid="uid://cinrj6bbhxoyw" path="res://Enemies/Star/Star Shell Light 4.png" id="11_ib8vh"]
+[ext_resource type="Texture2D" uid="uid://b3lga7xhaa4u3" path="res://Enemies/Star/Star Shell 5.png" id="12_4g25g"]
+[ext_resource type="Texture2D" uid="uid://ddu3y2lv5d54k" path="res://Enemies/Star/Star Shell Light 5.png" id="13_cbitq"]
+[ext_resource type="Texture2D" uid="uid://bhcbajj0cnbyw" path="res://Enemies/Star/Star Shell 3.png" id="14_3jcek"]
+[ext_resource type="Texture2D" uid="uid://b1ly852qklum0" path="res://Enemies/Star/Star Shell Light 3.png" id="15_8lkfx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5tbji"]
 radius = 20.0
@@ -23,6 +35,16 @@ position = Vector2(0, 3)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_jdqvl")
 
+[node name="StarBody" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.999969, -2)
+scale = Vector2(2, 2)
+texture = ExtResource("3_hh7uu")
+
+[node name="StarLight6" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.999969, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("4_56l85")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_5tbji")
@@ -39,6 +61,16 @@ script = ExtResource("3_yfsqo")
 scale = Vector2(0.5, 0.1)
 texture = ExtResource("2_jdqvl")
 
+[node name="StarShell1" type="Sprite2D" parent="Walls/Wall0/WallSprite2D"]
+position = Vector2(-1.00003, 15)
+scale = Vector2(2, 10)
+texture = ExtResource("6_pwxvl")
+
+[node name="StarShellLight1" type="Sprite2D" parent="Walls/Wall0/WallSprite2D"]
+position = Vector2(-1.00003, 15)
+scale = Vector2(2, 10)
+texture = ExtResource("7_joar6")
+
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall0"]
 shape = SubResource("RectangleShape2D_nr1nb")
 
@@ -53,6 +85,20 @@ wall_number = 1
 [node name="WallSprite2D" type="Sprite2D" parent="Walls/Wall1"]
 scale = Vector2(0.5, 0.1)
 texture = ExtResource("2_jdqvl")
+
+[node name="StarShell2" type="Sprite2D" parent="Walls/Wall1/WallSprite2D"]
+position = Vector2(-8.48748, 33.5272)
+rotation = -1.5059
+scale = Vector2(9.53063, 3.62864)
+skew = 0.954135
+texture = ExtResource("8_tt6t2")
+
+[node name="StarShellLight2" type="Sprite2D" parent="Walls/Wall1/WallSprite2D"]
+position = Vector2(-9.10549, 43.0377)
+rotation = -1.5059
+scale = Vector2(9.53063, 3.62864)
+skew = 0.954135
+texture = ExtResource("9_jvais")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall1"]
 shape = SubResource("RectangleShape2D_nr1nb")
@@ -69,6 +115,20 @@ wall_number = 2
 scale = Vector2(0.5, 0.1)
 texture = ExtResource("2_jdqvl")
 
+[node name="StarShell4" type="Sprite2D" parent="Walls/Wall2/WallSprite2D"]
+position = Vector2(-7.86246, 45.6022)
+rotation = -1.83942
+scale = Vector2(6.09652, 8.17511)
+skew = -1.15788
+texture = ExtResource("10_sa7mq")
+
+[node name="StarShellLight4" type="Sprite2D" parent="Walls/Wall2/WallSprite2D"]
+position = Vector2(-6.97754, 73.5382)
+rotation = -1.83942
+scale = Vector2(6.09652, 8.17511)
+skew = -1.15788
+texture = ExtResource("11_ib8vh")
+
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
 shape = SubResource("RectangleShape2D_nr1nb")
 
@@ -84,6 +144,20 @@ wall_number = 3
 scale = Vector2(0.5, 0.1)
 texture = ExtResource("2_jdqvl")
 
+[node name="StarShell5" type="Sprite2D" parent="Walls/Wall3/WallSprite2D"]
+position = Vector2(6.2444, 51.48)
+rotation = 1.83942
+scale = Vector2(6.09648, 8.17514)
+skew = 1.15787
+texture = ExtResource("12_4g25g")
+
+[node name="StarShellLight5" type="Sprite2D" parent="Walls/Wall3/WallSprite2D"]
+position = Vector2(3.74144, 85.2939)
+rotation = 1.83942
+scale = Vector2(6.09648, 8.17514)
+skew = 1.15787
+texture = ExtResource("13_cbitq")
+
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
 shape = SubResource("RectangleShape2D_nr1nb")
 
@@ -98,6 +172,20 @@ wall_number = 4
 [node name="WallSprite2D" type="Sprite2D" parent="Walls/Wall4"]
 scale = Vector2(0.5, 0.1)
 texture = ExtResource("2_jdqvl")
+
+[node name="StarShell3" type="Sprite2D" parent="Walls/Wall4/WallSprite2D"]
+position = Vector2(10.3896, 30.4368)
+rotation = 1.5059
+scale = Vector2(9.53062, 3.62867)
+skew = -0.95414
+texture = ExtResource("14_3jcek")
+
+[node name="StarShellLight3" type="Sprite2D" parent="Walls/Wall4/WallSprite2D"]
+position = Vector2(9.1055, 43.0374)
+rotation = 1.5059
+scale = Vector2(9.53062, 3.62867)
+skew = -0.95414
+texture = ExtResource("15_8lkfx")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4"]
 shape = SubResource("RectangleShape2D_nr1nb")
