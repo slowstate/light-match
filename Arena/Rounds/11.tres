@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Round" load_steps=2 format=3 uid="uid://wjd2js7uwdja"]
+
+[ext_resource type="Script" path="res://Arena/Rounds/round.gd" id="1_sedyl"]
+
+[resource]
+script = ExtResource("1_sedyl")
+total_enemies_to_spawn = 15
+spawn_bots = true
+spawn_lizards = true
+spawn_tanks = true
+spawn_oracles = true
+spawn_stars = false
+bots_health = 2
+lizards_health = 3
+tanks_health = 3
+oracles_health = 2
+stars_health = 1

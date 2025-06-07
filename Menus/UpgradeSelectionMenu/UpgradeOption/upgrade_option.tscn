@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlhvlu6kxswq0"]
+
+[ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/upgrade_option.gd" id="1_cys41"]
+
+[sub_resource type="Gradient" id="Gradient_v4s6v"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.533333, 0.533333, 0.533333, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cglp0"]
+gradient = SubResource("Gradient_v4s6v")
+width = 300
+height = 300
+
+[sub_resource type="LabelSettings" id="LabelSettings_781bl"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_vx75e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc30j"]
+
+[node name="UpgradeOption" type="Control"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("1_cys41")
+
+[node name="UpgradeOptionBG" type="Sprite2D" parent="."]
+position = Vector2(150, 150)
+texture = SubResource("GradientTexture2D_cglp0")
+
+[node name="UpgradeOptionNameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 20.0
+offset_right = 130.0
+offset_bottom = 74.0
+grow_horizontal = 2
+text = "Upgrade Title"
+label_settings = SubResource("LabelSettings_781bl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="UpgradeOptionDescriptionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -30.0
+offset_right = 130.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Upgrade description"
+label_settings = SubResource("LabelSettings_vx75e")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dc30j")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

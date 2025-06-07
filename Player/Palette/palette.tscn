@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnshaeplewb85"]
+
+[ext_resource type="Script" path="res://Player/Palette/palette.gd" id="1_u6kec"]
+
+[sub_resource type="Gradient" id="Gradient_7njyr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6jnm"]
+gradient = SubResource("Gradient_7njyr")
+width = 24
+height = 24
+
+[sub_resource type="Gradient" id="Gradient_tawi8"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_330i1"]
+gradient = SubResource("Gradient_tawi8")
+width = 24
+height = 24
+
+[sub_resource type="Gradient" id="Gradient_q08cj"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r3523"]
+gradient = SubResource("Gradient_q08cj")
+width = 24
+height = 24
+
+[node name="Palette" type="Node2D"]
+script = ExtResource("1_u6kec")
+
+[node name="PaletteColour0" type="Sprite2D" parent="."]
+position = Vector2(-32, 0)
+texture = SubResource("GradientTexture2D_a6jnm")
+
+[node name="PaletteColour1" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_330i1")
+
+[node name="PaletteColour2" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+texture = SubResource("GradientTexture2D_r3523")

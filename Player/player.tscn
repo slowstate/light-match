@@ -1,23 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=8 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
-
-[sub_resource type="Gradient" id="Gradient_4o03r"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f7til"]
-gradient = SubResource("Gradient_4o03r")
-width = 85
-height = 62
+[ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="2_ekdli"]
+[ext_resource type="PackedScene" uid="uid://dnshaeplewb85" path="res://Player/Palette/palette.tscn" id="2_ybmla"]
+[ext_resource type="Script" path="res://Player/player_upgrades_interface.gd" id="3_gmi6u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb7x1"]
 radius = 31.0
 height = 85.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p5nhg"]
+radius = 19.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qy1jw"]
+radius = 300.0
+
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(290, 138)
 collision_layer = 2
-collision_mask = 25
+collision_mask = 9
 script = ExtResource("1_plba5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -28,9 +31,58 @@ limit_bottom = 2160
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_f7til")
+[node name="PlayerSprite" parent="." instance=ExtResource("2_ekdli")]
+position = Vector2(0, 1.90735e-06)
+
+[node name="BulletSpawnPoint" type="Node2D" parent="PlayerSprite"]
+position = Vector2(19.9998, -46.0001)
+rotation = -1.5708
+
+[node name="TipOfBarrelPoint" type="Node2D" parent="PlayerSprite"]
+position = Vector2(18.9998, -56.0001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_wb7x1")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-8, 1)
+shape = SubResource("CapsuleShape2D_p5nhg")
+
+[node name="Palette" parent="." instance=ExtResource("2_ybmla")]
+position = Vector2(0, -56)
+
+[node name="GunCooldownTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="GunSwitchCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="HitImmunityTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ChromeKnucklesProximity" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChromeKnucklesProximity"]
+visible = false
+shape = SubResource("CircleShape2D_qy1jw")
+
+[node name="PlayerInterface" type="CanvasLayer" parent="."]
+
+[node name="PlayerUpgradesInterface" type="HBoxContainer" parent="PlayerInterface"]
+offset_left = 355.0
+offset_top = 30.0
+offset_right = 395.0
+offset_bottom = 70.0
+script = ExtResource("3_gmi6u")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

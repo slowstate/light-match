@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Round" load_steps=2 format=3 uid="uid://yv8p0xr1e0r6"]
+
+[ext_resource type="Script" path="res://Arena/Rounds/round.gd" id="1_n14yd"]
+
+[resource]
+script = ExtResource("1_n14yd")
+total_enemies_to_spawn = 8
+spawn_bots = false
+spawn_lizards = false
+spawn_tanks = false
+spawn_oracles = true
+spawn_stars = false
+bots_health = 2
+lizards_health = 2
+tanks_health = 2
+oracles_health = 1
+stars_health = 1

@@ -1,22 +1,65 @@
-extends CharacterBody2D
 class_name Player
+extends CharacterBody2D
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+const PLAYER_UPGRADE_BUTTON = preload("res://Player/Upgrades/player_upgrade_button.tscn")
+
+var base_move_speed := 500.0
+var move_speed := base_move_speed
+var current_colour := Globals.Colour.BLUE
+var upgrades: Array[Upgrade] = []
+var controls_enabled: bool = true
+var move_vec: Vector2
+var shield: bool = false
+
+var gun_cooldown: float = 0.7
+var gun_switch_cooldown: float = 0.5
+
+@onready var player_sprite: PlayerSprite = $PlayerSprite
+@onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
+@onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var palette: Palette = $Palette
+@onready var gun_cooldown_timer: Timer = $GunCooldownTimer
+@onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
+@onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
+@onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
+@onready var hit_immunity_timer: Timer = $HitImmunityTimer
 
 
-const MOVE_SPEED := 500.0
-const JUMP_VELOCITY := -400.0
-var current_colour := Globals.Colour.Blue
+func _init() -> void:
+	Globals.player = self
+
 
 func _ready() -> void:
-	Globals.player = self
-	
-func _physics_process(delta: float) -> void:
-	#if camera_2d.position > Vector2(0.0, 0.0):
-		#camera_2d.positionlerp()
-	var move_vec: Vector2
+	SignalBus.upgrade_removed.connect(remove_upgrade)
+
+
+func _physics_process(_delta: float) -> void:
+	if !hit_immunity_timer.is_stopped():
+		player_sprite.set_light_visibility(true) if roundi(hit_immunity_timer.time_left * 10) % 2 == 0 else player_sprite.set_light_visibility(false)
+
+	move_vec = move_vec.normalized()
+
+	if move_vec.length() > 0:
+		UpgradeManager.on_player_moving()
+		player_sprite.play_move_animation(true)
+	else:
+		player_sprite.play_move_animation(false)
+
+	velocity = move_vec * move_speed
+	player_sprite.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(90)
+	collision_shape_2d.rotation = -velocity.angle()
+
+	move_and_slide()
+
+
+func _input(event: InputEvent) -> void:
+	move_vec = Vector2(0, 0)
+	if !controls_enabled:
+		return
+
+	# Handle movement
 	if Input.is_action_pressed("player_move_up"):
 		move_vec.y = -1
 	if Input.is_action_pressed("player_move_left"):
@@ -25,34 +68,108 @@ func _physics_process(delta: float) -> void:
 		move_vec.y = 1
 	if Input.is_action_pressed("player_move_right"):
 		move_vec.x = 1
-	move_vec = move_vec.normalized()
-	
-	velocity = move_vec * MOVE_SPEED
-	sprite_2d.rotation = -velocity.angle()
-	collision_shape_2d.rotation = -velocity.angle()
-	
-	
-	move_and_slide()
 
-func _input(event: InputEvent) -> void:
-	# Handle shooting
+	# Handle colour switching
 	if event.is_action_pressed("player_red"):
-		current_colour = Globals.Colour.Red
+		change_colour(Globals.Colour.RED)
 	if event.is_action_pressed("player_green"):
-		current_colour = Globals.Colour.Green
+		change_colour(Globals.Colour.GREEN)
 	if event.is_action_pressed("player_blue"):
-		current_colour = Globals.Colour.Blue
-	if event.is_action_pressed("player_shoot"):
+		change_colour(Globals.Colour.BLUE)
+	if event.is_action_pressed("player_next_colour"):
+		_get_next_colour()
+	if event.is_action_pressed("player_previous_colour"):
+		_get_previous_colour()
+
+	# Handle shooting
+	if event.is_action_pressed("player_shoot") && gun_cooldown_timer.is_stopped():
 		_fire_bullet()
-	#if event.is_action_pressed("player_next_colour"):
-		#var bulletColours = Globals.Colour.values()
-		
+
+
 func _fire_bullet():
-	var direction_vector: Vector2 = (get_global_mouse_position() - global_position).normalized()
+	if !gun_cooldown_timer.is_stopped():
+		return
+	player_sprite.play_shoot_animation()
+	var gun_angle = (tip_of_barrel_point.global_position - bullet_spawn_point.global_position).angle()
+	var angle: float = clamp((get_global_mouse_position() - bullet_spawn_point.global_position).angle(), gun_angle - deg_to_rad(5), gun_angle + deg_to_rad(5))
 	var new_bullet: Bullet
-	match current_colour:
-		Globals.Colour.Blue: 	new_bullet = BlueBullet.create(global_position, direction_vector)
-		Globals.Colour.Green: new_bullet = GreenBullet.create(global_position, direction_vector)
-		Globals.Colour.Red: 	new_bullet = RedBullet.create(global_position, direction_vector)
+	new_bullet = Bullet.create(bullet_spawn_point.global_position, angle, current_colour)
 	if new_bullet:
+		new_bullet = UpgradeManager.on_bullet_fired(new_bullet)
 		get_tree().root.add_child(new_bullet)
+		gun_cooldown_timer.wait_time = 0.7
+		gun_cooldown_timer = UpgradeManager.on_gun_cooldown_start(gun_cooldown_timer)
+		gun_cooldown_timer.start()
+
+
+func _get_next_colour() -> void:
+	var bullet_colours = Globals.Colour.values()
+	if current_colour == Globals.Colour.RED:
+		change_colour(Globals.Colour.BLUE)
+	else:
+		change_colour(bullet_colours[bullet_colours.find(current_colour) + 1])
+
+
+func _get_previous_colour() -> void:
+	var bullet_colours = Globals.Colour.values()
+	if current_colour == Globals.Colour.BLUE:
+		change_colour(Globals.Colour.RED)
+	else:
+		change_colour(bullet_colours[bullet_colours.find(current_colour) - 1])
+
+
+func change_colour(new_colour: Globals.Colour) -> void:
+	if !gun_switch_cooldown_timer.is_stopped():
+		return
+	if current_colour == new_colour:
+		return
+	current_colour = new_colour
+	player_sprite.set_colour(current_colour)
+	gun_switch_cooldown_timer.start(gun_switch_cooldown)
+	gun_cooldown_timer = UpgradeManager.on_gun_colour_switch(gun_cooldown_timer)
+
+
+func add_upgrades(new_upgrades: Array[Upgrade]) -> void:
+	if upgrades.size() <= 5 and upgrades.size() + new_upgrades.size() <= 5:
+		upgrades.append_array(new_upgrades)
+		update_player_upgrades_interface()
+
+
+func remove_upgrade(upgrade: Upgrade) -> void:
+	UpgradeManager.on_upgrade_removed(upgrade)
+	if upgrades.find(upgrade) >= 0:
+		upgrades.erase(upgrade)
+		update_player_upgrades_interface()
+
+
+func update_player_upgrades_interface() -> void:
+	# Clear all player upgrades displayed in the interface
+	for upgrade_button in player_upgrades_interface.get_children():
+		player_upgrades_interface.remove_child(upgrade_button)
+		upgrade_button.queue_free()
+
+	for upgrade in upgrades:
+		var new_upgrade_button: PlayerUpgradeButton = PLAYER_UPGRADE_BUTTON.instantiate()
+		new_upgrade_button.custom_minimum_size = Vector2(80, 80)
+		new_upgrade_button.setup(upgrade)
+		player_upgrades_interface.add_child(new_upgrade_button)
+
+
+func enable_player_upgrade_buttons(enable: bool) -> void:
+	for upgrade_button in player_upgrades_interface.get_child_count():
+		var button = player_upgrades_interface.get_child(upgrade_button) as PlayerUpgradeButton
+		button.disabled = !enable
+
+
+func _on_hurt_box_area_entered(_area: Area2D) -> void:
+	if !hit_immunity_timer.is_stopped():
+		return
+	hit_immunity_timer.start(1)
+	if shield:
+		shield = false
+		return
+	if upgrades.size() <= 0:
+		print("Player died")
+		SignalBus.player_died.emit()
+		return
+	remove_upgrade(upgrades.back())

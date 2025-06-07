@@ -1,40 +1,70 @@
 class_name Bullet
 extends Area2D
 
-@export var sprite_2d: Sprite2D
-@export var collision_shape_2d: CollisionShape2D
+@onready var sprite: Sprite2D = $Sprite
+@onready var glow_sprite: Sprite2D = $GlowSprite
+@onready var collision_check_ray_cast: RayCast2D = $CollisionCheckRayCast
 
-var direction: Vector2
+var bullet_id: String
+var colour: Globals.Colour
+var angle: float
 var damage: int
 var speed: float
-var colour: Globals.Colour
+var travel_distance: float
+
+const BULLET = preload("res://Player/Bullet/bullet.tscn")
+
+
+static func create(bullet_position: Vector2, bullet_angle: float, bullet_colour: Globals.Colour, bullet_damage := 1, bullet_speed := 1500.0) -> Bullet:
+	var new_bullet: Bullet = BULLET.instantiate()
+	new_bullet.global_position = bullet_position
+	new_bullet.angle = bullet_angle
+	new_bullet.colour = bullet_colour
+	new_bullet.damage = bullet_damage
+	new_bullet.speed = bullet_speed
+	return new_bullet
+
+
+func _init() -> void:
+	bullet_id = Globals.generate_guid()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_collision_layer_value(Globals.CollisionLayer.Bullets, true)
-	set_collision_mask_value(Globals.CollisionLayer.Enemies, true)
-	_setup()
+	set_collision_layer_value(Globals.CollisionLayer.BULLETS, true)
+	set_collision_mask_value(Globals.CollisionLayer.ENEMIES, true)
+	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
+	sprite.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
+	rotation = angle
 
-# This function should be overriden by inheriting classes; not code should be added to this class
-func _setup() -> void:
-	# Keep this empty as child nodes will override this function
-	pass
-	
-func _set_sprite_colour() -> void:
-	var sprite2d_texture: GradientTexture2D = sprite_2d.texture
-	sprite2d_texture.gradient.colors[0] = Globals.ColourVisualValue[colour]
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if colour:
-		var velocity = direction * speed
-		sprite_2d.rotation = -velocity.angle()
+func _physics_process(delta: float) -> void:
+	if !colour:
+		return
+
+	var velocity = Vector2.from_angle(angle).normalized() * speed
+	collision_check_ray_cast.target_position = Vector2(speed * delta, 0)
+	if collision_check_ray_cast.is_colliding():
+		global_position = collision_check_ray_cast.get_collision_point()
+		var collided_shape := collision_check_ray_cast.get_collider()
+		if collided_shape as Area2D:
+			collided_shape._on_area_entered(self)
+			_on_area_entered(collided_shape)
+		else:
+			_on_body_entered(collided_shape)
+	else:
 		translate(velocity * delta)
 
-
-func _on_body_entered(body: Node2D) -> void:
-	queue_free()
+	if travel_distance < 500:
+		travel_distance += speed * delta
+		if travel_distance >= 500:
+			damage = (UpgradeManager.on_bullet_travelled_x_pixels(self, 500) as Bullet).damage
 
 
 func _on_area_entered(area: Area2D) -> void:
+	queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
 	queue_free()
