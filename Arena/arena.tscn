@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
-[ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player_LOCAL_1568.tscn" id="1_pqj1j"]
+[ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
 [ext_resource type="Texture2D" uid="uid://dqs7558opf5lp" path="res://Arena/BG.png" id="2_1mo21"]
 [ext_resource type="Script" path="res://Arena/arena_state_machine.gd" id="4_53yap"]
 [ext_resource type="Script" path="res://Arena/arena_state_round_active.gd" id="5_vs3oy"]
@@ -23,19 +23,14 @@ font_size = 30
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
+current_round_number = 12
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="BG" type="Sprite2D" parent="."]
 position = Vector2(1920, 1080)
 texture = ExtResource("2_1mo21")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(2, 2)
-centered = false
-
 [node name="Player" parent="." instance=ExtResource("1_pqj1j")]
 position = Vector2(1920, 1080)
-script = null
 
 [node name="Boundaries" type="Node2D" parent="."]
 

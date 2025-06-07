@@ -1,0 +1,174 @@
+[gd_scene load_steps=13 format=3 uid="uid://dohxwuksnslb"]
+
+[ext_resource type="Texture2D" uid="uid://dxw01xuq15eox" path="res://Enemies/Bot/Sprite/Bot's Drop Shadow.png" id="1_p7gks"]
+[ext_resource type="Script" path="res://Enemies/Bot/Sprite/bot_sprite.gd" id="1_x8xro"]
+[ext_resource type="Texture2D" uid="uid://chhxpd32t4gp5" path="res://Enemies/Bot/Sprite/Bot Head.png" id="2_bneqc"]
+[ext_resource type="Texture2D" uid="uid://bberwgb1fkftk" path="res://Enemies/Bot/Sprite/Bot Left Arm.png" id="3_y00nd"]
+[ext_resource type="Texture2D" uid="uid://dmbqe8fb8we13" path="res://Enemies/Bot/Sprite/Bot Light 1.png" id="4_mn52t"]
+[ext_resource type="Texture2D" uid="uid://bq6hevqleaeqe" path="res://Enemies/Bot/Sprite/Bot Light 2.png" id="5_or6tu"]
+[ext_resource type="Texture2D" uid="uid://bf6ynr5b6evp" path="res://Enemies/Bot/Sprite/Bot Light 3.png" id="6_l4ghs"]
+[ext_resource type="Texture2D" uid="uid://cthvj2i6u33qs" path="res://Enemies/Bot/Sprite/Bot Right Arm.png" id="7_wwmbe"]
+
+[sub_resource type="Animation" id="Animation_7hsmm"]
+resource_name = "Bot_Attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BotRightArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.48287, -0.101041, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BotRightArm:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3nwlt"]
+resource_name = "Bot_Move"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BotLeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BotRightArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -1.4399, -1.5708, -1.7017, -1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_cyuvn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BotLeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BotRightArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BotRightArm:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2a28e"]
+_data = {
+"Bot_Attack": SubResource("Animation_7hsmm"),
+"Bot_Move": SubResource("Animation_3nwlt"),
+"RESET": SubResource("Animation_cyuvn")
+}
+
+[node name="BotSprite" type="Sprite2D"]
+offset = Vector2(-19, 3)
+script = ExtResource("1_x8xro")
+
+[node name="Bot\'sDropShadow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 13)
+texture = ExtResource("1_p7gks")
+
+[node name="BotHead" type="Sprite2D" parent="."]
+texture = ExtResource("2_bneqc")
+
+[node name="BotLeftArm" type="Sprite2D" parent="."]
+position = Vector2(18, 2)
+texture = ExtResource("3_y00nd")
+offset = Vector2(9, 16)
+
+[node name="BotLight1" type="Sprite2D" parent="."]
+texture = ExtResource("4_mn52t")
+
+[node name="BotLight2" type="Sprite2D" parent="."]
+texture = ExtResource("5_or6tu")
+
+[node name="BotLight3" type="Sprite2D" parent="."]
+texture = ExtResource("6_l4ghs")
+
+[node name="BotRightArm" type="Sprite2D" parent="."]
+position = Vector2(-20, 1)
+scale = Vector2(1, 0.7)
+texture = ExtResource("7_wwmbe")
+offset = Vector2(-7, 17)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2a28e")
+}

@@ -2,7 +2,7 @@ extends Area2D
 
 var tank: Tank
 
-@onready var shield_sprite_2d: Sprite2D = $ShieldSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +23,5 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	var _bullet = area as Bullet
-	# TODO: Add FX for bullet blocked by Tank shield
-	pass
+	var bullet = area as Bullet
+	animation_player.play("Tank_Beam")

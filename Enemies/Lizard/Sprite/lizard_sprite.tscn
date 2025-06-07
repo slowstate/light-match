@@ -1,0 +1,503 @@
+[gd_scene load_steps=18 format=3 uid="uid://cq600o70yc5is"]
+
+[ext_resource type="Texture2D" uid="uid://w6c720n418jd" path="res://Enemies/Lizard/Sprite/Liz Back Left Leg.png" id="1_3p810"]
+[ext_resource type="Script" path="res://Enemies/Lizard/Sprite/lizard_sprite.gd" id="1_6nwxu"]
+[ext_resource type="Texture2D" uid="uid://demfmd5v0bu0i" path="res://Enemies/Lizard/Sprite/Liz Body.png" id="2_7cwab"]
+[ext_resource type="Texture2D" uid="uid://ckooq8a6au6sr" path="res://Enemies/Lizard/Sprite/Liz Tail 1.png" id="3_2ewhc"]
+[ext_resource type="Texture2D" uid="uid://b6qe44as4fuw5" path="res://Enemies/Lizard/Sprite/Liz Tail 2.png" id="4_ty85i"]
+[ext_resource type="Texture2D" uid="uid://rg701ndp6lco" path="res://Enemies/Lizard/Sprite/Liz Tail 3.png" id="5_mvwod"]
+[ext_resource type="Texture2D" uid="uid://da7j3pc0hsdep" path="res://Enemies/Lizard/Sprite/Liz Body Light 1.png" id="6_6712j"]
+[ext_resource type="Texture2D" uid="uid://ceultpqiret3i" path="res://Enemies/Lizard/Sprite/Liz Body Light 2.png" id="7_0q2tb"]
+[ext_resource type="Texture2D" uid="uid://b12qhsg20awie" path="res://Enemies/Lizard/Sprite/Liz Body Light 3.png" id="8_eufxr"]
+[ext_resource type="Texture2D" uid="uid://d2vdfcnrn0l76" path="res://Enemies/Lizard/Sprite/Liz Body Light 4.png" id="9_ejl8p"]
+[ext_resource type="Script" path="res://Enemies/Lizard/head.gd" id="10_cqcug"]
+[ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="11_nul76"]
+[ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="12_s8hx1"]
+
+[sub_resource type="Animation" id="Animation_8y4so"]
+resource_name = "Liz_Attach"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/HeadSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -1.92786, -1.33154, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LizTail1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.117681, 0.266518, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LizTail1/LizTail2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.359671, 0.072045, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LizTail1/LizTail2/LizTail3:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.305183, -0.494861, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/HeadCollisionShape2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.130043, -0.349066, 0.244346, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_atrwv"]
+resource_name = "Liz_Walk"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LizFrontLeg1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(15, 15), Vector2(15, 18), Vector2(15, 15), Vector2(15, 13), Vector2(15, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LizFrontLeg1/LizFrontLeg1(1):position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 6), Vector2(0, 0), Vector2(0, -6), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LizBackLeg1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(12, -23), Vector2(12, -20), Vector2(12, -23), Vector2(12, -26), Vector2(12, -23)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LizBackLeg1/LizBackLeg1(1):position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 6), Vector2(0, 0), Vector2(0, -6), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LizBackLeg2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-13, -23), Vector2(-13, -26), Vector2(-13, -23), Vector2(-13, -20), Vector2(-13, -23)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LizBackLeg2/LizBackLeg2(1):position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 0), Vector2(0, 6), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LizFrontLeg2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-15, 15), Vector2(-15, 12), Vector2(-15, 15), Vector2(-15, 18), Vector2(-15, 15)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LizFrontLeg2/LizFrontLeg2(1):position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 0), Vector2(0, 6), Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LizTail1:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.190954, 0.0, 0.190241, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LizTail1/LizTail2:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.265372, 0.0, 0.26529, 0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LizTail1/LizTail2/LizTail3:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.245085, 0.0, 0.244346, 0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Head/HeadSprite2D:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.53333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -1.74533, -1.5708, -1.39626, -1.5708]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Head/HeadCollisionShape2D:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.53333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.0, 0.174533, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yipr6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LizFrontLeg1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LizFrontLeg1/LizFrontLeg1(1):position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LizBackLeg1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -23)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LizBackLeg1/LizBackLeg1(1):position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LizBackLeg2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13, -23)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LizBackLeg2/LizBackLeg2(1):position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 4)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LizFrontLeg2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15, 15)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LizFrontLeg2/LizFrontLeg2(1):position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LizTail1:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LizTail1/LizTail2:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LizTail1/LizTail2/LizTail3:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Head/HeadSprite2D:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Head/HeadCollisionShape2D:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvh8h"]
+_data = {
+"Liz_Attack": SubResource("Animation_8y4so"),
+"Liz_Walk": SubResource("Animation_atrwv"),
+"RESET": SubResource("Animation_yipr6")
+}
+
+[node name="LizardSprite" type="Sprite2D"]
+rotation = -1.5708
+script = ExtResource("1_6nwxu")
+
+[node name="LizFrontLeg1" type="Sprite2D" parent="."]
+position = Vector2(15, 15)
+texture = ExtResource("1_3p810")
+
+[node name="LizFrontLeg1(1)" type="Sprite2D" parent="LizFrontLeg1"]
+texture = ExtResource("1_3p810")
+
+[node name="LizBackLeg1" type="Sprite2D" parent="."]
+position = Vector2(12, -23)
+texture = ExtResource("1_3p810")
+
+[node name="LizBackLeg1(1)" type="Sprite2D" parent="LizBackLeg1"]
+texture = ExtResource("1_3p810")
+
+[node name="LizBackLeg2" type="Sprite2D" parent="."]
+position = Vector2(-13, -23)
+texture = ExtResource("1_3p810")
+
+[node name="LizBackLeg2(1)" type="Sprite2D" parent="LizBackLeg2"]
+position = Vector2(0, 4)
+texture = ExtResource("1_3p810")
+
+[node name="LizFrontLeg2" type="Sprite2D" parent="."]
+position = Vector2(-15, 15)
+texture = ExtResource("1_3p810")
+
+[node name="LizFrontLeg2(1)" type="Sprite2D" parent="LizFrontLeg2"]
+position = Vector2(0, 5)
+texture = ExtResource("1_3p810")
+
+[node name="LizBody" type="Sprite2D" parent="."]
+texture = ExtResource("2_7cwab")
+
+[node name="LizTail1" type="Sprite2D" parent="."]
+position = Vector2(0, -34)
+texture = ExtResource("3_2ewhc")
+offset = Vector2(0, -5.5)
+
+[node name="LizTail2" type="Sprite2D" parent="LizTail1"]
+position = Vector2(0, -15)
+texture = ExtResource("4_ty85i")
+offset = Vector2(0, -3.5)
+
+[node name="LizTail3" type="Sprite2D" parent="LizTail1/LizTail2"]
+position = Vector2(0, -10)
+texture = ExtResource("5_mvwod")
+offset = Vector2(0, -8.5)
+
+[node name="LizBodyLight1" type="Sprite2D" parent="."]
+texture = ExtResource("6_6712j")
+
+[node name="LizBodyLight2" type="Sprite2D" parent="."]
+position = Vector2(0, -15)
+texture = ExtResource("7_0q2tb")
+
+[node name="LizBodyLight3" type="Sprite2D" parent="."]
+texture = ExtResource("8_eufxr")
+
+[node name="LizBodyLight4" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("9_ejl8p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kvh8h")
+}
+
+[node name="Head" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("10_cqcug")
+
+[node name="HeadSprite2D" type="Sprite2D" parent="Head"]
+position = Vector2(30, 0)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+offset = Vector2(-0.149141, 37.3588)
+
+[node name="LizHead" type="Sprite2D" parent="Head/HeadSprite2D"]
+position = Vector2(-0.149141, 37.3588)
+scale = Vector2(2, 2)
+texture = ExtResource("11_nul76")
+
+[node name="LizHeadLight" type="Sprite2D" parent="Head/HeadSprite2D/LizHead"]
+position = Vector2(1.19209e-07, -3)
+texture = ExtResource("12_s8hx1")
+
+[node name="HeadCollisionShape2D" type="CollisionPolygon2D" parent="Head"]
+position = Vector2(30, 0)
+polygon = PackedVector2Array(3, 11, 3, -10, 38, 0)

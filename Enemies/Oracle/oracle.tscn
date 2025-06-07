@@ -1,103 +1,29 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0jhbqhd4dhhx"]
+[gd_scene load_steps=11 format=3 uid="uid://b0jhbqhd4dhhx"]
 
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle.gd" id="1_4uhgo"]
-[ext_resource type="Texture2D" uid="uid://bkdt74yttbbgb" path="res://Enemies/Colours/Red/enemy_red.png" id="2_d1vce"]
-[ext_resource type="Texture2D" uid="uid://caxfg4j3bt4ht" path="res://Enemies/Oracle/Oracle Body.png" id="3_2r7q4"]
+[ext_resource type="PackedScene" uid="uid://c0k62py27crqg" path="res://Enemies/Oracle/Sprite/oracle_sprite.tscn" id="2_bhm20"]
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_machine.gd" id="3_p6432"]
-[ext_resource type="Script" path="res://Enemies/Oracle/orb.gd" id="3_rdk7r"]
+[ext_resource type="Script" path="res://Enemies/Oracle/Orb/orb.gd" id="3_rdk7r"]
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_idle.gd" id="4_7bvq5"]
-[ext_resource type="Texture2D" uid="uid://bq0bcxjjni3b" path="res://Enemies/Oracle/Oracle Eye Light.png" id="4_t05sh"]
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_chasing.gd" id="5_1axu7"]
-[ext_resource type="Texture2D" uid="uid://tsb841ey4iln" path="res://Enemies/Oracle/Oracle Eye.png" id="5_cm5tk"]
-[ext_resource type="Texture2D" uid="uid://batd05ax4dw8x" path="res://Enemies/Oracle/Oracle Body Light 1.png" id="6_s66yd"]
-[ext_resource type="Texture2D" uid="uid://oe1iwtwyd8hc" path="res://Enemies/Oracle/Oracle Body Light 2.png" id="7_kjq46"]
-[ext_resource type="Texture2D" uid="uid://c1nhcfqj5fpm1" path="res://Enemies/Oracle/Oracle Orb 1.png" id="9_j71aq"]
-[ext_resource type="Texture2D" uid="uid://b1dakq7bkujow" path="res://Enemies/Oracle/Oracle Orb Light.png" id="10_v34uc"]
-
-[sub_resource type="Animation" id="Animation_kn6ll"]
-resource_name = "Oracle_Move"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("OracleEyeLight:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.166667, 0.266667, 0.366667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2.5, 1.25), Vector2(2.5, 0), Vector2(2.5, 1.25)]
-}
-
-[sub_resource type="Animation" id="Animation_k6vxv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("OracleEyeLight:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.5, 1.25)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2vy7j"]
-_data = {
-"Oracle_Move": SubResource("Animation_kn6ll"),
-"RESET": SubResource("Animation_k6vxv")
-}
+[ext_resource type="Texture2D" uid="uid://c1nhcfqj5fpm1" path="res://Enemies/Oracle/Orb/Oracle Orb 1.png" id="9_j71aq"]
+[ext_resource type="Texture2D" uid="uid://b1dakq7bkujow" path="res://Enemies/Oracle/Orb/Oracle Orb Light.png" id="10_v34uc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qpr8m"]
-radius = 16.0
+radius = 13.0
 height = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jsqd4"]
 
-[node name="Oracle" type="Area2D" groups=["Oracles"]]
+[node name="Oracle" type="Area2D" node_paths=PackedStringArray("sprite") groups=["Oracles"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_4uhgo")
+sprite = NodePath("Sprite")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.8)
-texture = ExtResource("2_d1vce")
-
-[node name="OracleBody" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(1.90735e-05, 4.76837e-06)
-scale = Vector2(2.5, 1.25)
-texture = ExtResource("3_2r7q4")
-
-[node name="OracleEyeLight" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(1.90735e-05, 4.76837e-06)
-scale = Vector2(2.5, 1.25)
-texture = ExtResource("4_t05sh")
-
-[node name="OracleEye" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(1.13687e-12, 1.49012e-07)
-scale = Vector2(2.5, 1.25)
-texture = ExtResource("5_cm5tk")
-
-[node name="OracleBodyLight1" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(1.90735e-05, -17.5)
-scale = Vector2(2.5, 1.25)
-texture = ExtResource("6_s66yd")
-
-[node name="OracleBodyLight2" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(1.90735e-05, 17.5)
-scale = Vector2(2.5, 1.25)
-texture = ExtResource("7_kjq46")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
-libraries = {
-"": SubResource("AnimationLibrary_2vy7j")
-}
+[node name="Sprite" parent="." instance=ExtResource("2_bhm20")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_qpr8m")
 
 [node name="Orbs" type="Node2D" parent="."]
@@ -108,18 +34,14 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 
-[node name="OrbSprite2D" type="Sprite2D" parent="Orbs/Orb0"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_d1vce")
-
-[node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb0"]
-shape = SubResource("CircleShape2D_jsqd4")
-
-[node name="OracleOrb1" type="Sprite2D" parent="Orbs/Orb0"]
+[node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb0"]
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb0"]
 texture = ExtResource("10_v34uc")
+
+[node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb0"]
+shape = SubResource("CircleShape2D_jsqd4")
 
 [node name="Orb1" type="Area2D" parent="Orbs"]
 position = Vector2(25, -43)
@@ -127,9 +49,11 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 
-[node name="OrbSprite2D" type="Sprite2D" parent="Orbs/Orb1"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_d1vce")
+[node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb1"]
+texture = ExtResource("9_j71aq")
+
+[node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb1"]
+texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb1"]
 shape = SubResource("CircleShape2D_jsqd4")
@@ -140,9 +64,11 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 
-[node name="OrbSprite2D" type="Sprite2D" parent="Orbs/Orb2"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_d1vce")
+[node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb2"]
+texture = ExtResource("9_j71aq")
+
+[node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb2"]
+texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb2"]
 shape = SubResource("CircleShape2D_jsqd4")
@@ -153,9 +79,11 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 
-[node name="OrbSprite2D" type="Sprite2D" parent="Orbs/Orb3"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_d1vce")
+[node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb3"]
+texture = ExtResource("9_j71aq")
+
+[node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb3"]
+texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb3"]
 shape = SubResource("CircleShape2D_jsqd4")
@@ -166,9 +94,11 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 
-[node name="OrbSprite2D" type="Sprite2D" parent="Orbs/Orb4"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_d1vce")
+[node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb4"]
+texture = ExtResource("9_j71aq")
+
+[node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb4"]
+texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb4"]
 shape = SubResource("CircleShape2D_jsqd4")
@@ -179,9 +109,11 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 
-[node name="OrbSprite2D" type="Sprite2D" parent="Orbs/Orb5"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_d1vce")
+[node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb5"]
+texture = ExtResource("9_j71aq")
+
+[node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb5"]
+texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb5"]
 shape = SubResource("CircleShape2D_jsqd4")

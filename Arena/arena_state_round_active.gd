@@ -17,7 +17,8 @@ func enter() -> void:
 	if not SignalBus.is_connected("palette_cleared", on_palette_cleared):
 		SignalBus.connect("palette_cleared", on_palette_cleared)
 	_load_round(arena.current_round_number)
-	Globals.player.controls_enabled = true
+	if Globals.player != null:
+		Globals.player.controls_enabled = true
 	if not SignalBus.player_died.is_connected(_on_player_died):
 		SignalBus.player_died.connect(_on_player_died)
 

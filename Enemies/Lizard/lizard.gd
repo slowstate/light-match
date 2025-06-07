@@ -1,11 +1,9 @@
 class_name Lizard
 extends Enemy
 
-const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
-
 @export var head_colour: Globals.Colour
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
 
 
 static func create(
@@ -25,14 +23,4 @@ static func create(
 
 
 func _setup() -> void:
-	_set_sprite_colour()
-
-
-func _set_sprite_colour() -> void:
-	match colour:
-		Globals.Colour.BLUE:
-			sprite_2d.texture = load("res://Enemies/Colours/Blue/enemy_blue.png")
-		Globals.Colour.GREEN:
-			sprite_2d.texture = load("res://Enemies/Colours/Green/enemy_green.png")
-		Globals.Colour.RED:
-			sprite_2d.texture = load("res://Enemies/Colours/Red/enemy_red.png")
+	sprite.set_head_colour(head_colour)

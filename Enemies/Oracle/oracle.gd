@@ -6,7 +6,6 @@ const ORACLE: PackedScene = preload("res://Enemies/Oracle/oracle.tscn")
 @export var orb_colour: Globals.Colour
 @export var orb_rotation_speed := 1.0
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var orbs: Node2D = $Orbs
 
 
@@ -26,23 +25,9 @@ static func create(
 	return new_oracle
 
 
-func _setup() -> void:
-	_set_sprite_colour()
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _update(delta: float) -> void:
 	_rotate_orbs(delta, orb_rotation_speed)
-
-
-func _set_sprite_colour() -> void:
-	match colour:
-		Globals.Colour.BLUE:
-			sprite_2d.texture = load("res://Enemies/Colours/Blue/enemy_blue.png")
-		Globals.Colour.GREEN:
-			sprite_2d.texture = load("res://Enemies/Colours/Green/enemy_green.png")
-		Globals.Colour.RED:
-			sprite_2d.texture = load("res://Enemies/Colours/Red/enemy_red.png")
 
 
 func _rotate_orbs(delta, orb_rotation_speed) -> void:
