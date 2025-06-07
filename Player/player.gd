@@ -26,14 +26,6 @@ var gun_switch_cooldown: float = 0.5
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var hit_immunity_timer: Timer = $HitImmunityTimer
 
-const BiggerBullet = preload("res://Player/Upgrades/bigger_bullet.gd")
-const BigBullet = preload("res://Player/Upgrades/big_bullet.gd")
-const Bipod = preload("res://Player/Upgrades/bipod.gd")
-const ChargedAmmo = preload("res://Player/Upgrades/charged_ammo.gd")
-const ChromeKnuckles = preload("res://Player/Upgrades/chrome_knuckles.gd")
-const FreezeBomb = preload("res://Player/Upgrades/freeze_bomb.gd")
-const PowerDiverter = preload("res://Player/Upgrades/power_diverter.gd")
-
 
 func _init() -> void:
 	Globals.player = self
@@ -41,7 +33,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
-	add_upgrades([PowerDiverter.new(), FreezeBomb.new(), ChromeKnuckles.new(), ChargedAmmo.new(), BigBullet.new()])
 
 
 func _physics_process(_delta: float) -> void:
@@ -99,9 +90,10 @@ func _fire_bullet():
 	if !gun_cooldown_timer.is_stopped():
 		return
 	player_sprite.play_shoot_animation()
-	var direction_vector: Vector2 = (tip_of_barrel_point.global_position - bullet_spawn_point.global_position).normalized()
+	var gun_angle = (tip_of_barrel_point.global_position - bullet_spawn_point.global_position).angle()
+	var angle: float = clamp((get_global_mouse_position() - bullet_spawn_point.global_position).angle(), gun_angle - deg_to_rad(5), gun_angle + deg_to_rad(5))
 	var new_bullet: Bullet
-	new_bullet = Bullet.create(bullet_spawn_point.global_position, direction_vector, current_colour)
+	new_bullet = Bullet.create(bullet_spawn_point.global_position, angle, current_colour)
 	if new_bullet:
 		new_bullet = UpgradeManager.on_bullet_fired(new_bullet)
 		get_tree().root.add_child(new_bullet)

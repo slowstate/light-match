@@ -161,7 +161,7 @@ texture = ExtResource("3_at3nv")
 
 [node name="Gun" type="Sprite2D" parent="Torso"]
 position = Vector2(21.5, -3.25)
-rotation = 0.261799
+rotation = 0.226893
 texture = ExtResource("8_bp4oq")
 offset = Vector2(-10.5805, -39.6005)
 

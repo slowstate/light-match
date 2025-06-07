@@ -35,11 +35,11 @@ position_smoothing_enabled = true
 position = Vector2(0, 1.90735e-06)
 
 [node name="BulletSpawnPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(21, -30)
+position = Vector2(19.9998, -46.0001)
 rotation = -1.5708
 
 [node name="TipOfBarrelPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(20.9998, -52.0001)
+position = Vector2(18.9998, -56.0001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
