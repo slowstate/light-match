@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ybbly")
-total_enemies_to_spawn = 20
+total_enemies_to_spawn = 50
 spawn_bots = true
 spawn_lizards = true
 spawn_tanks = true

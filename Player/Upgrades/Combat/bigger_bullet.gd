@@ -15,13 +15,12 @@ func on_palette_generated() -> void:
 	trigger_timer.start(10)
 
 
-func on_palette_cleared() -> void:
+func on_palette_cleared(palette: Palette) -> void:
 	if !trigger_timer.is_stopped():
 		is_active = true
 
 
-func on_bullet_fired(bullet: Bullet) -> Bullet:
+func on_bullet_fired(bullet: Bullet) -> void:
 	if is_active:
 		bullet.damage = 99
 	is_active = false
-	return bullet

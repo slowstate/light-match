@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlhvlu6kxswq0"]
+[gd_scene load_steps=8 format=3 uid="uid://dlhvlu6kxswq0"]
 
 [ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/upgrade_option.gd" id="1_cys41"]
 
@@ -15,6 +15,8 @@ height = 300
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx75e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0qix"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc30j"]
 
@@ -78,6 +80,13 @@ offset_right = 150.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_h0qix")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_dc30j")
 
+[node name="InitialDisabledTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="InitialDisabledTimer" to="." method="_on_initial_disabled_timer_timeout"]

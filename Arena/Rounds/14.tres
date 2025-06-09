@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_v34mr")
-total_enemies_to_spawn = 15
+total_enemies_to_spawn = 40
 spawn_bots = true
 spawn_lizards = true
 spawn_tanks = false

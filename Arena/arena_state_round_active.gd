@@ -4,7 +4,9 @@ extends State
 var main_menu = load("res://Menus/MainMenu/main_menu.tscn")
 var current_round: Round
 var arena
+var enemies_left_to_spawn_this_round: int = 0
 var enemies_to_spawn: Array[Globals.EnemyType]
+var concurrent_enemies_spawn_limit: int = 1
 
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 
@@ -14,8 +16,8 @@ func enter() -> void:
 	assert(arena != null, "The state type must be used only in the Bot scene. It needs the owner to be a Bot node.")
 	if not SignalBus.is_connected("enemy_died", on_enemy_died):
 		SignalBus.connect("enemy_died", on_enemy_died)
-	if not SignalBus.is_connected("palette_cleared", on_palette_cleared):
-		SignalBus.connect("palette_cleared", on_palette_cleared)
+	if not SignalBus.is_connected("palette_cleared", _on_palette_cleared):
+		SignalBus.connect("palette_cleared", _on_palette_cleared)
 	_load_round(arena.current_round_number)
 	if Globals.player != null:
 		Globals.player.controls_enabled = true
@@ -38,23 +40,32 @@ func physics_update(_delta: float) -> void:
 
 func _load_round(round_number: int) -> void:
 	var round_resource_path = "res://Arena/Rounds/%s.tres"
-	var round_number_string = str(round_number) if round_number <= 16 else "endless"
+	var round_number_string := str(round_number) if round_number <= 16 else "endless"
 	current_round = load(round_resource_path % round_number_string) as Round
-	arena.total_enemies_to_spawn_this_round = current_round.total_enemies_to_spawn
+	arena.total_enemies_to_spawn_this_round = current_round.total_enemies_to_spawn if round_number <= 16 else 5 + round_number * 3
+	concurrent_enemies_spawn_limit = 5 + round_number / 2
+	if round_number > 16:
+		concurrent_enemies_spawn_limit += pow(round_number - 16, 1.7)
+
 	if round_number_string == "endless":
 		arena.total_enemies_to_spawn_this_round += pow(round_number - 16, 2)
+	enemies_left_to_spawn_this_round = arena.total_enemies_to_spawn_this_round
 	enemies_to_spawn = current_round.enemies_to_spawn()
+
+	var enemy_spawn_timer_wait_time := 1.3 / round_number
+	enemy_spawn_timer.wait_time = enemy_spawn_timer_wait_time
+	enemy_spawn_timer.start()
+
 	arena.palettes_cleared_this_round = 0
-	enemy_spawn_timer.start(1.0)
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	if arena.total_enemies_to_spawn_this_round <= 0:
+	if enemies_left_to_spawn_this_round <= 0:
 		return
 	var new_enemy
 	match enemies_to_spawn.pick_random():
 		Globals.EnemyType.BOT:
-			new_enemy = Bot.create(_random_location_in_arena(), current_round.bots_health)  #, Globals.Colour.BLUE)
+			new_enemy = Bot.create(_random_location_in_arena(), current_round.bots_health)
 		Globals.EnemyType.LIZARD:
 			new_enemy = Lizard.create(_random_location_in_arena(), current_round.lizards_health)
 		Globals.EnemyType.TANK:
@@ -65,13 +76,13 @@ func _on_enemy_spawn_timer_timeout() -> void:
 			new_enemy = Star.create(_random_location_in_arena(), current_round.stars_health)
 	add_child(new_enemy)
 
-	arena.total_enemies_to_spawn_this_round -= 1
-	enemy_spawn_timer.start(1.0)
+	enemies_left_to_spawn_this_round -= 1
+	enemy_spawn_timer.start()
 
 
 func _random_location_in_arena() -> Vector2:
 	var random_location = Vector2(randi_range(0, 3840), randi_range(0, 2160))
-	while (random_location - Globals.player.global_position).length() < 500:
+	while (random_location - Globals.player.global_position).length() < 960:
 		random_location = Vector2(randi_range(0, 3840), randi_range(0, 2160))
 	return random_location
 
@@ -80,13 +91,13 @@ func on_enemy_died(_enemy: Enemy) -> void:
 	pass
 
 
-func on_palette_cleared() -> void:
+func _on_palette_cleared() -> void:
 	arena.palettes_cleared_this_round += 1
 
 
 func no_enemies_remaining_this_round() -> bool:
 	if (
-		arena.total_enemies_to_spawn_this_round > 0
+		enemies_left_to_spawn_this_round > 0
 		or get_tree().get_nodes_in_group("Bots").size() > 0
 		or get_tree().get_nodes_in_group("Lizards").size() > 0
 		or get_tree().get_nodes_in_group("Tanks").size() > 0
@@ -98,5 +109,5 @@ func no_enemies_remaining_this_round() -> bool:
 
 
 func _on_player_died() -> void:
-	#get_tree().get_nodes_in_group("Bots").clear()
-	get_tree().call_deferred("change_scene_to_packed", main_menu)
+	arena.time_limit_timer.stop()
+	transition.emit("ScoreScreen")

@@ -12,12 +12,16 @@ func _init() -> void:
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
 
 
-func on_gun_colour_switch(gun_cooldown_timer: Timer) -> Timer:
+func on_gun_colour_switch(gun_cooldown_timer: Timer) -> void:
 	if effect_timer.is_stopped():
 		Globals.player.move_speed *= 1.1
 		effect_timer.start(1)
-	return gun_cooldown_timer
 
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= 1.1
+
+
+func on_upgrade_removed(removed_upgrade: Upgrade) -> void:
+	if removed_upgrade == self and !effect_timer.is_stopped():
+		Globals.player.move_speed /= 1.1

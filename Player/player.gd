@@ -12,7 +12,8 @@ var move_vec: Vector2
 var shield: bool = false
 
 var gun_cooldown: float = 0.7
-var gun_switch_cooldown: float = 0.5
+var gun_switch_cooldown: float = 0.3
+var hit_immunity_time: float = 1.0
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
@@ -25,6 +26,7 @@ var gun_switch_cooldown: float = 0.5
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var hit_immunity_timer: Timer = $HitImmunityTimer
+@onready var hurt_box: Area2D = $HurtBox
 
 
 func _init() -> void:
@@ -33,23 +35,29 @@ func _init() -> void:
 
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
+	player_sprite.set_colour(current_colour)
+	palette.generate_new_palette()
 
 
 func _physics_process(_delta: float) -> void:
-	if !hit_immunity_timer.is_stopped():
-		player_sprite.set_light_visibility(true) if roundi(hit_immunity_timer.time_left * 10) % 2 == 0 else player_sprite.set_light_visibility(false)
+	if !hit_immunity_timer.is_stopped():  # Hit immunity flashing
+		player_sprite.set_light_visibility(false)
+		if roundi(hit_immunity_timer.time_left * 10) % 2 == 0:
+			player_sprite.set_light_visibility(true)
 
 	move_vec = move_vec.normalized()
 
 	if move_vec.length() > 0:
-		UpgradeManager.on_player_moving()
+		UpgradeManager.on_player_moving(true)
 		player_sprite.play_move_animation(true)
 	else:
+		UpgradeManager.on_player_moving(false)
 		player_sprite.play_move_animation(false)
 
 	velocity = move_vec * move_speed
-	player_sprite.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(90)
-	collision_shape_2d.rotation = -velocity.angle()
+	if controls_enabled:
+		player_sprite.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(90)
+		collision_shape_2d.rotation = -velocity.angle()
 
 	move_and_slide()
 
@@ -91,14 +99,14 @@ func _fire_bullet():
 		return
 	player_sprite.play_shoot_animation()
 	var gun_angle = (tip_of_barrel_point.global_position - bullet_spawn_point.global_position).angle()
-	var angle: float = clamp((get_global_mouse_position() - bullet_spawn_point.global_position).angle(), gun_angle - deg_to_rad(5), gun_angle + deg_to_rad(5))
+	var angle: float = clamp((get_global_mouse_position() - bullet_spawn_point.global_position).angle(), gun_angle + deg_to_rad(2), gun_angle + deg_to_rad(5))
 	var new_bullet: Bullet
 	new_bullet = Bullet.create(bullet_spawn_point.global_position, angle, current_colour)
 	if new_bullet:
-		new_bullet = UpgradeManager.on_bullet_fired(new_bullet)
+		UpgradeManager.on_bullet_fired(new_bullet)
 		get_tree().root.add_child(new_bullet)
 		gun_cooldown_timer.wait_time = 0.7
-		gun_cooldown_timer = UpgradeManager.on_gun_cooldown_start(gun_cooldown_timer)
+		UpgradeManager.on_gun_cooldown_start(gun_cooldown_timer)
 		gun_cooldown_timer.start()
 
 
@@ -126,12 +134,13 @@ func change_colour(new_colour: Globals.Colour) -> void:
 	current_colour = new_colour
 	player_sprite.set_colour(current_colour)
 	gun_switch_cooldown_timer.start(gun_switch_cooldown)
-	gun_cooldown_timer = UpgradeManager.on_gun_colour_switch(gun_cooldown_timer)
+	UpgradeManager.on_gun_colour_switch(gun_cooldown_timer)
 
 
-func add_upgrades(new_upgrades: Array[Upgrade]) -> void:
-	if upgrades.size() <= 5 and upgrades.size() + new_upgrades.size() <= 5:
-		upgrades.append_array(new_upgrades)
+func add_upgrade(new_upgrade: Upgrade) -> void:
+	if upgrades.size() < 5:
+		UpgradeManager.on_upgrade_added(new_upgrade)
+		upgrades.push_back(new_upgrade)
 		update_player_upgrades_interface()
 
 
@@ -164,12 +173,17 @@ func enable_player_upgrade_buttons(enable: bool) -> void:
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	if !hit_immunity_timer.is_stopped():
 		return
-	hit_immunity_timer.start(1)
 	if shield:
 		shield = false
-		return
-	if upgrades.size() <= 0:
-		print("Player died")
+	elif upgrades.size() <= 0:
 		SignalBus.player_died.emit()
 		return
-	remove_upgrade(upgrades.back())
+	else:
+		remove_upgrade(upgrades.back())
+	UpgradeManager.on_player_hit()
+	hit_immunity_timer.start(hit_immunity_time)
+
+
+func game_over_sequence() -> void:
+	controls_enabled = false
+	hurt_box.set_deferred("monitoring", false)

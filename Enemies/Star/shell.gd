@@ -21,7 +21,6 @@ func _ready() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	print("wall _on_body_entered")
 	var bullet = area as Bullet
 	if bullet.colour != star.shell_colours[shell_number]:
 		return
