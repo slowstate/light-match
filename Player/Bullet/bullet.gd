@@ -2,7 +2,6 @@ class_name Bullet
 extends Area2D
 
 @onready var sprite: Sprite2D = $Sprite
-@onready var glow_sprite: Sprite2D = $GlowSprite
 @onready var collision_check_ray_cast: RayCast2D = $CollisionCheckRayCast
 
 var bullet_id: String
@@ -10,7 +9,6 @@ var colour: Globals.Colour
 var angle: float
 var damage: int
 var speed: float
-var travel_distance: float
 
 const BULLET = preload("res://Player/Bullet/bullet.tscn")
 
@@ -38,13 +36,12 @@ func _ready() -> void:
 	rotation = angle
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if !colour:
 		return
 
 	var velocity = Vector2.from_angle(angle).normalized() * speed
-	collision_check_ray_cast.target_position = Vector2(speed * delta, 0)
+	collision_check_ray_cast.target_position = Vector2(48 + speed * delta, 0)
 	if collision_check_ray_cast.is_colliding():
 		global_position = collision_check_ray_cast.get_collision_point()
 		var collided_shape := collision_check_ray_cast.get_collider()
@@ -55,11 +52,7 @@ func _physics_process(delta: float) -> void:
 			_on_body_entered(collided_shape)
 	else:
 		translate(velocity * delta)
-
-	if travel_distance < 500:
-		travel_distance += speed * delta
-		if travel_distance >= 500:
-			damage = (UpgradeManager.on_bullet_travelled_x_pixels(self, 500) as Bullet).damage
+		UpgradeManager.on_bullet_travelled_x_pixels(self, velocity.length() * delta)
 
 
 func _on_area_entered(area: Area2D) -> void:

@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://l7a4srfb3iih" path="res://Enemies/Tank/Sprite/tank_sprite.tscn" id="5_vv3cu"]
 [ext_resource type="Texture2D" uid="uid://wbk7k5ddxw45" path="res://Enemies/Tank/Shield.png" id="17_awigq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5temy"]
-size = Vector2(16, 240)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yaqlx"]
+height = 234.0
 
 [sub_resource type="Animation" id="Animation_i3aj0"]
 length = 0.001
@@ -99,7 +99,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2qfm"]
-size = Vector2(80, 80)
+size = Vector2(37, 54)
 
 [node name="Tank" type="Area2D" node_paths=PackedStringArray("sprite") groups=["Tanks"]]
 collision_layer = 8
@@ -108,7 +108,7 @@ script = ExtResource("1_vdwel")
 sprite = NodePath("Sprite")
 
 [node name="Shield" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 16
 collision_mask = 4
 script = ExtResource("3_k8nc8")
 
@@ -131,9 +131,8 @@ scale = Vector2(1, 1.34066)
 texture = ExtResource("4_a6roh")
 
 [node name="ShieldCollisionShape2D" type="CollisionShape2D" parent="Shield"]
-visible = false
-position = Vector2(88, 0)
-shape = SubResource("RectangleShape2D_5temy")
+position = Vector2(84, 0)
+shape = SubResource("CapsuleShape2D_yaqlx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shield"]
 libraries = {
@@ -143,7 +142,7 @@ libraries = {
 [node name="Sprite" parent="." instance=ExtResource("5_vv3cu")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s2qfm")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]

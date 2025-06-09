@@ -10,22 +10,25 @@ func _init() -> void:
 	description = "While all enemies are the same colour, your bullets deal 1 more damage"
 
 
-func on_enemy_spawned(enemy: Enemy) -> Enemy:
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		var all_enemies_alive = Globals.get_all_enemies_alive()
+		for enemy in all_enemies_alive:
+			enemies_alive_by_colour[enemy.colour] += 1
+
+
+func on_enemy_spawned(enemy: Enemy) -> void:
 	enemies_alive_by_colour[enemy.colour] += 1
-	return enemy
 
 
-func on_enemy_killed(enemy: Enemy) -> Enemy:
+func on_enemy_killed(enemy: Enemy) -> void:
 	enemies_alive_by_colour[enemy.colour] -= 1
-	return enemy
 
 
-func on_bullet_fired(bullet: Bullet) -> Bullet:
+func on_bullet_fired(bullet: Bullet) -> void:
 	var number_of_colours_with_enemies_alive = 0
 	for key in enemies_alive_by_colour.keys():
 		if enemies_alive_by_colour[key] > 0:
 			number_of_colours_with_enemies_alive += 1
 	if number_of_colours_with_enemies_alive <= 1:
 		bullet.damage += 1
-
-	return bullet

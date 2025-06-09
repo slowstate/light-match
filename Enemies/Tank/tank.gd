@@ -9,6 +9,6 @@ static func create(initial_position: Vector2, initial_health: int, initial_colou
 	new_tank.global_position = initial_position
 	new_tank.health = initial_health
 	new_tank.colour = initial_colour
-	new_tank.move_speed = randf_range(150.0, 200.0)
+	new_tank.move_speed = randf_range(100.0, 125.0)
 	new_tank.rotation_speed = randf_range(0.5, 1.0)
 	return new_tank

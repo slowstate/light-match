@@ -36,3 +36,8 @@ func get_all_enemies_alive() -> Array[Enemy]:
 	all_enemies_alive.append_array(get_tree().get_nodes_in_group(ENEMY_TYPE_GROUP[EnemyType.ORACLE]))
 	all_enemies_alive.append_array(get_tree().get_nodes_in_group(ENEMY_TYPE_GROUP[EnemyType.STAR]))
 	return all_enemies_alive
+
+
+func get_all_bullets_active() -> Array[Bullet]:
+	var all_bullets_active: Array[Bullet] = get_tree().get_nodes_in_group("Bullets") as Array[Bullet]
+	return all_bullets_active

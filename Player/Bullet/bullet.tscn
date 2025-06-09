@@ -11,7 +11,7 @@ height = 14.0
 [node name="Bullet" type="Area2D" groups=["Bullets"]]
 z_as_relative = false
 collision_layer = 4
-collision_mask = 9
+collision_mask = 25
 script = ExtResource("1_gjnbh")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -20,13 +20,14 @@ rotation = 1.78024
 texture = ExtResource("2_su41u")
 
 [node name="GlowSprite" type="Sprite2D" parent="."]
-position = Vector2(-41, -1)
+position = Vector2(-35, -1)
 rotation = 1.78024
 texture = ExtResource("3_kjyqw")
 
 [node name="CollisionCheckRayCast" type="RayCast2D" parent="."]
-target_position = Vector2(54, 0)
-collision_mask = 9
+position = Vector2(-48, 0)
+target_position = Vector2(96, 0)
+collision_mask = 25
 hit_from_inside = true
 collide_with_areas = true
 

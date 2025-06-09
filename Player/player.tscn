@@ -35,11 +35,11 @@ position_smoothing_enabled = true
 position = Vector2(0, 1.90735e-06)
 
 [node name="BulletSpawnPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(19.9998, -46.0001)
+position = Vector2(16.9997, -67.0001)
 rotation = -1.5708
 
 [node name="TipOfBarrelPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(18.9998, -56.0001)
+position = Vector2(15.9997, -77.0001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -62,7 +62,7 @@ wait_time = 0.7
 one_shot = true
 
 [node name="GunSwitchCooldownTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 
 [node name="HitImmunityTimer" type="Timer" parent="."]
@@ -79,9 +79,9 @@ shape = SubResource("CircleShape2D_qy1jw")
 [node name="PlayerInterface" type="CanvasLayer" parent="."]
 
 [node name="PlayerUpgradesInterface" type="HBoxContainer" parent="PlayerInterface"]
-offset_left = 355.0
+offset_left = 315.0
 offset_top = 30.0
-offset_right = 395.0
+offset_right = 355.0
 offset_bottom = 70.0
 script = ExtResource("3_gmi6u")
 

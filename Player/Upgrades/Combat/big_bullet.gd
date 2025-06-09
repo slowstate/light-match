@@ -14,12 +14,11 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func on_palette_cleared():
+func on_palette_cleared(palette: Palette) -> void:
 	is_active = true
 
 
-func on_bullet_fired(bullet: Bullet) -> Bullet:
+func on_bullet_fired(bullet: Bullet) -> void:
 	if is_active:
 		bullet.damage *= 2
 	is_active = false
-	return bullet

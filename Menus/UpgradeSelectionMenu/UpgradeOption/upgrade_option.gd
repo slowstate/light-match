@@ -6,10 +6,12 @@ signal upgrade_selected(upgrade: Upgrade)
 var upgrade: Upgrade
 @onready var upgrade_option_name_label: Label = $UpgradeOptionNameLabel
 @onready var upgrade_option_description_label: Label = $UpgradeOptionDescriptionLabel
+@onready var button: Button = $Button
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	button.disabled = true
 	if upgrade:
 		upgrade_option_name_label.text = upgrade.name
 		upgrade_option_description_label.text = upgrade.description
@@ -26,3 +28,7 @@ func set_upgrade(new_upgrade: Upgrade) -> void:
 
 func _on_button_pressed() -> void:
 	upgrade_selected.emit(upgrade)
+
+
+func _on_initial_disabled_timer_timeout() -> void:
+	button.set_deferred("disabled", false)

@@ -8,6 +8,5 @@ func _init() -> void:
 	description = "Changing gun colour reduces your current cooldown by 0.3s"
 
 
-func on_gun_colour_switch(gun_cooldown_timer: Timer) -> Timer:
-	gun_cooldown_timer.start(clampf(gun_cooldown_timer.time_left - 0.3, 0.0, 0.7))
-	return gun_cooldown_timer
+func on_gun_colour_switch(gun_cooldown_timer: Timer) -> void:
+	gun_cooldown_timer.start(clampf(gun_cooldown_timer.time_left - 0.3, 0.01, 0.7))

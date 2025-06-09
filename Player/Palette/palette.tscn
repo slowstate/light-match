@@ -1,44 +1,288 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnshaeplewb85"]
+[gd_scene load_steps=17 format=3 uid="uid://dnshaeplewb85"]
 
 [ext_resource type="Script" path="res://Player/Palette/palette.gd" id="1_u6kec"]
+[ext_resource type="Material" uid="uid://dji62nmwqftmn" path="res://Player/Palette/palette_colour_shader_material.tres" id="2_albm6"]
+[ext_resource type="Texture2D" uid="uid://f3pchl0t3qqp" path="res://Player/Palette/palette_colour_sprite.png" id="3_gdmu7"]
+[ext_resource type="PackedScene" uid="uid://cx7w0mo5dqth5" path="res://Player/Palette/palette_colour.tscn" id="4_k5f8u"]
 
-[sub_resource type="Gradient" id="Gradient_7njyr"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_5npyy"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6jnm"]
-gradient = SubResource("Gradient_7njyr")
-width = 24
-height = 24
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lyo4s"]
+gradient = SubResource("Gradient_5npyy")
 
-[sub_resource type="Gradient" id="Gradient_tawi8"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
+[sub_resource type="Shader" id="Shader_6pijk"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_330i1"]
-gradient = SubResource("Gradient_tawi8")
-width = 24
-height = 24
+uniform float timer_progress: hint_range(0.0, 1.0);
+uniform vec4 modulation: source_color;
 
-[sub_resource type="Gradient" id="Gradient_q08cj"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
+const float TWO_PI = 6.28318530718;
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_r3523"]
-gradient = SubResource("Gradient_q08cj")
-width = 24
-height = 24
+vec2 rotate(vec2 uv, vec2 pivot, float angle)
+{
+	mat2 rotation = mat2(vec2(sin(angle), -cos(angle)),
+						vec2(cos(angle), sin(angle)));
+
+	uv -= pivot;
+	uv = uv * rotation;
+	uv += pivot;
+	return uv;
+}
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+	//UV = UV + vec2(1.0, 0.0) * TIME;
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	//vec2 translate = vec2(UV.x, UV.y - timer_progress*0.5);
+	vec2 rotate = rotate(UV, vec2(0.5, 0.25 + 0.35*timer_progress), -timer_progress*0.5+PI/2.0);
+	//COLOR += translate;
+	COLOR = texture(TEXTURE, vec2(rotate.x, rotate.y - timer_progress*0.35)) * modulation;//textureLod(image_texture, UV + vec2(cos(TIME), sin(TIME * 2.0)) * 0.1, 0.0);//vec2(cos(TIME), sin(TIME * 2.0)) * 0.2);
+	COLOR.a = COLOR.a * (1.0-timer_progress);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rku4q"]
+resource_local_to_scene = true
+shader = SubResource("Shader_6pijk")
+shader_parameter/timer_progress = 0.0
+shader_parameter/modulation = Color(1, 1, 1, 1)
+
+[sub_resource type="Shader" id="Shader_fydr2"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float timer_progress: hint_range(0.0, 1.0);
+uniform vec4 modulation: source_color;
+
+const float TWO_PI = 6.28318530718;
+
+vec2 rotate(vec2 uv, vec2 pivot, float angle)
+{
+	mat2 rotation = mat2(vec2(sin(angle), -cos(angle)),
+						vec2(cos(angle), sin(angle)));
+
+	uv -= pivot;
+	uv = uv * rotation;
+	uv += pivot;
+	return uv;
+}
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+	//UV = UV + vec2(1.0, 0.0) * TIME;
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	//vec2 translate = vec2(UV.x, UV.y - timer_progress*0.5);
+	vec2 rotate = rotate(UV, vec2(0.5, 0.25 + 0.35*timer_progress), -timer_progress*0.5+PI/2.0);
+	//COLOR += translate;
+	COLOR = texture(TEXTURE, vec2(rotate.x, rotate.y - timer_progress*0.35)) * modulation;//textureLod(image_texture, UV + vec2(cos(TIME), sin(TIME * 2.0)) * 0.1, 0.0);//vec2(cos(TIME), sin(TIME * 2.0)) * 0.2);
+	COLOR.a = COLOR.a * (1.0-timer_progress);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rc5lf"]
+resource_local_to_scene = true
+shader = SubResource("Shader_fydr2")
+shader_parameter/timer_progress = 0.0
+shader_parameter/modulation = Color(1, 1, 1, 1)
+
+[sub_resource type="Shader" id="Shader_4neeo"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float timer_progress: hint_range(0.0, 1.0);
+uniform vec4 modulation: source_color;
+
+const float TWO_PI = 6.28318530718;
+
+vec2 rotate(vec2 uv, vec2 pivot, float angle)
+{
+	mat2 rotation = mat2(vec2(sin(angle), -cos(angle)),
+						vec2(cos(angle), sin(angle)));
+
+	uv -= pivot;
+	uv = uv * rotation;
+	uv += pivot;
+	return uv;
+}
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+	//UV = UV + vec2(1.0, 0.0) * TIME;
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	//vec2 translate = vec2(UV.x, UV.y - timer_progress*0.5);
+	vec2 rotate = rotate(UV, vec2(0.5, 0.25 + 0.35*timer_progress), -timer_progress*0.5+PI/2.0);
+	//COLOR += translate;
+	COLOR = texture(TEXTURE, vec2(rotate.x, rotate.y - timer_progress*0.35)) * modulation;//textureLod(image_texture, UV + vec2(cos(TIME), sin(TIME * 2.0)) * 0.1, 0.0);//vec2(cos(TIME), sin(TIME * 2.0)) * 0.2);
+	COLOR.a = COLOR.a * (1.0-timer_progress);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_863at"]
+resource_local_to_scene = true
+shader = SubResource("Shader_4neeo")
+shader_parameter/timer_progress = 0.0
+shader_parameter/modulation = Color(1, 1, 1, 1)
+
+[sub_resource type="Shader" id="Shader_b73w4"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float timer_progress: hint_range(0.0, 1.0);
+uniform vec4 modulation: source_color;
+
+const float TWO_PI = 6.28318530718;
+
+vec2 rotate(vec2 uv, vec2 pivot, float angle)
+{
+	mat2 rotation = mat2(vec2(sin(angle), -cos(angle)),
+						vec2(cos(angle), sin(angle)));
+
+	uv -= pivot;
+	uv = uv * rotation;
+	uv += pivot;
+	return uv;
+}
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+	//UV = UV + vec2(1.0, 0.0) * TIME;
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	//vec2 translate = vec2(UV.x, UV.y - timer_progress*0.5);
+	vec2 rotate = rotate(UV, vec2(0.5, 0.25 + 0.35*timer_progress), -timer_progress*0.5+PI/2.0);
+	//COLOR += translate;
+	COLOR = texture(TEXTURE, vec2(rotate.x, rotate.y - timer_progress*0.35)) * modulation;//textureLod(image_texture, UV + vec2(cos(TIME), sin(TIME * 2.0)) * 0.1, 0.0);//vec2(cos(TIME), sin(TIME * 2.0)) * 0.2);
+	COLOR.a = COLOR.a * (1.0-timer_progress);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jqwd"]
+resource_local_to_scene = true
+shader = SubResource("Shader_b73w4")
+shader_parameter/timer_progress = 0.0
+shader_parameter/modulation = Color(1, 1, 1, 1)
+
+[sub_resource type="Shader" id="Shader_7oob1"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float timer_progress: hint_range(0.0, 1.0);
+uniform vec4 modulation: source_color;
+
+const float TWO_PI = 6.28318530718;
+
+vec2 rotate(vec2 uv, vec2 pivot, float angle)
+{
+	mat2 rotation = mat2(vec2(sin(angle), -cos(angle)),
+						vec2(cos(angle), sin(angle)));
+
+	uv -= pivot;
+	uv = uv * rotation;
+	uv += pivot;
+	return uv;
+}
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+	//UV = UV + vec2(1.0, 0.0) * TIME;
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	//vec2 translate = vec2(UV.x, UV.y - timer_progress*0.5);
+	vec2 rotate = rotate(UV, vec2(0.5, 0.25 + 0.35*timer_progress), -timer_progress*0.5+PI/2.0);
+	//COLOR += translate;
+	COLOR = texture(TEXTURE, vec2(rotate.x, rotate.y - timer_progress*0.35)) * modulation;//textureLod(image_texture, UV + vec2(cos(TIME), sin(TIME * 2.0)) * 0.1, 0.0);//vec2(cos(TIME), sin(TIME * 2.0)) * 0.2);
+	COLOR.a = COLOR.a * (1.0-timer_progress);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mx1bx"]
+resource_local_to_scene = true
+shader = SubResource("Shader_7oob1")
+shader_parameter/timer_progress = 0.0
+shader_parameter/modulation = Color(1, 1, 1, 1)
 
 [node name="Palette" type="Node2D"]
 script = ExtResource("1_u6kec")
 
-[node name="PaletteColour0" type="Sprite2D" parent="."]
+[node name="PaletteFailedShader" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+material = ExtResource("2_albm6")
+position = Vector2(3, 24)
+scale = Vector2(2.8125, 1.48438)
+texture = SubResource("GradientTexture2D_lyo4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("2_albm6")
+position = Vector2(-69, 5)
+texture = ExtResource("3_gdmu7")
+
+[node name="PaletteColour0" parent="." instance=ExtResource("4_k5f8u")]
+material = SubResource("ShaderMaterial_rku4q")
+
+[node name="PaletteColour1" parent="." instance=ExtResource("4_k5f8u")]
+material = SubResource("ShaderMaterial_rc5lf")
 position = Vector2(-32, 0)
-texture = SubResource("GradientTexture2D_a6jnm")
 
-[node name="PaletteColour1" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_330i1")
+[node name="PaletteColour2" parent="." instance=ExtResource("4_k5f8u")]
+material = SubResource("ShaderMaterial_863at")
+position = Vector2(0, 0)
 
-[node name="PaletteColour2" type="Sprite2D" parent="."]
-position = Vector2(32, 0)
-texture = SubResource("GradientTexture2D_r3523")
+[node name="PaletteColour3" parent="." instance=ExtResource("4_k5f8u")]
+material = SubResource("ShaderMaterial_7jqwd")
+
+[node name="PaletteColour4" parent="." instance=ExtResource("4_k5f8u")]
+material = SubResource("ShaderMaterial_mx1bx")
+
+[node name="PaletteInterface" type="HBoxContainer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FailedCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="FailedCooldownTimer" to="." method="_on_failed_cooldown_timer_timeout"]

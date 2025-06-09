@@ -1,7 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cmpy7mhakp1g5"]
 
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/Character/player.tscn" id="1_pqj1j"]
-[ext_resource type="Texture2D" uid="uid://bwxq8rvde0l71" path="res://tron-background-9pj5j2dwcqyn668u.jpg" id="2_46wjt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4bo3i"]
 normal = Vector2(-1, 0)

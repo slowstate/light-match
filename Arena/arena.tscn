@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=17 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
 [ext_resource type="Texture2D" uid="uid://dqs7558opf5lp" path="res://Arena/BG.png" id="2_1mo21"]
 [ext_resource type="Script" path="res://Arena/arena_state_machine.gd" id="4_53yap"]
+[ext_resource type="Script" path="res://Arena/time_limit_label.gd" id="4_wddnl"]
 [ext_resource type="Script" path="res://Arena/arena_state_round_active.gd" id="5_vs3oy"]
 [ext_resource type="Script" path="res://Arena/arena_state_upgrade_selection.gd" id="6_303ff"]
+[ext_resource type="Script" path="res://Arena/arena_state_score_screen.gd" id="8_p700b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4bo3i"]
 normal = Vector2(-1, 0)
@@ -20,6 +22,15 @@ normal = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_p3kqb"]
 font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_ejvh2"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_mckdk"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_4c5pb"]
+font_size = 24
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
@@ -66,18 +77,90 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 197.0
 grow_vertical = 0
-text = "Last Updated: 06/06/2025"
+text = "Last Updated: 07/06/2025"
 
-[node name="RoundNumberLabel" type="Label" parent="UserInterface"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -59.5
-offset_right = 59.5
-offset_bottom = 42.0
-grow_horizontal = 2
-text = "Round 1"
+[node name="RoundLabel" type="Label" parent="UserInterface"]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 285.0
+offset_bottom = 72.0
+text = "Round"
 label_settings = SubResource("LabelSettings_p3kqb")
+horizontal_alignment = 1
+
+[node name="RoundNumberLabel" type="Label" parent="UserInterface/RoundLabel"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 255.0
+offset_bottom = 115.0
+text = "1"
+label_settings = SubResource("LabelSettings_ejvh2")
+horizontal_alignment = 1
+
+[node name="TimeLimitLabel" type="Label" parent="UserInterface"]
+offset_left = 139.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 39.0
+text = "30:00"
+horizontal_alignment = 2
+script = ExtResource("4_wddnl")
+
+[node name="TimeLimitTimer" type="Timer" parent="UserInterface/TimeLimitLabel"]
+wait_time = 1800.0
+one_shot = true
+autostart = true
+
+[node name="PaletteGoalMeter" type="Control" parent="UserInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1810.0
+offset_top = 742.0
+offset_right = 1850.0
+offset_bottom = 782.0
+
+[node name="MeterBackground" type="ColorRect" parent="UserInterface/PaletteGoalMeter"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 300.0
+color = Color(0, 0.227451, 0.45098, 1)
+
+[node name="MeterBackFill" type="ColorRect" parent="UserInterface/PaletteGoalMeter/MeterBackground"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 290.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="MeterFill" type="ColorRect" parent="UserInterface/PaletteGoalMeter/MeterBackground"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 290.0
+offset_right = 90.0
+offset_bottom = 570.0
+rotation = 3.14159
+color = Color(0.326083, 0.743233, 0.224048, 1)
+
+[node name="FirstExtraUpgradeMilestoneLabel" type="Label" parent="UserInterface/PaletteGoalMeter"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 147.0
+offset_right = 50.0
+offset_bottom = 181.0
+text = "30"
+label_settings = SubResource("LabelSettings_mckdk")
+horizontal_alignment = 1
+
+[node name="SecondExtraUpgradeMilestoneLabel" type="Label" parent="UserInterface/PaletteGoalMeter"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 38.0
+text = "80
+"
+label_settings = SubResource("LabelSettings_4c5pb")
 horizontal_alignment = 1
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
@@ -95,4 +178,48 @@ script = ExtResource("6_303ff")
 
 [node name="UpgradeSelectionInterface" type="CanvasLayer" parent="StateMachine/UpgradeSelection"]
 
+[node name="ScoreScreen" type="Node" parent="StateMachine"]
+script = ExtResource("8_p700b")
+
+[node name="ScoreInterface" type="CanvasLayer" parent="StateMachine/ScoreScreen"]
+
+[node name="RoundLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.5
+offset_top = 323.0
+offset_right = 75.5
+offset_bottom = 346.0
+grow_horizontal = 2
+text = "You reach round 12"
+
+[node name="TimeLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.5
+offset_top = 351.0
+offset_right = 72.5
+offset_bottom = 374.0
+grow_horizontal = 2
+text = "You survived 15:00"
+horizontal_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="StateMachine/ScoreScreen/ScoreInterface"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.0
+offset_top = -502.0
+offset_right = 87.0
+offset_bottom = -471.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return to main menu"
+
+[connection signal="timeout" from="UserInterface/TimeLimitLabel/TimeLimitTimer" to="." method="_on_time_limit_timer_timeout"]
 [connection signal="timeout" from="StateMachine/RoundActive/EnemySpawnTimer" to="StateMachine/RoundActive" method="_on_enemy_spawn_timer_timeout"]
+[connection signal="pressed" from="StateMachine/ScoreScreen/ScoreInterface/MainMenuButton" to="StateMachine/ScoreScreen" method="_on_main_menu_button_pressed"]

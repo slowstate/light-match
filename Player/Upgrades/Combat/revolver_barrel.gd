@@ -1,7 +1,7 @@
 extends Upgrade
 
 var last_killed_colour: Globals.Colour
-var number_of_same_colour_kills_in_a_row: int
+var number_of_same_colour_kills_in_a_row: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,16 +11,20 @@ func _init() -> void:
 	description = "After killing 3 enemies of the same colour in a row, your next bullet deals 1 more damage"
 
 
-func on_enemy_killed(enemy: Enemy) -> Enemy:
+func trigger_counter_update() -> void:
+	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)
+
+
+func on_enemy_killed(enemy: Enemy) -> void:
 	if enemy.colour != last_killed_colour:
 		number_of_same_colour_kills_in_a_row = 0
 	last_killed_colour = enemy.colour
 	number_of_same_colour_kills_in_a_row += 1
-	return enemy
+	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)
 
 
-func on_bullet_fired(bullet: Bullet) -> Bullet:
+func on_bullet_fired(bullet: Bullet) -> void:
 	if number_of_same_colour_kills_in_a_row >= 3:
 		bullet.damage += 1
 		number_of_same_colour_kills_in_a_row = 0
-	return bullet
+	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)

@@ -5,11 +5,13 @@ var upgrade: Upgrade
 
 @onready var hover_tooltip: ColorRect = $HoverTooltip
 @onready var hover_tooltip_label: Label = $HoverTooltip/HoverTooltipLabel
+@onready var counter_label: Label = $CounterLabel
 
 
 func _ready() -> void:
 	hover_tooltip_label.text = upgrade.name.to_upper() + "\n" + upgrade.description
 	hover_tooltip.visible = false
+	upgrade.trigger_counter_update()
 
 
 func _process(delta: float) -> void:
@@ -19,6 +21,7 @@ func _process(delta: float) -> void:
 
 func setup(upgrade: Upgrade) -> void:
 	self.upgrade = upgrade
+	upgrade.upgrade_counter_updated.connect(_on_upgrade_counter_updated)
 	text = str(upgrade.type)
 
 
@@ -36,3 +39,7 @@ func _on_mouse_exited() -> void:
 
 func _on_hover_tooltip_label_resized() -> void:
 	hover_tooltip.size = Vector2(hover_tooltip_label.size.x + 20, hover_tooltip_label.size.y + 20)
+
+
+func _on_upgrade_counter_updated(counter: int) -> void:
+	counter_label.text = str(counter)
