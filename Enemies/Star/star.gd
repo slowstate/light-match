@@ -21,8 +21,7 @@ static func create(
 	new_star.health = initial_health
 	new_star.colour = initial_colour
 	new_star.shell_colours = initial_shell_colours
-	new_star.move_speed = randf_range(200.0, 300.0)
-	new_star.rotation_speed = randf_range(1.0, 2.0)
+	new_star.move_speed = randf_range(150.0, 200.0)
 	if new_star.shell_colours.size() != 5:
 		new_star.shell_colours.resize(5)
 	for shell_number in new_star.shell_colours.size():

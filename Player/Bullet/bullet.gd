@@ -45,13 +45,20 @@ func _physics_process(delta: float) -> void:
 	if collision_check_ray_cast.is_colliding():
 		global_position = collision_check_ray_cast.get_collision_point()
 		var collided_shape := collision_check_ray_cast.get_collider()
-		if collided_shape as Area2D:
-			collided_shape._on_area_entered(self)
-			_on_area_entered(collided_shape)
+		if collided_shape as Enemy != null:
+			(collided_shape as Enemy)._on_area_entered(self)
+			_on_body_entered(collided_shape)
+		elif collided_shape as Area2D != null:
+			if (collided_shape as Area2D).monitorable:
+				(collided_shape as Area2D)._on_area_entered(self)
+				_on_body_entered(collided_shape)
+			else:
+				global_position += velocity * delta
+				UpgradeManager.on_bullet_travelled_x_pixels(self, velocity.length() * delta)
 		else:
 			_on_body_entered(collided_shape)
 	else:
-		translate(velocity * delta)
+		global_position += velocity * delta
 		UpgradeManager.on_bullet_travelled_x_pixels(self, velocity.length() * delta)
 
 

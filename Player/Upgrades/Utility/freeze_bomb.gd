@@ -2,7 +2,7 @@ extends Upgrade
 
 var effect_timer: Timer
 var frozen_enemies: Array[Enemy]
-var palettes_cleared_in_a_row: int = 0
+var palettes_cleared_in_a_row: int = 6
 
 
 func _init() -> void:
@@ -23,6 +23,7 @@ func on_palette_cleared(palette: Palette) -> void:
 		frozen_enemies = Globals.get_all_enemies_alive()
 		for enemy in frozen_enemies:
 			enemy.can_move = false
+			enemy.linear_velocity = Vector2(0, 0)
 		effect_timer.start(7)
 		palettes_cleared_in_a_row = 0
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)

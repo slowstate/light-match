@@ -1,11 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://duvsa2r7f53oy"]
+[gd_scene load_steps=16 format=3 uid="uid://duvsa2r7f53oy"]
 
 [ext_resource type="Script" path="res://Enemies/Star/star.gd" id="1_a0cwb"]
-[ext_resource type="Script" path="res://Enemies/Star/star_state_machine.gd" id="2_62ny6"]
 [ext_resource type="PackedScene" uid="uid://1d5okjmxlrdj" path="res://Enemies/Star/Sprite/star_sprite.tscn" id="2_iui8m"]
-[ext_resource type="Script" path="res://Enemies/Star/star_state_idle.gd" id="3_d4gsq"]
 [ext_resource type="Script" path="res://Enemies/Star/shell.gd" id="3_yfsqo"]
-[ext_resource type="Script" path="res://Enemies/Star/star_state_chasing.gd" id="4_lhp5w"]
 [ext_resource type="Texture2D" uid="uid://bcqu0p5xce1cp" path="res://Enemies/Star/Shell/Star Shell 1.png" id="6_pwxvl"]
 [ext_resource type="Texture2D" uid="uid://dvpxrbokg15c6" path="res://Enemies/Star/Shell/Star Shell Light 1.png" id="7_joar6"]
 [ext_resource type="Texture2D" uid="uid://myhd2mq0ulj4" path="res://Enemies/Star/Shell/Star Shell 2.png" id="8_tt6t2"]
@@ -23,7 +20,7 @@ radius = 18.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr1nb"]
 size = Vector2(46, 11)
 
-[node name="Star" type="Area2D" node_paths=PackedStringArray("sprite") groups=["Stars"]]
+[node name="Star" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Stars"]]
 rotation = 6.28319
 collision_layer = 8
 collision_mask = 4
@@ -138,17 +135,3 @@ texture = ExtResource("15_8lkfx")
 position = Vector2(0.999998, 2)
 rotation = 1.88496
 shape = SubResource("RectangleShape2D_nr1nb")
-
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("2_62ny6")
-current_state = NodePath("Chasing")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_d4gsq")
-
-[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
-
-[node name="RoamTimer" type="Timer" parent="StateMachine/Idle"]
-
-[node name="Chasing" type="Node" parent="StateMachine"]
-script = ExtResource("4_lhp5w")

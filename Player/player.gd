@@ -139,9 +139,9 @@ func change_colour(new_colour: Globals.Colour) -> void:
 
 func add_upgrade(new_upgrade: Upgrade) -> void:
 	if upgrades.size() < 5:
-		UpgradeManager.on_upgrade_added(new_upgrade)
 		upgrades.push_back(new_upgrade)
 		update_player_upgrades_interface()
+		UpgradeManager.on_upgrade_added(new_upgrade)
 
 
 func remove_upgrade(upgrade: Upgrade) -> void:
@@ -171,6 +171,14 @@ func enable_player_upgrade_buttons(enable: bool) -> void:
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
+	player_hit()
+
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	player_hit()
+
+
+func player_hit() -> void:
 	if !hit_immunity_timer.is_stopped():
 		return
 	if shield:

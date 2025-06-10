@@ -1,12 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ua5firl6innu"]
+[gd_scene load_steps=13 format=3 uid="uid://ua5firl6innu"]
 
 [ext_resource type="Script" path="res://Enemies/Tank/tank.gd" id="1_vdwel"]
-[ext_resource type="Script" path="res://Enemies/Tank/tank_state_machine.gd" id="3_7cjsl"]
 [ext_resource type="Texture2D" uid="uid://dev068qadnb34" path="res://Enemies/Tank/Stream.png" id="3_erh0f"]
 [ext_resource type="Script" path="res://Enemies/Tank/shield.gd" id="3_k8nc8"]
 [ext_resource type="Texture2D" uid="uid://bd706m04pxxlh" path="res://Enemies/Tank/Energy.png" id="4_a6roh"]
-[ext_resource type="Script" path="res://Enemies/Tank/tank_state_idle.gd" id="4_lnoqp"]
-[ext_resource type="Script" path="res://Enemies/Tank/tank_state_chasing.gd" id="5_syhry"]
 [ext_resource type="PackedScene" uid="uid://l7a4srfb3iih" path="res://Enemies/Tank/Sprite/tank_sprite.tscn" id="5_vv3cu"]
 [ext_resource type="Texture2D" uid="uid://wbk7k5ddxw45" path="res://Enemies/Tank/Shield.png" id="17_awigq"]
 
@@ -14,43 +11,7 @@
 height = 234.0
 
 [sub_resource type="Animation" id="Animation_i3aj0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Energy:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(48, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Energy:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.65)]
-}
+length = 0.5
 
 [sub_resource type="Animation" id="Animation_373on"]
 resource_name = "Tank_Beam"
@@ -92,16 +53,57 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.65)]
 }
 
+[sub_resource type="Animation" id="Animation_w22u4"]
+resource_name = "Tank_Fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stream:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Energy:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_voi58"]
 _data = {
 "RESET": SubResource("Animation_i3aj0"),
-"Tank_Beam": SubResource("Animation_373on")
+"Tank_Beam": SubResource("Animation_373on"),
+"Tank_Fade": SubResource("Animation_w22u4")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2qfm"]
 size = Vector2(37, 54)
 
-[node name="Tank" type="Area2D" node_paths=PackedStringArray("sprite") groups=["Tanks"]]
+[node name="Tank" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Tanks"]]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_vdwel")
@@ -113,7 +115,6 @@ collision_mask = 4
 script = ExtResource("3_k8nc8")
 
 [node name="Sprite" type="Sprite2D" parent="Shield"]
-modulate = Color(1, 1, 1, 0.65)
 position = Vector2(87, -1)
 rotation = -1.5708
 texture = ExtResource("17_awigq")
@@ -124,7 +125,6 @@ rotation = -1.5708
 texture = ExtResource("3_erh0f")
 
 [node name="Energy" type="Sprite2D" parent="Shield"]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(48, 0)
 rotation = -1.5708
 scale = Vector2(1, 1.34066)
@@ -139,24 +139,14 @@ libraries = {
 "": SubResource("AnimationLibrary_voi58")
 }
 
+[node name="ShieldCooldownTimer" type="Timer" parent="Shield"]
+wait_time = 3.0
+autostart = true
+
 [node name="Sprite" parent="." instance=ExtResource("5_vv3cu")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s2qfm")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("3_7cjsl")
-current_state = NodePath("Chasing")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("4_lnoqp")
-
-[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
-one_shot = true
-
-[node name="RoamTimer" type="Timer" parent="StateMachine/Idle"]
-one_shot = true
-
-[node name="Chasing" type="Node" parent="StateMachine"]
-script = ExtResource("5_syhry")
+[connection signal="timeout" from="Shield/ShieldCooldownTimer" to="Shield" method="_on_shield_cooldown_timer_timeout"]

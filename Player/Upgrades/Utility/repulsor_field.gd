@@ -11,4 +11,4 @@ func _init() -> void:
 func on_palette_cleared(palette: Palette) -> void:
 	var all_enemies_alive = Globals.get_all_enemies_alive()
 	for enemy in all_enemies_alive:
-		enemy.knock_back(Globals.player.global_position, 500.0)
+		enemy.knock_back(500.0, 1.5)

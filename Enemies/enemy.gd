@@ -1,19 +1,19 @@
 class_name Enemy
-extends Area2D
+extends RigidBody2D
 
 @export var colour: Globals.Colour
 @export var health := 1
 @export var damage := 1
 @export var move_speed := 300.0
-@export var rotation_speed := 2.0
 @export var sprite: EnemySprite
 
-var desired_rotation: float
 var can_move: bool = true
 var knocked_back: bool = false
 var knock_back_position: Vector2
 var knock_back_distance: float
 var knock_back_speed: float = 300.0
+
+@onready var move_timer: Timer
 
 
 static func create(_initial_position: Vector2, _initial_health: int, _initial_colour: Globals.Colour = Globals.pick_random_colour()) -> Enemy:
@@ -27,8 +27,11 @@ func _ready() -> void:
 	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, false)
 	set_collision_mask_value(Globals.CollisionLayer.ENEMIES, true)
 	set_collision_mask_value(Globals.CollisionLayer.BULLETS, true)
+	gravity_scale = 0
+	move_timer = Timer.new()
+	move_timer.one_shot = true
+	add_child(move_timer)
 
-	self.area_entered.connect(_on_area_entered)
 	sprite.set_health(health)
 	set_colour(colour)
 	UpgradeManager.on_enemy_spawned(self)
@@ -36,24 +39,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if player_is_within_distance(40.0):
+	if player_is_within_distance(100.0):
 		sprite.play_attack_animation()
-	rotate_to_target(delta, desired_rotation)
-	if knocked_back:
-		translate(
-			(
-				ease((knock_back_position - global_position).length() / knock_back_distance, 1.0)
-				* (knock_back_position - global_position).normalized()
-				* knock_back_speed
-				* knock_back_distance
-				/ 100
-				* 2
-				* delta
-			)
-		)
-		if (knock_back_position - global_position).length() < 20.0:
-			knocked_back = false
-
+	move_forward(delta)
 	_update(delta)
 
 
@@ -72,25 +60,21 @@ func set_colour(colour: Globals.Colour) -> void:
 	sprite.set_colour(colour)
 
 
-func rotate_to_target(delta: float, target_rotation: float) -> void:
+func move_forward(delta: float) -> void:
 	if !can_move:
 		return
-	var angle_diff = wrapf(target_rotation - rotation, -PI, PI)
-	var max_rotation_delta = rotation_speed * delta
-	rotation += clamp(angle_diff, -max_rotation_delta, max_rotation_delta)
-
-
-func move_forward(delta: float) -> void:
-	if !can_move || knocked_back:
-		return
 	sprite.play_move_animation(true)
-	translate(Vector2(cos(rotation), sin(rotation)) * move_speed * delta)
+	rotation = (Globals.player.global_position - global_position).angle()
+
+	if move_timer.is_stopped():
+		linear_velocity = (Globals.player.global_position - global_position).normalized() * move_speed
+		apply_force(linear_velocity)
 
 
-func knock_back(player_global_position: Vector2, knock_back_distance: float) -> void:
-	knock_back_position = global_position + (global_position - player_global_position).normalized() * knock_back_distance
-	self.knock_back_distance = knock_back_distance
-	knocked_back = true
+func knock_back(force: float, duration_in_seconds: float) -> void:
+	move_timer.start(duration_in_seconds)
+	linear_velocity = Vector2(0, 0)
+	apply_impulse((global_position - Globals.player.global_position).normalized() * force)
 
 
 func player_is_within_distance(distance := 500.0) -> bool:
@@ -99,6 +83,8 @@ func player_is_within_distance(distance := 500.0) -> bool:
 
 func _on_area_entered(area: Area2D) -> void:
 	var bullet = area as Bullet
+	if bullet == null:
+		return
 	UpgradeManager.on_enemy_hit(bullet, self)
 	if bullet.colour != colour:
 		return

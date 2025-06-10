@@ -17,7 +17,7 @@ func _init() -> void:
 
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
 	if is_active and enemy != null:
-		enemy.knock_back(Globals.player.global_position, 300.0)
+		enemy.knock_back(300.0, 1.0)
 
 
 func on_player_moving(is_moving: bool) -> void:

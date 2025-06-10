@@ -18,7 +18,6 @@ static func create(
 	new_lizard.head_colour = initial_head_colour
 	new_lizard.global_position = initial_position
 	new_lizard.move_speed = randf_range(150.0, 200.0)
-	new_lizard.rotation_speed = randf_range(1.0, 1.5)
 	return new_lizard
 
 

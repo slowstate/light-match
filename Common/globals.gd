@@ -1,6 +1,6 @@
 extends Node
 
-enum CollisionLayer { BOUNDARIES = 1, PLAYER = 2, BULLETS = 3, ENEMIES = 4 }
+enum CollisionLayer { BOUNDARIES = 1, PLAYER = 2, BULLETS = 3, ENEMIES = 4, TANK_SHIELD = 5 }
 enum Colour { BLUE = 1, GREEN = 2, RED = 3 }
 enum EnemyType { BOT, LIZARD, TANK, ORACLE, STAR }
 
