@@ -12,6 +12,11 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Utility/Taser.png")
 
 
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		SignalBus.upgrade_activated.emit(self)
+
+
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
 	if bullet.colour != enemy.colour:
 		slowed_enemies.push_back(enemy)

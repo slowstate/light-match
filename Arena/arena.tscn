@@ -1092,28 +1092,10 @@ position = Vector2(3840, 1080)
 [node name="RightBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBoundary"]
 shape = SubResource("WorldBoundaryShape2D_4bo3i")
 
-[node name="RightBoundary2" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(1331.5, 1194.5)
-
-[node name="RightBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBoundary2"]
-shape = SubResource("WorldBoundaryShape2D_4bo3i")
-
 [node name="BottomBoundary" type="StaticBody2D" parent="Boundaries"]
 position = Vector2(1920, 2160)
 
 [node name="BottomBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomBoundary"]
-shape = SubResource("WorldBoundaryShape2D_sr50s")
-
-[node name="BottomBoundary3" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(760.5, 2161.5)
-
-[node name="BottomBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomBoundary3"]
-shape = SubResource("WorldBoundaryShape2D_sr50s")
-
-[node name="BottomBoundary2" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(2693.5, 1245.5)
-
-[node name="BottomBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomBoundary2"]
 shape = SubResource("WorldBoundaryShape2D_sr50s")
 
 [node name="LeftBoundary" type="StaticBody2D" parent="Boundaries"]
@@ -1126,10 +1108,6 @@ shape = SubResource("WorldBoundaryShape2D_hbnfl")
 
 [node name="TopBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/TopBoundary"]
 position = Vector2(1920, 0)
-shape = SubResource("WorldBoundaryShape2D_o1cin")
-
-[node name="TopBoundaryCollisionShape2D2" type="CollisionShape2D" parent="Boundaries/TopBoundary"]
-position = Vector2(1920.5, 686)
 shape = SubResource("WorldBoundaryShape2D_o1cin")
 
 [node name="UserInterface" type="CanvasLayer" parent="."]

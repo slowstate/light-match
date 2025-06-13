@@ -17,10 +17,12 @@ func on_gun_colour_switch(_gun_cooldown_timer: Timer) -> void:
 	if effect_timer.is_stopped():
 		Globals.player.move_speed *= 1.3
 		effect_timer.start(0.5)
+		SignalBus.upgrade_activated.emit(self)
 
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= 1.3
+	SignalBus.upgrade_deactivated.emit(self)
 
 
 func on_upgrade_removed(removed_upgrade: Upgrade) -> void:

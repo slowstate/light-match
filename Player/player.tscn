@@ -25,7 +25,7 @@ radius = 19.0
 height = 64.0
 
 [sub_resource type="Gradient" id="Gradient_p7gyu"]
-offsets = PackedFloat32Array(0, 0.699187, 0.711382)
+offsets = PackedFloat32Array(0.373984, 0.699187, 0.711382)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.0941176, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4kebf"]
@@ -59,6 +59,10 @@ width = 2.0
 [node name="RayCast2D" type="RayCast2D" parent="LaserSight"]
 position = Vector2(56, 19)
 collision_mask = 25
+
+[node name="ShieldSprite" type="Sprite2D" parent="."]
+position = Vector2(-7, 0)
+texture = ExtResource("4_w330a")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("2_ekdli")]
 position = Vector2(0, 1.90735e-06)
@@ -103,11 +107,6 @@ one_shot = true
 [node name="HitImmunityTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="ShieldSprite" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-7, 0)
-texture = ExtResource("4_w330a")
-
 [node name="ChromeKnucklesProximity" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
@@ -117,16 +116,19 @@ collision_mask = 8
 texture = SubResource("GradientTexture2D_4kebf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChromeKnucklesProximity"]
+visible = false
 shape = SubResource("CircleShape2D_qy1jw")
 
 [node name="PlayerInterface" type="CanvasLayer" parent="."]
 
 [node name="PlayerUpgradesInterface" type="HBoxContainer" parent="PlayerInterface"]
 offset_left = 315.0
-offset_top = 30.0
+offset_top = 50.0
 offset_right = 355.0
-offset_bottom = 70.0
+offset_bottom = 90.0
 script = ExtResource("3_gmi6u")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_body_entered"]
+[connection signal="body_exited" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_body_exited"]

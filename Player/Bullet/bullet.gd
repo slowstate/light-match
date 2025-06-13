@@ -59,6 +59,7 @@ func _physics_process(delta: float) -> void:
 				global_position += velocity * delta
 				UpgradeManager.on_bullet_travelled_x_pixels(self, velocity.length() * delta)
 		else:
+			spawn_hit_particles()
 			_on_body_entered(collided_shape)
 	else:
 		global_position += velocity * delta
@@ -80,3 +81,7 @@ func spawn_hit_particles() -> void:
 	gun_particles.rotation = angle
 	gun_particles.emitting = true
 	get_tree().root.add_child(gun_particles)
+
+
+func _on_despawn_timer_timeout() -> void:
+	queue_free()

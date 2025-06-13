@@ -9,6 +9,11 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Utility/Repulsor Field.png")
 
 
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		SignalBus.upgrade_activated.emit(self)
+
+
 func on_palette_cleared(_palette: Palette) -> void:
 	var all_enemies_alive = Globals.get_all_enemies_alive()
 	for enemy in all_enemies_alive:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dius2cv6xw7tn"
-path="res://.godot/imported/Title Icon Light.png-4da87f1f246fe12ae81e3d3ce8cd189d.ctex"
+uid="uid://d3y73cmvctw5"
+path="res://.godot/imported/START.png-5a910cbb13329edf6c1a6f3d304ede89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Title/Title Icon Light.png"
-dest_files=["res://.godot/imported/Title Icon Light.png-4da87f1f246fe12ae81e3d3ce8cd189d.ctex"]
+source_file="res://Menus/MainMenu/START.png"
+dest_files=["res://.godot/imported/START.png-5a910cbb13329edf6c1a6f3d304ede89.ctex"]
 
 [params]
 

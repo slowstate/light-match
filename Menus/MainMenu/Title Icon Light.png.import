@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4eb0ypcq86g6"
-path="res://.godot/imported/HOW TO PLAY.png-07e9a38709405789e4071ebc0188e4c7.ctex"
+uid="uid://dius2cv6xw7tn"
+path="res://.godot/imported/Title Icon Light.png-9d9b2707edec5b87cc8cdfff9416df82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Title/HOW TO PLAY.png"
-dest_files=["res://.godot/imported/HOW TO PLAY.png-07e9a38709405789e4071ebc0188e4c7.ctex"]
+source_file="res://Menus/MainMenu/Title Icon Light.png"
+dest_files=["res://.godot/imported/Title Icon Light.png-9d9b2707edec5b87cc8cdfff9416df82.ctex"]
 
 [params]
 

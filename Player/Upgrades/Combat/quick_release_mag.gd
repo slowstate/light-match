@@ -9,5 +9,10 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Combat/Quick Release Mag.png")
 
 
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		SignalBus.upgrade_activated.emit(self)
+
+
 func on_gun_colour_switch(gun_cooldown_timer: Timer) -> void:
 	gun_cooldown_timer.start(0.01)

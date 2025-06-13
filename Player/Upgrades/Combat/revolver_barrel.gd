@@ -13,6 +13,7 @@ func _init() -> void:
 	description = "After killing 2 enemies of the same colour in a row, your bullets deals 1 more damage for 5s"
 	icon = preload("res://Player/Upgrades/Combat/Revolver Barrel.png")
 	effect_timer = super.new_timer()
+	effect_timer.connect("timeout", _on_effect_timer_timeout)
 
 
 func trigger_counter_update() -> void:
@@ -26,9 +27,14 @@ func on_enemy_killed(enemy: Enemy) -> void:
 	number_of_same_colour_kills_in_a_row += 1
 	if number_of_same_colour_kills_in_a_row >= 2:
 		effect_timer.start(5)
+		SignalBus.upgrade_activated.emit(self)
 	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
 	if !effect_timer.is_stopped():
 		bullet.damage += 1
+
+
+func _on_effect_timer_timeout() -> void:
+	SignalBus.upgrade_deactivated.emit(self)

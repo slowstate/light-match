@@ -13,6 +13,7 @@ func _init() -> void:
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
 	if new_upgrade == self:
 		Globals.player.palette.palette_size += 1
+		SignalBus.upgrade_activated.emit(self)
 
 
 func on_palette_cleared(palette: Palette) -> void:

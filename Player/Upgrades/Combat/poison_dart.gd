@@ -12,6 +12,7 @@ func _init() -> void:
 	description = "After clearing 2 palettes in a row, your bullets reduce the enemy's HP to 1 for 10s"
 	icon = preload("res://Player/Upgrades/Combat/Poison Dart.png")
 	effect_timer = super.new_timer()
+	effect_timer.connect("timeout", _on_effect_timer_timeout)
 
 
 func trigger_counter_update() -> void:
@@ -22,6 +23,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_in_a_row += 1
 	if palettes_cleared_in_a_row >= 2:
 		effect_timer.start(10)
+		SignalBus.upgrade_activated.emit(self)
 		palettes_cleared_in_a_row = 0
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
@@ -39,3 +41,7 @@ func on_bullet_fired(bullet: Bullet) -> void:
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null):
 	if bullet.bullet_id == active_bullet_id:
 		bullet.damage = maxi(enemy.health - 1, 1)
+
+
+func _on_effect_timer_timeout() -> void:
+	SignalBus.upgrade_deactivated.emit(self)

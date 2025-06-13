@@ -9,16 +9,18 @@ var total_enemies_to_spawn_this_round: int = 0
 var palette_milestone_1_this_round: int = 0
 var palette_milestone_2_this_round: int = 0
 
-@onready var round_number_label: Label = $UserInterface/RoundLabel/RoundNumberLabel
+@onready var round_number_label: Label = $UserInterface/RoundNumberLabel
 @onready var time_limit_timer: Timer = $UserInterface/TimeLimitLabel/TimeLimitTimer
 @onready var state_machine: ArenaStateMachine = $StateMachine
 @onready var palette_milestone_label: Label = $UserInterface/PaletteMilestone/PaletteMilestoneLabel
 @onready var palette_milestone_1: Sprite2D = $UserInterface/PaletteMilestone/PaletteMilestone1
 @onready var palette_milestone_2: Sprite2D = $UserInterface/PaletteMilestone/PaletteMilestone2
+@onready var animation_player: AnimationPlayer = $BG/AnimationPlayer
 
 
 func _ready() -> void:
 	time_limit_timer.start(1800)
+	animation_player.play("Arena_Lights")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

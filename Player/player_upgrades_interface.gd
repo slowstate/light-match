@@ -15,8 +15,5 @@ func update_player_upgrades_interface() -> void:
 	get_children().clear()
 	for upgrade in player.upgrades:
 		var new_upgrade_button = PLAYER_UPGRADE_BUTTON.instantiate()
-		new_upgrade_button.text = str(upgrade.type)
-		new_upgrade_button.add_theme_font_size_override("font_size", 40)
-		new_upgrade_button.custom_minimum_size = Vector2(80, 80)
-		new_upgrade_button.disabled = true
+		new_upgrade_button.upgrade = upgrade
 		add_child(new_upgrade_button)

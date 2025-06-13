@@ -19,9 +19,11 @@ func on_palette_generated() -> void:
 func on_palette_cleared(_palette: Palette) -> void:
 	if !trigger_timer.is_stopped():
 		is_active = true
+		SignalBus.upgrade_activated.emit(self)
 
 
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
 	bullet.colour = enemy.colour
 	bullet.damage = 99
 	is_active = false
+	SignalBus.upgrade_deactivated.emit(self)

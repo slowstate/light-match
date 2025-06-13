@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0dfysmqkrlrt"
-path="res://.godot/imported/Light.png-27fc4c17ffe1090fced93eb6fbc4cd4d.ctex"
+uid="uid://byw4mjhjla6j5"
+path="res://.godot/imported/Shield Generator.png-8568803a0d2726d001230d22f7485d55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Title/Light.png"
-dest_files=["res://.godot/imported/Light.png-27fc4c17ffe1090fced93eb6fbc4cd4d.ctex"]
+source_file="res://Player/Upgrades/Utility/Shield Generator.png"
+dest_files=["res://.godot/imported/Shield Generator.png-8568803a0d2726d001230d22f7485d55.ctex"]
 
 [params]
 
