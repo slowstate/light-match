@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqs7558opf5lp"
-path="res://.godot/imported/BG.png-fe926a488364c349990baab8747e5b0b.ctex"
+uid="uid://c4eb0ypcq86g6"
+path="res://.godot/imported/HOW TO PLAY.png-07e9a38709405789e4071ebc0188e4c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arena/BG.png"
-dest_files=["res://.godot/imported/BG.png-fe926a488364c349990baab8747e5b0b.ctex"]
+source_file="res://Title/HOW TO PLAY.png"
+dest_files=["res://.godot/imported/HOW TO PLAY.png-07e9a38709405789e4071ebc0188e4c7.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
