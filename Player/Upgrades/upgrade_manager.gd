@@ -107,82 +107,87 @@ const ALL_UPGRADES: Dictionary = {
 
 
 #region
-static func on_gun_colour_switch(gun_cooldown_timer: Timer) -> void:
+func on_gun_colour_switch(gun_cooldown_timer: Timer) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_gun_colour_switch(gun_cooldown_timer)
 
 
-static func on_gun_cooldown_start(gun_cooldown_timer: Timer) -> void:
+func on_gun_cooldown_start(gun_cooldown_timer: Timer) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_gun_cooldown_start(gun_cooldown_timer)
 
 
-static func on_enemy_spawned(enemy: Enemy) -> void:
+func on_enemy_spawned(enemy: Enemy) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_enemy_spawned(enemy)
 
 
-static func on_enemy_killed(enemy: Enemy) -> void:
+func on_enemy_killed(enemy: Enemy) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_enemy_killed(enemy)
 
 
-static func on_palette_generated() -> void:
+func on_palette_generated() -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_palette_generated()
 
 
-static func on_palette_cleared(palette: Palette) -> void:
+func on_palette_cleared(palette: Palette) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_palette_cleared(palette)
 
 
-static func on_palette_failed() -> void:
+func on_palette_failed() -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_palette_failed()
 
 
-static func on_player_moving(is_moving: bool) -> void:
+func on_player_moving(is_moving: bool) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_player_moving(is_moving)
 
 
-static func on_player_hit() -> void:
+func on_player_shield_break() -> void:
+	for upgrade in get_player_upgrades():
+		upgrade.on_player_shield_break()
+
+
+func on_player_hit() -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_player_hit()
 
 
-static func on_bullet_travelled_x_pixels(bullet: Bullet, x: float) -> void:
+func on_bullet_travelled_x_pixels(bullet: Bullet, x: float) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_bullet_travelled_x_pixels(bullet, x)
 
 
-static func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
+func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_enemy_hit(bullet, enemy)
 
 
-static func on_bullet_fired(bullet: Bullet) -> void:
+func on_bullet_fired(bullet: Bullet) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_bullet_fired(bullet)
 
 
-static func on_bullet_hit(bullet: Bullet) -> void:
+func on_bullet_hit(bullet: Bullet) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_bullet_hit(bullet)
 
 
-static func on_upgrade_added(new_upgrade: Upgrade) -> void:
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_upgrade_added(new_upgrade)
 
 
-static func on_upgrade_removed(removed_upgrade: Upgrade) -> void:
+func on_upgrade_removed(removed_upgrade: Upgrade) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_upgrade_removed(removed_upgrade)
 
 
-static func on_get_pickable_upgrades(pickable_upgrades: Array[UpgradeManager.UpgradeTypes]) -> void:
+func on_get_pickable_upgrades(pickable_upgrades: Array[UpgradeManager.UpgradeTypes]) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_get_pickable_upgrades(pickable_upgrades)
 
@@ -190,7 +195,7 @@ static func on_get_pickable_upgrades(pickable_upgrades: Array[UpgradeManager.Upg
 #endregion
 
 
-static func get_pickable_upgrades() -> Array[UpgradeTypes]:
+func get_pickable_upgrades() -> Array[UpgradeTypes]:
 	var pickable_upgrades: Array[UpgradeTypes]
 	var current_player_upgrades: Array[UpgradeTypes]
 	for upgrade in Globals.player.upgrades:
@@ -204,7 +209,7 @@ static func get_pickable_upgrades() -> Array[UpgradeTypes]:
 	return pickable_upgrades
 
 
-static func get_player_upgrades() -> Array[Upgrade]:
+func get_player_upgrades() -> Array[Upgrade]:
 	if Globals.player != null:
 		return Globals.player.upgrades
 	return []

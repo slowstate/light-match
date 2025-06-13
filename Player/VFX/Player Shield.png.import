@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36h547sfej1u"
-path="res://.godot/imported/Hex Hud 1.png-218571cf18aa4131ab3ced48de7879a8.ctex"
+uid="uid://dom47dbbu8wyy"
+path="res://.godot/imported/Player Shield.png-74d3c10902cb785b77db148da5e78d96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HUD/Hex Hud 1.png"
-dest_files=["res://.godot/imported/Hex Hud 1.png-218571cf18aa4131ab3ced48de7879a8.ctex"]
+source_file="res://Player/VFX/Player Shield.png"
+dest_files=["res://.godot/imported/Player Shield.png-74d3c10902cb785b77db148da5e78d96.ctex"]
 
 [params]
 

@@ -5,7 +5,8 @@ extends Upgrade
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.CHARGED_AMMO
 	name = "Charged Ammo"
-	description = "While your gun colour is the same colour as the last colour on your palette, you deal 1 bonus damage"
+	description = "While your gun colour is the same colour as the last colour on your palette, you deal 2 more damage"
+	icon = preload("res://Player/Upgrades/Combat/Charged Ammo.png")
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
@@ -13,4 +14,4 @@ func on_bullet_fired(bullet: Bullet) -> void:
 	if player_palette.is_empty():
 		return
 	if bullet.colour == player_palette.back():
-		bullet.damage += 1
+		bullet.damage += 2

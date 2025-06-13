@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0b163po2sldd"]
+
+[ext_resource type="Script" path="res://Player/VFX/gun_particles.gd" id="1_g0mj0"]
+
+[sub_resource type="Curve" id="Curve_ya82n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7gfbg"]
+curve = SubResource("Curve_ya82n")
+
+[sub_resource type="Curve" id="Curve_spdo7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pmahu"]
+curve = SubResource("Curve_spdo7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ps6rl"]
+particle_flag_disable_z = true
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 50.0
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_pmahu")
+alpha_curve = SubResource("CurveTexture_7gfbg")
+
+[sub_resource type="Gradient" id="Gradient_ymt4q"]
+offsets = PackedFloat32Array(0.621951, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sv24b"]
+gradient = SubResource("Gradient_ymt4q")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+position = Vector2(18.9998, -56.0001)
+rotation = -1.5708
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ps6rl")
+texture = SubResource("GradientTexture2D_sv24b")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+script = ExtResource("1_g0mj0")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

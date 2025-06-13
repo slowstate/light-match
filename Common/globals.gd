@@ -1,6 +1,6 @@
 extends Node
 
-enum CollisionLayer { BOUNDARIES = 1, PLAYER = 2, BULLETS = 3, ENEMIES = 4 }
+enum CollisionLayer { BOUNDARIES = 1, PLAYER = 2, BULLETS = 3, ENEMIES = 4, TANK_SHIELD = 5 }
 enum Colour { BLUE = 1, GREEN = 2, RED = 3 }
 enum EnemyType { BOT, LIZARD, TANK, ORACLE, STAR }
 
@@ -19,13 +19,13 @@ func pick_random_colour(pickable_colours: Array[Colour] = [Colour.BLUE, Colour.G
 	return pickable_colours.pick_random()
 
 
-static func generate_guid(length: int = 36):
+func generate_guid(length: int = 36):
 	var chars = "abcdefghijklmnopqrstuvwxyz"
-	var word: String
+	var word: String = ""
 	var n_char = len(chars)
 	for i in range(length):
 		word += chars[randi() % n_char]
-	return word + Time.get_datetime_string_from_unix_time(Time.get_unix_time_from_system())
+	return word + Time.get_datetime_string_from_system()
 
 
 func get_all_enemies_alive() -> Array[Enemy]:

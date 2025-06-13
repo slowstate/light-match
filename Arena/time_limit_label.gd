@@ -9,5 +9,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	text = str(floori(time_limit_timer.time_left / 60.0)) + ":" + str(floori(time_limit_timer.time_left) % 60).pad_zeros(2)

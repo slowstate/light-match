@@ -2,14 +2,14 @@ class_name Player
 extends CharacterBody2D
 
 const PLAYER_UPGRADE_BUTTON = preload("res://Player/Upgrades/player_upgrade_button.tscn")
+const GUN_PARTICLES = preload("res://Player/VFX/gun_particles.tscn")
 
 var base_move_speed := 500.0
 var move_speed := base_move_speed
 var current_colour := Globals.Colour.BLUE
 var upgrades: Array[Upgrade] = []
 var controls_enabled: bool = true
-var move_vec: Vector2
-var shield: bool = false
+var shield_active: bool = false
 
 var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
@@ -23,10 +23,11 @@ var hit_immunity_time: float = 1.0
 @onready var palette: Palette = $Palette
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
-@onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var hit_immunity_timer: Timer = $HitImmunityTimer
 @onready var hurt_box: Area2D = $HurtBox
+@onready var shield_sprite: Sprite2D = $ShieldSprite
+@onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
 
 
 func _init() -> void:
@@ -39,11 +40,32 @@ func _ready() -> void:
 	palette.generate_new_palette()
 
 
+func _process(_delta: float) -> void:
+	pass
+
+
 func _physics_process(_delta: float) -> void:
+	shield_sprite.visible = true if shield_active else false
 	if !hit_immunity_timer.is_stopped():  # Hit immunity flashing
 		player_sprite.set_light_visibility(false)
 		if roundi(hit_immunity_timer.time_left * 10) % 2 == 0:
 			player_sprite.set_light_visibility(true)
+
+	var move_vec = Vector2(0, 0)
+	if controls_enabled:
+		# Handle movement
+		if Input.is_action_pressed("player_move_up"):
+			move_vec.y = -1
+		if Input.is_action_pressed("player_move_left"):
+			move_vec.x = -1
+		if Input.is_action_pressed("player_move_down"):
+			move_vec.y = 1
+		if Input.is_action_pressed("player_move_right"):
+			move_vec.x = 1
+
+		# Handle shooting
+		if Input.is_action_pressed("player_shoot"):
+			_fire_bullet()
 
 	move_vec = move_vec.normalized()
 
@@ -62,36 +84,18 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func _input(event: InputEvent) -> void:
-	move_vec = Vector2(0, 0)
-	if !controls_enabled:
-		return
-
-	# Handle movement
-	if Input.is_action_pressed("player_move_up"):
-		move_vec.y = -1
-	if Input.is_action_pressed("player_move_left"):
-		move_vec.x = -1
-	if Input.is_action_pressed("player_move_down"):
-		move_vec.y = 1
-	if Input.is_action_pressed("player_move_right"):
-		move_vec.x = 1
-
+func _input(_event: InputEvent) -> void:
 	# Handle colour switching
-	if event.is_action_pressed("player_red"):
+	if Input.is_action_pressed("player_red"):
 		change_colour(Globals.Colour.RED)
-	if event.is_action_pressed("player_green"):
+	if Input.is_action_pressed("player_green"):
 		change_colour(Globals.Colour.GREEN)
-	if event.is_action_pressed("player_blue"):
+	if Input.is_action_pressed("player_blue"):
 		change_colour(Globals.Colour.BLUE)
-	if event.is_action_pressed("player_next_colour"):
+	if Input.is_action_pressed("player_next_colour"):
 		_get_next_colour()
-	if event.is_action_pressed("player_previous_colour"):
+	if Input.is_action_pressed("player_previous_colour"):
 		_get_previous_colour()
-
-	# Handle shooting
-	if event.is_action_pressed("player_shoot") && gun_cooldown_timer.is_stopped():
-		_fire_bullet()
 
 
 func _fire_bullet():
@@ -139,9 +143,9 @@ func change_colour(new_colour: Globals.Colour) -> void:
 
 func add_upgrade(new_upgrade: Upgrade) -> void:
 	if upgrades.size() < 5:
-		UpgradeManager.on_upgrade_added(new_upgrade)
 		upgrades.push_back(new_upgrade)
 		update_player_upgrades_interface()
+		UpgradeManager.on_upgrade_added(new_upgrade)
 
 
 func remove_upgrade(upgrade: Upgrade) -> void:
@@ -171,10 +175,19 @@ func enable_player_upgrade_buttons(enable: bool) -> void:
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
+	player_hit()
+
+
+func _on_hurt_box_body_entered(_body: Node2D) -> void:
+	player_hit()
+
+
+func player_hit() -> void:
 	if !hit_immunity_timer.is_stopped():
 		return
-	if shield:
-		shield = false
+	if shield_active:
+		UpgradeManager.on_player_shield_break()
+		shield_active = false
 	elif upgrades.size() <= 0:
 		SignalBus.player_died.emit()
 		return

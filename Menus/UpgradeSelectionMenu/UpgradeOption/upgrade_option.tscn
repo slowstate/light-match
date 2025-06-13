@@ -1,24 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlhvlu6kxswq0"]
+[gd_scene load_steps=12 format=3 uid="uid://dlhvlu6kxswq0"]
 
 [ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/upgrade_option.gd" id="1_cys41"]
-
-[sub_resource type="Gradient" id="Gradient_v4s6v"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.533333, 0.533333, 0.533333, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cglp0"]
-gradient = SubResource("Gradient_v4s6v")
-width = 300
-height = 300
+[ext_resource type="Texture2D" uid="uid://ivl8ard58lpk" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Box 2.png" id="2_cc8w0"]
+[ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="3_60qt7"]
+[ext_resource type="Texture2D" uid="uid://dg1yjr0eocbr6" path="res://Player/Upgrades/Meta/Lucky Dice.png" id="4_mswat"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_781bl"]
-font_size = 20
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx75e"]
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyorj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0qix"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc30j"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpps3"]
+bg_color = Color(1, 1, 1, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_judh2"]
+bg_color = Color(0, 0, 0, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5ord"]
 
 [node name="UpgradeOption" type="Control"]
 custom_minimum_size = Vector2(300, 300)
@@ -31,8 +45,15 @@ offset_bottom = 150.0
 script = ExtResource("1_cys41")
 
 [node name="UpgradeOptionBG" type="Sprite2D" parent="."]
-position = Vector2(150, 150)
-texture = SubResource("GradientTexture2D_cglp0")
+position = Vector2(150, 133)
+texture = ExtResource("2_cc8w0")
+
+[node name="UpgradeHex" type="Sprite2D" parent="."]
+position = Vector2(150, 70)
+texture = ExtResource("3_60qt7")
+
+[node name="UpgradeIcon" type="Sprite2D" parent="UpgradeHex"]
+texture = ExtResource("4_mswat")
 
 [node name="UpgradeOptionNameLabel" type="Label" parent="."]
 layout_mode = 1
@@ -40,9 +61,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -130.0
-offset_top = 20.0
+offset_top = 120.0
 offset_right = 130.0
-offset_bottom = 74.0
+offset_bottom = 174.0
 grow_horizontal = 2
 text = "Upgrade Title"
 label_settings = SubResource("LabelSettings_781bl")
@@ -51,17 +72,14 @@ autowrap_mode = 3
 
 [node name="UpgradeOptionDescriptionLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -130.0
-offset_top = -30.0
+offset_top = 170.0
 offset_right = 130.0
-offset_bottom = -7.0
+offset_bottom = 193.0
 grow_horizontal = 2
-grow_vertical = 2
 text = "Upgrade description"
 label_settings = SubResource("LabelSettings_vx75e")
 horizontal_alignment = 1
@@ -74,14 +92,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 150.0
-offset_bottom = 150.0
+offset_left = -145.0
+offset_top = -145.0
+offset_right = 145.0
+offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lyorj")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_h0qix")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_dc30j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jpps3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_judh2")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r5ord")
 
 [node name="InitialDisabledTimer" type="Timer" parent="."]
 wait_time = 0.5

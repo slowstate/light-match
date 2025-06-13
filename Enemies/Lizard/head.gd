@@ -1,6 +1,6 @@
 extends Area2D
 
-var colour: Globals.Colour
+var colour: Globals.Colour = Globals.Colour.BLUE
 
 @onready var liz_head_light: Sprite2D = $HeadSprite2D/LizHead/LizHeadLight
 
@@ -13,8 +13,8 @@ func _ready() -> void:
 	self.area_entered.connect(_on_area_entered)
 
 
-func _set_sprite_colour(colour: Globals.Colour) -> void:
-	self.colour = colour
+func _set_sprite_colour(new_colour: Globals.Colour) -> void:
+	colour = new_colour
 	liz_head_light.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 
 

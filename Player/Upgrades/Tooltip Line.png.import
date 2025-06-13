@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dom47dbbu8wyy"
-path="res://.godot/imported/Player Shield.png-da517a2b1775d3d51df1247c255478f2.ctex"
+uid="uid://d0jeqndrjomyx"
+path="res://.godot/imported/Tooltip Line.png-e8b92309dc169c75343e951a274acc4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://VFX/Player Shield.png"
-dest_files=["res://.godot/imported/Player Shield.png-da517a2b1775d3d51df1247c255478f2.ctex"]
+source_file="res://Player/Upgrades/Tooltip Line.png"
+dest_files=["res://.godot/imported/Tooltip Line.png-e8b92309dc169c75343e951a274acc4b.ctex"]
 
 [params]
 

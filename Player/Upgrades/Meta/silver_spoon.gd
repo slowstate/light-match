@@ -1,5 +1,6 @@
 extends Upgrade
 
+@warning_ignore("enum_variable_without_default")
 var last_killed_colour: Globals.Colour
 var number_of_kills: int = 0
 
@@ -9,13 +10,14 @@ func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.SILVER_SPOON
 	name = "Silver Spoon"
 	description = "After killing 10 enemies, gain a cleared palette"
+	icon = preload("res://Player/Upgrades/Meta/Silver Spoon.png")
 
 
 func trigger_counter_update() -> void:
 	upgrade_counter_updated.emit(number_of_kills)
 
 
-func on_enemy_killed(enemy: Enemy) -> void:
+func on_enemy_killed(_enemy: Enemy) -> void:
 	number_of_kills += 1
 	if number_of_kills >= 10:
 		SignalBus.palette_cleared.emit()

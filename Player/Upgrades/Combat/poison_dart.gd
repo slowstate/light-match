@@ -1,25 +1,27 @@
 extends Upgrade
 
 var palettes_cleared_in_a_row: int = 0
-var is_active: bool
 var active_bullet_id: String
+var effect_timer: Timer
 
 
 # Called when the node enters the scene tree for the first time.
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.POSION_DART
 	name = "Poison Dart"
-	description = "After clearing 2 palettes in a row, your next bullet reduces the enemy's HP to 1"
+	description = "After clearing 2 palettes in a row, your bullets reduce the enemy's HP to 1 for 10s"
+	icon = preload("res://Player/Upgrades/Combat/Poison Dart.png")
+	effect_timer = super.new_timer()
 
 
 func trigger_counter_update() -> void:
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
 
-func on_palette_cleared(palette: Palette) -> void:
+func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_in_a_row += 1
 	if palettes_cleared_in_a_row >= 2:
-		is_active = true
+		effect_timer.start(10)
 		palettes_cleared_in_a_row = 0
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
@@ -30,11 +32,10 @@ func on_palette_failed() -> void:
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
-	if is_active:
+	if effect_timer.is_stopped():
 		active_bullet_id = bullet.bullet_id
-		is_active = false
 
 
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null):
 	if bullet.bullet_id == active_bullet_id:
-		bullet.damage = enemy.health - 1
+		bullet.damage = maxi(enemy.health - 1, 1)

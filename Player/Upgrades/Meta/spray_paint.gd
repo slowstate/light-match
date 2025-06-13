@@ -1,13 +1,15 @@
 extends Upgrade
 
-var is_active: bool = false
+@warning_ignore("enum_variable_without_default")
 var enemy_killed_colour: Globals.Colour
+var is_active: bool = false
 
 
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.SPRAY_PAINT
 	name = "Spray Paint"
 	description = "After killing an enemy, the next enemy to spawn has a 50% chance of being the same colour"
+	icon = preload("res://Player/Upgrades/Meta/Spray Paint.png")
 
 
 func on_enemy_killed(enemy: Enemy) -> void:
