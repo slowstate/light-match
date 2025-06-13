@@ -4,8 +4,6 @@ uniform float random_number: hint_range(-1.0, 1.0);
 uniform float timer_progress: hint_range(0.0, 1.0);
 uniform vec4 modulation: source_color;
 
-const float TWO_PI = 6.28318530718;
-
 vec2 rotate(vec2 uv, vec2 pivot, float angle)
 {
 	mat2 rotation = mat2(vec2(sin(angle), -cos(angle)),
@@ -25,9 +23,9 @@ void vertex() {
 void fragment() {
 	// Called for every pixel the material is visible on.
 	//vec2 translate = vec2(UV.x, UV.y - timer_progress*0.5);
-	vec2 rotate = rotate(UV, vec2(0.5, 0.25 + 0.35*timer_progress), random_number * timer_progress*0.5+PI/2.0);
-	//COLOR += translate;
-	COLOR = texture(TEXTURE, vec2(rotate.x, rotate.y - timer_progress*0.35)) * modulation;//textureLod(image_texture, UV + vec2(cos(TIME), sin(TIME * 2.0)) * 0.1, 0.0);//vec2(cos(TIME), sin(TIME * 2.0)) * 0.2);
+	vec2 rotate = rotate(UV, vec2(0.5, 1.0/6.0 + 0.5*timer_progress), random_number * timer_progress*0.5+PI/2.0);
+
+	COLOR = texture(TEXTURE, vec2(rotate.x, rotate.y - timer_progress*0.5)) * modulation;
 	COLOR.a = COLOR.a * (1.0-timer_progress);
 }
 

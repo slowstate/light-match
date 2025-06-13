@@ -3,7 +3,7 @@ extends Enemy
 
 const ORACLE: PackedScene = preload("res://Enemies/Oracle/oracle.tscn")
 
-@export var orb_colour: Globals.Colour
+@export var orb_colour: Globals.Colour = Globals.Colour.BLUE
 @export var orb_rotation_speed := 1.0
 
 @onready var orbs: Node2D = $Orbs
@@ -29,5 +29,5 @@ func _update(delta: float) -> void:
 	_rotate_orbs(delta, orb_rotation_speed)
 
 
-func _rotate_orbs(delta, orb_rotation_speed) -> void:
-	orbs.rotate(delta * orb_rotation_speed)
+func _rotate_orbs(delta: float, new_orb_rotation_speed: float) -> void:
+	orbs.rotate(delta * new_orb_rotation_speed)

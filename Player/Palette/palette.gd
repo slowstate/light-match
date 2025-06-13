@@ -23,7 +23,7 @@ func _ready() -> void:
 	SignalBus.connect("enemy_died", _on_enemy_died)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	timer_progress = 0.0
 	if !failed_cooldown_timer.is_stopped():
 		timer_progress = 1.0 - failed_cooldown_timer.time_left / failed_cooldown_timer.wait_time

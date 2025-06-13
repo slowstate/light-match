@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnu7ashmt28b4"
-path="res://.godot/imported/Upgrade Hex.png-aad509833f810eac31fa328c608c6f80.ctex"
+path="res://.godot/imported/Player Upgrade Button.png-16cbad25e8bff4018d3de771ee85a5ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HUD/Upgrade Hex.png"
-dest_files=["res://.godot/imported/Upgrade Hex.png-aad509833f810eac31fa328c608c6f80.ctex"]
+source_file="res://Player/Upgrades/Player Upgrade Button.png"
+dest_files=["res://.godot/imported/Player Upgrade Button.png-16cbad25e8bff4018d3de771ee85a5ab.ctex"]
 
 [params]
 

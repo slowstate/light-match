@@ -8,6 +8,7 @@ func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.COLOUR_CHANGING_DYE
 	name = "Colour-Changing Dye"
 	description = "Enemies change to a different colour 10s after spawning"
+	icon = preload("res://Player/Upgrades/Meta/Colour Changing Dye.png")
 
 
 func on_enemy_spawned(enemy: Enemy) -> void:

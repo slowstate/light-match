@@ -21,50 +21,50 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/HeadSprite2D:rotation")
+tracks/0/path = NodePath("LizTail1:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-1.5708, -1.92786, -1.33154, -1.5708]
+"values": [0.0, -0.117681, 0.266518, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LizTail1:rotation")
+tracks/1/path = NodePath("LizTail1/LizTail2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.433333, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.117681, 0.266518, 0.0]
+"values": [0.0, -0.359671, 0.072045, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("LizTail1/LizTail2:rotation")
+tracks/2/path = NodePath("LizTail1/LizTail2/LizTail3:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.433333, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.359671, 0.072045, 0.0]
+"values": [0.0, -0.305183, -0.494861, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LizTail1/LizTail2/LizTail3:rotation")
+tracks/3/path = NodePath("Head/HeadSprite2D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.433333, 0.8),
+"times": PackedFloat32Array(0, 0.308333, 0.5, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.305183, -0.494861, 0.0]
+"values": [-1.5708, -1.92786, -1.33154, -1.5708]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -76,7 +76,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.130043, -0.349066, 0.244346, 0.0]
+"values": [0.0, -0.349066, 0.244346, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_atrwv"]

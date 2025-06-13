@@ -1,16 +1,17 @@
 class_name Bullet
 extends Area2D
 
-@onready var sprite: Sprite2D = $Sprite
-@onready var collision_check_ray_cast: RayCast2D = $CollisionCheckRayCast
+const BULLET = preload("res://Player/Bullet/bullet.tscn")
+const GUN_PARTICLES = preload("res://Player/VFX/gun_particles.tscn")
 
 var bullet_id: String
-var colour: Globals.Colour
+var colour: Globals.Colour = Globals.Colour.BLUE
 var angle: float
 var damage: int
 var speed: float
 
-const BULLET = preload("res://Player/Bullet/bullet.tscn")
+@onready var sprite: Sprite2D = $Sprite
+@onready var collision_check_ray_cast: RayCast2D = $CollisionCheckRayCast
 
 
 static func create(bullet_position: Vector2, bullet_angle: float, bullet_colour: Globals.Colour, bullet_damage := 1, bullet_speed := 1500.0) -> Bullet:
@@ -47,9 +48,11 @@ func _physics_process(delta: float) -> void:
 		var collided_shape := collision_check_ray_cast.get_collider()
 		if collided_shape as Enemy != null:
 			(collided_shape as Enemy)._on_area_entered(self)
+			spawn_hit_particles()
 			_on_body_entered(collided_shape)
 		elif collided_shape as Area2D != null:
 			if (collided_shape as Area2D).monitorable:
+				spawn_hit_particles()
 				(collided_shape as Area2D)._on_area_entered(self)
 				_on_body_entered(collided_shape)
 			else:
@@ -62,9 +65,18 @@ func _physics_process(delta: float) -> void:
 		UpgradeManager.on_bullet_travelled_x_pixels(self, velocity.length() * delta)
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	queue_free()
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	queue_free()
+
+
+func spawn_hit_particles() -> void:
+	var gun_particles = GUN_PARTICLES.instantiate()
+	gun_particles.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
+	gun_particles.global_position = global_position
+	gun_particles.rotation = angle
+	gun_particles.emitting = true
+	get_tree().root.add_child(gun_particles)

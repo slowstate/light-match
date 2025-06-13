@@ -34,7 +34,7 @@ func _update(delta: float) -> void:
 	_rotate_star(delta, shell_rotation_speed)
 
 
-func _rotate_star(delta, shell_rotation_speed) -> void:
-	sprite.rotate(delta * shell_rotation_speed)
-	collision_shape_2d.rotate(delta * shell_rotation_speed)
-	shells.rotate(delta * shell_rotation_speed)
+func _rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
+	sprite.rotate(delta * new_shell_rotation_speed)
+	collision_shape_2d.rotate(delta * new_shell_rotation_speed)
+	shells.rotate(delta * new_shell_rotation_speed)

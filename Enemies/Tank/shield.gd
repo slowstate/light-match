@@ -4,6 +4,7 @@ var tank: Tank
 var shield_enabled: bool = true
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var shield_cooldown_timer: Timer = $ShieldCooldownTimer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,11 +26,12 @@ func _on_area_entered(area: Area2D) -> void:
 	if area as Bullet == null:
 		return
 	animation_player.play("Tank_Beam")
+	shield_cooldown_timer.start(8)
+	_enable_tank_shield(false)
 
 
 func _on_shield_cooldown_timer_timeout() -> void:
-	shield_enabled = !shield_enabled
-	_enable_tank_shield(shield_enabled)
+	_enable_tank_shield(true)
 
 
 func _enable_tank_shield(enable_shield: bool) -> void:

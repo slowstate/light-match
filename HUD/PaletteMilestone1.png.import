@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0jeqndrjomyx"
-path="res://.godot/imported/Tool Tip.png-496f32c96afbc1d592978aaddae52af3.ctex"
+uid="uid://d36h547sfej1u"
+path="res://.godot/imported/PaletteMilestone1.png-b656a37e002a4a2a265ac763301a6eaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HUD/Tool Tip.png"
-dest_files=["res://.godot/imported/Tool Tip.png-496f32c96afbc1d592978aaddae52af3.ctex"]
+source_file="res://HUD/PaletteMilestone1.png"
+dest_files=["res://.godot/imported/PaletteMilestone1.png-b656a37e002a4a2a265ac763301a6eaf.ctex"]
 
 [params]
 

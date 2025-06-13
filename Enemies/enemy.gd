@@ -1,7 +1,7 @@
 class_name Enemy
 extends RigidBody2D
 
-@export var colour: Globals.Colour
+@export var colour: Globals.Colour = Globals.Colour.BLUE
 @export var health := 1
 @export var damage := 1
 @export var move_speed := 300.0
@@ -16,8 +16,8 @@ var knock_back_speed: float = 300.0
 @onready var move_timer: Timer
 
 
+# This function should be overriden by inheriting classes; no code should be added to this class
 static func create(_initial_position: Vector2, _initial_health: int, _initial_colour: Globals.Colour = Globals.pick_random_colour()) -> Enemy:
-	assert(null, "This method should be overridden by subclasses.")
 	return null
 
 
@@ -55,12 +55,12 @@ func _update(_delta: float) -> void:
 	pass
 
 
-func set_colour(colour: Globals.Colour) -> void:
-	self.colour = colour
-	sprite.set_colour(colour)
+func set_colour(new_colour: Globals.Colour) -> void:
+	colour = new_colour
+	sprite.set_colour(new_colour)
 
 
-func move_forward(delta: float) -> void:
+func move_forward(_delta: float) -> void:
 	if !can_move:
 		return
 	sprite.play_move_animation(true)

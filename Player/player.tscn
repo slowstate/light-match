@@ -1,9 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=13 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="2_ekdli"]
 [ext_resource type="PackedScene" uid="uid://dnshaeplewb85" path="res://Player/Palette/palette.tscn" id="2_ybmla"]
 [ext_resource type="Script" path="res://Player/player_upgrades_interface.gd" id="3_gmi6u"]
+[ext_resource type="Texture2D" uid="uid://dom47dbbu8wyy" path="res://Player/VFX/Player Shield.png" id="4_w330a"]
+
+[sub_resource type="Gradient" id="Gradient_6n8lw"]
+offsets = PackedFloat32Array(0, 0.699187)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h7qcx"]
+gradient = SubResource("Gradient_6n8lw")
+height = 80
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb7x1"]
 radius = 19.0
@@ -13,8 +24,19 @@ height = 64.0
 radius = 19.0
 height = 64.0
 
+[sub_resource type="Gradient" id="Gradient_p7gyu"]
+offsets = PackedFloat32Array(0, 0.699187, 0.711382)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.0941176, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kebf"]
+gradient = SubResource("Gradient_p7gyu")
+width = 800
+height = 800
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_qy1jw"]
-radius = 300.0
+radius = 400.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -30,21 +52,36 @@ limit_bottom = 2160
 limit_smoothed = true
 position_smoothing_enabled = true
 
+[node name="LaserSight" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 2.0
+
+[node name="RayCast2D" type="RayCast2D" parent="LaserSight"]
+position = Vector2(56, 19)
+collision_mask = 25
+
 [node name="PlayerSprite" parent="." instance=ExtResource("2_ekdli")]
 position = Vector2(0, 1.90735e-06)
 
-[node name="BulletSpawnPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(16.9997, -67.0001)
+[node name="Shadow" type="Sprite2D" parent="PlayerSprite"]
+z_as_relative = false
+position = Vector2(3.49164e-05, 8)
 rotation = -1.5708
+texture = SubResource("GradientTexture2D_h7qcx")
+
+[node name="BulletSpawnPoint" type="Node2D" parent="PlayerSprite"]
+position = Vector2(18.9998, -56.0001)
 
 [node name="TipOfBarrelPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(15.9997, -77.0001)
+position = Vector2(17.9998, -66.0001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-8, 1)
 shape = SubResource("CapsuleShape2D_wb7x1")
 
 [node name="HurtBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 8
 
@@ -53,7 +90,7 @@ position = Vector2(-8, 1)
 shape = SubResource("CapsuleShape2D_p5nhg")
 
 [node name="Palette" parent="." instance=ExtResource("2_ybmla")]
-position = Vector2(0, -56)
+position = Vector2(0, -36)
 
 [node name="GunCooldownTimer" type="Timer" parent="."]
 wait_time = 0.7
@@ -66,12 +103,20 @@ one_shot = true
 [node name="HitImmunityTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ShieldSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-7, 0)
+texture = ExtResource("4_w330a")
+
 [node name="ChromeKnucklesProximity" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
+[node name="Sprite2D" type="Sprite2D" parent="ChromeKnucklesProximity"]
+texture = SubResource("GradientTexture2D_4kebf")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChromeKnucklesProximity"]
-visible = false
 shape = SubResource("CircleShape2D_qy1jw")
 
 [node name="PlayerInterface" type="CanvasLayer" parent="."]

@@ -30,6 +30,7 @@ sprite = NodePath("Sprite")
 [node name="Sprite" parent="." instance=ExtResource("2_iui8m")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_5tbji")
 
@@ -48,6 +49,7 @@ texture = ExtResource("6_pwxvl")
 texture = ExtResource("7_joar6")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell0"]
+visible = false
 shape = SubResource("RectangleShape2D_nr1nb")
 
 [node name="Shell1" type="Area2D" parent="Shells"]
@@ -67,6 +69,7 @@ scale = Vector2(1.00001, 0.999994)
 texture = ExtResource("9_jvais")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell1"]
+visible = false
 position = Vector2(-2, 0.999996)
 rotation = 1.25664
 shape = SubResource("RectangleShape2D_nr1nb")
@@ -88,6 +91,7 @@ scale = Vector2(1.00001, 0.999984)
 texture = ExtResource("11_ib8vh")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell2"]
+visible = false
 position = Vector2(-3, -3)
 rotation = 2.49582
 shape = SubResource("RectangleShape2D_nr1nb")
@@ -111,6 +115,7 @@ skew = -1.41859e-05
 texture = ExtResource("13_cbitq")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell3"]
+visible = false
 position = Vector2(3, -4)
 rotation = 0.645772
 shape = SubResource("RectangleShape2D_nr1nb")
@@ -132,6 +137,7 @@ scale = Vector2(1, 0.999995)
 texture = ExtResource("15_8lkfx")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell4"]
+visible = false
 position = Vector2(0.999998, 2)
 rotation = 1.88496
 shape = SubResource("RectangleShape2D_nr1nb")

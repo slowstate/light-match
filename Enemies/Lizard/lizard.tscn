@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cq600o70yc5is" path="res://Enemies/Lizard/Sprite/lizard_sprite.tscn" id="2_pu36a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0q6xi"]
-radius = 11.5
-height = 62.0
+radius = 15.5
+height = 64.0
 
 [node name="Lizard" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Lizards"]]
 collision_layer = 8
