@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=3 uid="uid://y0pr2pvbbyd4"]
+
+[ext_resource type="Texture2D" uid="uid://bly6xt2qfvpl1" path="res://Title/Title BG.png" id="1_wt8ud"]
+[ext_resource type="Texture2D" uid="uid://djmsyh0ew3c4r" path="res://Title/Title BG Hex.png" id="2_e8qwt"]
+[ext_resource type="Texture2D" uid="uid://dius2cv6xw7tn" path="res://Title/Title Icon Light.png" id="3_j00ta"]
+[ext_resource type="Texture2D" uid="uid://chw3egawgm1vl" path="res://Title/Title Icon.png" id="4_4qnu0"]
+[ext_resource type="Texture2D" uid="uid://d0dfysmqkrlrt" path="res://Title/Light.png" id="5_u63kn"]
+[ext_resource type="Texture2D" uid="uid://cqfxbdt8yg400" path="res://Title/MATCH.png" id="6_cdbbu"]
+[ext_resource type="Texture2D" uid="uid://csp154wbwt6mo" path="res://Title/START.png" id="7_1nm8n"]
+[ext_resource type="Texture2D" uid="uid://bmojsmcopeg5c" path="res://Title/EXIT.png" id="8_homlq"]
+
+[sub_resource type="Animation" id="Animation_u8cmi"]
+resource_name = "Title Screen"
+length = 24.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleIcon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6.03333, 9.03333, 12.0333, 15, 18, 21, 24),
+"transitions": PackedFloat32Array(12, 0.344609, 12, 0.344, 12, 0.344, 12, 0.344, 0.225313),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.765, 0.904, 0.961, 0), Color(0.529412, 0.807843, 0.921569, 1), Color(0.765, 0.904, 0.961, 0), Color(0.564706, 0.933333, 0.564706, 1), Color(0.765, 0.904, 0.961, 0), Color(1, 0.270588, 0, 1), Color(0.765, 0.904, 0.961, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleIconLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 6.03333, 9.03333, 12.0333, 15, 18, 21, 24),
+"transitions": PackedFloat32Array(12, 0.344609, 12, 0.344, 12, 0.344, 12, 0.344, 0.225313),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.765, 0.904, 0.961, 0), Color(0.529412, 0.807843, 0.921569, 1), Color(0.765, 0.904, 0.961, 0), Color(0.564706, 0.933333, 0.564706, 1), Color(0.765, 0.904, 0.961, 0), Color(1, 0.270588, 0, 1), Color(0.765, 0.904, 0.961, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_glhpd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleIcon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleIconLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_llsw2"]
+_data = {
+"RESET": SubResource("Animation_glhpd"),
+"Title_Screen": SubResource("Animation_u8cmi")
+}
+
+[node name="Title Screen" type="Node2D"]
+
+[node name="TitleBg" type="Sprite2D" parent="."]
+texture = ExtResource("1_wt8ud")
+
+[node name="TitleBgHex" type="Sprite2D" parent="TitleBg"]
+texture = ExtResource("2_e8qwt")
+
+[node name="TitleIconLight" type="Sprite2D" parent="."]
+texture = ExtResource("3_j00ta")
+
+[node name="TitleIcon" type="Sprite2D" parent="."]
+texture = ExtResource("4_4qnu0")
+
+[node name="Light" type="Sprite2D" parent="."]
+position = Vector2(-190, 0)
+texture = ExtResource("5_u63kn")
+
+[node name="Match" type="Sprite2D" parent="."]
+position = Vector2(217, 0)
+texture = ExtResource("6_cdbbu")
+
+[node name="Start" type="Sprite2D" parent="."]
+position = Vector2(0, 154)
+texture = ExtResource("7_1nm8n")
+
+[node name="Exit" type="Sprite2D" parent="."]
+position = Vector2(0, 235)
+texture = ExtResource("8_homlq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_llsw2")
+}
