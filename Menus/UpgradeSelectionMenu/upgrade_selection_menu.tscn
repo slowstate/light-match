@@ -4,8 +4,14 @@
 [ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/replace_upgrade_label.gd" id="2_2jnw8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mns33"]
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bnji2"]
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_72vif"]
 offsets = PackedFloat32Array(0)
@@ -35,7 +41,7 @@ offset_right = 609.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 32
 alignment = 1
 
 [node name="ReplaceUpgradeLabel" type="Label" parent="."]
@@ -51,10 +57,10 @@ script = ExtResource("2_2jnw8")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -292.5
-offset_top = -181.0
-offset_right = 292.5
-offset_bottom = -158.0
+offset_left = -438.0
+offset_top = -270.0
+offset_right = 438.0
+offset_bottom = -236.0
 grow_horizontal = 2
 text = "Upgrades trigger from left to right. New upgrades will be added to the right."
 label_settings = SubResource("LabelSettings_bnji2")
@@ -64,7 +70,7 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="."]
 
 [node name="SkipBG" type="Sprite2D" parent="."]
-position = Vector2(0, 180)
+position = Vector2(0, 200)
 texture = SubResource("GradientTexture2D_06vhx")
 
 [node name="Button" type="Button" parent="SkipBG"]

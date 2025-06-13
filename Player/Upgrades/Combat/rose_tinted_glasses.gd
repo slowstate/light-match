@@ -7,7 +7,8 @@ var enemies_alive_by_colour: Dictionary = {Globals.Colour.BLUE: 0, Globals.Colou
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.ROSE_TINTED_GLASSES
 	name = "Rose-Tinted Glasses"
-	description = "While all enemies are the same colour, your bullets deal 1 more damage"
+	description = "While all enemies are the same colour, your bullets instantly kill enemies"
+	icon = preload("res://Player/Upgrades/Combat/Rose Tinted Glasses.png")
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
@@ -31,4 +32,4 @@ func on_bullet_fired(bullet: Bullet) -> void:
 		if enemies_alive_by_colour[key] > 0:
 			number_of_colours_with_enemies_alive += 1
 	if number_of_colours_with_enemies_alive <= 1:
-		bullet.damage += 1
+		bullet.damage = 99

@@ -8,7 +8,8 @@ var slowed_enemies: Array[Enemy]
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.TASER
 	name = "Taser"
-	description = "Enemies hit by a different colour have their move speed reduced by 20% for 1s"
+	description = "Enemies hit by a different colour have their move speed reduced by 50% for 3s"
+	icon = preload("res://Player/Upgrades/Utility/Taser.png")
 
 
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
@@ -16,7 +17,7 @@ func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
 		slowed_enemies.push_back(enemy)
 		var effect_timer = super.new_timer()
 		effect_timer.connect("timeout", _on_effect_timer_timeout)
-		effect_timer.start(1)
+		effect_timer.start(3)
 		effect_timers.push_back(effect_timer)
 		enemy.move_speed *= 0.5
 
@@ -30,8 +31,12 @@ func on_enemy_killed(enemy: Enemy) -> void:
 
 
 func _on_effect_timer_timeout() -> void:
-	var slowed_enemy = slowed_enemies.pop_front() as Enemy
-	slowed_enemy.move_speed /= 0.5
+	if slowed_enemies.is_empty():
+		return
+	var slowed_enemy = slowed_enemies.pop_front()
+	if is_instance_valid(slowed_enemy):
+		slowed_enemy = slowed_enemy as Enemy
+		slowed_enemy.move_speed /= 0.5
 	var effect_timer = effect_timers.pop_front() as Timer
 	effect_timer.queue_free()
 

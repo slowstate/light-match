@@ -5,5 +5,6 @@
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_jil3n")
+shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)

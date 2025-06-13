@@ -1,12 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=22 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
 [ext_resource type="Texture2D" uid="uid://dqs7558opf5lp" path="res://Arena/BG.png" id="2_1mo21"]
 [ext_resource type="Script" path="res://Arena/arena_state_machine.gd" id="4_53yap"]
 [ext_resource type="Script" path="res://Arena/time_limit_label.gd" id="4_wddnl"]
+[ext_resource type="Texture2D" uid="uid://d36h547sfej1u" path="res://HUD/PaletteMilestone1.png" id="5_jsxk3"]
 [ext_resource type="Script" path="res://Arena/arena_state_round_active.gd" id="5_vs3oy"]
 [ext_resource type="Script" path="res://Arena/arena_state_upgrade_selection.gd" id="6_303ff"]
+[ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="6_rbniv"]
 [ext_resource type="Script" path="res://Arena/arena_state_score_screen.gd" id="8_p700b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4bo3i"]
@@ -22,15 +24,35 @@ normal = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_p3kqb"]
 font_size = 30
+shadow_size = 5
+shadow_color = Color(0.2, 0.2, 0.2, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ejvh2"]
 font_size = 60
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_mckdk"]
-font_size = 24
+[sub_resource type="LabelSettings" id="LabelSettings_ddj0t"]
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_4c5pb"]
+[sub_resource type="LabelSettings" id="LabelSettings_jipke"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_4pvur"]
+font_size = 60
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdvfh"]
 font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o7uks"]
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
@@ -77,7 +99,7 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 197.0
 grow_vertical = 0
-text = "Last Updated: 07/06/2025"
+text = "Last Updated: 12/06/2025"
 
 [node name="RoundLabel" type="Label" parent="UserInterface"]
 offset_left = 30.0
@@ -103,6 +125,7 @@ offset_top = 16.0
 offset_right = 180.0
 offset_bottom = 39.0
 text = "30:00"
+label_settings = SubResource("LabelSettings_ddj0t")
 horizontal_alignment = 2
 script = ExtResource("4_wddnl")
 
@@ -111,57 +134,39 @@ wait_time = 1800.0
 one_shot = true
 autostart = true
 
-[node name="PaletteGoalMeter" type="Control" parent="UserInterface"]
+[node name="PaletteMilestone" type="Control" parent="UserInterface"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1810.0
-offset_top = 742.0
-offset_right = 1850.0
-offset_bottom = 782.0
+offset_top = 979.0
+offset_right = 1810.0
+offset_bottom = 979.0
 
-[node name="MeterBackground" type="ColorRect" parent="UserInterface/PaletteGoalMeter"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 300.0
-color = Color(0, 0.227451, 0.45098, 1)
-
-[node name="MeterBackFill" type="ColorRect" parent="UserInterface/PaletteGoalMeter/MeterBackground"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 50.0
-offset_bottom = 290.0
-color = Color(0, 0, 0, 0.588235)
-
-[node name="MeterFill" type="ColorRect" parent="UserInterface/PaletteGoalMeter/MeterBackground"]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 290.0
-offset_right = 90.0
-offset_bottom = 570.0
-rotation = 3.14159
-color = Color(0.326083, 0.743233, 0.224048, 1)
-
-[node name="FirstExtraUpgradeMilestoneLabel" type="Label" parent="UserInterface/PaletteGoalMeter"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 147.0
-offset_right = 50.0
-offset_bottom = 181.0
-text = "30"
-label_settings = SubResource("LabelSettings_mckdk")
+[node name="PaletteMilestoneLabel" type="Label" parent="UserInterface/PaletteMilestone"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_jipke")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="SecondExtraUpgradeMilestoneLabel" type="Label" parent="UserInterface/PaletteGoalMeter"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 50.0
-offset_bottom = 38.0
-text = "80
-"
-label_settings = SubResource("LabelSettings_4c5pb")
-horizontal_alignment = 1
+[node name="PaletteMilestone1" type="Sprite2D" parent="UserInterface/PaletteMilestone"]
+position = Vector2(-33.5, 0)
+texture = ExtResource("5_jsxk3")
+
+[node name="PaletteMilestone2" type="Sprite2D" parent="UserInterface/PaletteMilestone"]
+position = Vector2(33.5, 0)
+texture = ExtResource("6_rbniv")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_53yap")
@@ -183,27 +188,42 @@ script = ExtResource("8_p700b")
 
 [node name="ScoreInterface" type="CanvasLayer" parent="StateMachine/ScoreScreen"]
 
+[node name="Label" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.0
+offset_top = 236.0
+offset_right = 163.0
+offset_bottom = 319.0
+grow_horizontal = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_4pvur")
+
 [node name="RoundLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -75.5
-offset_top = 323.0
-offset_right = 75.5
-offset_bottom = 346.0
+offset_left = -150.5
+offset_top = 350.0
+offset_right = 150.5
+offset_bottom = 395.0
 grow_horizontal = 2
 text = "You reach round 12"
+label_settings = SubResource("LabelSettings_fdvfh")
+horizontal_alignment = 1
 
 [node name="TimeLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -72.5
-offset_top = 351.0
-offset_right = 72.5
-offset_bottom = 374.0
+offset_left = -144.5
+offset_top = 400.0
+offset_right = 144.5
+offset_bottom = 445.0
 grow_horizontal = 2
 text = "You survived 15:00"
+label_settings = SubResource("LabelSettings_o7uks")
 horizontal_alignment = 1
 
 [node name="MainMenuButton" type="Button" parent="StateMachine/ScoreScreen/ScoreInterface"]

@@ -1,24 +1,20 @@
 extends Upgrade
 
-var is_active: bool
+var effect_timer: Timer
 
 
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.BIG_BULLET
 	name = "Big Bullet"
-	description = "After clearing a palette, your next bullet deals double damage"
+	description = "After clearing a palette, your bullets deal double damage for 5s"
+	icon = preload("res://Player/Upgrades/Combat/Big Bullet.png")
+	effect_timer = super.new_timer()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
-func on_palette_cleared(palette: Palette) -> void:
-	is_active = true
+func on_palette_cleared(_palette: Palette) -> void:
+	effect_timer.start(5)
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
-	if is_active:
+	if !effect_timer.is_stopped():
 		bullet.damage *= 2
-	is_active = false
