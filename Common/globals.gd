@@ -5,7 +5,11 @@ enum Colour { BLUE = 1, GREEN = 2, RED = 3 }
 enum EnemyType { BOT, LIZARD, TANK, ORACLE, STAR }
 
 const _COLOUR_VISUAL_VALUE_BLUE: Color = Color(0.0118, 0.6275, 1, 1)
+<<<<<<< HEAD
 const _COLOUR_VISUAL_VALUE_GREEN: Color = Color(0, 0.9294, 0, 1)
+=======
+const _COLOUR_VISUAL_VALUE_GREEN: Color = Color(0, 0.93, 0, 1)
+>>>>>>> 193a15f0673a8bd7ed4c9a2cff6801bb70df6910
 const _COLOUR_VISUAL_VALUE_RED: Color = Color.ORANGE_RED
 const COLOUR_VISUAL_VALUE: Dictionary = {Colour.BLUE: _COLOUR_VISUAL_VALUE_BLUE, Colour.GREEN: _COLOUR_VISUAL_VALUE_GREEN, Colour.RED: _COLOUR_VISUAL_VALUE_RED}
 const ENEMY_TYPE_GROUP: Dictionary = {

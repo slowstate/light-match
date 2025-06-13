@@ -1,6 +1,7 @@
 extends Node2D
 
 const ARENA = preload("res://Arena/arena.tscn")
+<<<<<<< HEAD
 const BULLET = preload("res://Player/Bullet/bullet.tscn")
 
 @onready var title_animation_player: AnimationPlayer = $TitleAnimationPlayer
@@ -11,9 +12,15 @@ const BULLET = preload("res://Player/Bullet/bullet.tscn")
 func _ready() -> void:
 	title_animation_player.play("Title_Screen")
 	tutorial.visible = false
+=======
+@onready var music_manager: Node2D = $MusicManager
+>>>>>>> 193a15f0673a8bd7ed4c9a2cff6801bb70df6910
 
+func _ready() -> void:
+	music_manager.update_music(0.0)
 
 func _on_start_button_pressed() -> void:
+	SfxManager.play_sound("ButtonClickSFX",-15.0,-13.0,0.9,1.1)
 	get_tree().change_scene_to_packed(ARENA)
 
 
@@ -26,6 +33,7 @@ func _on_return_to_main_menu_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
+	SfxManager.play_sound("ButtonClickSFX",-15.0,-13.0,0.9,1.1)
 	get_tree().quit()
 
 

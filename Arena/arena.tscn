@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=26 format=3 uid="uid://bhd3exak0ojtj"]
+=======
+[gd_scene load_steps=23 format=3 uid="uid://bhd3exak0ojtj"]
+>>>>>>> 193a15f0673a8bd7ed4c9a2cff6801bb70df6910
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
@@ -11,6 +15,7 @@
 [ext_resource type="Script" path="res://Arena/arena_state_upgrade_selection.gd" id="6_303ff"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="6_rbniv"]
 [ext_resource type="Script" path="res://Arena/arena_state_score_screen.gd" id="8_p700b"]
+[ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="11_gl3pw"]
 
 [sub_resource type="Animation" id="Animation_7r6na"]
 resource_name = "Arena_Lights"
@@ -1260,6 +1265,43 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Return to main menu"
 
+[node name="MusicManager" parent="." instance=ExtResource("11_gl3pw")]
+
+[node name="Timer0-12s" type="Timer" parent="MusicManager"]
+wait_time = 12.0
+one_shot = true
+
+[node name="Timer12-30s" type="Timer" parent="MusicManager"]
+wait_time = 18.0
+one_shot = true
+
+[node name="Timer30-39s" type="Timer" parent="MusicManager"]
+wait_time = 9.0
+one_shot = true
+
+[node name="Timer39-48s" type="Timer" parent="MusicManager"]
+wait_time = 9.0
+one_shot = true
+
+[node name="Timer48-60s" type="Timer" parent="MusicManager"]
+wait_time = 12.0
+one_shot = true
+
+[node name="Timer60-78s" type="Timer" parent="MusicManager"]
+wait_time = 18.0
+one_shot = true
+
+[node name="Timer78-90s" type="Timer" parent="MusicManager"]
+wait_time = 12.0
+one_shot = true
+
 [connection signal="timeout" from="UserInterface/TimeLimitLabel/TimeLimitTimer" to="." method="_on_time_limit_timer_timeout"]
 [connection signal="timeout" from="StateMachine/RoundActive/EnemySpawnTimer" to="StateMachine/RoundActive" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="pressed" from="StateMachine/ScoreScreen/ScoreInterface/MainMenuButton" to="StateMachine/ScoreScreen" method="_on_main_menu_button_pressed"]
+[connection signal="timeout" from="MusicManager/Timer0-12s" to="." method="_on_timer_012s_timeout"]
+[connection signal="timeout" from="MusicManager/Timer12-30s" to="." method="_on_timer_1230s_timeout"]
+[connection signal="timeout" from="MusicManager/Timer30-39s" to="." method="_on_timer_3039s_timeout"]
+[connection signal="timeout" from="MusicManager/Timer39-48s" to="." method="_on_timer_3948s_timeout"]
+[connection signal="timeout" from="MusicManager/Timer48-60s" to="." method="_on_timer_4860s_timeout"]
+[connection signal="timeout" from="MusicManager/Timer60-78s" to="." method="_on_timer_6078s_timeout"]
+[connection signal="timeout" from="MusicManager/Timer78-90s" to="." method="_on_timer_7890s_timeout"]

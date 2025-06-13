@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=54 format=3 uid="uid://c7845x7xoc1g2"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
@@ -26,6 +27,12 @@
 [ext_resource type="Texture2D" uid="uid://ycuh2y744c8d" path="res://Menus/MainMenu/Left Button Mouse.png" id="23_brnj6"]
 [ext_resource type="Texture2D" uid="uid://cbc5pni83c6y4" path="res://Menus/MainMenu/Right Button Mouse.png" id="24_s1j0b"]
 [ext_resource type="Texture2D" uid="uid://b180nk1o8yx2v" path="res://Menus/MainMenu/Scroll.png" id="25_b51qq"]
+=======
+[gd_scene load_steps=6 format=3 uid="uid://c7845x7xoc1g2"]
+
+[ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
+[ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="2_8fsjn"]
+>>>>>>> 193a15f0673a8bd7ed4c9a2cff6801bb70df6910
 
 [sub_resource type="Gradient" id="Gradient_dpln6"]
 offsets = PackedFloat32Array(0)
@@ -1402,6 +1409,8 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_cnttl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_h1qs7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_j62rw")
 text = "RETURN TO MAIN MENU"
+
+[node name="MusicManager" parent="." instance=ExtResource("2_8fsjn")]
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]

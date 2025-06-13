@@ -102,6 +102,7 @@ func _fire_bullet():
 	if !gun_cooldown_timer.is_stopped():
 		return
 	player_sprite.play_shoot_animation()
+	SfxManager.play_sound("ShootingSFX", -25.0,-22.0,1.0,1.2)
 	var gun_angle = (tip_of_barrel_point.global_position - bullet_spawn_point.global_position).angle()
 	var angle: float = clamp((get_global_mouse_position() - bullet_spawn_point.global_position).angle(), gun_angle + deg_to_rad(2), gun_angle + deg_to_rad(5))
 	var new_bullet: Bullet
@@ -116,6 +117,7 @@ func _fire_bullet():
 
 func _get_next_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
+	SfxManager.play_sound("ChangeGunSFX",-10.0,-8.0,0.9,1.1)
 	if current_colour == Globals.Colour.RED:
 		change_colour(Globals.Colour.BLUE)
 	else:
@@ -124,6 +126,7 @@ func _get_next_colour() -> void:
 
 func _get_previous_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
+	SfxManager.play_sound("ChangeGunSFX",-10.0,-8.0,0.9,1.1)
 	if current_colour == Globals.Colour.BLUE:
 		change_colour(Globals.Colour.RED)
 	else:
@@ -137,11 +140,13 @@ func change_colour(new_colour: Globals.Colour) -> void:
 		return
 	current_colour = new_colour
 	player_sprite.set_colour(current_colour)
+	SfxManager.play_sound("ChangeGunSFX",-10.0,-8.0,0.9,1.1)
 	gun_switch_cooldown_timer.start(gun_switch_cooldown)
 	UpgradeManager.on_gun_colour_switch(gun_cooldown_timer)
 
 
 func add_upgrade(new_upgrade: Upgrade) -> void:
+	SfxManager.play_sound("AddUpgradeSFX",-8.0,-5.0,0.9,1.1)
 	if upgrades.size() < 5:
 		upgrades.push_back(new_upgrade)
 		update_player_upgrades_interface()
@@ -187,12 +192,15 @@ func player_hit() -> void:
 		return
 	if shield_active:
 		UpgradeManager.on_player_shield_break()
+		#SfxManager.play_sound("ShieldHitSFX",-15.0,-13.0,2.5,2.6)
 		shield_active = false
 	elif upgrades.size() <= 0:
+		SfxManager.play_sound("PlayerHitSFX",-15.0,-13.0,0.9,1.1)
 		SignalBus.player_died.emit()
 		return
 	else:
 		remove_upgrade(upgrades.back())
+		SfxManager.play_sound("PlayerHitSFX",-15.0,-13.0,0.9,1.1)
 	UpgradeManager.on_player_hit()
 	hit_immunity_timer.start(hit_immunity_time)
 

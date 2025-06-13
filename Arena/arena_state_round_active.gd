@@ -5,7 +5,6 @@ var main_menu = load("res://Menus/MainMenu/main_menu.tscn")
 var current_round: Round
 var arena
 var enemies_left_to_spawn_this_round: int = 0
-var enemy_types_to_spawn: Array[Globals.EnemyType]
 var concurrent_enemies_spawn_limit: int = 1
 
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
@@ -48,7 +47,7 @@ func _load_round(round_number: int) -> void:
 		concurrent_enemies_spawn_limit += floori(pow(float(round_number) - 16.0, 1.7))
 		arena.total_enemies_to_spawn_this_round += floori(pow(float(round_number) - 16.0, 2.0))
 	enemies_left_to_spawn_this_round = arena.total_enemies_to_spawn_this_round
-	enemy_types_to_spawn = current_round.enemy_types_to_spawn()
+	arena.enemy_types_to_spawn = current_round.enemy_types_to_spawn()
 
 	var enemy_spawn_timer_wait_time := 1.3 / round_number
 	enemy_spawn_timer.wait_time = enemy_spawn_timer_wait_time
@@ -63,7 +62,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	if enemies_left_to_spawn_this_round <= 0:
 		return
 	var new_enemy
-	match enemy_types_to_spawn.pick_random():
+	match arena.enemy_types_to_spawn.pick_random():
 		Globals.EnemyType.BOT:
 			new_enemy = Bot.create(_random_location_in_arena(), current_round.bots_health)
 		Globals.EnemyType.LIZARD:
