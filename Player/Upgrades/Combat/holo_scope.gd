@@ -7,7 +7,8 @@ var bullet_travel_distances: Dictionary
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.HOLO_SCOPE
 	name = "Holo Scope"
-	description = "Deal 1 bonus damage to enemies that are faraway"
+	description = "Deal 1 more damage to enemies that are faraway"
+	icon = preload("res://Player/Upgrades/Combat/Holo Scope.png")
 
 
 func on_bullet_travelled_x_pixels(bullet: Bullet, x: float) -> void:
@@ -15,8 +16,8 @@ func on_bullet_travelled_x_pixels(bullet: Bullet, x: float) -> void:
 	bullet_travel_distances[bullet] += x
 
 
-func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
-	if bullet_travel_distances[bullet] >= 500.0:
+func on_enemy_hit(bullet: Bullet, _enemy: Enemy = null) -> void:
+	if bullet_travel_distances[bullet] >= 400.0:
 		bullet.damage += 1
 
 

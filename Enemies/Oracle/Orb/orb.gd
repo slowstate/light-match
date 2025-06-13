@@ -18,11 +18,6 @@ func _ready() -> void:
 	oracle_orb_light.modulate = Globals.COLOUR_VISUAL_VALUE[oracle.orb_colour]
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
 func _on_area_entered(area: Area2D) -> void:
 	var bullet = area as Bullet
 	if bullet.colour != oracle.orb_colour:

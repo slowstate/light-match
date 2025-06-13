@@ -16,16 +16,16 @@ extends Resource
 @export var stars_health: int = 1
 
 
-func enemies_to_spawn() -> Array[Globals.EnemyType]:
-	var enemies_to_spawn: Array[Globals.EnemyType]
+func enemy_types_to_spawn() -> Array[Globals.EnemyType]:
+	var enemy_types: Array[Globals.EnemyType]
 	if spawn_bots:
-		enemies_to_spawn.append(Globals.EnemyType.BOT)
+		enemy_types.append(Globals.EnemyType.BOT)
 	if spawn_lizards:
-		enemies_to_spawn.append(Globals.EnemyType.LIZARD)
+		enemy_types.append(Globals.EnemyType.LIZARD)
 	if spawn_tanks:
-		enemies_to_spawn.append(Globals.EnemyType.TANK)
+		enemy_types.append(Globals.EnemyType.TANK)
 	if spawn_oracles:
-		enemies_to_spawn.append(Globals.EnemyType.ORACLE)
+		enemy_types.append(Globals.EnemyType.ORACLE)
 	if spawn_stars:
-		enemies_to_spawn.append(Globals.EnemyType.STAR)
-	return enemies_to_spawn
+		enemy_types.append(Globals.EnemyType.STAR)
+	return enemy_types

@@ -7,13 +7,14 @@ func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.PAINT_BOMB
 	name = "Paint Bomb"
 	description = "After clearing 5 palettes in a row, change all enemies on the screen to the same colour"
+	icon = preload("res://Player/Upgrades/Meta/Paint Bomb.png")
 
 
 func trigger_counter_update() -> void:
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
 
-func on_palette_cleared(palette: Palette) -> void:
+func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_in_a_row += 1
 	if palettes_cleared_in_a_row >= 5:
 		var random_colour = Globals.Colour.values().pick_random()

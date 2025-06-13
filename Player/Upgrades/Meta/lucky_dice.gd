@@ -7,6 +7,7 @@ func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.LUCKY_DICE
 	name = "Lucky Dice"
 	description = "Increase palette size by 1. Clearing a palette has a 50% chance to count twice"
+	icon = preload("res://Player/Upgrades/Meta/Lucky Dice.png")
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
@@ -21,3 +22,8 @@ func on_palette_cleared(palette: Palette) -> void:
 		triggered = true
 		if randi() % 2 == 0:
 			UpgradeManager.on_palette_cleared(palette)
+
+
+func on_upgrade_remove(removed_upgrade: Upgrade) -> void:
+	if removed_upgrade == self:
+		Globals.player.palette.palette_size -= 1

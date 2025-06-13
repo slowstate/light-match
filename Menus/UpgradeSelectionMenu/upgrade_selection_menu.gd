@@ -13,9 +13,9 @@ var currently_selected_upgrade: Upgrade
 @onready var replace_upgrade_label: Label = $ReplaceUpgradeLabel
 
 
-static func create(number_of_upgrade_options: int) -> UpgradeSelectionMenu:
+static func create(initial_number_of_upgrade_options: int) -> UpgradeSelectionMenu:
 	var upgrade_selection_menu: UpgradeSelectionMenu = UPGRADE_SELECTION_MENU.instantiate()
-	upgrade_selection_menu.number_of_upgrade_options = number_of_upgrade_options
+	upgrade_selection_menu.number_of_upgrade_options = initial_number_of_upgrade_options
 	return upgrade_selection_menu
 
 
@@ -32,11 +32,9 @@ func _ready() -> void:
 		h_box_container.add_child(new_upgrade_option)
 
 
-func pick_upgrades_from_pickable_upgrades(
-	number_of_upgrade_options: int, pickable_upgrades: Array[UpgradeManager.UpgradeTypes]
-) -> Array[UpgradeManager.UpgradeTypes]:
+func pick_upgrades_from_pickable_upgrades(number_of_upgrades: int, pickable_upgrades: Array[UpgradeManager.UpgradeTypes]) -> Array[UpgradeManager.UpgradeTypes]:
 	var picked_upgrades: Array[UpgradeManager.UpgradeTypes]
-	for n in number_of_upgrade_options:
+	for n in number_of_upgrades:
 		var random_upgrade_option = pickable_upgrades.pick_random()
 		picked_upgrades.push_back(random_upgrade_option)
 		pickable_upgrades.erase(random_upgrade_option)
@@ -72,7 +70,7 @@ func _clean_up_menu() -> void:
 	replace_upgrade_label.visible = false
 
 
-func _on_upgrade_removed(upgrade: Upgrade) -> void:
+func _on_upgrade_removed(_upgrade: Upgrade) -> void:
 	Globals.player.add_upgrade(currently_selected_upgrade)
 	_clean_up_menu()
 	upgrade_selection_completed.emit()

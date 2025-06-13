@@ -7,21 +7,22 @@ var effect_timer: Timer
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.POWER_DIVERTER
 	name = "Power Diverter"
-	description = "Changing gun colour increases your move speed by 10% for 1s"
+	description = "Changing gun colour increases your move speed by 30% for 0.5s"
+	icon = preload("res://Player/Upgrades/Utility/Power Divertor.png")
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
 
 
-func on_gun_colour_switch(gun_cooldown_timer: Timer) -> void:
+func on_gun_colour_switch(_gun_cooldown_timer: Timer) -> void:
 	if effect_timer.is_stopped():
-		Globals.player.move_speed *= 1.1
-		effect_timer.start(1)
+		Globals.player.move_speed *= 1.3
+		effect_timer.start(0.5)
 
 
 func _on_effect_timer_timeout() -> void:
-	Globals.player.move_speed /= 1.1
+	Globals.player.move_speed /= 1.3
 
 
 func on_upgrade_removed(removed_upgrade: Upgrade) -> void:
 	if removed_upgrade == self and !effect_timer.is_stopped():
-		Globals.player.move_speed /= 1.1
+		Globals.player.move_speed /= 1.3

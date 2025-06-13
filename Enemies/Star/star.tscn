@@ -1,11 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://duvsa2r7f53oy"]
+[gd_scene load_steps=16 format=3 uid="uid://duvsa2r7f53oy"]
 
 [ext_resource type="Script" path="res://Enemies/Star/star.gd" id="1_a0cwb"]
-[ext_resource type="Script" path="res://Enemies/Star/star_state_machine.gd" id="2_62ny6"]
 [ext_resource type="PackedScene" uid="uid://1d5okjmxlrdj" path="res://Enemies/Star/Sprite/star_sprite.tscn" id="2_iui8m"]
-[ext_resource type="Script" path="res://Enemies/Star/star_state_idle.gd" id="3_d4gsq"]
 [ext_resource type="Script" path="res://Enemies/Star/shell.gd" id="3_yfsqo"]
-[ext_resource type="Script" path="res://Enemies/Star/star_state_chasing.gd" id="4_lhp5w"]
 [ext_resource type="Texture2D" uid="uid://bcqu0p5xce1cp" path="res://Enemies/Star/Shell/Star Shell 1.png" id="6_pwxvl"]
 [ext_resource type="Texture2D" uid="uid://dvpxrbokg15c6" path="res://Enemies/Star/Shell/Star Shell Light 1.png" id="7_joar6"]
 [ext_resource type="Texture2D" uid="uid://myhd2mq0ulj4" path="res://Enemies/Star/Shell/Star Shell 2.png" id="8_tt6t2"]
@@ -23,7 +20,7 @@ radius = 18.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr1nb"]
 size = Vector2(46, 11)
 
-[node name="Star" type="Area2D" node_paths=PackedStringArray("sprite") groups=["Stars"]]
+[node name="Star" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Stars"]]
 rotation = 6.28319
 collision_layer = 8
 collision_mask = 4
@@ -33,6 +30,7 @@ sprite = NodePath("Sprite")
 [node name="Sprite" parent="." instance=ExtResource("2_iui8m")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_5tbji")
 
@@ -51,6 +49,7 @@ texture = ExtResource("6_pwxvl")
 texture = ExtResource("7_joar6")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell0"]
+visible = false
 shape = SubResource("RectangleShape2D_nr1nb")
 
 [node name="Shell1" type="Area2D" parent="Shells"]
@@ -70,6 +69,7 @@ scale = Vector2(1.00001, 0.999994)
 texture = ExtResource("9_jvais")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell1"]
+visible = false
 position = Vector2(-2, 0.999996)
 rotation = 1.25664
 shape = SubResource("RectangleShape2D_nr1nb")
@@ -91,6 +91,7 @@ scale = Vector2(1.00001, 0.999984)
 texture = ExtResource("11_ib8vh")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell2"]
+visible = false
 position = Vector2(-3, -3)
 rotation = 2.49582
 shape = SubResource("RectangleShape2D_nr1nb")
@@ -114,6 +115,7 @@ skew = -1.41859e-05
 texture = ExtResource("13_cbitq")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell3"]
+visible = false
 position = Vector2(3, -4)
 rotation = 0.645772
 shape = SubResource("RectangleShape2D_nr1nb")
@@ -135,20 +137,7 @@ scale = Vector2(1, 0.999995)
 texture = ExtResource("15_8lkfx")
 
 [node name="WallCollisionShape2D" type="CollisionShape2D" parent="Shells/Shell4"]
+visible = false
 position = Vector2(0.999998, 2)
 rotation = 1.88496
 shape = SubResource("RectangleShape2D_nr1nb")
-
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("2_62ny6")
-current_state = NodePath("Chasing")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_d4gsq")
-
-[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
-
-[node name="RoamTimer" type="Timer" parent="StateMachine/Idle"]
-
-[node name="Chasing" type="Node" parent="StateMachine"]
-script = ExtResource("4_lhp5w")

@@ -14,8 +14,7 @@ func _ready() -> void:
 
 func enter() -> void:
 	arena = owner as Arena
-	assert(arena != null, "The state type must be used only in the Bot scene. It needs the owner to be a Bot node.")
-	await Globals.player.is_node_ready()
+	assert(arena != null, "Arena is null.")
 	Globals.player.game_over_sequence()
 	round_label.text = "You reached round " + str(arena.current_round_number)
 	var time_limit_timer_elapsed_time: float = arena.time_limit_timer.wait_time - arena.time_limit_timer.time_left

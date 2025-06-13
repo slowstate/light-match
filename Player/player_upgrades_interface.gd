@@ -11,11 +11,6 @@ func _ready() -> void:
 	assert(player != null, "Player is null.")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func update_player_upgrades_interface() -> void:
 	get_children().clear()
 	for upgrade in player.upgrades:
