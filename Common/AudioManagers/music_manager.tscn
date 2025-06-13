@@ -1,0 +1,50 @@
+[gd_scene load_steps=13 format=3 uid="uid://b2myeafehcosh"]
+
+[ext_resource type="Script" path="res://Common/AudioManagers/music_manager.gd" id="1_dfh1r"]
+[ext_resource type="AudioStream" uid="uid://cqrxmwrgmwyvu" path="res://Audio/Music/SurviveSwellBase.mp3" id="2_vulf1"]
+[ext_resource type="AudioStream" uid="uid://r7p11x3g1rle" path="res://Audio/Music/SurviveBassBase.mp3" id="3_wfifd"]
+[ext_resource type="AudioStream" uid="uid://ccf0t7vq1pnl4" path="res://Audio/Music/SurviveBassBot.mp3" id="4_yaefx"]
+[ext_resource type="AudioStream" uid="uid://dq47xvxoivbhb" path="res://Audio/Music/SurviveBeatBase.mp3" id="5_ne3fn"]
+[ext_resource type="AudioStream" uid="uid://cf5u62yyurej4" path="res://Audio/Music/SurviveBeatLizard.mp3" id="6_s2nfs"]
+[ext_resource type="AudioStream" uid="uid://bscyrgywmsjsu" path="res://Audio/Music/SurviveDrumsBase.mp3" id="7_buk7j"]
+[ext_resource type="AudioStream" uid="uid://ihgljunnw7nr" path="res://Audio/Music/SurviveDrumsTank.mp3" id="8_b2r42"]
+[ext_resource type="AudioStream" uid="uid://dnexu5qn1b5rv" path="res://Audio/Music/SurviveHighlightBase.mp3" id="9_84yca"]
+[ext_resource type="AudioStream" uid="uid://b6feunttgjfta" path="res://Audio/Music/SurviveHighlightOracle.mp3" id="10_t6yk1"]
+[ext_resource type="AudioStream" uid="uid://chb7desle1hpd" path="res://Audio/Music/SurviveLeadBase.mp3" id="11_fdu5g"]
+[ext_resource type="AudioStream" uid="uid://do60axejm56nx" path="res://Audio/Music/SurviveLeadStar.mp3" id="12_u8vnt"]
+
+[node name="MusicManager" type="Node2D"]
+script = ExtResource("1_dfh1r")
+
+[node name="SwellBase" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_vulf1")
+
+[node name="BassBase" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wfifd")
+
+[node name="BassBot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yaefx")
+
+[node name="BeatBase" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ne3fn")
+
+[node name="BeatLiz" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_s2nfs")
+
+[node name="DrumsBase" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_buk7j")
+
+[node name="DrumsTank" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_b2r42")
+
+[node name="HighlightBase" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_84yca")
+
+[node name="HighlightOracle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_t6yk1")
+
+[node name="LeadBase" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_fdu5g")
+
+[node name="LeadStar" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_u8vnt")
