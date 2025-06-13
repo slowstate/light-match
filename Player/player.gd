@@ -9,7 +9,7 @@ var move_speed := base_move_speed
 var current_colour := Globals.Colour.BLUE
 var upgrades: Array[Upgrade] = []
 var controls_enabled: bool = true
-var shield_active: bool = true
+var shield_active: bool = false
 
 var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
@@ -28,8 +28,7 @@ var hit_immunity_time: float = 1.0
 @onready var hurt_box: Area2D = $HurtBox
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
-const BigBullet = preload("res://Player/Upgrades/Combat/big_bullet.gd")
-const Bipod = preload("res://Player/Upgrades/Combat/bipod.gd")
+
 
 func _init() -> void:
 	Globals.player = self
@@ -38,8 +37,6 @@ func _init() -> void:
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	player_sprite.set_colour(current_colour)
-	add_upgrade(BigBullet.new())
-	add_upgrade(Bipod.new())
 	palette.generate_new_palette()
 
 
