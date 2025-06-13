@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7845x7xoc1g2"]
+[gd_scene load_steps=6 format=3 uid="uid://c7845x7xoc1g2"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
+[ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="2_8fsjn"]
 
 [sub_resource type="Gradient" id="Gradient_dpln6"]
 offsets = PackedFloat32Array(0)
@@ -76,6 +77,8 @@ offset_bottom = 454.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Exit"
+
+[node name="MusicManager" parent="." instance=ExtResource("2_8fsjn")]
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,25 +1,81 @@
 extends Node2D
 
-var music_audio: Dictionary = {}
-
-var swell_base = music_audio.get("SwellBase")
+@onready var swell_base: AudioStreamPlayer = $SwellBase
+@onready var bass_base: AudioStreamPlayer = $BassBase
+@onready var bass_bot: AudioStreamPlayer = $BassBot
+@onready var beat_base: AudioStreamPlayer = $BeatBase
+@onready var beat_liz: AudioStreamPlayer = $BeatLiz
+@onready var drums_base: AudioStreamPlayer = $DrumsBase
+@onready var drums_tank: AudioStreamPlayer = $DrumsTank
+@onready var highlight_base: AudioStreamPlayer = $HighlightBase
+@onready var highlight_oracle: AudioStreamPlayer = $HighlightOracle
+@onready var lead_base: AudioStreamPlayer = $LeadBase
+@onready var lead_star: AudioStreamPlayer = $LeadStar
+var current_state: State
+var enemy_types_to_spawn: Array[Globals.EnemyType]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for child in get_children():
-		if child is AudioStreamPlayer2D:
-			music_audio[child.name] = child
+	pass
 
-func play_music():
-	if !swell_base.is_playing():
-		swell_base.play("SwellBase")
 	
-func stop_sound(audio_stream_string: String):
-	if music_audio.has(audio_stream_string):
-		music_audio.get(audio_stream_string).stop()
-
-func is_playing(audio_stream: String) -> bool:
-	if music_audio.has(audio_stream):
-		return music_audio.get(audio_stream).playing
+func update_music(play_time: float):
+	if get_parent() is Arena:
+		current_state = get_parent().state_machine.current_state
+		enemy_types_to_spawn = get_parent().enemy_types_to_spawn
+		if current_state is RoundActiveState:
+			update_volume(-3.0)
+			for enemy_type in enemy_types_to_spawn:
+				if enemy_type == 0:
+					bass_bot.play(play_time)
+					bass_base.stop()
+				else:
+					bass_base.play(play_time)
+					bass_bot.stop()
+				if enemy_type == 1:
+					beat_liz.play(play_time)
+					beat_base.stop()
+				else:
+					beat_base.play(play_time)
+					beat_liz.stop()
+				if enemy_type == 2:
+					drums_tank.play(play_time)
+					drums_base.stop()
+				else:
+					drums_base.play(play_time)
+					drums_tank.stop()
+				if enemy_type == 3:
+					highlight_oracle.play(play_time)
+					highlight_base.stop()
+				else:
+					highlight_base.play(play_time)
+					highlight_oracle.stop()
+				if enemy_type == 4:
+					lead_star.play(play_time)
+					lead_base.stop()
+				else:
+					lead_base.play(play_time)
+					lead_star.stop()
+		else:
+			update_volume(-5.0)
 	else:
-		return false
+		update_volume(-5.0)
+		bass_base.play(play_time)
+		beat_base.play(play_time)
+		drums_base.play(play_time)
+		highlight_base.play(play_time)
+		lead_base.play(play_time)
+
+func update_volume(volume_db: float):
+	var music_volume = volume_db
+	swell_base.volume_db = music_volume
+	bass_base.volume_db = music_volume
+	bass_bot.volume_db = music_volume
+	beat_base.volume_db = music_volume
+	beat_liz.volume_db = music_volume
+	drums_base.volume_db = music_volume
+	drums_tank.volume_db = music_volume
+	highlight_base.volume_db = music_volume
+	highlight_oracle.volume_db = music_volume
+	lead_base.volume_db = music_volume
+	lead_star.volume_db = music_volume
