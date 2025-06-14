@@ -1,19 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh5h2d2pwrrpa"]
+[gd_scene load_steps=6 format=3 uid="uid://dh5h2d2pwrrpa"]
 
 [ext_resource type="Script" path="res://Enemies/Bot/bot.gd" id="1_joxph"]
 [ext_resource type="PackedScene" uid="uid://dohxwuksnslb" path="res://Enemies/Bot/Sprite/bot_sprite.tscn" id="2_7h7sy"]
+[ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="3_ufl26"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8uqw"]
+radius = 50.04
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nd0x0"]
 radius = 23.0217
 
 [node name="Bot" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Bots"]]
 rotation = -1.5708
-collision_layer = 8
-collision_mask = 4
+collision_layer = 32
+collision_mask = 33
 script = ExtResource("1_joxph")
 sprite = NodePath("Sprite")
 
 [node name="Sprite" parent="." instance=ExtResource("2_7h7sy")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y8uqw")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_ufl26")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_nd0x0")

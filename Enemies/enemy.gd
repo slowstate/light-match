@@ -22,11 +22,9 @@ static func create(_initial_position: Vector2, _initial_health: int, _initial_co
 
 
 func _ready() -> void:
-	set_collision_layer_value(Globals.CollisionLayer.BOUNDARIES, false)
-	set_collision_layer_value(Globals.CollisionLayer.ENEMIES, true)
-	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, false)
-	set_collision_mask_value(Globals.CollisionLayer.ENEMIES, true)
-	set_collision_mask_value(Globals.CollisionLayer.BULLETS, true)
+	set_collision_layer_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
+	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
+	set_collision_mask_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
 	gravity_scale = 0
 	move_timer = Timer.new()
 	move_timer.one_shot = true
@@ -89,7 +87,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if bullet.colour != colour:
 		return
 	health -= bullet.damage
-	SfxManager.play_sound("EnemyHitSFX", -15.0,-13.0,1,1.2)
+	SfxManager.play_sound("EnemyHitSFX", -15.0, -13.0, 1, 1.2)
 	sprite.set_health(health)
 	if health <= 0:
 		UpgradeManager.on_enemy_killed(self)

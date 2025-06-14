@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://ua5firl6innu"]
+[gd_scene load_steps=15 format=3 uid="uid://ua5firl6innu"]
 
 [ext_resource type="Script" path="res://Enemies/Tank/tank.gd" id="1_vdwel"]
 [ext_resource type="Texture2D" uid="uid://dev068qadnb34" path="res://Enemies/Tank/Stream.png" id="3_erh0f"]
 [ext_resource type="Script" path="res://Enemies/Tank/shield.gd" id="3_k8nc8"]
 [ext_resource type="Texture2D" uid="uid://bd706m04pxxlh" path="res://Enemies/Tank/Energy.png" id="4_a6roh"]
 [ext_resource type="PackedScene" uid="uid://l7a4srfb3iih" path="res://Enemies/Tank/Sprite/tank_sprite.tscn" id="5_vv3cu"]
+[ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="7_vj1ov"]
 [ext_resource type="Texture2D" uid="uid://wbk7k5ddxw45" path="res://Enemies/Tank/Shield.png" id="17_awigq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yaqlx"]
@@ -100,12 +101,15 @@ _data = {
 "Tank_Fade": SubResource("Animation_w22u4")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wp5ku"]
+radius = 42.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2qfm"]
 size = Vector2(37, 54)
 
 [node name="Tank" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Tanks"]]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 32
+collision_mask = 33
 script = ExtResource("1_vdwel")
 sprite = NodePath("Sprite")
 
@@ -146,6 +150,14 @@ one_shot = true
 [node name="Sprite" parent="." instance=ExtResource("5_vv3cu")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wp5ku")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("7_vj1ov")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s2qfm")
 
