@@ -14,6 +14,7 @@ func _init() -> void:
 	description = "Killing 5 enemies of the same colour in a row grants you 1 shield. When your shield breaks, freeze all enemies for 5s"
 	icon = preload("res://Player/Upgrades/Utility/Energy Collector.png")
 	effect_timer = super.new_timer()
+	effect_timer.connect("timeout", _on_effect_timer_timeout)
 
 
 func trigger_counter_update() -> void:

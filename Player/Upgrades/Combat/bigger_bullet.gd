@@ -23,7 +23,8 @@ func on_palette_cleared(_palette: Palette) -> void:
 
 
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
-	bullet.colour = enemy.colour
-	bullet.damage = 99
-	is_active = false
-	SignalBus.upgrade_deactivated.emit(self)
+	if is_active:
+		bullet.colour = enemy.colour
+		bullet.damage = 99
+		is_active = false
+		SignalBus.upgrade_deactivated.emit(self)

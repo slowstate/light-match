@@ -1115,15 +1115,6 @@ shape = SubResource("WorldBoundaryShape2D_o1cin")
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 
-[node name="LastUpdatedDateLabel" type="Label" parent="UserInterface"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 197.0
-grow_vertical = 0
-text = "Last Updated: 12/06/2025"
-
 [node name="RoundLabel" type="Label" parent="UserInterface"]
 offset_left = 70.0
 offset_top = 80.0

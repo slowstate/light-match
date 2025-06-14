@@ -737,7 +737,6 @@ position = Vector2(770, 370)
 texture = ExtResource("7_gjco6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Light"]
-visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Light/StaticBody2D"]
@@ -749,7 +748,6 @@ position = Vector2(1177, 370)
 texture = ExtResource("8_7n2il")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Match"]
-visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Match/StaticBody2D"]
@@ -764,7 +762,6 @@ position = Vector2(960, 370)
 texture = ExtResource("6_eufb3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TitleIcon"]
-visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TitleIcon/StaticBody2D"]
