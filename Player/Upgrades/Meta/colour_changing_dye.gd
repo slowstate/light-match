@@ -11,6 +11,11 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Meta/Colour Changing Dye.png")
 
 
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		SignalBus.upgrade_activated.emit(self)
+
+
 func on_enemy_spawned(enemy: Enemy) -> void:
 	var trigger_timer = super.new_timer()
 	trigger_timer.connect("timeout", _on_trigger_timer_timeout)

@@ -16,12 +16,6 @@ func _init() -> void:
 	effect_timer = super.new_timer()
 
 
-# Damage the enemy that hit you
-# Freeze or slow the enemy
-# Buff damage/speed/firerate
-# Freeze/slow all
-
-
 func trigger_counter_update() -> void:
 	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)
 
@@ -33,6 +27,7 @@ func on_enemy_killed(enemy: Enemy) -> void:
 	number_of_same_colour_kills_in_a_row += 1
 	if number_of_same_colour_kills_in_a_row >= 5:
 		Globals.player.shield_active = true
+		SignalBus.upgrade_activated.emit(self)
 		number_of_same_colour_kills_in_a_row = 0
 	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)
 
@@ -43,6 +38,7 @@ func on_player_shield_break() -> void:
 		enemy.can_move = false
 		enemy.linear_velocity = Vector2(0, 0)
 	effect_timer.start(5)
+	SignalBus.upgrade_deactivated.emit(self)
 
 
 func _on_effect_timer_timeout() -> void:

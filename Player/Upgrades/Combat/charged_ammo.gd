@@ -9,6 +9,26 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Combat/Charged Ammo.png")
 
 
+func on_palette_generated() -> void:
+	var player_palette = Globals.player.palette.palette_colours
+	if player_palette.is_empty():
+		return
+	if Globals.player.current_colour == player_palette.back():
+		SignalBus.upgrade_activated.emit(self)
+	else:
+		SignalBus.upgrade_deactivated.emit(self)
+
+
+func on_gun_colour_switch(_gun_cooldown_timer: Timer) -> void:
+	var player_palette = Globals.player.palette.palette_colours
+	if player_palette.is_empty():
+		return
+	if Globals.player.current_colour == player_palette.back():
+		SignalBus.upgrade_activated.emit(self)
+	else:
+		SignalBus.upgrade_deactivated.emit(self)
+
+
 func on_bullet_fired(bullet: Bullet) -> void:
 	var player_palette = Globals.player.palette.palette_colours
 	if player_palette.is_empty():

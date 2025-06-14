@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Globals="*res://Common/globals.gd"
 SignalBus="*res://Common/SignalBus/signal_bus.gd"
 UpgradeManager="*res://Player/Upgrades/upgrade_manager.gd"
+SfxManager="*res://Common/AudioManagers/sfx_manager.tscn"
 
 [display]
 
@@ -41,6 +42,10 @@ Lizards=""
 Tanks=""
 Oracles=""
 Stars=""
+
+[gui]
+
+theme/custom_font="res://Common/Fonts/exo/Exo-Medium.otf"
 
 [input]
 

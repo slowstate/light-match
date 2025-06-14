@@ -11,6 +11,11 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Combat/Holo Scope.png")
 
 
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		SignalBus.upgrade_activated.emit(self)
+
+
 func on_bullet_travelled_x_pixels(bullet: Bullet, x: float) -> void:
 	bullet_travel_distances.get_or_add(bullet, 0)
 	bullet_travel_distances[bullet] += x
