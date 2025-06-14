@@ -41,10 +41,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	pass
-
-
-func _physics_process(_delta: float) -> void:
 	shield_sprite.visible = true if shield_active else false
 	if !hit_immunity_timer.is_stopped():  # Hit immunity flashing
 		player_sprite.set_light_visibility(false)
@@ -82,6 +78,10 @@ func _physics_process(_delta: float) -> void:
 		collision_shape_2d.rotation = -velocity.angle()
 
 	move_and_slide()
+
+
+func _physics_process(_delta: float) -> void:
+	pass
 
 
 func _input(_event: InputEvent) -> void:
@@ -208,3 +208,17 @@ func player_hit() -> void:
 func game_over_sequence() -> void:
 	controls_enabled = false
 	hurt_box.set_deferred("monitoring", false)
+
+
+func _on_chrome_knuckles_proximity_body_entered(_body: Node2D) -> void:
+	for upgrade in upgrades:
+		if upgrade.type == UpgradeManager.UpgradeTypes.CHROME_KNUCKLES:
+			if chrome_knuckles_proximity.get_overlapping_bodies().size() >= 3:
+				SignalBus.upgrade_activated.emit(upgrade)
+
+
+func _on_chrome_knuckles_proximity_body_exited(_body: Node2D) -> void:
+	for upgrade in upgrades:
+		if upgrade.type == UpgradeManager.UpgradeTypes.CHROME_KNUCKLES:
+			if chrome_knuckles_proximity.get_overlapping_bodies().size() < 3:
+				SignalBus.upgrade_deactivated.emit(upgrade)

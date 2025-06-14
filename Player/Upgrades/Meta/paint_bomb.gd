@@ -10,6 +10,11 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Meta/Paint Bomb.png")
 
 
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		SignalBus.upgrade_activated.emit(self)
+
+
 func trigger_counter_update() -> void:
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 

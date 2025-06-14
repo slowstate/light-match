@@ -35,11 +35,6 @@ func _ready() -> void:
 		upgrade_icon.position.y = 7 if upgrade.type == UpgradeManager.UpgradeTypes.LUCKY_DICE else 0
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
 func set_upgrade(new_upgrade: Upgrade) -> void:
 	upgrade = new_upgrade
 

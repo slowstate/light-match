@@ -20,11 +20,13 @@ func on_player_hit() -> void:
 	original_hit_immunity_time = Globals.player.hit_immunity_time
 	Globals.player.hit_immunity_time = 10
 	effect_timer.start(effect_duration)
+	SignalBus.upgrade_activated.emit(self)
 
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= 1.2
 	Globals.player.hit_immunity_time = original_hit_immunity_time
+	SignalBus.upgrade_deactivated.emit(self)
 
 
 func on_upgrade_removed(removed_upgrade: Upgrade) -> void:

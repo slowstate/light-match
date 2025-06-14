@@ -43,6 +43,10 @@ Tanks=""
 Oracles=""
 Stars=""
 
+[gui]
+
+theme/custom_font="res://Common/Fonts/exo/Exo-Medium.otf"
+
 [input]
 
 player_move_up={

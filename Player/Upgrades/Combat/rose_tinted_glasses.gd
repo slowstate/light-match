@@ -20,16 +20,30 @@ func on_upgrade_added(new_upgrade: Upgrade) -> void:
 
 func on_enemy_spawned(enemy: Enemy) -> void:
 	enemies_alive_by_colour[enemy.colour] += 1
+	if _all_enemies_alive_are_the_same_colour():
+		SignalBus.upgrade_activated.emit(self)
+	else:
+		SignalBus.upgrade_deactivated.emit(self)
 
 
 func on_enemy_killed(enemy: Enemy) -> void:
 	enemies_alive_by_colour[enemy.colour] -= 1
+	if _all_enemies_alive_are_the_same_colour():
+		SignalBus.upgrade_activated.emit(self)
+	else:
+		SignalBus.upgrade_deactivated.emit(self)
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
+	if _all_enemies_alive_are_the_same_colour():
+		bullet.damage = 99
+
+
+func _all_enemies_alive_are_the_same_colour() -> bool:
 	var number_of_colours_with_enemies_alive = 0
 	for key in enemies_alive_by_colour.keys():
 		if enemies_alive_by_colour[key] > 0:
 			number_of_colours_with_enemies_alive += 1
 	if number_of_colours_with_enemies_alive <= 1:
-		bullet.damage = 99
+		return true
+	return false

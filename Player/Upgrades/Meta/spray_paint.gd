@@ -12,6 +12,11 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Meta/Spray Paint.png")
 
 
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		SignalBus.upgrade_activated.emit(self)
+
+
 func on_enemy_killed(enemy: Enemy) -> void:
 	enemy_killed_colour = enemy.colour
 	is_active = true

@@ -25,9 +25,11 @@ func on_player_moving(is_moving: bool) -> void:
 	if !is_moving and trigger_timer.is_stopped():
 		is_active = true
 		effect_timer.start(10)
+		SignalBus.upgrade_activated.emit(self)
 	if is_moving:
 		trigger_timer.start(2)
 
 
 func _on_effect_timer_timeout() -> void:
 	is_active = false
+	SignalBus.upgrade_deactivated.emit(self)

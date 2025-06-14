@@ -8,6 +8,11 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Meta/3D Printer.png")
 
 
+func on_upgrade_added(new_upgrade: Upgrade) -> void:
+	if new_upgrade == self:
+		SignalBus.upgrade_activated.emit(self)
+
+
 func on_get_pickable_upgrades(pickable_upgrades: Array[UpgradeManager.UpgradeTypes]) -> void:
 	for upgrade in UpgradeManager.get_player_upgrades():
 		if !pickable_upgrades.has(upgrade.type):
