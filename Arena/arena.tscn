@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=26 format=3 uid="uid://bhd3exak0ojtj"]
-=======
-[gd_scene load_steps=23 format=3 uid="uid://bhd3exak0ojtj"]
->>>>>>> 193a15f0673a8bd7ed4c9a2cff6801bb70df6910
+[gd_scene load_steps=28 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
@@ -13,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d36h547sfej1u" path="res://HUD/PaletteMilestone1.png" id="5_jsxk3"]
 [ext_resource type="Script" path="res://Arena/arena_state_round_active.gd" id="5_vs3oy"]
 [ext_resource type="Script" path="res://Arena/arena_state_upgrade_selection.gd" id="6_303ff"]
+[ext_resource type="FontFile" uid="uid://dt7ijpr3w8s08" path="res://Common/Fonts/exo/Exo-Bold.otf" id="6_364j6"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="6_rbniv"]
 [ext_resource type="Script" path="res://Arena/arena_state_score_screen.gd" id="8_p700b"]
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="11_gl3pw"]
@@ -917,6 +914,7 @@ font_size = 35
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_jipke"]
+font = ExtResource("6_364j6")
 font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_4pvur"]

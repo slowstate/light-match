@@ -1,26 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqg64cgj28gpd"]
+[gd_scene load_steps=11 format=3 uid="uid://dqg64cgj28gpd"]
 
 [ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/upgrade_selection_menu.gd" id="1_o275p"]
 [ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/replace_upgrade_label.gd" id="2_2jnw8"]
+[ext_resource type="Texture2D" uid="uid://c8rwnovtuiom4" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Skip.png" id="3_44586"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mns33"]
 font_size = 24
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bnji2"]
 font_size = 24
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Gradient" id="Gradient_72vif"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.533333, 0.533333, 0.533333, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6202f"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_06vhx"]
-gradient = SubResource("Gradient_72vif")
-width = 200
-height = 40
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ff82b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40w13"]
+bg_color = Color(1, 1, 1, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ss61u"]
+bg_color = Color(0, 0, 0, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_omnuu"]
 
@@ -71,7 +77,7 @@ vertical_alignment = 1
 
 [node name="SkipBG" type="Sprite2D" parent="."]
 position = Vector2(0, 200)
-texture = SubResource("GradientTexture2D_06vhx")
+texture = ExtResource("3_44586")
 
 [node name="Button" type="Button" parent="SkipBG"]
 anchors_preset = 8
@@ -79,10 +85,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -40.0
+offset_left = -132.0
+offset_top = -42.0
+offset_right = -9.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6202f")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ff82b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_40w13")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ss61u")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_omnuu")
 text = "Skip"
 

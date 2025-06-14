@@ -7,12 +7,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_781bl"]
 font_size = 24
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx75e"]
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyorj"]
 
