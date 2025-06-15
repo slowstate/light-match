@@ -11,6 +11,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = 1.0
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2pjdl"]
 resource_local_to_scene = true
@@ -18,6 +19,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qe77"]
 resource_local_to_scene = true
@@ -25,6 +27,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrrhn"]
 resource_local_to_scene = true
@@ -32,6 +35,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_seosg"]
 resource_local_to_scene = true
@@ -39,6 +43,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d6jno"]
 resource_local_to_scene = true
@@ -46,6 +51,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8msia"]
 resource_local_to_scene = true
@@ -53,6 +59,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
 
 [node name="Palette" type="Node2D"]
 script = ExtResource("1_u6kec")
