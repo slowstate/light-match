@@ -10,7 +10,17 @@ font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx75e"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyorj"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vodsy"]
+bg_color = Color(1, 1, 1, 0.0666667)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0qix"]
 
@@ -57,9 +67,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -130.0
-offset_top = 120.0
+offset_top = 130.0
 offset_right = 130.0
-offset_bottom = 174.0
+offset_bottom = 184.0
 grow_horizontal = 2
 text = "Upgrade Title"
 label_settings = SubResource("LabelSettings_781bl")
@@ -72,9 +82,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -130.0
-offset_top = 170.0
+offset_top = 180.0
 offset_right = 130.0
-offset_bottom = 193.0
+offset_bottom = 203.0
 grow_horizontal = 2
 text = "Upgrade description"
 label_settings = SubResource("LabelSettings_vx75e")
@@ -94,7 +104,7 @@ offset_right = 145.0
 offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lyorj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vodsy")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_h0qix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jpps3")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_judh2")
