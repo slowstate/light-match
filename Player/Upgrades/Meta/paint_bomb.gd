@@ -25,6 +25,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 		var random_colour = Globals.Colour.values().pick_random()
 		for enemy in Globals.get_all_enemies_alive():
 			enemy.set_colour(random_colour)
+			UpgradeManager.on_enemy_colour_changed()
 		palettes_cleared_in_a_row = 0
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 

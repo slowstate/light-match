@@ -18,3 +18,4 @@ func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
 		if randi() % 5 == 0:
 			enemy.set_colour(bullet.colour)
 			bullet.damage = 0
+			UpgradeManager.on_enemy_colour_changed()
