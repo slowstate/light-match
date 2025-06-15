@@ -1,4 +1,4 @@
-extends Area2D
+extends Appendage
 
 @export var shell_number: int
 
@@ -17,12 +17,4 @@ func _ready() -> void:
 	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
 	set_collision_mask_value(Globals.CollisionLayer.BULLETS, true)
 	self.area_entered.connect(_on_area_entered)
-	star_shell_light.modulate = Globals.COLOUR_VISUAL_VALUE[star.shell_colours[shell_number]]
-
-
-func _on_area_entered(area: Area2D) -> void:
-	var bullet = area as Bullet
-	if bullet.colour != star.shell_colours[shell_number]:
-		return
-
-	queue_free()
+	set_colour(star.shell_colours[shell_number])

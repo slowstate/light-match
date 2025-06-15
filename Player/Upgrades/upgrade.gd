@@ -38,6 +38,14 @@ func on_enemy_spawned(_enemy: Enemy) -> void:
 	pass
 
 
+func on_enemy_appendage_hit(_bullet: Bullet, _appendage: Appendage) -> void:
+	pass
+
+
+func on_enemy_colour_changed() -> void:
+	pass
+
+
 func on_enemy_killed(_enemy: Enemy) -> void:
 	pass
 

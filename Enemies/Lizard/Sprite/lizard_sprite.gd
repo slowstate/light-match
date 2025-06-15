@@ -5,7 +5,7 @@ extends EnemySprite
 @onready var liz_body_light_2: Sprite2D = $LizBodyLight2
 @onready var liz_body_light_3: Sprite2D = $LizBodyLight3
 @onready var liz_body_light_4: Sprite2D = $LizBodyLight4
-@onready var head: Area2D = $Head
+@onready var head: Appendage = $Head
 
 
 func play_move_animation(play: bool) -> void:
@@ -30,7 +30,7 @@ func set_colour(colour: Globals.Colour) -> void:
 
 
 func set_head_colour(colour: Globals.Colour) -> void:
-	head._set_sprite_colour(colour)
+	head.set_colour(colour)
 
 
 func set_health(health: int) -> void:
@@ -42,3 +42,7 @@ func set_health(health: int) -> void:
 		liz_body_light_3.visible = false
 	if health < 4:
 		liz_body_light_4.visible = false
+
+
+func get_appendages() -> Array[Appendage]:
+	return [head]

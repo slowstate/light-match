@@ -45,14 +45,14 @@ rotation = -1.5708
 texture = ExtResource("6_eykph")
 
 [node name="TankLight3" type="Sprite2D" parent="."]
-position = Vector2(0.5, -5)
-rotation = -1.5708
-texture = ExtResource("7_f4n18")
-
-[node name="TankLight4" type="Sprite2D" parent="."]
 position = Vector2(0.5, 5)
 rotation = -1.5708
 texture = ExtResource("8_1t6bs")
+
+[node name="TankLight4" type="Sprite2D" parent="."]
+position = Vector2(0.5, -5)
+rotation = -1.5708
+texture = ExtResource("7_f4n18")
 
 [node name="TankLight5" type="Sprite2D" parent="."]
 position = Vector2(0.5, -14)

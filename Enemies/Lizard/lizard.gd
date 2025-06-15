@@ -23,3 +23,7 @@ static func create(
 
 func _setup() -> void:
 	sprite.set_head_colour(head_colour)
+
+
+func get_appendages() -> Array[Appendage]:
+	return sprite.get_appendages()

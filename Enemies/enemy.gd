@@ -63,9 +63,9 @@ func move_forward(_delta: float) -> void:
 		return
 	sprite.play_move_animation(true)
 	rotation = (Globals.player.global_position - global_position).angle()
-
+	var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - Globals.player.global_position).length() / 2000.0, 0.0, 1.0))
 	if move_timer.is_stopped():
-		linear_velocity = (Globals.player.global_position - global_position).normalized() * move_speed
+		linear_velocity = (Globals.player.global_position - global_position).normalized() * distance_based_move_speed
 		apply_force(linear_velocity)
 
 
@@ -77,6 +77,10 @@ func knock_back(force: float, duration_in_seconds: float) -> void:
 
 func player_is_within_distance(distance := 500.0) -> bool:
 	return (global_position - Globals.player.global_position).length() < distance
+
+
+func get_appendages() -> Array[Appendage]:
+	return []
 
 
 func _on_area_entered(area: Area2D) -> void:

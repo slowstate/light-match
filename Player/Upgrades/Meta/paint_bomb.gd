@@ -26,6 +26,8 @@ func on_palette_cleared(_palette: Palette) -> void:
 		for enemy in Globals.get_all_enemies_alive():
 			enemy.set_colour(random_colour)
 			UpgradeManager.on_enemy_colour_changed()
+			for appendage in enemy.get_appendages():
+				appendage.set_colour(random_colour)
 		palettes_cleared_in_a_row = 0
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
