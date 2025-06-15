@@ -192,7 +192,7 @@ func player_hit() -> void:
 		return
 	if shield_active:
 		UpgradeManager.on_player_shield_break()
-		#SfxManager.play_sound("ShieldHitSFX",-15.0,-13.0,2.5,2.6)
+		SfxManager.play_sound("ShieldHitSFX",-15.0,-13.0,0.95,1.05)
 		shield_active = false
 	elif upgrades.size() <= 0:
 		SfxManager.play_sound("PlayerHitSFX",-15.0,-13.0,0.9,1.1)

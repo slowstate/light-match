@@ -105,5 +105,6 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="InitialDisabledTimer" to="." method="_on_initial_disabled_timer_timeout"]

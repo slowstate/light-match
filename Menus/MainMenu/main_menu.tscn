@@ -1407,10 +1407,14 @@ text = "RETURN TO MAIN MENU"
 
 [node name="MusicManager" parent="." instance=ExtResource("27_m1d7y")]
 
+[connection signal="mouse_entered" from="Control/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="Control/HowToPlayButton" to="." method="_on_how_to_play_button_mouse_entered"]
 [connection signal="pressed" from="Control/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="mouse_entered" from="Control/ExitButton" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="Control/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="BulletSpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]
+[connection signal="mouse_entered" from="Tutorial/ReturnToMainMenuButton" to="." method="_on_return_to_main_menu_button_mouse_entered"]
 [connection signal="pressed" from="Tutorial/ReturnToMainMenuButton" to="." method="_on_return_to_main_menu_button_pressed"]
 
 [editable path="Tutorial/PlayerSprite"]

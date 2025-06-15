@@ -50,11 +50,11 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	palette_colour_sprites[current_palette_colour_index].visible = false
 
 	current_palette_colour_index += 1
-	SfxManager.play_sound("PaletteSuccessSFX",-10.0,-8.0,0.9,1.1)
+	SfxManager.play_sound("PaletteSuccessSFX",-10.0,-8.0,0.95,1.05)
 
 func on_palette_failed() -> void:
-	failed_cooldown_timer.start(0.5)
-	SfxManager.play_sound("PaletteFailSFX",-10.0,-8.0,0.9,1.1)
+	failed_cooldown_timer.start(2)
+	SfxManager.play_sound("PaletteFailSFX",-10.0,-8.0,0.95,1.05)
 	for palette_colour_sprite in palette_colour_sprites:
 		palette_colour_sprite.update_shader_rand(randf_range(-1.0, 1.0))
 
@@ -65,7 +65,7 @@ func _on_failed_cooldown_timer_timeout() -> void:
 
 
 func on_palette_cleared() -> void:
-	SfxManager.play_sound("PaletteClearedSFX",-10.0,-8.0,0.9,1.1)
+	SfxManager.play_sound("PaletteClearedSFX",-10.0,-8.0,0.95,1.05)
 	SignalBus.palette_cleared.emit()
 	UpgradeManager.on_palette_cleared(self)
 	generate_new_palette()

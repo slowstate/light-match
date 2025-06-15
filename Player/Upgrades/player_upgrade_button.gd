@@ -38,6 +38,7 @@ func _on_pressed() -> void:
 
 
 func _on_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
 	tooltip.visible = true
 
 

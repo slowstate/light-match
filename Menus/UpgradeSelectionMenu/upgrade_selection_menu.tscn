@@ -99,4 +99,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ss61u")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_omnuu")
 text = "Skip"
 
+[connection signal="mouse_entered" from="SkipBG/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="SkipBG/Button" to="." method="_on_button_pressed"]

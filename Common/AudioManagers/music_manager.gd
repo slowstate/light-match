@@ -24,7 +24,6 @@ func update_music(play_time: float):
 		current_state = get_parent().state_machine.current_state
 		enemy_types_to_spawn = get_parent().enemy_types_to_spawn
 		if current_state is RoundActiveState:
-			print(str(enemy_types_to_spawn))
 			update_volume(-3.0)
 			for enemy_type in enemy_types_to_spawn:
 				if enemy_type == 0:
