@@ -18,11 +18,11 @@ func trigger_counter_update() -> void:
 func on_palette_cleared(_palette: Palette) -> void:
 	if palettes_cleared < 30:
 		palettes_cleared += 1.0
+		upgrade_counter_updated.emit(palettes_cleared)
 	var number_of_5_palettes_cleared = floori(palettes_cleared / 5.0)
-	if number_of_5_palettes_cleared <= 6:
+	if number_of_5_palettes_cleared > 0 and number_of_5_palettes_cleared <= 6:
 		Globals.player.move_speed = Globals.player.base_move_speed * (1.0 + number_of_5_palettes_cleared * 0.1)
 		SignalBus.upgrade_activated.emit(self)
-	upgrade_counter_updated.emit(palettes_cleared)
 
 
 func on_upgrade_removed(removed_upgrade: Upgrade) -> void:
