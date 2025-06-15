@@ -23,12 +23,14 @@ func _on_start_button_pressed() -> void:
 
 func _on_how_to_play_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	bullet_spawn_timer.stop()
 	control.visible = false
 	tutorial.visible = true
 
 
 func _on_return_to_main_menu_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	bullet_spawn_timer.start()
 	control.visible = true
 	tutorial.visible = false
 
