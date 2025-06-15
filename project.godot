@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Colour Shooter"
+config/name="Light Match"
 run/main_scene="res://Menus/MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
