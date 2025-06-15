@@ -8,6 +8,7 @@ var type: UpgradeManager.UpgradeTypes
 var name: String
 var description: String
 var icon
+var is_active: bool = false
 
 
 #region Util

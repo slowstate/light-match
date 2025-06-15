@@ -26,7 +26,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 			enemy.can_move = false
 			enemy.linear_velocity = Vector2(0, 0)
 		effect_timer.start(15)
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 		palettes_cleared_in_a_row = 0
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
@@ -40,7 +40,7 @@ func _on_effect_timer_timeout() -> void:
 	for enemy in frozen_enemies:
 		if enemy != null:
 			enemy.can_move = true
-	SignalBus.upgrade_deactivated.emit(self)
+	is_active = false
 
 
 func on_upgrade_removed(removed_upgrade: Upgrade) -> void:

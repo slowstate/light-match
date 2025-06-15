@@ -28,14 +28,14 @@ func on_enemy_killed(enemy: Enemy) -> void:
 	if number_of_same_colour_kills_in_a_row >= 2:
 		Globals.player.move_speed *= 1.2
 		effect_timer.start(3)
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 		number_of_same_colour_kills_in_a_row = 0
 	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)
 
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= 1.2
-	SignalBus.upgrade_deactivated.emit(self)
+	is_active = false
 
 
 func on_upgrade_removed(removed_upgrade: Upgrade) -> void:

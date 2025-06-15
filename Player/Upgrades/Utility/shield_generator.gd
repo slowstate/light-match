@@ -21,7 +21,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_in_a_row += 1
 	if palettes_cleared_in_a_row >= 3:
 		Globals.player.shield_active = true
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 		palettes_cleared_in_a_row = 0
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
@@ -41,7 +41,7 @@ func on_player_shield_break() -> void:
 			effect_timer.start(10)
 			effect_timers.push_back(effect_timer)
 			enemy.move_speed *= 0.5
-	SignalBus.upgrade_deactivated.emit(self)
+	is_active = false
 
 
 func _on_effect_timer_timeout() -> void:

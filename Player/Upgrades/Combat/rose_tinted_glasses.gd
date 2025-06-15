@@ -9,35 +9,25 @@ func _init() -> void:
 	icon = preload("res://Player/Upgrades/Combat/Rose Tinted Glasses.png")
 
 
-func on_upgrade_added(new_upgrade: Upgrade) -> void:
-	if _all_enemies_alive_are_the_same_colour():
-		SignalBus.upgrade_activated.emit(self)
-	else:
-		SignalBus.upgrade_deactivated.emit(self)
+func on_upgrade_added(_new_upgrade: Upgrade) -> void:
+	is_active = true if _all_enemies_alive_are_the_same_colour() else false
 
 
 func on_enemy_colour_changed() -> void:
-	_emit_upgrade_activated_or_deactivation()
+	is_active = true if _all_enemies_alive_are_the_same_colour() else false
 
 
-func on_enemy_spawned(enemy: Enemy) -> void:
-	_emit_upgrade_activated_or_deactivation()
+func on_enemy_spawned(_enemy: Enemy) -> void:
+	is_active = true if _all_enemies_alive_are_the_same_colour() else false
 
 
 func on_enemy_killed(enemy: Enemy) -> void:
-	_emit_upgrade_activated_or_deactivation([enemy])
+	is_active = true if _all_enemies_alive_are_the_same_colour([enemy]) else false
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
 	if _all_enemies_alive_are_the_same_colour():
 		bullet.damage = 99
-
-
-func _emit_upgrade_activated_or_deactivation(enemies_to_ignore: Array[Enemy] = []) -> void:
-	if _all_enemies_alive_are_the_same_colour(enemies_to_ignore):
-		SignalBus.upgrade_activated.emit(self)
-	else:
-		SignalBus.upgrade_deactivated.emit(self)
 
 
 func _all_enemies_alive_are_the_same_colour(enemies_to_ignore: Array[Enemy] = []) -> bool:

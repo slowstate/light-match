@@ -14,7 +14,7 @@ func _init() -> void:
 
 func on_palette_cleared(_palette: Palette) -> void:
 	effect_timer.start(5)
-	SignalBus.upgrade_activated.emit(self)
+	is_active = true
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
@@ -23,4 +23,4 @@ func on_bullet_fired(bullet: Bullet) -> void:
 
 
 func _on_effect_timer_timeout() -> void:
-	SignalBus.upgrade_deactivated.emit(self)
+	is_active = false

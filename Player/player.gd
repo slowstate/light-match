@@ -29,6 +29,10 @@ var hit_immunity_time: float = 1.0
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
 
+const BionicLegs = preload("res://Player/Upgrades/Utility/bionic_legs.gd")
+const BiggerBullet = preload("res://Player/Upgrades/Combat/bigger_bullet.gd")
+const RepulsorField = preload("res://Player/Upgrades/Utility/repulsor_field.gd")
+
 
 func _init() -> void:
 	Globals.player = self
@@ -37,6 +41,7 @@ func _init() -> void:
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	player_sprite.set_colour(current_colour)
+	add_upgrade(RepulsorField.new())
 	palette.generate_new_palette()
 
 
@@ -216,11 +221,11 @@ func _on_chrome_knuckles_proximity_body_entered(_body: Node2D) -> void:
 	for upgrade in upgrades:
 		if upgrade.type == UpgradeManager.UpgradeTypes.CHROME_KNUCKLES:
 			if chrome_knuckles_proximity.get_overlapping_bodies().size() >= 3:
-				SignalBus.upgrade_activated.emit(upgrade)
+				upgrade.is_active = true
 
 
 func _on_chrome_knuckles_proximity_body_exited(_body: Node2D) -> void:
 	for upgrade in upgrades:
 		if upgrade.type == UpgradeManager.UpgradeTypes.CHROME_KNUCKLES:
 			if chrome_knuckles_proximity.get_overlapping_bodies().size() < 3:
-				SignalBus.upgrade_deactivated.emit(upgrade)
+				upgrade.is_active = false

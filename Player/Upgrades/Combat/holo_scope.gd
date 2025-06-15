@@ -13,7 +13,7 @@ func _init() -> void:
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
 	if new_upgrade == self:
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 
 
 func on_bullet_travelled_x_pixels(bullet: Bullet, x: float) -> void:

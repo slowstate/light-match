@@ -2,7 +2,7 @@ class_name Appendage
 extends Area2D
 
 @export var sprite: Sprite2D
-var colour: Globals.Colour
+var colour: Globals.Colour = Globals.Colour.BLUE
 
 
 func set_colour(new_colour: Globals.Colour) -> void:
