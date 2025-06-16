@@ -4,7 +4,7 @@ extends Enemy
 const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
 
 @export var shell_colours: Array[Globals.Colour]
-@export var shell_rotation_speed := 1.0
+@export var shell_rotation_speed := 0.5
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var shells: Node2D = $Shells
