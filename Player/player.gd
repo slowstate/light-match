@@ -213,14 +213,14 @@ func game_over_sequence() -> void:
 	hurt_box.set_deferred("monitoring", false)
 
 
-func _on_chrome_knuckles_proximity_body_entered(_body: Node2D) -> void:
+func _on_chrome_knuckles_proximity_body_entered(body: Node2D) -> void:
 	for upgrade in upgrades:
 		if upgrade.type == UpgradeManager.UpgradeTypes.CHROME_KNUCKLES:
 			if chrome_knuckles_proximity.get_overlapping_bodies().size() >= 3:
 				upgrade.is_active = true
 
 
-func _on_chrome_knuckles_proximity_body_exited(_body: Node2D) -> void:
+func _on_chrome_knuckles_proximity_body_exited(body: Node2D) -> void:
 	for upgrade in upgrades:
 		if upgrade.type == UpgradeManager.UpgradeTypes.CHROME_KNUCKLES:
 			if chrome_knuckles_proximity.get_overlapping_bodies().size() < 3:

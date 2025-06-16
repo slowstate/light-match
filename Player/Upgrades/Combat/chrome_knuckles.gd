@@ -15,7 +15,7 @@ func on_upgrade_added(new_upgrade: Upgrade) -> void:
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
-	if Globals.player.chrome_knuckles_proximity.get_overlapping_bodies().size() >= 3:
+	if is_active:
 		bullet.damage += 1
 
 

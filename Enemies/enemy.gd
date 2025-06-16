@@ -23,6 +23,7 @@ static func create(_initial_position: Vector2, _initial_health: int, _initial_co
 
 func _ready() -> void:
 	set_collision_layer_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
+	set_collision_layer_value(Globals.CollisionLayer.CHROME_KNUCKLES, true)
 	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
 	set_collision_mask_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
 	gravity_scale = 0
@@ -92,7 +93,7 @@ func _on_area_entered(area: Area2D) -> void:
 		SfxManager.play_sound("EnemyDeflectSFX", -5.0, -3.0, 0.95, 1.05)
 		return
 	health -= bullet.damage
-	SfxManager.play_sound("EnemyHitSFX", -20.0,-18.0,1,1.2)
+	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 	sprite.set_health(health)
 	if health <= 0:
 		UpgradeManager.on_enemy_killed(self)
