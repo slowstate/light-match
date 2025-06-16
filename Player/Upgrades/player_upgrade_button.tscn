@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cf27r8vjqk6av"]
 
 [ext_resource type="Script" path="res://Player/Upgrades/player_upgrade_button.gd" id="1_k3qr4"]
-[ext_resource type="Texture2D" uid="uid://dg1yjr0eocbr6" path="res://Player/Upgrades/Meta/Lucky Dice.png" id="3_7mng6"]
+[ext_resource type="Texture2D" uid="uid://c4mwjq8jwfkrt" path="res://Player/Upgrades/Meta/Lucky Dice.png" id="3_7mng6"]
 [ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="3_oop5q"]
 [ext_resource type="Texture2D" uid="uid://d0jeqndrjomyx" path="res://Player/Upgrades/Tooltip Line.png" id="4_k32ef"]
 
@@ -30,13 +30,11 @@ script = ExtResource("1_k3qr4")
 
 [node name="HexSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.5)
+position = Vector2(38, 40)
 texture = ExtResource("3_oop5q")
-centered = false
-offset = Vector2(2, 0)
 
-[node name="IconSprite" type="Sprite2D" parent="."]
+[node name="IconSprite" type="Sprite2D" parent="HexSprite"]
 modulate = Color(1, 1, 1, 0.5)
-position = Vector2(39, 42)
 texture = ExtResource("3_7mng6")
 
 [node name="Tooltip" type="Sprite2D" parent="."]
