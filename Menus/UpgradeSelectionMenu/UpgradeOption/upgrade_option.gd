@@ -39,8 +39,13 @@ func set_upgrade(new_upgrade: Upgrade) -> void:
 
 
 func _on_button_pressed() -> void:
+	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
 	upgrade_selected.emit(upgrade)
 
 
 func _on_initial_disabled_timer_timeout() -> void:
 	button.set_deferred("disabled", false)
+
+
+func _on_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)

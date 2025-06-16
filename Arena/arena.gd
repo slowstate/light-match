@@ -31,7 +31,6 @@ var palettes_cleared_this_round: int = 0
 func _ready() -> void:
 	time_limit_timer.start(1800)
 	animation_player.play("Arena_Lights")
-
 	music_manager.update_music(0.0)
 	timer_0_12s.start()
 
@@ -87,5 +86,9 @@ func _on_timer_7890s_timeout() -> void:
 	timer_0_12s.start()
 
 
+func _on_main_menu_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	
+	
 func _on_time_limit_timer_timeout() -> void:
 	state_machine.on_child_transition("ScoreScreen")

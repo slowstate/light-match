@@ -7,7 +7,7 @@ var palettes_cleared: float = 0.0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.BIONIC_LEGS
 	name = "Bionic Legs"
-	description = "For every 5 palettes cleared, permanently gain 5% move speed up to 30%"
+	description = "For every 5 palettes cleared, permanently gain 5% move speed up to 20%"
 	icon = preload("res://Player/Upgrades/Utility/Bionic Leg.png")
 
 
@@ -16,7 +16,7 @@ func trigger_counter_update() -> void:
 
 
 func on_palette_cleared(_palette: Palette) -> void:
-	if palettes_cleared < 30:
+	if palettes_cleared < 20:
 		palettes_cleared += 1.0
 		upgrade_counter_updated.emit(palettes_cleared)
 	var number_of_5_palettes_cleared = floori(palettes_cleared / 5.0)

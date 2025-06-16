@@ -89,9 +89,10 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	UpgradeManager.on_enemy_hit(bullet, self)
 	if bullet.colour != colour:
+		SfxManager.play_sound("EnemyDeflectSFX", -5.0, -3.0, 0.95, 1.05)
 		return
 	health -= bullet.damage
-	SfxManager.play_sound("EnemyHitSFX", -15.0, -13.0, 1, 1.2)
+	SfxManager.play_sound("EnemyHitSFX", -20.0,-18.0,1,1.2)
 	sprite.set_health(health)
 	if health <= 0:
 		UpgradeManager.on_enemy_killed(self)
