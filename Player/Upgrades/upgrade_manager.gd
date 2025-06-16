@@ -122,6 +122,16 @@ func on_enemy_spawned(enemy: Enemy) -> void:
 		upgrade.on_enemy_spawned(enemy)
 
 
+func on_enemy_colour_changed() -> void:
+	for upgrade in get_player_upgrades():
+		upgrade.on_enemy_colour_changed()
+
+
+func on_enemy_appendage_hit(bullet: Bullet, appendage: Appendage) -> void:
+	for upgrade in get_player_upgrades():
+		upgrade.on_enemy_appendage_hit(bullet, appendage)
+
+
 func on_enemy_killed(enemy: Enemy) -> void:
 	for upgrade in get_player_upgrades():
 		upgrade.on_enemy_killed(enemy)

@@ -110,7 +110,7 @@ one_shot = true
 [node name="ChromeKnucklesProximity" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
-collision_mask = 8
+collision_mask = 64
 
 [node name="Sprite2D" type="Sprite2D" parent="ChromeKnucklesProximity"]
 texture = SubResource("GradientTexture2D_4kebf")
@@ -130,5 +130,6 @@ script = ExtResource("3_gmi6u")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="area_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_area_entered"]
 [connection signal="body_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_body_entered"]
 [connection signal="body_exited" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_body_exited"]

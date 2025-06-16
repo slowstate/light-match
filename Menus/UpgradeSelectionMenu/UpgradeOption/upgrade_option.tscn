@@ -3,14 +3,24 @@
 [ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/upgrade_option.gd" id="1_cys41"]
 [ext_resource type="Texture2D" uid="uid://ivl8ard58lpk" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Box 2.png" id="2_cc8w0"]
 [ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="3_60qt7"]
-[ext_resource type="Texture2D" uid="uid://dg1yjr0eocbr6" path="res://Player/Upgrades/Meta/Lucky Dice.png" id="4_mswat"]
+[ext_resource type="Texture2D" uid="uid://c4mwjq8jwfkrt" path="res://Player/Upgrades/Meta/Lucky Dice.png" id="4_mswat"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_781bl"]
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx75e"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyorj"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vodsy"]
+bg_color = Color(1, 1, 1, 0.0666667)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0qix"]
 
@@ -57,9 +67,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -130.0
-offset_top = 120.0
+offset_top = 130.0
 offset_right = 130.0
-offset_bottom = 174.0
+offset_bottom = 184.0
 grow_horizontal = 2
 text = "Upgrade Title"
 label_settings = SubResource("LabelSettings_781bl")
@@ -72,9 +82,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -130.0
-offset_top = 170.0
+offset_top = 180.0
 offset_right = 130.0
-offset_bottom = 193.0
+offset_bottom = 203.0
 grow_horizontal = 2
 text = "Upgrade description"
 label_settings = SubResource("LabelSettings_vx75e")
@@ -94,7 +104,7 @@ offset_right = 145.0
 offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lyorj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vodsy")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_h0qix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jpps3")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_judh2")
@@ -105,5 +115,6 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="InitialDisabledTimer" to="." method="_on_initial_disabled_timer_timeout"]

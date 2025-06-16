@@ -58,6 +58,7 @@ func on_upgrade_option_selected(selected_upgrade: Upgrade):
 
 
 func _on_button_pressed() -> void:
+	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
 	_clean_up_menu()
 	upgrade_selection_completed.emit()
 
@@ -74,3 +75,7 @@ func _on_upgrade_removed(_upgrade: Upgrade) -> void:
 	Globals.player.add_upgrade(currently_selected_upgrade)
 	_clean_up_menu()
 	upgrade_selection_completed.emit()
+
+
+func _on_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)

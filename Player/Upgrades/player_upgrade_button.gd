@@ -4,7 +4,7 @@ extends TextureButton
 var upgrade: Upgrade
 
 @onready var hex_sprite: Sprite2D = $HexSprite
-@onready var icon_sprite: Sprite2D = $IconSprite
+@onready var icon_sprite: Sprite2D = $HexSprite/IconSprite
 @onready var tooltip: Sprite2D = $Tooltip
 @onready var hover_tooltip_name: Panel = $Tooltip/HoverTooltipName
 @onready var hover_tooltip_name_label: Label = $Tooltip/HoverTooltipName/HoverTooltipNameLabel
@@ -18,14 +18,14 @@ func _ready() -> void:
 	hover_tooltip_name_label.text = upgrade.name.to_upper()
 	hover_tooltip_description_label.text = upgrade.description
 	tooltip.visible = false
-	SignalBus.upgrade_activated.connect(_on_upgrade_activated)
-	SignalBus.upgrade_deactivated.connect(_on_upgrade_deactivated)
+	_set_active(upgrade.is_active)
 	upgrade.trigger_counter_update()
 
 
 func _process(_delta: float) -> void:
 	var global_mouse_position = get_global_mouse_position()
 	tooltip.global_position = Vector2(global_mouse_position.x, global_mouse_position.y)
+	_set_active(upgrade.is_active)
 
 
 func setup(new_upgrade: Upgrade) -> void:
@@ -38,6 +38,7 @@ func _on_pressed() -> void:
 
 
 func _on_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
 	tooltip.visible = true
 
 
@@ -57,13 +58,10 @@ func _on_upgrade_counter_updated(counter: int) -> void:
 	counter_label.text = str(counter)
 
 
-func _on_upgrade_activated(activated_upgrade: Upgrade) -> void:
-	if activated_upgrade == upgrade:
+func _set_active(active: bool) -> void:
+	if active:
 		hex_sprite.modulate.a = 1.0
 		icon_sprite.modulate.a = 1.0
-
-
-func _on_upgrade_deactivated(deactivated_upgrade: Upgrade) -> void:
-	if deactivated_upgrade == upgrade:
+	else:
 		hex_sprite.modulate.a = 0.5
 		icon_sprite.modulate.a = 0.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://duvsa2r7f53oy"]
+[gd_scene load_steps=18 format=3 uid="uid://duvsa2r7f53oy"]
 
 [ext_resource type="Script" path="res://Enemies/Star/star.gd" id="1_a0cwb"]
 [ext_resource type="PackedScene" uid="uid://1d5okjmxlrdj" path="res://Enemies/Star/Sprite/star_sprite.tscn" id="2_iui8m"]
@@ -12,35 +12,38 @@
 [ext_resource type="Texture2D" uid="uid://b3lga7xhaa4u3" path="res://Enemies/Star/Shell/Star Shell 5.png" id="12_4g25g"]
 [ext_resource type="Texture2D" uid="uid://ddu3y2lv5d54k" path="res://Enemies/Star/Shell/Star Shell Light 5.png" id="13_cbitq"]
 [ext_resource type="Texture2D" uid="uid://bhcbajj0cnbyw" path="res://Enemies/Star/Shell/Star Shell 3.png" id="14_3jcek"]
+[ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="14_wdnoj"]
 [ext_resource type="Texture2D" uid="uid://b1ly852qklum0" path="res://Enemies/Star/Shell/Star Shell Light 3.png" id="15_8lkfx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5tbji"]
-radius = 18.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_d0wjw"]
+radius = 39.0128
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr1nb"]
 size = Vector2(46, 11)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5tbji"]
+radius = 18.0
+
 [node name="Star" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Stars"]]
 rotation = 6.28319
-collision_layer = 8
-collision_mask = 4
+collision_layer = 32
+collision_mask = 33
 script = ExtResource("1_a0cwb")
 sprite = NodePath("Sprite")
 
 [node name="Sprite" parent="." instance=ExtResource("2_iui8m")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_5tbji")
+shape = SubResource("CircleShape2D_d0wjw")
 
 [node name="Shells" type="Node2D" parent="."]
 
-[node name="Shell0" type="Area2D" parent="Shells"]
+[node name="Shell0" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
 position = Vector2(-4.54598e-06, -26)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
+sprite = NodePath("StarShellLight")
 
 [node name="StarShell" type="Sprite2D" parent="Shells/Shell0"]
 texture = ExtResource("6_pwxvl")
@@ -52,12 +55,13 @@ texture = ExtResource("7_joar6")
 visible = false
 shape = SubResource("RectangleShape2D_nr1nb")
 
-[node name="Shell1" type="Area2D" parent="Shells"]
+[node name="Shell1" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
 position = Vector2(26, -9)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
 shell_number = 1
+sprite = NodePath("StarShellLight")
 
 [node name="StarShell" type="Sprite2D" parent="Shells/Shell1"]
 scale = Vector2(1.00001, 0.999994)
@@ -74,12 +78,13 @@ position = Vector2(-2, 0.999996)
 rotation = 1.25664
 shape = SubResource("RectangleShape2D_nr1nb")
 
-[node name="Shell2" type="Area2D" parent="Shells"]
+[node name="Shell2" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
 position = Vector2(18, 25)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
 shell_number = 2
+sprite = NodePath("StarShellLight")
 
 [node name="StarShell" type="Sprite2D" parent="Shells/Shell2"]
 scale = Vector2(1.00001, 0.999984)
@@ -96,12 +101,13 @@ position = Vector2(-3, -3)
 rotation = 2.49582
 shape = SubResource("RectangleShape2D_nr1nb")
 
-[node name="Shell3" type="Area2D" parent="Shells"]
+[node name="Shell3" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
 position = Vector2(-19, 25)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
 shell_number = 3
+sprite = NodePath("StarShellLight")
 
 [node name="StarShell" type="Sprite2D" parent="Shells/Shell3"]
 scale = Vector2(1, 1.00001)
@@ -120,12 +126,13 @@ position = Vector2(3, -4)
 rotation = 0.645772
 shape = SubResource("RectangleShape2D_nr1nb")
 
-[node name="Shell4" type="Area2D" parent="Shells"]
+[node name="Shell4" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
 position = Vector2(-26, -10)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
 shell_number = 4
+sprite = NodePath("StarShellLight")
 
 [node name="StarShell" type="Sprite2D" parent="Shells/Shell4"]
 scale = Vector2(1, 0.999995)
@@ -141,3 +148,13 @@ visible = false
 position = Vector2(0.999998, 2)
 rotation = 1.88496
 shape = SubResource("RectangleShape2D_nr1nb")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("14_wdnoj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_5tbji")

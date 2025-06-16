@@ -5,7 +5,6 @@ var main_menu = load("res://Menus/MainMenu/main_menu.tscn")
 var current_round: Round
 var arena
 var enemies_left_to_spawn_this_round: int = 0
-var concurrent_enemies_spawn_limit: int = 1
 
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 
@@ -42,9 +41,7 @@ func _load_round(round_number: int) -> void:
 	var round_number_string := str(round_number) if round_number <= 16 else "endless"
 	current_round = load(round_resource_path % round_number_string) as Round
 	arena.total_enemies_to_spawn_this_round = current_round.total_enemies_to_spawn if round_number <= 16 else 5 + round_number * 3
-	concurrent_enemies_spawn_limit = floori(5.0 + float(round_number) / 2.0)
 	if round_number_string == "endless":
-		concurrent_enemies_spawn_limit += floori(pow(float(round_number) - 16.0, 1.7))
 		arena.total_enemies_to_spawn_this_round += floori(pow(float(round_number) - 16.0, 2.0))
 	enemies_left_to_spawn_this_round = arena.total_enemies_to_spawn_this_round
 	arena.enemy_types_to_spawn = current_round.enemy_types_to_spawn()
@@ -76,6 +73,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	add_child(new_enemy)
 
 	enemies_left_to_spawn_this_round -= 1
+	enemy_spawn_timer.wait_time = clamp(enemy_spawn_timer.wait_time * 1.1, 0.0, 2.0)
 	enemy_spawn_timer.start()
 
 

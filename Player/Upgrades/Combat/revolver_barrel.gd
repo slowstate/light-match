@@ -27,7 +27,7 @@ func on_enemy_killed(enemy: Enemy) -> void:
 	number_of_same_colour_kills_in_a_row += 1
 	if number_of_same_colour_kills_in_a_row >= 2:
 		effect_timer.start(5)
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)
 
 
@@ -37,4 +37,4 @@ func on_bullet_fired(bullet: Bullet) -> void:
 
 
 func _on_effect_timer_timeout() -> void:
-	SignalBus.upgrade_deactivated.emit(self)
+	is_active = false

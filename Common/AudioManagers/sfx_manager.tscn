@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf0dmdildiuky"]
+[gd_scene load_steps=15 format=3 uid="uid://cf0dmdildiuky"]
 
 [ext_resource type="Script" path="res://Common/AudioManagers/sfx_manager.gd" id="1_60cnr"]
 [ext_resource type="AudioStream" uid="uid://de0ay2gpmej8n" path="res://Audio/SFX/ChangeGun2SFX.mp3" id="2_bjo5d"]
 [ext_resource type="AudioStream" uid="uid://dyfthibpjtjr5" path="res://Audio/SFX/ButtonClickSFX.mp3" id="3_qhck8"]
 [ext_resource type="AudioStream" uid="uid://cbvygvtfx531r" path="res://Audio/SFX/Hit3SFX.mp3" id="4_w10d7"]
-[ext_resource type="AudioStream" uid="uid://lokaq04gejm8" path="res://Audio/SFX/Hit1SFX.mp3" id="5_wl164"]
+[ext_resource type="AudioStream" uid="uid://qw0tecxadfen" path="res://Audio/SFX/ShieldHitSFX.mp3" id="5_wj64p"]
 [ext_resource type="AudioStream" uid="uid://bdk7bg2fhvp4i" path="res://Audio/SFX/Hit4SFX.mp3" id="6_2kafg"]
 [ext_resource type="AudioStream" uid="uid://bcf8r1mlbp33k" path="res://Audio/SFX/Hit2SFX.mp3" id="7_46ew6"]
 [ext_resource type="AudioStream" uid="uid://dl2m0krsmv0od" path="res://Audio/SFX/PaletteClearSFX.mp3" id="8_5xstg"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://dgfcjn7tw3jxd" path="res://Audio/SFX/PaletteSuccessSFX.mp3" id="10_6xeby"]
 [ext_resource type="AudioStream" uid="uid://baxf72k18iqpe" path="res://Audio/SFX/ShootingSFX.mp3" id="11_b3vy7"]
 [ext_resource type="AudioStream" uid="uid://hox06njkvlc0" path="res://Audio/SFX/ChangeGunSFX.mp3" id="12_pi8vw"]
+[ext_resource type="AudioStream" uid="uid://dvcdfx1t56gis" path="res://Audio/SFX/ButtonHoverSFX.mp3" id="13_dryqb"]
+[ext_resource type="AudioStream" uid="uid://csnidntsc7s0w" path="res://Audio/SFX/EnemyDeflectSFX.mp3" id="14_u2ty2"]
 
 [node name="SfxManager" type="Node2D"]
 script = ExtResource("1_60cnr")
@@ -26,7 +28,7 @@ stream = ExtResource("3_qhck8")
 stream = ExtResource("4_w10d7")
 
 [node name="ShieldHitSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_wl164")
+stream = ExtResource("5_wj64p")
 
 [node name="PlayerHitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_2kafg")
@@ -48,3 +50,9 @@ stream = ExtResource("11_b3vy7")
 
 [node name="AddUpgradeSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_pi8vw")
+
+[node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_dryqb")
+
+[node name="EnemyDeflectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_u2ty2")

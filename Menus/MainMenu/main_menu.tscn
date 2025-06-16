@@ -737,7 +737,6 @@ position = Vector2(770, 370)
 texture = ExtResource("7_gjco6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Light"]
-visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Light/StaticBody2D"]
@@ -749,7 +748,6 @@ position = Vector2(1177, 370)
 texture = ExtResource("8_7n2il")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Match"]
-visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Match/StaticBody2D"]
@@ -764,7 +762,6 @@ position = Vector2(960, 370)
 texture = ExtResource("6_eufb3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TitleIcon"]
-visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TitleIcon/StaticBody2D"]
@@ -862,7 +859,6 @@ one_shot = true
 autostart = true
 
 [node name="Tutorial" type="Node2D" parent="."]
-visible = false
 z_index = 1
 position = Vector2(960, 540)
 
@@ -1004,6 +1000,9 @@ modulate = Color(1, 0.270588, 0, 1)
 [node name="LizHeadLight" parent="Tutorial/LizardSprite/Head/HeadSprite2D/LizHead" index="0"]
 modulate = Color(0, 0.929412, 0, 1)
 
+[node name="HeadCollisionShape2D" parent="Tutorial/LizardSprite/Head" index="1"]
+disabled = true
+
 [node name="LizardSprite2" parent="Tutorial" instance=ExtResource("13_rwsq0")]
 position = Vector2(-519, 224)
 rotation = -1.98618
@@ -1022,6 +1021,9 @@ modulate = Color(0, 0.929412, 0, 1)
 
 [node name="LizHeadLight" parent="Tutorial/LizardSprite2/Head/HeadSprite2D/LizHead" index="0"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
+
+[node name="HeadCollisionShape2D" parent="Tutorial/LizardSprite2/Head" index="1"]
+disabled = true
 
 [node name="UserInterface" type="Node2D" parent="Tutorial"]
 position = Vector2(-960, -540)
@@ -1407,10 +1409,14 @@ text = "RETURN TO MAIN MENU"
 
 [node name="MusicManager" parent="." instance=ExtResource("27_m1d7y")]
 
+[connection signal="mouse_entered" from="Control/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="Control/HowToPlayButton" to="." method="_on_how_to_play_button_mouse_entered"]
 [connection signal="pressed" from="Control/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="mouse_entered" from="Control/ExitButton" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="Control/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="BulletSpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]
+[connection signal="mouse_entered" from="Tutorial/ReturnToMainMenuButton" to="." method="_on_return_to_main_menu_button_mouse_entered"]
 [connection signal="pressed" from="Tutorial/ReturnToMainMenuButton" to="." method="_on_return_to_main_menu_button_pressed"]
 
 [editable path="Tutorial/PlayerSprite"]

@@ -22,11 +22,10 @@ static func create(_initial_position: Vector2, _initial_health: int, _initial_co
 
 
 func _ready() -> void:
-	set_collision_layer_value(Globals.CollisionLayer.BOUNDARIES, false)
-	set_collision_layer_value(Globals.CollisionLayer.ENEMIES, true)
-	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, false)
-	set_collision_mask_value(Globals.CollisionLayer.ENEMIES, true)
-	set_collision_mask_value(Globals.CollisionLayer.BULLETS, true)
+	set_collision_layer_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
+	set_collision_layer_value(Globals.CollisionLayer.CHROME_KNUCKLES, true)
+	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
+	set_collision_mask_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
 	gravity_scale = 0
 	move_timer = Timer.new()
 	move_timer.one_shot = true
@@ -65,9 +64,9 @@ func move_forward(_delta: float) -> void:
 		return
 	sprite.play_move_animation(true)
 	rotation = (Globals.player.global_position - global_position).angle()
-
+	var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - Globals.player.global_position).length() / 2000.0, 0.0, 1.0))
 	if move_timer.is_stopped():
-		linear_velocity = (Globals.player.global_position - global_position).normalized() * move_speed
+		linear_velocity = (Globals.player.global_position - global_position).normalized() * distance_based_move_speed
 		apply_force(linear_velocity)
 
 
@@ -81,15 +80,20 @@ func player_is_within_distance(distance := 500.0) -> bool:
 	return (global_position - Globals.player.global_position).length() < distance
 
 
+func get_appendages() -> Array[Appendage]:
+	return []
+
+
 func _on_area_entered(area: Area2D) -> void:
 	var bullet = area as Bullet
 	if bullet == null:
 		return
 	UpgradeManager.on_enemy_hit(bullet, self)
 	if bullet.colour != colour:
+		SfxManager.play_sound("EnemyDeflectSFX", -5.0, -3.0, 0.95, 1.05)
 		return
 	health -= bullet.damage
-	SfxManager.play_sound("EnemyHitSFX", -15.0,-13.0,1,1.2)
+	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 	sprite.set_health(health)
 	if health <= 0:
 		UpgradeManager.on_enemy_killed(self)

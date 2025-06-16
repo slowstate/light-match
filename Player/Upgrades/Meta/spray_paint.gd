@@ -2,7 +2,6 @@ extends Upgrade
 
 @warning_ignore("enum_variable_without_default")
 var enemy_killed_colour: Globals.Colour
-var is_active: bool = false
 
 
 func _init() -> void:
@@ -14,7 +13,7 @@ func _init() -> void:
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
 	if new_upgrade == self:
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 
 
 func on_enemy_killed(enemy: Enemy) -> void:

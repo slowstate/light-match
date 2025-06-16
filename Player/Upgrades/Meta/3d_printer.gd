@@ -10,7 +10,7 @@ func _init() -> void:
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
 	if new_upgrade == self:
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 
 
 func on_get_pickable_upgrades(pickable_upgrades: Array[UpgradeManager.UpgradeTypes]) -> void:

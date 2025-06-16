@@ -12,3 +12,7 @@ func update_shader_timer_progress(timer_progress: float) -> void:
 
 func update_shader_modulate(modulation: Color) -> void:
 	material.set_shader_parameter("modulation", modulation)
+
+
+func update_shader_alpha(alpha: float) -> void:
+	material.set_shader_parameter("alpha", alpha)

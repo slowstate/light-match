@@ -23,7 +23,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_in_a_row += 1
 	if palettes_cleared_in_a_row >= 2:
 		effect_timer.start(10)
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 		palettes_cleared_in_a_row = 0
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
@@ -44,4 +44,4 @@ func on_enemy_hit(bullet: Bullet, enemy: Enemy = null):
 
 
 func _on_effect_timer_timeout() -> void:
-	SignalBus.upgrade_deactivated.emit(self)
+	is_active = false

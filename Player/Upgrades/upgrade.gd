@@ -8,6 +8,7 @@ var type: UpgradeManager.UpgradeTypes
 var name: String
 var description: String
 var icon
+var is_active: bool = false
 
 
 #region Util
@@ -35,6 +36,14 @@ func on_gun_cooldown_start(_gun_cooldown_timer: Timer) -> void:
 
 
 func on_enemy_spawned(_enemy: Enemy) -> void:
+	pass
+
+
+func on_enemy_appendage_hit(_bullet: Bullet, _appendage: Appendage) -> void:
+	pass
+
+
+func on_enemy_colour_changed() -> void:
 	pass
 
 

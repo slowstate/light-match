@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform float random_number: hint_range(-1.0, 1.0);
 uniform float timer_progress: hint_range(0.0, 1.0);
 uniform vec4 modulation: source_color;
+uniform float alpha: hint_range(0.0, 1.0);
 
 vec2 rotate(vec2 uv, vec2 pivot, float angle)
 {
@@ -26,7 +27,7 @@ void fragment() {
 	vec2 rotate = rotate(UV, vec2(0.5, 1.0/6.0 + 0.5*timer_progress), random_number * timer_progress*0.5+PI/2.0);
 
 	COLOR = texture(TEXTURE, vec2(rotate.x, rotate.y - timer_progress*0.5)) * modulation;
-	COLOR.a = COLOR.a * (1.0-timer_progress);
+	COLOR.a = COLOR.a * alpha * (1.0-timer_progress);
 }
 
 //void light() {

@@ -28,13 +28,12 @@ var palettes_cleared_this_round: int = 0
 @onready var timer_78_90s: Timer = $"MusicManager/Timer78-90s"
 
 
-
 func _ready() -> void:
 	time_limit_timer.start(1800)
 	animation_player.play("Arena_Lights")
-
 	music_manager.update_music(0.0)
 	timer_0_12s.start()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -56,30 +55,40 @@ func _on_timer_012s_timeout() -> void:
 	music_manager.update_music(12.0)
 	timer_12_30s.start()
 
+
 func _on_timer_1230s_timeout() -> void:
 	music_manager.update_music(30.0)
 	timer_30_39s.start()
-	
+
+
 func _on_timer_3039s_timeout() -> void:
 	music_manager.update_music(39.0)
 	timer_39_48s.start()
+
 
 func _on_timer_3948s_timeout() -> void:
 	music_manager.update_music(48.0)
 	timer_48_60s.start()
 
+
 func _on_timer_4860s_timeout() -> void:
 	music_manager.update_music(60.0)
 	timer_60_78s.start()
 
+
 func _on_timer_6078s_timeout() -> void:
 	music_manager.update_music(78.0)
 	timer_78_90s.start()
+
 
 func _on_timer_7890s_timeout() -> void:
 	music_manager.update_music(0.0)
 	timer_0_12s.start()
 
 
+func _on_main_menu_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	
+	
 func _on_time_limit_timer_timeout() -> void:
 	state_machine.on_child_transition("ScoreScreen")

@@ -14,6 +14,7 @@ func _init() -> void:
 	description = "Killing 5 enemies of the same colour in a row grants you 1 shield. When your shield breaks, freeze all enemies for 5s"
 	icon = preload("res://Player/Upgrades/Utility/Energy Collector.png")
 	effect_timer = super.new_timer()
+	effect_timer.connect("timeout", _on_effect_timer_timeout)
 
 
 func trigger_counter_update() -> void:
@@ -27,7 +28,7 @@ func on_enemy_killed(enemy: Enemy) -> void:
 	number_of_same_colour_kills_in_a_row += 1
 	if number_of_same_colour_kills_in_a_row >= 5:
 		Globals.player.shield_active = true
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 		number_of_same_colour_kills_in_a_row = 0
 	upgrade_counter_updated.emit(number_of_same_colour_kills_in_a_row)
 
@@ -38,7 +39,7 @@ func on_player_shield_break() -> void:
 		enemy.can_move = false
 		enemy.linear_velocity = Vector2(0, 0)
 	effect_timer.start(5)
-	SignalBus.upgrade_deactivated.emit(self)
+	is_active = false
 
 
 func _on_effect_timer_timeout() -> void:

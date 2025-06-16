@@ -8,7 +8,3 @@ signal palette_cleared
 signal upgrade_removed(upgrade: Upgrade)
 @warning_ignore("unused_signal")
 signal player_died
-@warning_ignore("unused_signal")
-signal upgrade_activated(upgrade: Upgrade)
-@warning_ignore("unused_signal")
-signal upgrade_deactivated(upgrade: Upgrade)

@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnshaeplewb85"]
+[gd_scene load_steps=11 format=3 uid="uid://dnshaeplewb85"]
 
 [ext_resource type="Script" path="res://Player/Palette/palette.gd" id="1_u6kec"]
 [ext_resource type="PackedScene" uid="uid://cx7w0mo5dqth5" path="res://Player/Palette/palette_colour.tscn" id="4_k5f8u"]
 [ext_resource type="Shader" path="res://Player/Palette/palette_colour.gdshader" id="5_8vdy6"]
-[ext_resource type="Texture2D" uid="uid://v68ffp3gg0iy" path="res://Player/Palette/Palette.png" id="6_aa7by"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rwrpr"]
 resource_local_to_scene = true
@@ -11,6 +10,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = 1.0
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2pjdl"]
 resource_local_to_scene = true
@@ -18,6 +18,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qe77"]
 resource_local_to_scene = true
@@ -25,6 +26,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrrhn"]
 resource_local_to_scene = true
@@ -32,6 +34,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_seosg"]
 resource_local_to_scene = true
@@ -39,6 +42,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d6jno"]
 resource_local_to_scene = true
@@ -46,6 +50,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8msia"]
 resource_local_to_scene = true
@@ -53,6 +58,7 @@ shader = ExtResource("5_8vdy6")
 shader_parameter/random_number = null
 shader_parameter/timer_progress = 0.0
 shader_parameter/modulation = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
 
 [node name="Palette" type="Node2D"]
 script = ExtResource("1_u6kec")
@@ -61,48 +67,36 @@ script = ExtResource("1_u6kec")
 texture_filter = 5
 material = SubResource("ShaderMaterial_rwrpr")
 position = Vector2(-108, 0)
-texture = ExtResource("6_aa7by")
 
 [node name="PaletteColour1" parent="." instance=ExtResource("4_k5f8u")]
 texture_filter = 5
 material = SubResource("ShaderMaterial_2pjdl")
 position = Vector2(-72, 0)
-texture = ExtResource("6_aa7by")
 
 [node name="PaletteColour2" parent="." instance=ExtResource("4_k5f8u")]
 texture_filter = 5
 material = SubResource("ShaderMaterial_1qe77")
 position = Vector2(-36, 0)
-texture = ExtResource("6_aa7by")
 
 [node name="PaletteColour3" parent="." instance=ExtResource("4_k5f8u")]
 texture_filter = 5
 material = SubResource("ShaderMaterial_qrrhn")
 position = Vector2(0, 0)
-texture = ExtResource("6_aa7by")
 
 [node name="PaletteColour4" parent="." instance=ExtResource("4_k5f8u")]
 texture_filter = 5
 material = SubResource("ShaderMaterial_seosg")
 position = Vector2(36, 0)
-texture = ExtResource("6_aa7by")
 
 [node name="PaletteColour5" parent="." instance=ExtResource("4_k5f8u")]
 texture_filter = 5
 material = SubResource("ShaderMaterial_d6jno")
 position = Vector2(72, 0)
-texture = ExtResource("6_aa7by")
 
 [node name="PaletteColour6" parent="." instance=ExtResource("4_k5f8u")]
 texture_filter = 5
 material = SubResource("ShaderMaterial_8msia")
 position = Vector2(108, 0)
-texture = ExtResource("6_aa7by")
-
-[node name="PaletteInterface" type="HBoxContainer" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="FailedCooldownTimer" type="Timer" parent="."]
 wait_time = 0.5

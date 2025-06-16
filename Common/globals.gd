@@ -1,8 +1,12 @@
 extends Node
 
-enum CollisionLayer { BOUNDARIES = 1, PLAYER = 2, BULLETS = 3, ENEMIES = 4, TANK_SHIELD = 5 }
+enum CollisionLayer { BOUNDARIES = 1, PLAYER = 2, BULLETS = 3, ENEMIES = 4, TANK_SHIELD = 5, ENEMY_SOCIAL_DISTANCING = 6, CHROME_KNUCKLES = 7 }
 enum Colour { BLUE = 1, GREEN = 2, RED = 3 }
 enum EnemyType { BOT, LIZARD, TANK, ORACLE, STAR }
+
+const CROSSHAIR_HALF_BLUE = preload("res://HUD/Crosshair Half Blue.png")
+const CROSSHAIR_HALF_GREEN = preload("res://HUD/Crosshair Half Green.png")
+const CROSSHAIR_HALF_RED = preload("res://HUD/Crosshair Half Red.png")
 
 const _COLOUR_VISUAL_VALUE_BLUE: Color = Color(0.0118, 0.6275, 1, 1)
 const _COLOUR_VISUAL_VALUE_GREEN: Color = Color(0, 0.93, 0, 1)
@@ -41,3 +45,13 @@ func get_all_enemies_alive() -> Array[Enemy]:
 func get_all_bullets_active() -> Array[Bullet]:
 	var all_bullets_active: Array[Bullet] = get_tree().get_nodes_in_group("Bullets") as Array[Bullet]
 	return all_bullets_active
+
+
+func set_crosshair_colour(colour: Globals.Colour) -> void:
+	match colour:
+		Globals.Colour.BLUE:
+			Input.set_custom_mouse_cursor(CROSSHAIR_HALF_BLUE, Input.CURSOR_ARROW, Vector2(26, 17))
+		Globals.Colour.GREEN:
+			Input.set_custom_mouse_cursor(CROSSHAIR_HALF_GREEN, Input.CURSOR_ARROW, Vector2(26, 17))
+		Globals.Colour.RED:
+			Input.set_custom_mouse_cursor(CROSSHAIR_HALF_RED, Input.CURSOR_ARROW, Vector2(26, 17))

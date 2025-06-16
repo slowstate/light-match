@@ -14,9 +14,9 @@ func on_palette_generated() -> void:
 	if player_palette.is_empty():
 		return
 	if Globals.player.current_colour == player_palette.back():
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 	else:
-		SignalBus.upgrade_deactivated.emit(self)
+		is_active = false
 
 
 func on_gun_colour_switch(_gun_cooldown_timer: Timer) -> void:
@@ -24,9 +24,9 @@ func on_gun_colour_switch(_gun_cooldown_timer: Timer) -> void:
 	if player_palette.is_empty():
 		return
 	if Globals.player.current_colour == player_palette.back():
-		SignalBus.upgrade_activated.emit(self)
+		is_active = true
 	else:
-		SignalBus.upgrade_deactivated.emit(self)
+		is_active = false
 
 
 func on_bullet_fired(bullet: Bullet) -> void:
