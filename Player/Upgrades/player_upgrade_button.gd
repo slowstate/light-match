@@ -4,7 +4,7 @@ extends TextureButton
 var upgrade: Upgrade
 
 @onready var hex_sprite: Sprite2D = $HexSprite
-@onready var icon_sprite: Sprite2D = $IconSprite
+@onready var icon_sprite: Sprite2D = $HexSprite/IconSprite
 @onready var tooltip: Sprite2D = $Tooltip
 @onready var hover_tooltip_name: Panel = $Tooltip/HoverTooltipName
 @onready var hover_tooltip_name_label: Label = $Tooltip/HoverTooltipName/HoverTooltipNameLabel
