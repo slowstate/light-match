@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 	if !failed_cooldown_timer.is_stopped():
 		timer_progress = 1.0 - failed_cooldown_timer.time_left / failed_cooldown_timer.wait_time
 	for palette_colour_sprite in palette_colour_sprites:
-		palette_colour_sprite.update_shader_timer_progress(timer_progress)
+		palette_colour_sprite.update_shader_timer_progress(clamp(timer_progress * 2, 0.0, 1.0))
 
 
 func _on_enemy_died(enemy: Enemy) -> void:
@@ -55,7 +55,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 
 func on_palette_failed() -> void:
-	failed_cooldown_timer.start(2)
+	failed_cooldown_timer.start(1)
 	SfxManager.play_sound("PaletteFailSFX", -15.0, -13.0, 0.95, 1.05)
 	for palette_colour_sprite in palette_colour_sprites:
 		palette_colour_sprite.update_shader_rand(randf_range(-1.0, 1.0))
