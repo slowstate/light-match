@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _set_sprite_colour(new_colour: Globals.Colour) -> void:
 	colour = new_colour
-	liz_head_light.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
+	set_colour(Globals.COLOUR_VISUAL_VALUE[colour])
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -19,5 +19,5 @@ func _on_area_entered(area: Area2D) -> void:
 	if bullet.colour != colour:
 		SfxManager.play_sound("EnemyDeflectSFX", -5.0, -3.0, 0.95, 1.05)
 		return
-	SfxManager.play_sound("EnemyHitSFX", -25.0,-23.0,2.0,2.2)
+	SfxManager.play_sound("EnemyHitSFX", -25.0, -23.0, 2.0, 2.2)
 	queue_free()

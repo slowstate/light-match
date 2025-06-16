@@ -29,10 +29,6 @@ var hit_immunity_time: float = 1.0
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
 
-const BionicLegs = preload("res://Player/Upgrades/Utility/bionic_legs.gd")
-const BiggerBullet = preload("res://Player/Upgrades/Combat/bigger_bullet.gd")
-const RepulsorField = preload("res://Player/Upgrades/Utility/repulsor_field.gd")
-
 
 func _init() -> void:
 	Globals.player = self
@@ -41,7 +37,6 @@ func _init() -> void:
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	player_sprite.set_colour(current_colour)
-	add_upgrade(RepulsorField.new())
 	palette.generate_new_palette()
 
 
@@ -109,7 +104,7 @@ func _fire_bullet():
 	if !gun_cooldown_timer.is_stopped():
 		return
 	player_sprite.play_shoot_animation()
-	SfxManager.play_sound("ShootingSFX", -30.0,-28.0,1.0,1.2)
+	SfxManager.play_sound("ShootingSFX", -30.0, -28.0, 1.0, 1.2)
 	var gun_angle = (tip_of_barrel_point.global_position - bullet_spawn_point.global_position).angle()
 	var angle: float = clamp((get_global_mouse_position() - bullet_spawn_point.global_position).angle(), gun_angle + deg_to_rad(2), gun_angle + deg_to_rad(5))
 	var new_bullet: Bullet
@@ -124,7 +119,7 @@ func _fire_bullet():
 
 func _get_next_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
-	SfxManager.play_sound("ChangeGunSFX",-15.0,-13.0,0.95,1.05)
+	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	if current_colour == Globals.Colour.RED:
 		change_colour(Globals.Colour.BLUE)
 	else:
@@ -133,7 +128,7 @@ func _get_next_colour() -> void:
 
 func _get_previous_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
-	SfxManager.play_sound("ChangeGunSFX",-15.0,-13.0,0.95,1.05)
+	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	if current_colour == Globals.Colour.BLUE:
 		change_colour(Globals.Colour.RED)
 	else:
@@ -148,13 +143,13 @@ func change_colour(new_colour: Globals.Colour) -> void:
 	current_colour = new_colour
 	player_sprite.set_colour(current_colour)
 	Globals.set_crosshair_colour(current_colour)
-	SfxManager.play_sound("ChangeGunSFX",-15.0,-13.0,0.95,1.05)
+	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	gun_switch_cooldown_timer.start(gun_switch_cooldown)
 	UpgradeManager.on_gun_colour_switch(gun_cooldown_timer)
 
 
 func add_upgrade(new_upgrade: Upgrade) -> void:
-	SfxManager.play_sound("AddUpgradeSFX",-10.0,-8.0,0.9,1.1)
+	SfxManager.play_sound("AddUpgradeSFX", -10.0, -8.0, 0.9, 1.1)
 	if upgrades.size() < 5:
 		upgrades.push_back(new_upgrade)
 		update_player_upgrades_interface()
@@ -200,7 +195,7 @@ func player_hit() -> void:
 		return
 	if shield_active:
 		UpgradeManager.on_player_shield_break()
-		SfxManager.play_sound("ShieldHitSFX",-15.0,-13.0,0.95,1.05)
+		SfxManager.play_sound("ShieldHitSFX", -15.0, -13.0, 0.95, 1.05)
 		shield_active = false
 	elif upgrades.size() <= 0:
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
