@@ -1,5 +1,6 @@
 extends Node2D
 
+const CROSSHAIR = preload("res://HUD/Crosshair.png")
 const ARENA = preload("res://Arena/arena.tscn")
 const BULLET = preload("res://Player/Bullet/bullet.tscn")
 
@@ -10,6 +11,7 @@ const BULLET = preload("res://Player/Bullet/bullet.tscn")
 
 
 func _ready() -> void:
+	Input.set_custom_mouse_cursor(CROSSHAIR, Input.CURSOR_ARROW, Vector2(26, 17))
 	title_animation_player.play("Title_Screen")
 	tutorial.visible = false
 	music_manager.update_music(0.0)

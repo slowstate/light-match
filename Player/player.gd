@@ -147,6 +147,7 @@ func change_colour(new_colour: Globals.Colour) -> void:
 		return
 	current_colour = new_colour
 	player_sprite.set_colour(current_colour)
+	Globals.set_crosshair_colour(current_colour)
 	SfxManager.play_sound("ChangeGunSFX", -10.0, -8.0, 0.9, 1.1)
 	gun_switch_cooldown_timer.start(gun_switch_cooldown)
 	UpgradeManager.on_gun_colour_switch(gun_cooldown_timer)
