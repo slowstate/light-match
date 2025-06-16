@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			spawn_hit_particles()
 			if collided_shape.get_parent().get_name() == "TitleIcon":
-				SfxManager.play_sound("EnemyHitSFX", -25.0,-23.0,2.0,2.2)
+				SfxManager.play_sound("EnemyHitSFX", -25.0, -23.0, 2.0, 2.2)
 			else:
 				SfxManager.play_sound("EnemyDeflectSFX", -5.0, -3.0, 0.95, 1.05)
 			_on_body_entered(collided_shape)
