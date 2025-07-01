@@ -30,7 +30,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	var log_context_data = {"round_number": arena.current_round_number, "round_elapsed_time": Time.get_time_string_from_unix_time(round_elapsed_time)}
+	var log_context_data = {"round_number": arena.current_round_number, "round_elapsed_time": Time.get_time_string_from_unix_time(int(round_elapsed_time))}
 	var log_play_data = {"message": "Round ended", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
 

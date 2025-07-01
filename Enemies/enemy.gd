@@ -89,26 +89,27 @@ func _on_area_entered(area: Area2D) -> void:
 	if bullet == null:
 		return
 	UpgradeManager.on_enemy_hit(bullet, self)
-	if bullet.colour != colour:
-		SfxManager.play_sound("EnemyDeflectSFX", -5.0, -3.0, 0.95, 1.05)
-		var log_context_data = {
-			"enemy": get_script().get_global_name() + str(get_instance_id()), "bullet": bullet.get_script().get_global_name() + str(bullet.get_instance_id())
-		}
-		var log_play_data = {"message": "Enemy hit with wrong colour", "context": log_context_data}
-		Logger.log_play_data(log_play_data)
-		return
-	health -= bullet.damage
-	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
-	sprite.set_health(health)
+
 	var log_context_data = {
 		"enemy": get_script().get_global_name() + str(get_instance_id()), "bullet": bullet.get_script().get_global_name() + str(bullet.get_instance_id())
 	}
-	var log_play_data = {"message": "Enemy hit for " + str(bullet.damage) + " damage", "context": log_context_data}
+	var log_play_data = {}
+
+	if bullet.colour != colour:
+		SfxManager.play_sound("EnemyDeflectSFX", -5.0, -3.0, 0.95, 1.05)
+
+		log_play_data = {"message": "Enemy hit with wrong colour", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
+		return
+
+	health -= bullet.damage
+	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
+	sprite.set_health(health)
+
+	log_play_data = {"message": "Enemy hit for " + str(bullet.damage) + " damage", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
+
 	if health <= 0:
-		log_context_data = {
-			"enemy": get_script().get_global_name() + str(get_instance_id()), "bullet": bullet.get_script().get_global_name() + str(bullet.get_instance_id())
-		}
 		log_play_data = {"message": "Enemy killed", "context": log_context_data}
 		UpgradeManager.on_enemy_killed(self)
 		SignalBus.emit_signal("enemy_died", self)

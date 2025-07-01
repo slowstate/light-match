@@ -37,6 +37,7 @@ func _ready() -> void:
 	var player_upgrade_strings = []
 	for player_upgrade in Globals.player.upgrades:
 		player_upgrade_strings.append(player_upgrade.name)
+
 	var log_context_data = {"player_upgrades": player_upgrade_strings, "upgrade_options": upgrade_option_strings}
 	var log_play_data = {"message": "Upgrade selection", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
@@ -61,6 +62,7 @@ func on_upgrade_option_selected(selected_upgrade: Upgrade):
 		var log_context_data = {"selected_upgrade": selected_upgrade.name}
 		var log_play_data = {"message": "Upgrade selected", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
+
 		Globals.player.add_upgrade(selected_upgrade)
 		_clean_up_menu()
 		upgrade_selection_completed.emit()
@@ -74,6 +76,7 @@ func _on_skip_button_pressed() -> void:
 	var log_context_data = {"selected_upgrade": "None"}
 	var log_play_data = {"message": "Upgrade selected", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
+
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
 	_clean_up_menu()
 	upgrade_selection_completed.emit()
@@ -90,6 +93,8 @@ func _clean_up_menu() -> void:
 func _on_upgrade_removed(_upgrade: Upgrade) -> void:
 	var log_context_data = {"selected_upgrade": currently_selected_upgrade.name}
 	var log_play_data = {"message": "Upgrade selected", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
+
 	Globals.player.add_upgrade(currently_selected_upgrade)
 	_clean_up_menu()
 	upgrade_selection_completed.emit()
