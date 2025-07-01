@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c7845x7xoc1g2"]
+[gd_scene load_steps=57 format=3 uid="uid://c7845x7xoc1g2"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
 [ext_resource type="Texture2D" uid="uid://r26c27hrvnw1" path="res://Arena/BG Hex Light.png" id="3_dyfs6"]
@@ -17,9 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://dohxwuksnslb" path="res://Enemies/Bot/Sprite/bot_sprite.tscn" id="14_37sdy"]
 [ext_resource type="Texture2D" uid="uid://d36h547sfej1u" path="res://HUD/PaletteMilestone1.png" id="15_7rlin"]
 [ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="15_b20bq"]
+[ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="16_3cfnn"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="16_ltpam"]
 [ext_resource type="Texture2D" uid="uid://kcovw5iw32l7" path="res://Player/Upgrades/Combat/Bipod.png" id="16_maefu"]
 [ext_resource type="Texture2D" uid="uid://5gajlo6clh5q" path="res://Player/Upgrades/Combat/Charged Ammo.png" id="17_locs0"]
+[ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="17_wvdvq"]
 [ext_resource type="FontFile" uid="uid://dt7ijpr3w8s08" path="res://Common/Fonts/exo/Exo-Bold.otf" id="18_40nhg"]
 [ext_resource type="FontFile" uid="uid://ct74ild18mpl5" path="res://Common/Fonts/exo/Exo-Medium.otf" id="19_bj3y6"]
 [ext_resource type="Texture2D" uid="uid://cf231u6471cib" path="res://Menus/MainMenu/Mouse.png" id="21_s6df7"]
@@ -997,11 +999,15 @@ modulate = Color(1, 0.270588, 0, 1)
 [node name="LizBodyLight4" parent="Tutorial/LizardSprite" index="9"]
 modulate = Color(1, 0.270588, 0, 1)
 
-[node name="LizHeadLight" parent="Tutorial/LizardSprite/Head/HeadSprite2D/LizHead" index="0"]
-modulate = Color(0, 0.929412, 0, 1)
+[node name="LizHead" type="Sprite2D" parent="Tutorial"]
+position = Vector2(-436, -21)
+rotation = -1.49051
+texture = ExtResource("16_3cfnn")
 
-[node name="HeadCollisionShape2D" parent="Tutorial/LizardSprite/Head" index="1"]
-disabled = true
+[node name="LizHeadLight" type="Sprite2D" parent="Tutorial/LizHead"]
+modulate = Color(0.0117647, 0.627451, 1, 1)
+position = Vector2(1.19209e-07, -3)
+texture = ExtResource("17_wvdvq")
 
 [node name="LizardSprite2" parent="Tutorial" instance=ExtResource("13_rwsq0")]
 position = Vector2(-519, 224)
@@ -1019,11 +1025,15 @@ modulate = Color(0, 0.929412, 0, 1)
 [node name="LizBodyLight4" parent="Tutorial/LizardSprite2" index="9"]
 modulate = Color(0, 0.929412, 0, 1)
 
-[node name="LizHeadLight" parent="Tutorial/LizardSprite2/Head/HeadSprite2D/LizHead" index="0"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
+[node name="LizHead2" type="Sprite2D" parent="Tutorial"]
+position = Vector2(-475, 204)
+rotation = -1.98618
+texture = ExtResource("16_3cfnn")
 
-[node name="HeadCollisionShape2D" parent="Tutorial/LizardSprite2/Head" index="1"]
-disabled = true
+[node name="LizHeadLight" type="Sprite2D" parent="Tutorial/LizHead2"]
+modulate = Color(1, 0.270588, 0, 1)
+position = Vector2(1.19209e-07, -3)
+texture = ExtResource("17_wvdvq")
 
 [node name="UserInterface" type="Node2D" parent="Tutorial"]
 position = Vector2(-960, -540)

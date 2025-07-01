@@ -1,8 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://clv4agc2np8fh"]
+[gd_scene load_steps=12 format=3 uid="uid://clv4agc2np8fh"]
 
 [ext_resource type="Script" path="res://Enemies/Lizard/lizard.gd" id="1_d185i"]
 [ext_resource type="PackedScene" uid="uid://cq600o70yc5is" path="res://Enemies/Lizard/Sprite/lizard_sprite.tscn" id="2_pu36a"]
 [ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="3_d8xqh"]
+[ext_resource type="Script" path="res://Enemies/Lizard/head.gd" id="3_s30g0"]
+[ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="4_w4nmm"]
+[ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="5_k8pbd"]
+
+[sub_resource type="Animation" id="Animation_17b4t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadCollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8s72c"]
+resource_name = "liz_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -1.91986, -1.309, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadCollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.349066, 0.261799, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dp0c5"]
+_data = {
+"Liz_Attack": SubResource("Animation_8s72c"),
+"RESET": SubResource("Animation_17b4t")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ljlh8"]
 radius = 47.0956
@@ -18,6 +81,34 @@ script = ExtResource("1_d185i")
 sprite = NodePath("Sprite")
 
 [node name="Sprite" parent="." instance=ExtResource("2_pu36a")]
+
+[node name="Head" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_s30g0")
+sprite = NodePath("HeadSprite2D/LizHead/LizHeadLight")
+
+[node name="HeadSprite2D" type="Sprite2D" parent="Head"]
+position = Vector2(30, 0)
+rotation = -1.5708
+offset = Vector2(-0.149141, 37.3588)
+
+[node name="LizHead" type="Sprite2D" parent="Head/HeadSprite2D"]
+position = Vector2(0, 18)
+texture = ExtResource("4_w4nmm")
+
+[node name="LizHeadLight" type="Sprite2D" parent="Head/HeadSprite2D/LizHead"]
+position = Vector2(1.19209e-07, -3)
+texture = ExtResource("5_k8pbd")
+
+[node name="HeadCollisionShape2D" type="CollisionPolygon2D" parent="Head"]
+position = Vector2(29, 0)
+polygon = PackedVector2Array(3, 11, 3, -10, 38, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
+libraries = {
+"": SubResource("AnimationLibrary_dp0c5")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

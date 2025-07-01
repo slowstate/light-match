@@ -35,7 +35,7 @@ z_index = 1
 position = Vector2(960, 540)
 script = ExtResource("1_o275p")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="UpgradeOptions" type="HBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -79,7 +79,7 @@ vertical_alignment = 1
 position = Vector2(0, 200)
 texture = ExtResource("3_44586")
 
-[node name="Button" type="Button" parent="SkipBG"]
+[node name="SkipButton" type="Button" parent="SkipBG"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -99,5 +99,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ss61u")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_omnuu")
 text = "Skip"
 
-[connection signal="mouse_entered" from="SkipBG/Button" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="SkipBG/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="SkipBG/SkipButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="SkipBG/SkipButton" to="." method="_on_skip_button_pressed"]

@@ -8,6 +8,7 @@ const CROSSHAIR_HALF_BLUE = preload("res://HUD/Crosshair Half Blue.png")
 const CROSSHAIR_HALF_GREEN = preload("res://HUD/Crosshair Half Green.png")
 const CROSSHAIR_HALF_RED = preload("res://HUD/Crosshair Half Red.png")
 
+const COLOUR_STRING: Dictionary = {Colour.BLUE: "Blue", Colour.RED: "Red", Colour.GREEN: "Green"}
 const _COLOUR_VISUAL_VALUE_BLUE: Color = Color(0.0118, 0.6275, 1, 1)
 const _COLOUR_VISUAL_VALUE_GREEN: Color = Color(0, 0.93, 0, 1)
 const _COLOUR_VISUAL_VALUE_RED: Color = Color.ORANGE_RED

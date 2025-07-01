@@ -5,6 +5,7 @@ var main_menu = load("res://Menus/MainMenu/main_menu.tscn")
 var current_round: Round
 var arena
 var enemies_left_to_spawn_this_round: int = 0
+var round_elapsed_time: float
 
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 
@@ -20,14 +21,22 @@ func enter() -> void:
 		Globals.player.controls_enabled = true
 	if not SignalBus.player_died.is_connected(_on_player_died):
 		SignalBus.player_died.connect(_on_player_died)
+	round_elapsed_time = 0.0
 	_load_round(arena.current_round_number)
+
+	var log_context_data = {"round_number": arena.current_round_number}
+	var log_play_data = {"message": "Round started", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
 
 
 func exit() -> void:
-	pass
+	var log_context_data = {"round_number": arena.current_round_number, "round_elapsed_time": Time.get_time_string_from_unix_time(round_elapsed_time)}
+	var log_play_data = {"message": "Round ended", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
 
 
-func update(_delta: float) -> void:
+func update(delta: float) -> void:
+	round_elapsed_time += delta
 	if no_enemies_remaining_this_round():
 		transition.emit("UpgradeSelection")
 
