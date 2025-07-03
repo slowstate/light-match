@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c7845x7xoc1g2"]
+[gd_scene load_steps=60 format=3 uid="uid://c7845x7xoc1g2"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
 [ext_resource type="Texture2D" uid="uid://r26c27hrvnw1" path="res://Arena/BG Hex Light.png" id="3_dyfs6"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cbc5pni83c6y4" path="res://Menus/MainMenu/Right Button Mouse.png" id="24_s1j0b"]
 [ext_resource type="Texture2D" uid="uid://b180nk1o8yx2v" path="res://Menus/MainMenu/Scroll.png" id="25_b51qq"]
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="27_m1d7y"]
+[ext_resource type="PackedScene" uid="uid://8p11gjdp0ijq" path="res://Menus/Settings/settings.tscn" id="30_mfnn7"]
 
 [sub_resource type="Gradient" id="Gradient_dpln6"]
 offsets = PackedFloat32Array(0)
@@ -547,6 +548,9 @@ corner_radius_bottom_left = 4
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exyqd"]
 size = Vector2(139, 17.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwa3w"]
+size = Vector2(102, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tohs8"]
 size = Vector2(43, 17.5)
 
@@ -774,14 +778,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TitleIcon/StaticBody2D"]
 shape = SubResource("CircleShape2D_52mh4")
 
-[node name="Control" type="Control" parent="."]
+[node name="MenuButtons" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_top = -170.0
 offset_right = 1920.0
 offset_bottom = 910.0
 
-[node name="StartButton" type="Button" parent="Control"]
+[node name="StartButton" type="Button" parent="MenuButtons"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -800,14 +804,14 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_w1v3q")
 icon = ExtResource("9_ptbja")
 icon_alignment = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Control/StartButton"]
+[node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/StartButton"]
 position = Vector2(37.5, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StartButton/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/StartButton/StaticBody2D"]
 position = Vector2(0.5, 0.25)
 shape = SubResource("RectangleShape2D_f5g6q")
 
-[node name="HowToPlayButton" type="Button" parent="Control"]
+[node name="TutorialButton" type="Button" parent="MenuButtons"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -826,15 +830,43 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_o4y3e")
 icon = ExtResource("8_6ouhu")
 icon_alignment = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Control/HowToPlayButton"]
+[node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/TutorialButton"]
 position = Vector2(76, 15)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/HowToPlayButton/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/TutorialButton/StaticBody2D"]
 position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_exyqd")
 
-[node name="ExitButton" type="Button" parent="Control"]
+[node name="SettingsButton" type="Button" parent="MenuButtons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 305.0
+offset_right = 60.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dhd0s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o4y3e")
+text = "SETTINGS"
+icon_alignment = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/SettingsButton"]
+position = Vector2(43, 12)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/SettingsButton/StaticBody2D"]
+position = Vector2(17, 2)
+shape = SubResource("RectangleShape2D_uwa3w")
+
+[node name="ExitButton" type="Button" parent="MenuButtons"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -842,9 +874,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -28.5
-offset_top = 305.0
+offset_top = 397.0
 offset_right = 28.5
-offset_bottom = 336.0
+offset_bottom = 428.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dhd0s")
@@ -853,11 +885,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_o4y3e")
 icon = ExtResource("10_kcve7")
 icon_alignment = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Control/ExitButton"]
+[node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/ExitButton"]
 position = Vector2(27.5, 15)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/ExitButton/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/ExitButton/StaticBody2D"]
 position = Vector2(0.5, 0.25)
 shape = SubResource("RectangleShape2D_tohs8")
 
@@ -865,15 +897,22 @@ shape = SubResource("RectangleShape2D_tohs8")
 one_shot = true
 autostart = true
 
-[node name="Tutorial" type="Node2D" parent="."]
+[node name="MusicManager" parent="." instance=ExtResource("27_m1d7y")]
+
+[node name="Tutorial" type="Control" parent="."]
 visible = false
 z_index = 1
-position = Vector2(960, 540)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="BG" type="Sprite2D" parent="Tutorial"]
+position = Vector2(960, 540)
 texture = ExtResource("9_ke1b8")
 
 [node name="PlayerSprite" parent="Tutorial" instance=ExtResource("10_a5kyi")]
+position = Vector2(960, 540)
 
 [node name="TorsoLight" parent="Tutorial/PlayerSprite/Torso" index="0"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
@@ -909,10 +948,11 @@ modulate = Color(0.0117647, 0.627451, 1, 1)
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
 [node name="PlayerHint" type="Panel" parent="Tutorial"]
-offset_left = -37.0
-offset_top = -40.0
-offset_right = 63.0
-offset_bottom = 40.0
+layout_mode = 0
+offset_left = 923.0
+offset_top = 500.0
+offset_right = 1023.0
+offset_bottom = 580.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ml4sl")
 
 [node name="PlayerHintLabel" type="Label" parent="Tutorial/PlayerHint"]
@@ -927,24 +967,25 @@ horizontal_alignment = 1
 
 [node name="PaletteColour0" type="Sprite2D" parent="Tutorial"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
-position = Vector2(-36, -36)
+position = Vector2(924, 504)
 texture = ExtResource("13_xc8y6")
 
 [node name="PaletteColour1" type="Sprite2D" parent="Tutorial"]
 modulate = Color(0.564706, 0.933333, 0.564706, 1)
-position = Vector2(0, -36)
+position = Vector2(960, 504)
 texture = ExtResource("13_xc8y6")
 
 [node name="PaletteColour2" type="Sprite2D" parent="Tutorial"]
 self_modulate = Color(1, 0.270588, 0, 1)
-position = Vector2(36, -36)
+position = Vector2(996, 504)
 texture = ExtResource("13_xc8y6")
 
 [node name="PaletteHint" type="Panel" parent="Tutorial"]
-offset_left = -60.0
-offset_top = -96.0
-offset_right = 60.0
-offset_bottom = -46.0
+layout_mode = 0
+offset_left = 900.0
+offset_top = 444.0
+offset_right = 1020.0
+offset_bottom = 494.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ml4sl")
 
 [node name="PaletteHintLabel" type="Label" parent="Tutorial/PaletteHint"]
@@ -958,7 +999,7 @@ Kill enemies of these colours from left to right to clear it."
 horizontal_alignment = 1
 
 [node name="BotSprite" parent="Tutorial" instance=ExtResource("14_37sdy")]
-position = Vector2(348, -150)
+position = Vector2(1308, 390)
 rotation = 1.16588
 
 [node name="BotLight1" parent="Tutorial/BotSprite" index="3"]
@@ -974,7 +1015,7 @@ modulate = Color(0.0117647, 0.627451, 1, 1)
 active = false
 
 [node name="BotSprite2" parent="Tutorial" instance=ExtResource("14_37sdy")]
-position = Vector2(243, -290)
+position = Vector2(1203, 250)
 rotation = 0.66497
 
 [node name="BotLight1" parent="Tutorial/BotSprite2" index="3"]
@@ -990,7 +1031,7 @@ modulate = Color(0, 0.929412, 0, 1)
 active = false
 
 [node name="LizardSprite" parent="Tutorial" instance=ExtResource("13_rwsq0")]
-position = Vector2(-484, -26)
+position = Vector2(476, 514)
 rotation = -1.49051
 
 [node name="LizBodyLight1" parent="Tutorial/LizardSprite" index="6"]
@@ -1006,7 +1047,7 @@ modulate = Color(1, 0.270588, 0, 1)
 modulate = Color(1, 0.270588, 0, 1)
 
 [node name="LizHead" type="Sprite2D" parent="Tutorial"]
-position = Vector2(-436, -21)
+position = Vector2(524, 519)
 rotation = -1.49051
 texture = ExtResource("16_3cfnn")
 
@@ -1016,7 +1057,7 @@ position = Vector2(1.19209e-07, -3)
 texture = ExtResource("17_wvdvq")
 
 [node name="LizardSprite2" parent="Tutorial" instance=ExtResource("13_rwsq0")]
-position = Vector2(-519, 224)
+position = Vector2(441, 764)
 rotation = -1.98618
 
 [node name="LizBodyLight1" parent="Tutorial/LizardSprite2" index="6"]
@@ -1032,7 +1073,7 @@ modulate = Color(0, 0.929412, 0, 1)
 modulate = Color(0, 0.929412, 0, 1)
 
 [node name="LizHead2" type="Sprite2D" parent="Tutorial"]
-position = Vector2(-475, 204)
+position = Vector2(485, 744)
 rotation = -1.98618
 texture = ExtResource("16_3cfnn")
 
@@ -1042,7 +1083,6 @@ position = Vector2(1.19209e-07, -3)
 texture = ExtResource("17_wvdvq")
 
 [node name="UserInterface" type="Node2D" parent="Tutorial"]
-position = Vector2(-960, -540)
 
 [node name="RoundLabel" type="Label" parent="Tutorial/UserInterface"]
 offset_left = 70.0
@@ -1199,7 +1239,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Controls" type="Node2D" parent="Tutorial"]
-position = Vector2(-0.999969, 128)
+position = Vector2(959, 668)
 scale = Vector2(0.8, 0.8)
 
 [node name="HoverTooltipDescription2" type="Panel" parent="Tutorial/Controls"]
@@ -1404,16 +1444,17 @@ texture = ExtResource("24_s1j0b")
 position = Vector2(20.9999, -92)
 texture = ExtResource("25_b51qq")
 
-[node name="ReturnToMainMenuButton" type="Button" parent="Tutorial"]
+[node name="BackButton" type="Button" parent="Tutorial"]
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -163.0
-offset_top = 428.0
-offset_right = 164.0
-offset_bottom = 458.0
+offset_left = -41.0
+offset_top = -83.0
+offset_right = 41.0
+offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("19_bj3y6")
@@ -1422,19 +1463,21 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_cnttl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_h1qs7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_syg8q")
 theme_override_styles/normal = SubResource("StyleBoxFlat_j62rw")
-text = "RETURN TO MAIN MENU"
+text = "BACK"
 
-[node name="MusicManager" parent="." instance=ExtResource("27_m1d7y")]
+[node name="Settings" parent="." instance=ExtResource("30_mfnn7")]
 
-[connection signal="mouse_entered" from="Control/StartButton" to="." method="_on_start_button_mouse_entered"]
-[connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="mouse_entered" from="Control/HowToPlayButton" to="." method="_on_how_to_play_button_mouse_entered"]
-[connection signal="pressed" from="Control/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
-[connection signal="mouse_entered" from="Control/ExitButton" to="." method="_on_exit_button_mouse_entered"]
-[connection signal="pressed" from="Control/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="mouse_entered" from="MenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="pressed" from="MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="MenuButtons/TutorialButton" to="." method="_on_tutorial_button_mouse_entered"]
+[connection signal="pressed" from="MenuButtons/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="mouse_entered" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
+[connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="MenuButtons/ExitButton" to="." method="_on_exit_button_mouse_entered"]
+[connection signal="pressed" from="MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="BulletSpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]
-[connection signal="mouse_entered" from="Tutorial/ReturnToMainMenuButton" to="." method="_on_return_to_main_menu_button_mouse_entered"]
-[connection signal="pressed" from="Tutorial/ReturnToMainMenuButton" to="." method="_on_return_to_main_menu_button_pressed"]
+[connection signal="mouse_entered" from="Tutorial/BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="pressed" from="Tutorial/BackButton" to="." method="_on_back_button_pressed"]
 
 [editable path="Tutorial/PlayerSprite"]
 [editable path="Tutorial/BotSprite"]

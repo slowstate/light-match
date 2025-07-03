@@ -19,44 +19,55 @@ script = ExtResource("1_dfh1r")
 [node name="SwellBase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_vulf1")
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [node name="BassBase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wfifd")
+bus = &"Music"
 parameters/looping = true
 
 [node name="BassBot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yaefx")
+bus = &"Music"
 parameters/looping = true
 
 [node name="BeatBase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ne3fn")
+bus = &"Music"
 parameters/looping = true
 
 [node name="BeatLiz" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_s2nfs")
+bus = &"Music"
 parameters/looping = true
 
 [node name="DrumsBase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_buk7j")
+bus = &"Music"
 parameters/looping = true
 
 [node name="DrumsTank" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_b2r42")
+bus = &"Music"
 parameters/looping = true
 
 [node name="HighlightBase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_84yca")
+bus = &"Music"
 parameters/looping = true
 
 [node name="HighlightOracle" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_t6yk1")
+bus = &"Music"
 parameters/looping = true
 
 [node name="LeadBase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_fdu5g")
+bus = &"Music"
 parameters/looping = true
 
 [node name="LeadStar" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_u8vnt")
+bus = &"Music"
 parameters/looping = true
