@@ -5,6 +5,8 @@ extends Enemy
 
 const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
 
+@onready var head: Area2D = $Head
+
 
 static func create(
 	initial_position: Vector2,
@@ -22,8 +24,16 @@ static func create(
 
 
 func _setup() -> void:
-	sprite.set_head_colour(head_colour)
+	head.set_colour(head_colour)
 
 
 func get_appendages() -> Array[Appendage]:
-	return sprite.get_appendages()
+	return [head]
+
+
+func play_move_animation(play: bool) -> void:
+	sprite.play_move_animation(play)
+
+
+func play_attack_animation() -> void:
+	head.play_attack_animation()

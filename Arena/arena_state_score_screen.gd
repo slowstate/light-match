@@ -23,6 +23,12 @@ func enter() -> void:
 	)
 	score_interface.visible = true
 
+	var log_context_data = {
+		"round_number": arena.current_round_number, "survival_time": Time.get_time_string_from_unix_time(int(time_limit_timer_elapsed_time))
+	}
+	var log_play_data = {"message": "Run ended", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
+
 
 func exit() -> void:
 	pass

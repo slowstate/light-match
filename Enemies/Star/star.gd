@@ -8,6 +8,11 @@ const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var shells: Node2D = $Shells
+@onready var shell_0: Area2D = $Shells/Shell0
+@onready var shell_1: Area2D = $Shells/Shell1
+@onready var shell_2: Area2D = $Shells/Shell2
+@onready var shell_3: Area2D = $Shells/Shell3
+@onready var shell_4: Area2D = $Shells/Shell4
 
 
 static func create(
@@ -38,3 +43,7 @@ func _rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
 	sprite.rotate(delta * new_shell_rotation_speed)
 	collision_shape_2d.rotate(delta * new_shell_rotation_speed)
 	shells.rotate(delta * new_shell_rotation_speed)
+
+
+func get_appendages() -> Array[Appendage]:
+	return [shell_0, shell_1, shell_2, shell_3, shell_4]

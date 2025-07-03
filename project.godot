@@ -12,6 +12,8 @@ config_version=5
 
 config/name="Light Match"
 run/main_scene="res://Menus/MainMenu/main_menu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="3HP/Light Match"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -27,6 +29,14 @@ Globals="*res://Common/globals.gd"
 SignalBus="*res://Common/SignalBus/signal_bus.gd"
 UpgradeManager="*res://Player/Upgrades/upgrade_manager.gd"
 SfxManager="*res://Common/AudioManagers/sfx_manager.tscn"
+Logger="*res://Common/Logging/logger.gd"
+Config="*res://Common/config.gd"
+Utiliies="*res://Common/utiliies.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="user://logs/game.log"
 
 [display]
 

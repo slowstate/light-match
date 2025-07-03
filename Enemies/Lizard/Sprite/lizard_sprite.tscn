@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cq600o70yc5is"]
+[gd_scene load_steps=15 format=3 uid="uid://cq600o70yc5is"]
 
 [ext_resource type="Texture2D" uid="uid://w6c720n418jd" path="res://Enemies/Lizard/Sprite/Liz Back Left Leg.png" id="1_3p810"]
 [ext_resource type="Script" path="res://Enemies/Lizard/Sprite/lizard_sprite.gd" id="1_6nwxu"]
@@ -10,9 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://ceultpqiret3i" path="res://Enemies/Lizard/Sprite/Liz Body Light 2.png" id="7_0q2tb"]
 [ext_resource type="Texture2D" uid="uid://b12qhsg20awie" path="res://Enemies/Lizard/Sprite/Liz Body Light 3.png" id="8_eufxr"]
 [ext_resource type="Texture2D" uid="uid://d2vdfcnrn0l76" path="res://Enemies/Lizard/Sprite/Liz Body Light 4.png" id="9_ejl8p"]
-[ext_resource type="Script" path="res://Enemies/Lizard/head.gd" id="10_cqcug"]
-[ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="11_nul76"]
-[ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="12_s8hx1"]
 
 [sub_resource type="Animation" id="Animation_8y4so"]
 resource_name = "Liz_Attach"
@@ -52,30 +49,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.305183, -0.494861, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/HeadSprite2D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.308333, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-1.5708, -1.92786, -1.33154, -1.5708]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Head/HeadCollisionShape2D:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.349066, 0.244346, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_atrwv"]
@@ -214,30 +187,6 @@ tracks/10/keys = {
 "update": 0,
 "values": [0.0, -0.245085, 0.0, 0.244346, 0.0]
 }
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Head/HeadSprite2D:rotation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.53333, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [-1.5708, -1.74533, -1.5708, -1.39626, -1.5708]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Head/HeadCollisionShape2D:rotation")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.53333, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.174533, 0.0, 0.174533, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_yipr6"]
 length = 0.001
@@ -373,30 +322,6 @@ tracks/10/keys = {
 "update": 0,
 "values": [0.0]
 }
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Head/HeadSprite2D:rotation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-1.5708]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Head/HeadCollisionShape2D:rotation")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kvh8h"]
 _data = {
@@ -475,30 +400,3 @@ texture = ExtResource("9_ejl8p")
 libraries = {
 "": SubResource("AnimationLibrary_kvh8h")
 }
-
-[node name="Head" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
-rotation = 1.5708
-collision_layer = 8
-collision_mask = 4
-script = ExtResource("10_cqcug")
-sprite = NodePath("HeadSprite2D/LizHead/LizHeadLight")
-
-[node name="HeadSprite2D" type="Sprite2D" parent="Head"]
-position = Vector2(30, 0)
-rotation = -1.5708
-scale = Vector2(0.5, 0.5)
-offset = Vector2(-0.149141, 37.3588)
-
-[node name="LizHead" type="Sprite2D" parent="Head/HeadSprite2D"]
-position = Vector2(-0.149141, 37.3588)
-scale = Vector2(2, 2)
-texture = ExtResource("11_nul76")
-
-[node name="LizHeadLight" type="Sprite2D" parent="Head/HeadSprite2D/LizHead"]
-position = Vector2(1.19209e-07, -3)
-texture = ExtResource("12_s8hx1")
-
-[node name="HeadCollisionShape2D" type="CollisionPolygon2D" parent="Head"]
-visible = false
-position = Vector2(30, 0)
-polygon = PackedVector2Array(3, 11, 3, -10, 38, 0)

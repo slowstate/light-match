@@ -129,7 +129,6 @@ offset_bottom = 90.0
 script = ExtResource("3_gmi6u")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
-[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="area_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_area_entered"]
 [connection signal="body_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_body_entered"]
 [connection signal="body_exited" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_body_exited"]

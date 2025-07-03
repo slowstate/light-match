@@ -49,12 +49,12 @@ func _physics_process(delta: float) -> void:
 		if collided_shape as Enemy != null:
 			(collided_shape as Enemy)._on_area_entered(self)
 			spawn_hit_particles()
-			_on_body_entered(collided_shape)
+			_on_area_entered(collided_shape)
 		elif collided_shape as Area2D != null:
 			if (collided_shape as Area2D).monitorable:
 				spawn_hit_particles()
 				(collided_shape as Area2D)._on_area_entered(self)
-				_on_body_entered(collided_shape)
+				_on_area_entered(collided_shape)
 			else:
 				global_position += velocity * delta
 				UpgradeManager.on_bullet_travelled_x_pixels(self, velocity.length() * delta)
@@ -71,10 +71,21 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_entered(_area: Area2D) -> void:
+	if get_tree().current_scene.name == "Arena":
+		var log_context_data = {
+			"bullet": get_script().get_global_name() + str(get_instance_id()),
+			"collider": _area.owner.get_script().get_global_name() + str(_area.owner.get_instance_id())
+		}
+		var log_play_data = {"message": "Bullet collided", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
 	queue_free()
 
 
 func _on_body_entered(_body: Node2D) -> void:
+	if get_tree().current_scene.name == "Arena":
+		var log_context_data = {"bullet": get_script().get_global_name() + str(get_instance_id()), "collider": _body}
+		var log_play_data = {"message": "Bullet collided", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
 	queue_free()
 
 

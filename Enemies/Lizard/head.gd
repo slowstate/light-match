@@ -1,5 +1,7 @@
 extends Appendage
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +11,6 @@ func _ready() -> void:
 	self.area_entered.connect(_on_area_entered)
 
 
-func _set_sprite_colour(new_colour: Globals.Colour) -> void:
-	colour = new_colour
-	set_colour(Globals.COLOUR_VISUAL_VALUE[colour])
+func play_attack_animation() -> void:
+	animation_player.stop()
+	animation_player.play("Liz_Attack")

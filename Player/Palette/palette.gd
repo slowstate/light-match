@@ -60,6 +60,15 @@ func on_palette_failed() -> void:
 	for palette_colour_sprite in palette_colour_sprites:
 		palette_colour_sprite.update_shader_rand(randf_range(-1.0, 1.0))
 
+	var palette_colours_strings = []
+	for palette_colour in palette_colours:
+		palette_colours_strings.append(Globals.COLOUR_STRING[palette_colour])
+	var log_context_data = {
+		"palette_colours": palette_colours_strings, "palette_size": palette_size, "palette_colours_remaining": palette_size - current_palette_colour_index
+	}
+	var log_play_data = {"message": "Palette failed", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
+
 
 func _on_failed_cooldown_timer_timeout() -> void:
 	UpgradeManager.on_palette_failed()
@@ -70,6 +79,14 @@ func on_palette_cleared() -> void:
 	SfxManager.play_sound("PaletteClearedSFX", -17.0, -15.0, 0.95, 1.05)
 	SignalBus.palette_cleared.emit()
 	UpgradeManager.on_palette_cleared(self)
+
+	var palette_colours_strings = []
+	for palette_colour in palette_colours:
+		palette_colours_strings.append(Globals.COLOUR_STRING[palette_colour])
+	var log_context_data = {"palette_colours": palette_colours_strings, "palette_size": palette_size}
+	var log_play_data = {"message": "Palette cleared", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
+
 	generate_new_palette()
 
 

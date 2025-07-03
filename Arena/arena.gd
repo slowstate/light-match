@@ -29,6 +29,10 @@ var palettes_cleared_this_round: int = 0
 
 
 func _ready() -> void:
+	var log_data = {"message": "Scene ready"}
+	Logger.log_info(log_data)
+	var log_play_data = {"message": "Run started"}
+	Logger.log_play_data(log_play_data)
 	time_limit_timer.start(1800)
 	animation_player.play("Arena_Lights")
 	music_manager.update_music(0.0)
@@ -88,7 +92,7 @@ func _on_timer_7890s_timeout() -> void:
 
 func _on_main_menu_button_mouse_entered() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
-	
-	
+
+
 func _on_time_limit_timer_timeout() -> void:
 	state_machine.on_child_transition("ScoreScreen")

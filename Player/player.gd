@@ -109,12 +109,16 @@ func _fire_bullet():
 	var angle: float = clamp((get_global_mouse_position() - bullet_spawn_point.global_position).angle(), gun_angle + deg_to_rad(2), gun_angle + deg_to_rad(5))
 	var new_bullet: Bullet
 	new_bullet = Bullet.create(bullet_spawn_point.global_position, angle, current_colour)
-	if new_bullet:
+	if new_bullet != null:
 		UpgradeManager.on_bullet_fired(new_bullet)
 		get_tree().root.add_child(new_bullet)
 		gun_cooldown_timer.wait_time = 0.7
 		UpgradeManager.on_gun_cooldown_start(gun_cooldown_timer)
 		gun_cooldown_timer.start()
+
+		var log_context_data = {"bullet": new_bullet.get_script().get_global_name() + str(new_bullet.get_instance_id())}
+		var log_play_data = {"message": "Bullet fired", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
 
 
 func _get_next_colour() -> void:
@@ -140,6 +144,11 @@ func change_colour(new_colour: Globals.Colour) -> void:
 		return
 	if current_colour == new_colour:
 		return
+
+	var log_context_data = {"current_gun_colour": Globals.COLOUR_STRING[current_colour], "new_gun_colour": Globals.COLOUR_STRING[new_colour]}
+	var log_play_data = {"message": "Gun colour switched", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
+
 	current_colour = new_colour
 	player_sprite.set_colour(current_colour)
 	Globals.set_crosshair_colour(current_colour)
@@ -183,25 +192,37 @@ func enable_player_upgrade_buttons(enable: bool) -> void:
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
-	player_hit()
+	player_hit(_area.owner as Enemy)
 
 
-func _on_hurt_box_body_entered(_body: Node2D) -> void:
-	player_hit()
-
-
-func player_hit() -> void:
+func player_hit(enemy: Enemy) -> void:
 	if !hit_immunity_timer.is_stopped():
 		return
+
+	var player_upgrade_strings = []
+	for player_upgrade in upgrades:
+		player_upgrade_strings.append(player_upgrade.name)
+	var log_context_data = {
+		"enemy": enemy.get_script().get_global_name() + str(enemy.get_instance_id()),
+		"player_upgrades": player_upgrade_strings,
+		"player_location": global_position
+	}
+
 	if shield_active:
+		var log_play_data = {"message": "Player shield broken", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
 		UpgradeManager.on_player_shield_break()
 		SfxManager.play_sound("ShieldHitSFX", -15.0, -13.0, 0.95, 1.05)
 		shield_active = false
 	elif upgrades.size() <= 0:
+		var log_play_data = {"message": "Player killed", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 		SignalBus.player_died.emit()
 		return
 	else:
+		var log_play_data = {"message": "Player hit", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
 		remove_upgrade(upgrades.back())
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 	UpgradeManager.on_player_hit()

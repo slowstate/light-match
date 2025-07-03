@@ -12,6 +12,8 @@ const BULLET = preload("res://Player/Bullet/bullet.tscn")
 
 
 func _ready() -> void:
+	var log_data = {"message": "Scene ready"}
+	Logger.log_info(log_data)
 	Input.set_custom_mouse_cursor(CROSSHAIR, Input.CURSOR_ARROW, Vector2(26, 17))
 	title_animation_player.play("Title_Screen")
 	tutorial.visible = false
@@ -29,12 +31,18 @@ func _on_how_to_play_button_pressed() -> void:
 	control.visible = false
 	tutorial.visible = true
 
+	var log_play_data = {"message": "How to play pressed"}
+	Logger.log_play_data(log_play_data)
+
 
 func _on_return_to_main_menu_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
 	bullet_spawn_timer.start()
 	control.visible = true
 	tutorial.visible = false
+
+	var log_play_data = {"message": "Return to main menu pressed"}
+	Logger.log_play_data(log_play_data)
 
 
 func _on_exit_button_pressed() -> void:

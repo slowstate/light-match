@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if player_is_within_distance(100.0):
-		sprite.play_attack_animation()
+		play_attack_animation()
 	move_forward(delta)
 	_update(delta)
 
@@ -62,7 +62,7 @@ func set_colour(new_colour: Globals.Colour) -> void:
 func move_forward(_delta: float) -> void:
 	if !can_move:
 		return
-	sprite.play_move_animation(true)
+	play_move_animation(true)
 	rotation = (Globals.player.global_position - global_position).angle()
 	var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - Globals.player.global_position).length() / 2000.0, 0.0, 1.0))
 	if move_timer.is_stopped():
@@ -89,13 +89,37 @@ func _on_area_entered(area: Area2D) -> void:
 	if bullet == null:
 		return
 	UpgradeManager.on_enemy_hit(bullet, self)
+
+	var log_context_data = {
+		"enemy": get_script().get_global_name() + str(get_instance_id()), "bullet": bullet.get_script().get_global_name() + str(bullet.get_instance_id())
+	}
+	var log_play_data = {}
+
 	if bullet.colour != colour:
 		SfxManager.play_sound("EnemyDeflectSFX", -5.0, -3.0, 0.95, 1.05)
+
+		log_play_data = {"message": "Enemy hit with wrong colour", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
 		return
+
 	health -= bullet.damage
 	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 	sprite.set_health(health)
+
+	log_play_data = {"message": "Enemy hit for " + str(bullet.damage) + " damage", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
+
 	if health <= 0:
+		log_play_data = {"message": "Enemy killed", "context": log_context_data}
 		UpgradeManager.on_enemy_killed(self)
 		SignalBus.emit_signal("enemy_died", self)
+		Logger.log_play_data(log_play_data)
 		queue_free()
+
+
+func play_move_animation(_play: bool) -> void:
+	pass
+
+
+func play_attack_animation() -> void:
+	pass
