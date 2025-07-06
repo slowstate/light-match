@@ -84,6 +84,7 @@ func _on_exit_button_mouse_entered() -> void:
 
 func _on_exit_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	Settings.save_user_settings()
 	get_tree().quit()
 
 

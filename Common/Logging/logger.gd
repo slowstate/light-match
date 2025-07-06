@@ -24,7 +24,7 @@ func log_error(log_data: Dictionary) -> void:
 		json_log.merge({"current_scene": String(get_tree().current_scene.name) if get_tree().current_scene != null else "None"}, true)
 	json_log.merge(log_data, true)
 	var json_string = JSON.stringify(json_log, "", false)
-	printerr(json_string)
+	print(json_string)
 
 
 func log_play_data(log_data: Dictionary) -> void:
@@ -54,4 +54,4 @@ func log_debug(log_data: Dictionary) -> void:
 		json_log.merge({"current_scene": String(get_tree().current_scene.name) if get_tree().current_scene != null else "None"}, true)
 	json_log.merge(log_data, true)
 	var json_string = JSON.stringify(json_log, "", false)
-	print_debug(json_string)
+	print(json_string)

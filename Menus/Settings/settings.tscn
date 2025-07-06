@@ -1,9 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://8p11gjdp0ijq"]
+[gd_scene load_steps=24 format=3 uid="uid://8p11gjdp0ijq"]
 
 [ext_resource type="PackedScene" uid="uid://cchxi4827hi2" path="res://Menus/Settings/volume_slider.tscn" id="1_5l60q"]
 [ext_resource type="Script" path="res://Menus/Settings/settings.gd" id="1_nbhcb"]
 [ext_resource type="Script" path="res://Menus/Settings/window_mode_picker.gd" id="2_0c5lk"]
-[ext_resource type="Script" path="res://Menus/Settings/windowed_resolution_picker.gd" id="3_e6w03"]
 [ext_resource type="Script" path="res://Menus/Settings/credits.gd" id="3_v8hf4"]
 
 [sub_resource type="Gradient" id="Gradient_7orx7"]
@@ -138,36 +137,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ri5wm")
 text = ">"
 
-[node name="WindowedResolutionPicker" type="HBoxContainer" parent="SettingsButtons"]
+[node name="IgnoreThis-Spacing" type="Control" parent="SettingsButtons"]
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
-alignment = 1
-script = ExtResource("3_e6w03")
-
-[node name="LeftButton" type="Button" parent="SettingsButtons/WindowedResolutionPicker"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_c2tyw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_0oiyo")
-text = "<"
-
-[node name="WindowedResolutionLabel" type="Label" parent="SettingsButtons/WindowedResolutionPicker"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "1920 X 1080"
-label_settings = SubResource("LabelSettings_d8670")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RightButton" type="Button" parent="SettingsButtons/WindowedResolutionPicker"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xeq87")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ri5wm")
-text = ">"
 
 [node name="MasterVolumeLabel" type="Label" parent="SettingsButtons"]
 layout_mode = 2
@@ -199,7 +171,7 @@ horizontal_alignment = 1
 layout_mode = 2
 bus_name = "SFX"
 
-[node name="IgnoreThis-Spacing" type="Control" parent="SettingsButtons"]
+[node name="IgnoreThis-Spacing2" type="Control" parent="SettingsButtons"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
@@ -211,7 +183,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ncs3v")
 text = "CREDITS"
 
-[node name="IgnoreThis-Spacing2" type="Control" parent="SettingsButtons"]
+[node name="IgnoreThis-Spacing3" type="Control" parent="SettingsButtons"]
 layout_mode = 2
 
 [node name="SettingsBackButton" type="Button" parent="SettingsButtons"]
@@ -223,7 +195,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_fgfmy")
 text = "BACK"
 
 [node name="Credits" type="Control" parent="."]
-visible = false
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
@@ -250,16 +221,7 @@ offset_right = 138.5
 offset_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "A game by 3HP
-
-
-Art by Jonathan Sim
-
-
-Music by Jonathan Wong
-
-
-Programming by Vincent Wong"
+text = "A game by 3HP"
 label_settings = SubResource("LabelSettings_qtrof")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -285,8 +247,6 @@ text = "BACK"
 
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/LeftButton" to="SettingsButtons/WindowModePicker" method="_on_left_button_pressed"]
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/RightButton" to="SettingsButtons/WindowModePicker" method="_on_right_button_pressed"]
-[connection signal="pressed" from="SettingsButtons/WindowedResolutionPicker/LeftButton" to="SettingsButtons/WindowedResolutionPicker" method="_on_left_button_pressed"]
-[connection signal="pressed" from="SettingsButtons/WindowedResolutionPicker/RightButton" to="SettingsButtons/WindowedResolutionPicker" method="_on_right_button_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
