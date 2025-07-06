@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Light Match"
+config/version="0.3"
 run/main_scene="res://Menus/MainMenu/main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="3HP/Light Match"
@@ -32,6 +33,7 @@ SfxManager="*res://Common/AudioManagers/sfx_manager.tscn"
 Logger="*res://Common/Logging/logger.gd"
 Config="*res://Common/config.gd"
 Utiliies="*res://Common/utiliies.gd"
+Settings="*res://Common/settings.gd"
 
 [debug]
 
@@ -42,7 +44,7 @@ file_logging/log_path="user://logs/game.log"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
@@ -60,6 +62,7 @@ Stars=""
 [gui]
 
 theme/custom_font="res://Common/Fonts/exo/Exo-Medium.otf"
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

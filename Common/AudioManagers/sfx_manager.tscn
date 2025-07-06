@@ -20,39 +20,52 @@ script = ExtResource("1_60cnr")
 
 [node name="ChangeGunSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_bjo5d")
+bus = &"SFX"
 
 [node name="ButtonClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qhck8")
+bus = &"SFX"
 
 [node name="EnemyDeathSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_w10d7")
+bus = &"SFX"
 
 [node name="ShieldHitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_wj64p")
+bus = &"SFX"
 
 [node name="PlayerHitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_2kafg")
+bus = &"SFX"
 
 [node name="EnemyHitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_46ew6")
+bus = &"SFX"
 
 [node name="PaletteClearedSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_5xstg")
+bus = &"SFX"
 
 [node name="PaletteFailSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_eixmj")
+bus = &"SFX"
 
 [node name="PaletteSuccessSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_6xeby")
+bus = &"SFX"
 
 [node name="ShootingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_b3vy7")
+bus = &"SFX"
 
 [node name="AddUpgradeSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_pi8vw")
+bus = &"SFX"
 
 [node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_dryqb")
+bus = &"SFX"
 
 [node name="EnemyDeflectSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_u2ty2")
+bus = &"SFX"

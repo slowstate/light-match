@@ -1,0 +1,295 @@
+[gd_scene load_steps=25 format=3 uid="uid://8p11gjdp0ijq"]
+
+[ext_resource type="PackedScene" uid="uid://cchxi4827hi2" path="res://Menus/Settings/volume_slider.tscn" id="1_5l60q"]
+[ext_resource type="Script" path="res://Menus/Settings/settings.gd" id="1_nbhcb"]
+[ext_resource type="Script" path="res://Menus/Settings/window_mode_picker.gd" id="2_0c5lk"]
+[ext_resource type="Script" path="res://Menus/Settings/windowed_resolution_picker.gd" id="3_e6w03"]
+[ext_resource type="Script" path="res://Menus/Settings/credits.gd" id="3_v8hf4"]
+
+[sub_resource type="Gradient" id="Gradient_7orx7"]
+offsets = PackedFloat32Array(0.995, 0.998, 1)
+colors = PackedColorArray(0, 0, 0, 0.784314, 1, 1, 1, 0.196078, 0, 0, 0, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdq2v"]
+gradient = SubResource("Gradient_7orx7")
+width = 800
+height = 600
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q71aq"]
+font_size = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2tyw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7uq8"]
+bg_color = Color(1, 1, 1, 0.0431373)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0oiyo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d8670"]
+font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xeq87"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ri5wm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hku03"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncs3v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbp21"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgfmy"]
+
+[sub_resource type="Gradient" id="Gradient_10eef"]
+offsets = PackedFloat32Array(0.995, 0.998, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.196078, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bl27k"]
+gradient = SubResource("Gradient_10eef")
+width = 600
+height = 500
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qtrof"]
+font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_icvkk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2yk0"]
+bg_color = Color(1, 1, 1, 0.0431373)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_onyix"]
+
+[node name="Settings" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 560.0
+offset_top = 240.0
+offset_right = 1360.0
+offset_bottom = 840.0
+script = ExtResource("1_nbhcb")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_gdq2v")
+centered = false
+
+[node name="SettingsButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.5
+offset_top = -224.5
+offset_right = 142.5
+offset_bottom = 224.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WindowModeLabel" type="Label" parent="SettingsButtons"]
+layout_mode = 2
+text = "WINDOW MODE"
+label_settings = SubResource("LabelSettings_q71aq")
+horizontal_alignment = 1
+
+[node name="WindowModePicker" type="HBoxContainer" parent="SettingsButtons"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("2_0c5lk")
+
+[node name="LeftButton" type="Button" parent="SettingsButtons/WindowModePicker"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c2tyw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0oiyo")
+text = "<"
+
+[node name="WindowModeLabel" type="Label" parent="SettingsButtons/WindowModePicker"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "WINDOWED"
+label_settings = SubResource("LabelSettings_d8670")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightButton" type="Button" parent="SettingsButtons/WindowModePicker"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xeq87")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ri5wm")
+text = ">"
+
+[node name="WindowedResolutionPicker" type="HBoxContainer" parent="SettingsButtons"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("3_e6w03")
+
+[node name="LeftButton" type="Button" parent="SettingsButtons/WindowedResolutionPicker"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c2tyw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0oiyo")
+text = "<"
+
+[node name="WindowedResolutionLabel" type="Label" parent="SettingsButtons/WindowedResolutionPicker"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "1920 X 1080"
+label_settings = SubResource("LabelSettings_d8670")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightButton" type="Button" parent="SettingsButtons/WindowedResolutionPicker"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xeq87")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ri5wm")
+text = ">"
+
+[node name="MasterVolumeLabel" type="Label" parent="SettingsButtons"]
+layout_mode = 2
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_q71aq")
+horizontal_alignment = 1
+
+[node name="MasterVolumeSlider" parent="SettingsButtons" instance=ExtResource("1_5l60q")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="MusicVolumeLabel" type="Label" parent="SettingsButtons"]
+layout_mode = 2
+text = "MUSIC VOLUME"
+label_settings = SubResource("LabelSettings_q71aq")
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" parent="SettingsButtons" instance=ExtResource("1_5l60q")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="SoundEffectsLabel" type="Label" parent="SettingsButtons"]
+layout_mode = 2
+text = "SOUND EFFECTS"
+label_settings = SubResource("LabelSettings_q71aq")
+horizontal_alignment = 1
+
+[node name="SFXVolumeSlider" parent="SettingsButtons" instance=ExtResource("1_5l60q")]
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="IgnoreThis-Spacing" type="Control" parent="SettingsButtons"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="CreditsButton" type="Button" parent="SettingsButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hku03")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ncs3v")
+text = "CREDITS"
+
+[node name="IgnoreThis-Spacing2" type="Control" parent="SettingsButtons"]
+layout_mode = 2
+
+[node name="SettingsBackButton" type="Button" parent="SettingsButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hbp21")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fgfmy")
+text = "BACK"
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 700.0
+offset_bottom = 550.0
+script = ExtResource("3_v8hf4")
+
+[node name="BG" type="Sprite2D" parent="Credits"]
+texture = SubResource("GradientTexture2D_bl27k")
+centered = false
+
+[node name="3HPLabel" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.5
+offset_top = -163.0
+offset_right = 138.5
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A game by 3HP
+
+
+Art by Jonathan Sim
+
+
+Music by Jonathan Wong
+
+
+Programming by Vincent Wong"
+label_settings = SubResource("LabelSettings_qtrof")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsBackButton" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = 147.0
+offset_right = 39.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_icvkk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2yk0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_onyix")
+text = "BACK"
+
+[connection signal="pressed" from="SettingsButtons/WindowModePicker/LeftButton" to="SettingsButtons/WindowModePicker" method="_on_left_button_pressed"]
+[connection signal="pressed" from="SettingsButtons/WindowModePicker/RightButton" to="SettingsButtons/WindowModePicker" method="_on_right_button_pressed"]
+[connection signal="pressed" from="SettingsButtons/WindowedResolutionPicker/LeftButton" to="SettingsButtons/WindowedResolutionPicker" method="_on_left_button_pressed"]
+[connection signal="pressed" from="SettingsButtons/WindowedResolutionPicker/RightButton" to="SettingsButtons/WindowedResolutionPicker" method="_on_right_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
+[connection signal="mouse_entered" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_mouse_entered"]
+[connection signal="pressed" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_pressed"]

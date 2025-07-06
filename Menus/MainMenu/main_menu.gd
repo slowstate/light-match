@@ -6,9 +6,9 @@ const BULLET = preload("res://Player/Bullet/bullet.tscn")
 
 @onready var title_animation_player: AnimationPlayer = $TitleAnimationPlayer
 @onready var bullet_spawn_timer: Timer = $BulletSpawnTimer
-@onready var tutorial: Node2D = $Tutorial
 @onready var music_manager: Node2D = $MusicManager
-@onready var control: Control = $Control
+@onready var tutorial: Control = $Tutorial
+@onready var settings: Control = $Settings
 
 
 func _ready() -> void:
@@ -17,7 +17,13 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(CROSSHAIR, Input.CURSOR_ARROW, Vector2(26, 17))
 	title_animation_player.play("Title_Screen")
 	tutorial.visible = false
+	settings.visible = false
 	music_manager.update_music(0.0)
+
+
+#region Start
+func _on_start_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
 
 
 func _on_start_button_pressed() -> void:
@@ -25,29 +31,64 @@ func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_packed(ARENA)
 
 
-func _on_how_to_play_button_pressed() -> void:
+#endregion
+
+
+#region Tutorial
+func _on_tutorial_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
+
+
+func _on_tutorial_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
-	bullet_spawn_timer.stop()
-	control.visible = false
 	tutorial.visible = true
+	bullet_spawn_timer.stop()
 
 	var log_play_data = {"message": "How to play pressed"}
 	Logger.log_play_data(log_play_data)
 
 
-func _on_return_to_main_menu_button_pressed() -> void:
+func _on_back_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
+
+
+func _on_back_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
-	bullet_spawn_timer.start()
-	control.visible = true
 	tutorial.visible = false
+	bullet_spawn_timer.start()
 
 	var log_play_data = {"message": "Return to main menu pressed"}
 	Logger.log_play_data(log_play_data)
 
 
+#endregion
+
+
+#region Settings
+func _on_settings_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
+
+
+func _on_settings_button_pressed() -> void:
+	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	settings.visible = true
+
+
+#endregion
+
+
+#region Exit
+func _on_exit_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
+
+
 func _on_exit_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	Settings.save_user_settings()
 	get_tree().quit()
+
+
+#endregion
 
 
 func _randomly_spawn_bullet() -> void:
@@ -69,19 +110,3 @@ func _randomly_spawn_bullet() -> void:
 func _on_bullet_spawn_timer_timeout() -> void:
 	_randomly_spawn_bullet()
 	bullet_spawn_timer.start(randf_range(0.2, 3.0))
-
-
-func _on_start_button_mouse_entered() -> void:
-	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
-
-
-func _on_how_to_play_button_mouse_entered() -> void:
-	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
-
-
-func _on_exit_button_mouse_entered() -> void:
-	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
-
-
-func _on_return_to_main_menu_button_mouse_entered() -> void:
-	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)

@@ -73,8 +73,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(_area: Area2D) -> void:
 	if get_tree().current_scene.name == "Arena":
 		var log_context_data = {
-			"bullet": get_script().get_global_name() + str(get_instance_id()),
-			"collider": _area.owner.get_script().get_global_name() + str(_area.owner.get_instance_id())
+			"bullet": get_script().get_global_name() + str(get_instance_id()), "collider": _area.owner.name + str(_area.owner.get_instance_id())
 		}
 		var log_play_data = {"message": "Bullet collided", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
@@ -83,7 +82,7 @@ func _on_area_entered(_area: Area2D) -> void:
 
 func _on_body_entered(_body: Node2D) -> void:
 	if get_tree().current_scene.name == "Arena":
-		var log_context_data = {"bullet": get_script().get_global_name() + str(get_instance_id()), "collider": _body}
+		var log_context_data = {"bullet": get_script().get_global_name() + str(get_instance_id()), "collider": _body.name + str(_body.get_instance_id())}
 		var log_play_data = {"message": "Bullet collided", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 	queue_free()
