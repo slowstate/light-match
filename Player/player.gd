@@ -8,6 +8,7 @@ var base_move_speed := 500.0
 var move_speed := base_move_speed
 var current_colour := Globals.Colour.BLUE
 var upgrades: Array[Upgrade] = []
+var variables: Array[Variable] = []
 var controls_enabled: bool = true
 var shield_active: bool = false
 
@@ -163,6 +164,11 @@ func add_upgrade(new_upgrade: Upgrade) -> void:
 		upgrades.push_back(new_upgrade)
 		update_player_upgrades_interface()
 		UpgradeManager.on_upgrade_added(new_upgrade)
+
+
+func add_variable(new_variable: Variable) -> void:
+	variables.push_back(new_variable)
+	VariableManager.on_variable_added(new_variable)
 
 
 func remove_upgrade(upgrade: Upgrade) -> void:
