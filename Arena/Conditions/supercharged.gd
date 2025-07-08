@@ -1,4 +1,4 @@
-extends Variable
+extends Condition
 
 var speed_increase: float
 

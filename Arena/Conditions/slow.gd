@@ -1,4 +1,4 @@
-extends Variable
+extends Condition
 
 var speed_decrease: float
 
@@ -11,6 +11,6 @@ func _init() -> void:
 	points_per_round = 1 if speed_decrease < 0.03 else 2
 
 
-func on_variable_added(new_variable: Variable) -> void:
-	if new_variable == self:
+func on_condition_added(new_condition: Condition) -> void:
+	if new_condition == self:
 		Globals.player.move_speed *= 1 - speed_decrease

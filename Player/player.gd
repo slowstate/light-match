@@ -2,13 +2,17 @@ class_name Player
 extends CharacterBody2D
 
 const PLAYER_UPGRADE_BUTTON = preload("res://Player/Upgrades/player_upgrade_button.tscn")
+const CONDITION_LABEL = preload("res://Player/Conditions/condition_label.tscn")
 const GUN_PARTICLES = preload("res://Player/VFX/gun_particles.tscn")
 
 var base_move_speed := 500.0
 var move_speed := base_move_speed
 var current_colour := Globals.Colour.BLUE
+
 var upgrades: Array[Upgrade] = []
-var variables: Array[Variable] = []
+var conditions: Array[Condition] = []
+var points: int = 2
+
 var controls_enabled: bool = true
 var shield_active: bool = false
 
@@ -16,19 +20,26 @@ var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
 var hit_immunity_time: float = 1.0
 
-@onready var player_sprite: PlayerSprite = $PlayerSprite
+@onready var camera_2d: Camera2D = $Camera2D
 @onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
 @onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var hurt_box: Area2D = $HurtBox
+
+@onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var palette: Palette = $Palette
+@onready var shield_sprite: Sprite2D = $ShieldSprite
+
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
-@onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var hit_immunity_timer: Timer = $HitImmunityTimer
-@onready var hurt_box: Area2D = $HurtBox
-@onready var shield_sprite: Sprite2D = $ShieldSprite
+
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
+@onready var player_conditions_interface: VBoxContainer = $PlayerInterface/PlayerConditionsInterface
+@onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
+@onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
+
+const SprayPaint = preload("res://Player/Upgrades/Meta/spray_paint.gd")
 
 
 func _init() -> void:
@@ -39,6 +50,8 @@ func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
+	player_points_label.text = str(points)
+	add_upgrade(SprayPaint.new())
 
 
 func _process(_delta: float) -> void:
@@ -166,11 +179,6 @@ func add_upgrade(new_upgrade: Upgrade) -> void:
 		UpgradeManager.on_upgrade_added(new_upgrade)
 
 
-func add_variable(new_variable: Variable) -> void:
-	variables.push_back(new_variable)
-	VariableManager.on_variable_added(new_variable)
-
-
 func remove_upgrade(upgrade: Upgrade) -> void:
 	UpgradeManager.on_upgrade_removed(upgrade)
 	if upgrades.find(upgrade) >= 0:
@@ -195,6 +203,34 @@ func enable_player_upgrade_buttons(enable: bool) -> void:
 	for upgrade_button in player_upgrades_interface.get_child_count():
 		var button = player_upgrades_interface.get_child(upgrade_button) as PlayerUpgradeButton
 		button.disabled = !enable
+
+
+func add_condition(new_condition: Condition) -> void:
+	conditions.push_back(new_condition)
+	update_player_conditions_interface()
+	ConditionManager.on_condition_added(new_condition)
+
+
+func update_player_conditions_interface() -> void:
+	# Clear all player conditions displayed in the interface
+	for condition_label in player_conditions_interface.get_children():
+		player_conditions_interface.remove_child(condition_label)
+		condition_label.queue_free()
+
+	for condition in conditions:
+		var new_condition_label := CONDITION_LABEL.instantiate()
+		new_condition_label.condition = condition
+		player_conditions_interface.add_child(new_condition_label)
+
+
+func add_end_of_round_points() -> void:
+	for condition in conditions:
+		add_points(condition.points_per_round)
+
+
+func add_points(points_to_add: int) -> void:
+	points += points_to_add
+	player_points_label.text = str(points)
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:

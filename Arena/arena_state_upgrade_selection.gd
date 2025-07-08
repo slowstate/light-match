@@ -1,4 +1,4 @@
-class_name UpgradeSelectionState
+class_name ConditionAndAdaptationSelectionState
 extends State
 
 const UPGRADE_SELECTION_MENU = preload("res://Menus/UpgradeSelectionMenu/upgrade_selection_menu.tscn")
@@ -12,15 +12,11 @@ var upgrade_selection_menu
 func enter() -> void:
 	arena = owner as Arena
 	assert(arena != null, "Arena is null.")
-	var number_of_upgrade_options: int = 2
-	if arena.palettes_cleared_this_round >= arena.palette_milestone_1_this_round:
-		number_of_upgrade_options += 1
-	if arena.palettes_cleared_this_round >= arena.palette_milestone_2_this_round:
-		number_of_upgrade_options += 1
-	upgrade_selection_menu = UpgradeSelectionMenu.create(number_of_upgrade_options)
+	upgrade_selection_menu = UPGRADE_SELECTION_MENU.instantiate()
 	upgrade_selection_menu.upgrade_selection_completed.connect(on_upgrade_selected)
 	upgrade_selection_interface.add_child.call_deferred(upgrade_selection_menu)
 	Globals.player.controls_enabled = false
+	Globals.player.add_end_of_round_points()
 
 
 func exit() -> void:

@@ -34,7 +34,7 @@ Logger="*res://Common/Logging/logger.gd"
 Config="*res://Common/config.gd"
 Utiliies="*res://Common/utiliies.gd"
 Settings="*res://Common/settings.gd"
-VariableManager="*res://Arena/Variables/variable_manager.gd"
+ConditionManager="*res://Arena/Conditions/condition_manager.gd"
 
 [debug]
 

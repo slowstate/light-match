@@ -1,4 +1,4 @@
-class_name Variable
+class_name Condition
 extends Resource
 
 var name: String
@@ -7,7 +7,7 @@ var points_per_round: int
 
 
 #region
-func on_variable_added(variable: Variable) -> void:
+func on_condition_added(condition: Condition) -> void:
 	pass
 
 

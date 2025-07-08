@@ -1,4 +1,4 @@
-extends Variable
+extends Condition
 
 var spawn_increase: float
 

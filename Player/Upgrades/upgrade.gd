@@ -9,6 +9,7 @@ var name: String
 var description: String
 var icon
 var is_active: bool = false
+var points_cost: int = 1
 
 
 #region Util

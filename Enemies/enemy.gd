@@ -33,7 +33,7 @@ func _ready() -> void:
 
 	sprite.set_health(health)
 	set_colour(colour)
-	VariableManager.on_enemy_spawned(self)
+	ConditionManager.on_enemy_spawned(self)
 	UpgradeManager.on_enemy_spawned(self)
 	_setup()
 

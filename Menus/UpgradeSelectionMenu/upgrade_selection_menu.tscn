@@ -35,6 +35,36 @@ z_index = 1
 position = Vector2(960, 540)
 script = ExtResource("1_o275p")
 
+[node name="ReplaceUpgradeLabel" type="Label" parent="."]
+offset_left = -605.0
+offset_top = -400.0
+offset_right = -299.0
+offset_bottom = -375.0
+text = "Select an upgrade to replace"
+label_settings = SubResource("LabelSettings_mns33")
+script = ExtResource("2_2jnw8")
+
+[node name="ConditionOptions" type="HBoxContainer" parent="."]
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = -260.0
+alignment = 1
+
+[node name="UpgradesTriggerOrderLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -438.0
+offset_top = -11.0
+offset_right = 438.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Upgrades trigger from left to right. New upgrades will be added to the right."
+label_settings = SubResource("LabelSettings_bnji2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="UpgradeOptions" type="HBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,44 +72,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -603.0
-offset_top = -150.0
+offset_top = 109.0
 offset_right = 609.0
-offset_bottom = 150.0
+offset_bottom = 409.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="ReplaceUpgradeLabel" type="Label" parent="."]
-offset_left = -605.0
-offset_top = -400.0
-offset_right = -385.0
-offset_bottom = -377.0
-text = "Select an upgrade to replace"
-label_settings = SubResource("LabelSettings_mns33")
-script = ExtResource("2_2jnw8")
-
-[node name="UpgradesTriggerOrderLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -438.0
-offset_top = -270.0
-offset_right = 438.0
-offset_bottom = -236.0
-grow_horizontal = 2
-text = "Upgrades trigger from left to right. New upgrades will be added to the right."
-label_settings = SubResource("LabelSettings_bnji2")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Timer" type="Timer" parent="."]
-
-[node name="SkipBG" type="Sprite2D" parent="."]
-position = Vector2(0, 200)
+[node name="ContinueBG" type="Sprite2D" parent="."]
+position = Vector2(0, 459)
 texture = ExtResource("3_44586")
 
-[node name="SkipButton" type="Button" parent="SkipBG"]
+[node name="ContinueButton" type="Button" parent="ContinueBG"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -97,7 +102,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_ff82b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_40w13")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ss61u")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_omnuu")
-text = "Skip"
+text = "Continue"
 
-[connection signal="mouse_entered" from="SkipBG/SkipButton" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="SkipBG/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="mouse_entered" from="ContinueBG/ContinueButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="ContinueBG/ContinueButton" to="." method="_on_continue_button_pressed"]

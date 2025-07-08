@@ -24,12 +24,7 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iceqr"]
-bg_color = Color(0.6, 0.6, 0.6, 0.298039)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0qix"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpps3"]
 bg_color = Color(1, 1, 1, 0.0666667)
@@ -129,10 +124,16 @@ offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_vodsy")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_iceqr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_h0qix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jpps3")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_judh2")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_r5ord")
 
+[node name="InitialDisabledTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="InitialDisabledTimer" to="." method="_on_initial_disabled_timer_timeout"]

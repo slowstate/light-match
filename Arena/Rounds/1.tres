@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_o2nux")
-total_enemies_to_spawn = 10
+total_enemies_to_spawn = 1
 spawn_bots = true
 spawn_lizards = false
 spawn_tanks = false
