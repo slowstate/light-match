@@ -87,7 +87,7 @@ func on_upgrade_option_selected(selected_upgrade_option: UpgradeOption):
 		var log_play_data = {"message": "Upgrade selected", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 
-		selected_upgrade_option.set_visibility(false)
+		selected_upgrade_option.set_purchased()
 		Globals.player.add_upgrade(selected_upgrade_option.upgrade)
 		Globals.player.add_points(-selected_upgrade_option.upgrade.points_cost)
 		disable_upgrade_options_that_cannot_be_afforded()
@@ -102,7 +102,7 @@ func _on_upgrade_removed(_upgrade: Upgrade) -> void:
 	var log_play_data = {"message": "Upgrade selected", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
 
-	currently_selected_upgrade_option.set_visibility(false)
+	currently_selected_upgrade_option.set_purchased()
 	Globals.player.add_upgrade(currently_selected_upgrade_option.upgrade)
 	Globals.player.add_points(-currently_selected_upgrade_option.upgrade.points_cost)
 	disable_upgrade_options_that_cannot_be_afforded()

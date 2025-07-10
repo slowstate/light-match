@@ -8,6 +8,7 @@ const UPGRADE_BOX_2 = preload("res://Menus/UpgradeSelectionMenu/UpgradeOption/Up
 const UPGRADE_BOX_3 = preload("res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Box 3.png")
 
 var upgrade: Upgrade
+var purchased: bool = false
 
 @onready var upgrade_option_bg: Sprite2D = $UpgradeOptionBG
 @onready var upgrade_option_name_label: Label = $UpgradeOptionNameLabel
@@ -15,10 +16,12 @@ var upgrade: Upgrade
 @onready var upgrade_icon: Sprite2D = $UpgradeHex/UpgradeIcon
 @onready var points_cost_label: Label = $PointsCostLabel
 @onready var button: Button = $Button
+@onready var applied_bg: Sprite2D = $AppliedBG
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	applied_bg.visible = false
 	match randi() % 3:
 		0:
 			upgrade_option_bg.texture = UPGRADE_BOX_1
@@ -40,14 +43,18 @@ func set_upgrade(new_upgrade: Upgrade) -> void:
 	upgrade = new_upgrade
 
 
-func set_visibility(set_visibility: bool) -> void:
-	for child in get_children():
-		child.visible = false
-
-
 func disabled(set_disabled: bool) -> void:
+	if purchased:
+		return
 	button.disabled = set_disabled
 	button.focus_mode = FOCUS_NONE
+
+
+func set_purchased() -> void:
+	button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.focus_mode = Control.FOCUS_NONE
+	button.has_focus()
+	applied_bg.visible = true
 
 
 func _on_button_pressed() -> void:

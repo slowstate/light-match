@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3t3hwl1hgtb1"]
+[gd_scene load_steps=11 format=3 uid="uid://c3t3hwl1hgtb1"]
 
 [ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/ConditionOption/condition_option.gd" id="1_c1rt6"]
 
@@ -10,6 +10,20 @@ colors = PackedColorArray(0, 0.372549, 1, 0.298039)
 gradient = SubResource("Gradient_gxsy6")
 width = 300
 height = 200
+
+[sub_resource type="Gradient" id="Gradient_vgj5g"]
+offsets = PackedFloat32Array(0.422311, 0.673307)
+colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2qhcb"]
+gradient = SubResource("Gradient_vgj5g")
+width = 280
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_38mgn"]
+font_size = 32
+font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0a4je"]
 
@@ -88,6 +102,20 @@ offset_bottom = 58.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "+1 POINTs per Test"
+
+[node name="AppliedBG" type="Sprite2D" parent="."]
+position = Vector2(150, 100)
+rotation = -0.174533
+scale = Vector2(1, 1)
+texture = SubResource("GradientTexture2D_2qhcb")
+
+[node name="AppliedLabel" type="Label" parent="AppliedBG"]
+offset_left = -62.0
+offset_top = -15.0
+offset_right = 61.0
+offset_bottom = 18.0
+text = "APPLIED"
+label_settings = SubResource("LabelSettings_38mgn")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

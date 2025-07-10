@@ -3,7 +3,7 @@ extends Resource
 
 var name: String
 var description: String
-var points_per_round: int
+var points_per_round: int = 1
 
 
 #region
