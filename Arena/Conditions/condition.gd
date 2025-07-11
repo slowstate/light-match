@@ -17,4 +17,8 @@ func on_round_loaded(round: Round) -> void:
 
 func on_enemy_spawned(enemy: Enemy) -> void:
 	pass
+
+
+func on_enemy_hit(bullet: Bullet, enemy: Enemy) -> void:
+	pass
 #endregion

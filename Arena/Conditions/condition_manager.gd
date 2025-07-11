@@ -1,10 +1,10 @@
 extends Node
 
-const Slow = preload("res://Arena/Conditions/slow.gd")
+const Shield = preload("res://Arena/Conditions/shield.gd")
 const Supercharged = preload("res://Arena/Conditions/supercharged.gd")
 const Swarm = preload("res://Arena/Conditions/swarm.gd")
 
-var ALL_CONDITIONS = [Slow, Supercharged, Swarm]
+var ALL_CONDITIONS = [Shield, Supercharged, Swarm]
 
 
 #region
@@ -21,6 +21,11 @@ func on_round_loaded(round: Round) -> void:
 func on_enemy_spawned(enemy: Enemy) -> void:
 	for condition in get_player_conditions():
 		condition.on_enemy_spawned(enemy)
+
+
+func on_enemy_hit(bullet: Bullet, enemy: Enemy) -> void:
+	for condition in get_player_conditions():
+		condition.on_enemy_hit(bullet, enemy)
 
 
 #endregion

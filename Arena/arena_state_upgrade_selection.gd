@@ -12,6 +12,7 @@ var upgrade_selection_menu
 func enter() -> void:
 	arena = owner as Arena
 	assert(arena != null, "Arena is null.")
+	arena.current_round_number += 1
 	upgrade_selection_menu = UPGRADE_SELECTION_MENU.instantiate()
 	upgrade_selection_menu.upgrade_selection_completed.connect(on_upgrade_selected)
 	upgrade_selection_interface.add_child.call_deferred(upgrade_selection_menu)
@@ -32,5 +33,4 @@ func physics_update(_delta: float) -> void:
 
 
 func on_upgrade_selected() -> void:
-	arena.current_round_number += 1
 	transition.emit("RoundActive")

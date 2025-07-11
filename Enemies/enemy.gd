@@ -2,6 +2,8 @@ class_name Enemy
 extends RigidBody2D
 
 @export var colour: Globals.Colour = Globals.Colour.BLUE
+@export var max_health := 1
+@export var base_health := 1
 @export var health := 1
 @export var damage := 1
 @export var move_speed := 300.0
@@ -12,8 +14,10 @@ var knocked_back: bool = false
 var knock_back_position: Vector2
 var knock_back_distance: float
 var knock_back_speed: float = 300.0
-
-@onready var move_timer: Timer
+var move_timer: Timer
+var immunity_timer: Timer
+var regen_timer: Timer
+var health_regen: int = 0
 
 
 # This function should be overriden by inheriting classes; no code should be added to this class
@@ -30,7 +34,15 @@ func _ready() -> void:
 	move_timer = Timer.new()
 	move_timer.one_shot = true
 	add_child(move_timer)
+	immunity_timer = Timer.new()
+	immunity_timer.one_shot = true
+	add_child(immunity_timer)
+	regen_timer = Timer.new()
+	regen_timer.one_shot = true
+	regen_timer.timeout.connect(_on_regen_timer_timeout)
+	add_child(regen_timer)
 
+	health = base_health
 	sprite.set_health(health)
 	set_colour(colour)
 	ConditionManager.on_enemy_spawned(self)
@@ -86,10 +98,14 @@ func get_appendages() -> Array[Appendage]:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	if !immunity_timer.is_stopped():
+		return
 	var bullet = area as Bullet
 	if bullet == null:
 		return
+
 	UpgradeManager.on_enemy_hit(bullet, self)
+	ConditionManager.on_enemy_hit(bullet, self)
 
 	var log_context_data = {
 		"enemy": get_script().get_global_name() + str(get_instance_id()), "bullet": bullet.get_script().get_global_name() + str(bullet.get_instance_id())
@@ -116,6 +132,12 @@ func _on_area_entered(area: Area2D) -> void:
 		SignalBus.emit_signal("enemy_died", self)
 		Logger.log_play_data(log_play_data)
 		queue_free()
+
+
+func _on_regen_timer_timeout() -> void:
+	if health < base_health:
+		health += 1
+		sprite.set_health(health)
 
 
 func play_move_animation(_play: bool) -> void:

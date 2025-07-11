@@ -7,5 +7,5 @@ func set_colour(colour: Globals.Colour) -> void:
 	star_light_6.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 
 
-func set_health(_health: int) -> void:
-	star_light_6.visible = true
+func set_health(health: int) -> void:
+	star_light_6.visible = false if health < 1 else true

@@ -23,7 +23,8 @@ static func create(
 ) -> Oracle:
 	var new_oracle: Oracle = ORACLE.instantiate()
 	new_oracle.global_position = initial_position
-	new_oracle.health = initial_health
+	new_oracle.base_health = initial_health
+	new_oracle.max_health = 3
 	new_oracle.colour = initial_colour
 	new_oracle.orb_colour = initial_orb_colour
 	new_oracle.move_speed = randf_range(150.0, 200.0)

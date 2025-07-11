@@ -5,6 +5,8 @@ const PLAYER_UPGRADE_BUTTON = preload("res://Player/Upgrades/player_upgrade_butt
 const CONDITION_LABEL = preload("res://Player/Conditions/condition_label.tscn")
 const GUN_PARTICLES = preload("res://Player/VFX/gun_particles.tscn")
 
+var base_health := 3
+var health: int
 var base_move_speed := 500.0
 var move_speed := base_move_speed
 var current_colour := Globals.Colour.BLUE
@@ -47,11 +49,11 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	health = base_health
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
-	add_upgrade(SprayPaint.new())
 
 
 func _process(_delta: float) -> void:
@@ -250,25 +252,28 @@ func player_hit(enemy: Enemy) -> void:
 		"player_location": global_position
 	}
 
+	UpgradeManager.on_player_hit()
+	hit_immunity_timer.start(hit_immunity_time)
+
 	if shield_active:
 		var log_play_data = {"message": "Player shield broken", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 		UpgradeManager.on_player_shield_break()
 		SfxManager.play_sound("ShieldHitSFX", -15.0, -13.0, 0.95, 1.05)
 		shield_active = false
-	elif upgrades.size() <= 0:
-		var log_play_data = {"message": "Player killed", "context": log_context_data}
+		return
+
+	health -= enemy.damage
+	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
+	SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
+	var log_play_data = {"message": "Player hit", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
+
+	if health <= 0:
+		log_play_data = {"message": "Player killed", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 		SignalBus.player_died.emit()
-		return
-	else:
-		var log_play_data = {"message": "Player hit", "context": log_context_data}
-		Logger.log_play_data(log_play_data)
-		remove_upgrade(upgrades.back())
-		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
-	UpgradeManager.on_player_hit()
-	hit_immunity_timer.start(hit_immunity_time)
 
 
 func game_over_sequence() -> void:

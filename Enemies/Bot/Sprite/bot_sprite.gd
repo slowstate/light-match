@@ -27,9 +27,6 @@ func set_colour(colour: Globals.Colour) -> void:
 
 
 func set_health(health: int) -> void:
-	if health < 1:
-		bot_light_1.visible = false
-	if health < 2:
-		bot_light_2.visible = false
-	if health < 3:
-		bot_light_3.visible = false
+	bot_light_1.visible = false if health < 1 else true
+	bot_light_2.visible = false if health < 2 else true
+	bot_light_3.visible = false if health < 3 else true
