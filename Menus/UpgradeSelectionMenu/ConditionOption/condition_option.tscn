@@ -64,14 +64,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.5
-offset_top = -48.5
-offset_right = 58.5
-offset_bottom = -31.5
+offset_left = -125.0
+offset_top = -48.0
+offset_right = 125.0
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "SUPERCHARGED"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="DescriptionLabel" type="Label" parent="."]
 layout_mode = 1
@@ -80,13 +81,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -8.5
-offset_right = 95.0
-offset_bottom = 8.5
+offset_left = -125.0
+offset_top = -8.0
+offset_right = 125.0
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Enemies move 10% faster"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="RewardLabel" type="Label" parent="."]
 layout_mode = 1
@@ -106,7 +109,6 @@ text = "+1 POINTs per Test"
 [node name="AppliedBG" type="Sprite2D" parent="."]
 position = Vector2(150, 100)
 rotation = -0.174533
-scale = Vector2(1, 1)
 texture = SubResource("GradientTexture2D_2qhcb")
 
 [node name="AppliedLabel" type="Label" parent="AppliedBG"]

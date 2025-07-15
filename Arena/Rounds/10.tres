@@ -5,13 +5,13 @@
 [resource]
 script = ExtResource("1_kmijr")
 total_enemies_to_spawn = 35
-spawn_bots = true
-spawn_lizards = true
+spawn_bots = false
+spawn_lizards = false
 spawn_tanks = false
 spawn_oracles = true
-spawn_stars = false
-bots_health = 2
-lizards_health = 3
-tanks_health = 2
-oracles_health = 1
+spawn_stars = true
+bots_health = 1
+lizards_health = 1
+tanks_health = 1
+oracles_health = 3
 stars_health = 1

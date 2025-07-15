@@ -25,6 +25,7 @@ func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
 		effect_timer.start(3)
 		effect_timers.push_back(effect_timer)
 		enemy.move_speed *= 0.5
+		ConditionManager.on_enemy_slowed(enemy)
 
 
 func on_enemy_killed(enemy: Enemy) -> void:

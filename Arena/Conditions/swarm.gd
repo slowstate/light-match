@@ -1,13 +1,13 @@
 extends Condition
 
-var spawn_increase: float
+var spawn_increase: float = 0.1
 
 
+# TODO: Remove this - for testing only
 func _init() -> void:
 	name = "Swarm"
-	spawn_increase = snappedf(randf_range(0.1, 0.2), 0.01)
 	description = "Spawn " + str(spawn_increase * 100) + "% more enemies"
-	points_per_round = 1 if spawn_increase < 0.15 else 2
+	points_per_round = 1
 
 
 func on_round_loaded(round: Round) -> void:

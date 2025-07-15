@@ -38,12 +38,10 @@ func _ready() -> void:
 	immunity_timer.one_shot = true
 	add_child(immunity_timer)
 	regen_timer = Timer.new()
-	regen_timer.one_shot = true
 	regen_timer.timeout.connect(_on_regen_timer_timeout)
 	add_child(regen_timer)
 
-	health = base_health
-	sprite.set_health(health)
+	set_health(base_health)
 	set_colour(colour)
 	ConditionManager.on_enemy_spawned(self)
 	UpgradeManager.on_enemy_spawned(self)
@@ -65,6 +63,11 @@ func _setup() -> void:
 
 func _update(_delta: float) -> void:
 	pass
+
+
+func set_health(new_health: int) -> void:
+	health = mini(new_health, base_health)
+	sprite.set_health(health)
 
 
 func set_colour(new_colour: Globals.Colour) -> void:
@@ -119,9 +122,8 @@ func _on_area_entered(area: Area2D) -> void:
 		Logger.log_play_data(log_play_data)
 		return
 
-	health -= bullet.damage
+	set_health(health - bullet.damage)
 	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
-	sprite.set_health(health)
 
 	log_play_data = {"message": "Enemy hit for " + str(bullet.damage) + " damage", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
@@ -136,8 +138,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_regen_timer_timeout() -> void:
 	if health < base_health:
-		health += 1
-		sprite.set_health(health)
+		set_health(health + health_regen)
 
 
 func play_move_animation(_play: bool) -> void:

@@ -13,7 +13,7 @@ var current_colour := Globals.Colour.BLUE
 
 var upgrades: Array[Upgrade] = []
 var conditions: Array[Condition] = []
-var points: int = 2
+var points: int = 1
 
 var controls_enabled: bool = true
 var shield_active: bool = false
@@ -40,8 +40,6 @@ var hit_immunity_time: float = 1.0
 @onready var player_conditions_interface: VBoxContainer = $PlayerInterface/PlayerConditionsInterface
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
-
-const SprayPaint = preload("res://Player/Upgrades/Meta/spray_paint.gd")
 
 
 func _init() -> void:
