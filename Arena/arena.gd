@@ -1,7 +1,7 @@
 class_name Arena
 extends Node2D
 
-@export var current_round_number: int = 1
+@export var current_round_number: int = 0
 
 var main_menu = load("res://Menus/MainMenu/main_menu.tscn")
 var total_enemies_to_spawn_this_round: int = 0

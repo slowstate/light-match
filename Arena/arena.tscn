@@ -914,7 +914,6 @@ font_size = 24
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
-current_round_number = 0
 
 [node name="BG" type="Sprite2D" parent="."]
 self_modulate = Color(0.999608, 0.89644, 1, 1)

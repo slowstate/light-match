@@ -29,6 +29,8 @@ func _setup() -> void:
 
 
 func get_appendages() -> Array[Appendage]:
+	if head == null:
+		return []
 	return [head]
 
 
@@ -37,4 +39,5 @@ func play_move_animation(play: bool) -> void:
 
 
 func play_attack_animation() -> void:
-	head.play_attack_animation()
+	if head != null:
+		head.play_attack_animation()
