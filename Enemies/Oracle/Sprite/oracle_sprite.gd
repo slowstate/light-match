@@ -19,9 +19,6 @@ func set_colour(colour: Globals.Colour) -> void:
 
 
 func set_health(health: int) -> void:
-	if health < 1:
-		oracle_eye_light.visible = false
-	if health < 2:
-		oracle_body_light_1.visible = false
-	if health < 3:
-		oracle_body_light_2.visible = false
+	oracle_eye_light.visible = false if health < 1 else true
+	oracle_body_light_1.visible = false if health < 2 else true
+	oracle_body_light_2.visible = false if health < 3 else true

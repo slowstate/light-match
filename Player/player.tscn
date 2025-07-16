@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=16 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="2_ekdli"]
 [ext_resource type="PackedScene" uid="uid://dnshaeplewb85" path="res://Player/Palette/palette.tscn" id="2_ybmla"]
-[ext_resource type="Script" path="res://Player/player_upgrades_interface.gd" id="3_gmi6u"]
 [ext_resource type="Texture2D" uid="uid://dom47dbbu8wyy" path="res://Player/VFX/Player Shield.png" id="4_w330a"]
+[ext_resource type="FontFile" uid="uid://dt7ijpr3w8s08" path="res://Common/Fonts/exo/Exo-Bold.otf" id="5_qrmso"]
+[ext_resource type="Texture2D" uid="uid://d36h547sfej1u" path="res://HUD/PaletteMilestone1.png" id="6_wpbjh"]
+[ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="7_u5avh"]
 
 [sub_resource type="Gradient" id="Gradient_6n8lw"]
 offsets = PackedFloat32Array(0, 0.699187)
@@ -37,6 +39,10 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qy1jw"]
 radius = 400.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0a4sd"]
+font = ExtResource("5_qrmso")
+font_size = 60
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -126,7 +132,46 @@ offset_left = 315.0
 offset_top = 50.0
 offset_right = 355.0
 offset_bottom = 90.0
-script = ExtResource("3_gmi6u")
+
+[node name="PlayerConditionsInterface" type="VBoxContainer" parent="PlayerInterface"]
+offset_left = 70.0
+offset_top = 128.0
+offset_right = 110.0
+offset_bottom = 168.0
+
+[node name="PlayerPoints" type="Control" parent="PlayerInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1810.0
+offset_top = 979.0
+offset_right = 1810.0
+offset_bottom = 979.0
+
+[node name="PlayerPointsLabel" type="Label" parent="PlayerInterface/PlayerPoints"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_0a4sd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerPointsBGLeft" type="Sprite2D" parent="PlayerInterface/PlayerPoints"]
+position = Vector2(-33.5, 0)
+texture = ExtResource("6_wpbjh")
+
+[node name="PlayerPointsBGRight" type="Sprite2D" parent="PlayerInterface/PlayerPoints"]
+position = Vector2(33.5, 0)
+texture = ExtResource("7_u5avh")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_area_entered"]

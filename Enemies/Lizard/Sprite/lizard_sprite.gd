@@ -24,11 +24,7 @@ func set_colour(colour: Globals.Colour) -> void:
 
 
 func set_health(health: int) -> void:
-	if health < 1:
-		liz_body_light_1.visible = false
-	if health < 2:
-		liz_body_light_2.visible = false
-	if health < 3:
-		liz_body_light_3.visible = false
-	if health < 4:
-		liz_body_light_4.visible = false
+	liz_body_light_1.visible = false if health < 1 else true
+	liz_body_light_2.visible = false if health < 2 else true
+	liz_body_light_3.visible = false if health < 3 else true
+	liz_body_light_4.visible = false if health < 4 else true

@@ -38,7 +38,10 @@ func exit() -> void:
 func update(delta: float) -> void:
 	round_elapsed_time += delta
 	if no_enemies_remaining_this_round():
-		transition.emit("UpgradeSelection")
+		if arena.current_round_number >= 12:
+			transition.emit("ScoreScreen")
+		else:
+			transition.emit("ConditionAndAdaptationSelection")
 
 
 func physics_update(_delta: float) -> void:
@@ -49,6 +52,7 @@ func _load_round(round_number: int) -> void:
 	var round_resource_path = "res://Arena/Rounds/%s.tres"
 	var round_number_string := str(round_number) if round_number <= 16 else "endless"
 	current_round = load(round_resource_path % round_number_string) as Round
+	ConditionManager.on_round_loaded(current_round)
 	arena.total_enemies_to_spawn_this_round = current_round.total_enemies_to_spawn if round_number <= 16 else 5 + round_number * 3
 	if round_number_string == "endless":
 		arena.total_enemies_to_spawn_this_round += floori(pow(float(round_number) - 16.0, 2.0))
@@ -115,5 +119,4 @@ func no_enemies_remaining_this_round() -> bool:
 
 
 func _on_player_died() -> void:
-	arena.time_limit_timer.paused = true
 	transition.emit("ScoreScreen")

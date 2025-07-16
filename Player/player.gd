@@ -2,12 +2,19 @@ class_name Player
 extends CharacterBody2D
 
 const PLAYER_UPGRADE_BUTTON = preload("res://Player/Upgrades/player_upgrade_button.tscn")
+const CONDITION_LABEL = preload("res://Player/Conditions/condition_label.tscn")
 const GUN_PARTICLES = preload("res://Player/VFX/gun_particles.tscn")
 
+var base_health := 3
+var health: int
 var base_move_speed := 500.0
 var move_speed := base_move_speed
 var current_colour := Globals.Colour.BLUE
+
 var upgrades: Array[Upgrade] = []
+var conditions: Array[Condition] = []
+var points: int = 1
+
 var controls_enabled: bool = true
 var shield_active: bool = false
 
@@ -15,19 +22,24 @@ var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
 var hit_immunity_time: float = 1.0
 
-@onready var player_sprite: PlayerSprite = $PlayerSprite
+@onready var camera_2d: Camera2D = $Camera2D
 @onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
 @onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var hurt_box: Area2D = $HurtBox
+
+@onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var palette: Palette = $Palette
+@onready var shield_sprite: Sprite2D = $ShieldSprite
+
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
-@onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var hit_immunity_timer: Timer = $HitImmunityTimer
-@onready var hurt_box: Area2D = $HurtBox
-@onready var shield_sprite: Sprite2D = $ShieldSprite
+
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
+@onready var player_conditions_interface: VBoxContainer = $PlayerInterface/PlayerConditionsInterface
+@onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
+@onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
 
 
 func _init() -> void:
@@ -35,9 +47,11 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	health = base_health
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
+	player_points_label.text = str(points)
 
 
 func _process(_delta: float) -> void:
@@ -191,6 +205,34 @@ func enable_player_upgrade_buttons(enable: bool) -> void:
 		button.disabled = !enable
 
 
+func add_condition(new_condition: Condition) -> void:
+	conditions.push_back(new_condition)
+	update_player_conditions_interface()
+	ConditionManager.on_condition_added(new_condition)
+
+
+func update_player_conditions_interface() -> void:
+	# Clear all player conditions displayed in the interface
+	for condition_label in player_conditions_interface.get_children():
+		player_conditions_interface.remove_child(condition_label)
+		condition_label.queue_free()
+
+	for condition in conditions:
+		var new_condition_label := CONDITION_LABEL.instantiate()
+		new_condition_label.condition = condition
+		player_conditions_interface.add_child(new_condition_label)
+
+
+func add_end_of_round_points() -> void:
+	for condition in conditions:
+		add_points(condition.points_per_round)
+
+
+func add_points(points_to_add: int) -> void:
+	points += points_to_add
+	player_points_label.text = str(points)
+
+
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	player_hit(_area.owner as Enemy)
 
@@ -208,25 +250,28 @@ func player_hit(enemy: Enemy) -> void:
 		"player_location": global_position
 	}
 
+	UpgradeManager.on_player_hit()
+	hit_immunity_timer.start(hit_immunity_time)
+
 	if shield_active:
 		var log_play_data = {"message": "Player shield broken", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 		UpgradeManager.on_player_shield_break()
 		SfxManager.play_sound("ShieldHitSFX", -15.0, -13.0, 0.95, 1.05)
 		shield_active = false
-	elif upgrades.size() <= 0:
-		var log_play_data = {"message": "Player killed", "context": log_context_data}
+		return
+
+	health -= enemy.damage
+	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
+	SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
+	var log_play_data = {"message": "Player hit", "context": log_context_data}
+	Logger.log_play_data(log_play_data)
+
+	if health <= 0:
+		log_play_data = {"message": "Player killed", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 		SignalBus.player_died.emit()
-		return
-	else:
-		var log_play_data = {"message": "Player hit", "context": log_context_data}
-		Logger.log_play_data(log_play_data)
-		remove_upgrade(upgrades.back())
-		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
-	UpgradeManager.on_player_hit()
-	hit_immunity_timer.start(hit_immunity_time)
 
 
 func game_over_sequence() -> void:

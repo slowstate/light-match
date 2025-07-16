@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl4ywj88wwlmd"]
+
+[ext_resource type="Script" path="res://Player/Conditions/condition_label.gd" id="1_1a6un"]
+
+[node name="ConditionLabel" type="Control"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1a6un")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 17.0
+text = "test"

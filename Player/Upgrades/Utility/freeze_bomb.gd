@@ -25,9 +25,11 @@ func on_palette_cleared(_palette: Palette) -> void:
 		for enemy in frozen_enemies:
 			enemy.can_move = false
 			enemy.linear_velocity = Vector2(0, 0)
+			ConditionManager.on_enemy_stunned(enemy)
 		effect_timer.start(15)
 		is_active = true
 		palettes_cleared_in_a_row = 0
+
 	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
 
 

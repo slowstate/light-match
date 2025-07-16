@@ -18,11 +18,9 @@ func on_upgrade_added(new_upgrade: Upgrade) -> void:
 
 func on_enemy_killed(enemy: Enemy) -> void:
 	enemy_killed_colour = enemy.colour
-	is_active = true
 
 
 func on_enemy_spawned(enemy: Enemy) -> void:
-	if is_active:
+	if enemy_killed_colour != 0:
 		if randi() % 2 == 0:
 			enemy.set_colour(enemy_killed_colour)
-	is_active = false

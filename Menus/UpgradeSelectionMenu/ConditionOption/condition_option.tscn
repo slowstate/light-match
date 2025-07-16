@@ -1,0 +1,140 @@
+[gd_scene load_steps=11 format=3 uid="uid://c3t3hwl1hgtb1"]
+
+[ext_resource type="Script" path="res://Menus/UpgradeSelectionMenu/ConditionOption/condition_option.gd" id="1_c1rt6"]
+
+[sub_resource type="Gradient" id="Gradient_gxsy6"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.372549, 1, 0.298039)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kcuqg"]
+gradient = SubResource("Gradient_gxsy6")
+width = 300
+height = 200
+
+[sub_resource type="Gradient" id="Gradient_vgj5g"]
+offsets = PackedFloat32Array(0.422311, 0.673307)
+colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2qhcb"]
+gradient = SubResource("Gradient_vgj5g")
+width = 280
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_38mgn"]
+font_size = 32
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0a4je"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jm82w"]
+bg_color = Color(1, 1, 1, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v32ao"]
+bg_color = Color(0, 0, 0, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ft6u8"]
+
+[node name="ConditionOption" type="Control"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+script = ExtResource("1_c1rt6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_kcuqg")
+centered = false
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -48.0
+offset_right = 125.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SUPERCHARGED"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -8.0
+offset_right = 125.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enemies move 10% faster"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = 41.5
+offset_right = 66.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+1 POINTs per Test"
+
+[node name="AppliedBG" type="Sprite2D" parent="."]
+position = Vector2(150, 100)
+rotation = -0.174533
+texture = SubResource("GradientTexture2D_2qhcb")
+
+[node name="AppliedLabel" type="Label" parent="AppliedBG"]
+offset_left = -62.0
+offset_top = -15.0
+offset_right = 61.0
+offset_bottom = 18.0
+text = "APPLIED"
+label_settings = SubResource("LabelSettings_38mgn")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -95.0
+offset_right = 145.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0a4je")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jm82w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v32ao")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ft6u8")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

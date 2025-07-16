@@ -16,7 +16,8 @@ static func create(
 ) -> Lizard:
 	var new_lizard: Lizard = LIZARD.instantiate()
 	new_lizard.colour = initial_colour
-	new_lizard.health = initial_health
+	new_lizard.base_health = initial_health
+	new_lizard.max_health = 4
 	new_lizard.head_colour = initial_head_colour
 	new_lizard.global_position = initial_position
 	new_lizard.move_speed = randf_range(150.0, 200.0)
@@ -28,6 +29,8 @@ func _setup() -> void:
 
 
 func get_appendages() -> Array[Appendage]:
+	if head == null:
+		return []
 	return [head]
 
 
@@ -36,4 +39,5 @@ func play_move_animation(play: bool) -> void:
 
 
 func play_attack_animation() -> void:
-	head.play_attack_animation()
+	if head != null:
+		head.play_attack_animation()

@@ -23,7 +23,8 @@ static func create(
 ) -> Star:
 	var new_star: Star = STAR.instantiate()
 	new_star.global_position = initial_position
-	new_star.health = initial_health
+	new_star.base_health = initial_health
+	new_star.max_health = 1
 	new_star.colour = initial_colour
 	new_star.shell_colours = initial_shell_colours
 	new_star.move_speed = randf_range(150.0, 200.0)
