@@ -14,7 +14,7 @@ var knocked_back: bool = false
 var knock_back_position: Vector2
 var knock_back_distance: float
 var knock_back_speed: float = 300.0
-var move_timer: Timer
+var knock_back_timer: Timer
 var immunity_timer: Timer
 var regen_timer: Timer
 var health_regen: int = 0
@@ -31,9 +31,9 @@ func _ready() -> void:
 	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
 	set_collision_mask_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
 	gravity_scale = 0
-	move_timer = Timer.new()
-	move_timer.one_shot = true
-	add_child(move_timer)
+	knock_back_timer = Timer.new()
+	knock_back_timer.one_shot = true
+	add_child(knock_back_timer)
 	immunity_timer = Timer.new()
 	immunity_timer.one_shot = true
 	add_child(immunity_timer)
@@ -75,19 +75,25 @@ func set_colour(new_colour: Globals.Colour) -> void:
 	sprite.set_colour(new_colour)
 
 
-func move_forward(_delta: float) -> void:
-	if !can_move:
+func move_forward(delta: float, desired_location: Vector2 = Globals.player.global_position, custom_move_speed = move_speed) -> void:
+	if !can_move || !knock_back_timer.is_stopped():
+		play_move_animation(false)
 		return
-	play_move_animation(true)
-	rotation = (Globals.player.global_position - global_position).angle()
-	var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - Globals.player.global_position).length() / 2000.0, 0.0, 1.0))
-	if move_timer.is_stopped():
-		linear_velocity = (Globals.player.global_position - global_position).normalized() * distance_based_move_speed
+	if global_position.distance_to(desired_location) <= 10:
+		sleeping = true
+		play_move_animation(false)
+		return
+	if knock_back_timer.is_stopped():
+		rotation = (desired_location - global_position).angle()
+		# TODO: Reassess distance_based_move_speed
+		#var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - desired_location).length() / 2000.0, 0.0, 1.0))
+		linear_velocity = (desired_location - global_position).normalized() * custom_move_speed
 		apply_force(linear_velocity)
+		play_move_animation(true)
 
 
 func knock_back(force: float, duration_in_seconds: float) -> void:
-	move_timer.start(duration_in_seconds)
+	knock_back_timer.start(duration_in_seconds)
 	linear_velocity = Vector2(0, 0)
 	apply_impulse((global_position - Globals.player.global_position).normalized() * force)
 
