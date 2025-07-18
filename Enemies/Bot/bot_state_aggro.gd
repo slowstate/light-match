@@ -32,7 +32,11 @@ func physics_update(delta: float) -> void:
 		return
 
 	if !aggro_timer.is_stopped():
-		bot.move_forward(delta, Globals.player.global_position, bot.move_speed * 3.5)
+		bot.move_forward(delta, Globals.player.global_position, 350.0)
+
+	if bot.global_position.distance_to(Globals.player.global_position) <= 20.0:
+		aggro_timer.stop()
+		_on_aggro_timer_timeout()
 
 
 func _on_aggro_timer_timeout() -> void:

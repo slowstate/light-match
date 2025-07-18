@@ -84,10 +84,10 @@ func move_forward(delta: float, desired_location: Vector2 = Globals.player.globa
 		play_move_animation(false)
 		return
 	if knock_back_timer.is_stopped():
-		rotation = (desired_location - global_position).angle()
+		rotation = lerp(rotation, (desired_location - global_position).angle(), 0.5)  #clampf((desired_location - global_position).angle() - rotation, deg_to_rad(-360), deg_to_rad(360)) * delta
 		# TODO: Reassess distance_based_move_speed
 		#var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - desired_location).length() / 2000.0, 0.0, 1.0))
-		linear_velocity = (desired_location - global_position).normalized() * custom_move_speed
+		linear_velocity = Vector2.from_angle(rotation) * custom_move_speed  #(desired_location - global_position).normalized() * custom_move_speed
 		apply_force(linear_velocity)
 		play_move_animation(true)
 
