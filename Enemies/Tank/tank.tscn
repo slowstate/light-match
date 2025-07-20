@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ua5firl6innu"]
+[gd_scene load_steps=19 format=3 uid="uid://ua5firl6innu"]
 
 [ext_resource type="Script" path="res://Enemies/Tank/tank.gd" id="1_vdwel"]
 [ext_resource type="Texture2D" uid="uid://dev068qadnb34" path="res://Enemies/Tank/Stream.png" id="3_erh0f"]
@@ -6,10 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://bd706m04pxxlh" path="res://Enemies/Tank/Energy.png" id="4_a6roh"]
 [ext_resource type="PackedScene" uid="uid://l7a4srfb3iih" path="res://Enemies/Tank/Sprite/tank_sprite.tscn" id="5_vv3cu"]
 [ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="7_vj1ov"]
+[ext_resource type="Script" path="res://Enemies/Tank/tank_state_machine.gd" id="8_a4xqc"]
+[ext_resource type="Script" path="res://Enemies/Tank/tank_state_idle.gd" id="9_2dj7l"]
+[ext_resource type="Script" path="res://Enemies/Tank/tank_state_roam.gd" id="10_2kdqp"]
 [ext_resource type="Texture2D" uid="uid://wbk7k5ddxw45" path="res://Enemies/Tank/Shield.png" id="17_awigq"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yaqlx"]
-height = 234.0
+[sub_resource type="Gradient" id="Gradient_nocgx"]
+offsets = PackedFloat32Array(0.104803, 0.886463, 0.995633, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.0745098, 1, 1, 1, 0.160784, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xg6mf"]
+gradient = SubResource("Gradient_nocgx")
+width = 805
+height = 805
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="Animation" id="Animation_i3aj0"]
 length = 0.5
@@ -108,8 +120,7 @@ radius = 42.0
 size = Vector2(37, 54)
 
 [node name="Tank" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Tanks"]]
-collision_layer = 96
-collision_mask = 33
+collision_layer = 64
 script = ExtResource("1_vdwel")
 sprite = NodePath("Sprite")
 
@@ -118,34 +129,36 @@ collision_layer = 16
 collision_mask = 4
 script = ExtResource("3_k8nc8")
 
+[node name="Sprite2D" type="Sprite2D" parent="Shield"]
+texture = SubResource("GradientTexture2D_xg6mf")
+
 [node name="Sprite" type="Sprite2D" parent="Shield"]
+visible = false
 position = Vector2(87, -1)
 rotation = -1.5708
 texture = ExtResource("17_awigq")
 
 [node name="Stream" type="Sprite2D" parent="Shield"]
+visible = false
 position = Vector2(66, 0)
 rotation = -1.5708
 texture = ExtResource("3_erh0f")
 
 [node name="Energy" type="Sprite2D" parent="Shield"]
+visible = false
 position = Vector2(48, 0)
 rotation = -1.5708
 scale = Vector2(1, 1.34066)
 texture = ExtResource("4_a6roh")
 
-[node name="ShieldCollisionShape2D" type="CollisionShape2D" parent="Shield"]
-position = Vector2(84, 0)
-shape = SubResource("CapsuleShape2D_yaqlx")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shield"]
+build_mode = 1
+polygon = PackedVector2Array(0, -400, 160, -365, 280, -280, 369, -156, 400, 0, 366, 159, 280, 280, 164, 363, 0, 400, -162, 367, -280, 280, -370, 157, -400, 0, -366, -165, -280, -280, -159, -369)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shield"]
 libraries = {
 "": SubResource("AnimationLibrary_voi58")
 }
-
-[node name="ShieldCooldownTimer" type="Timer" parent="Shield"]
-wait_time = 8.0
-one_shot = true
 
 [node name="Sprite" parent="." instance=ExtResource("5_vv3cu")]
 
@@ -161,4 +174,17 @@ script = ExtResource("7_vj1ov")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s2qfm")
 
-[connection signal="timeout" from="Shield/ShieldCooldownTimer" to="Shield" method="_on_shield_cooldown_timer_timeout"]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("8_a4xqc")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("9_2dj7l")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Roam" type="Node" parent="StateMachine"]
+script = ExtResource("10_2kdqp")
+
+[node name="Timer" type="Timer" parent="StateMachine/Roam"]

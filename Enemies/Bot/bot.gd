@@ -14,7 +14,7 @@ static func create(initial_position: Vector2, initial_health: int, initial_colou
 	return new_bot
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Default movement is overwritten/ignored here, and is delegated to the BotStateMachine
 	pass
 

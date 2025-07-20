@@ -1,9 +1,9 @@
 class_name Lizard
 extends Enemy
 
-@export var head_colour: Globals.Colour = Globals.Colour.BLUE
-
 const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
+
+@export var head_colour: Globals.Colour = Globals.Colour.BLUE
 
 @onready var head: Area2D = $Head
 
@@ -22,6 +22,10 @@ static func create(
 	new_lizard.global_position = initial_position
 	new_lizard.move_speed = randf_range(150.0, 200.0)
 	return new_lizard
+
+
+func _physics_process(_delta: float) -> void:
+	pass
 
 
 func _setup() -> void:
