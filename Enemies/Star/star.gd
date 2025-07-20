@@ -13,6 +13,7 @@ const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
 @onready var shell_2: Area2D = $Shells/Shell2
 @onready var shell_3: Area2D = $Shells/Shell3
 @onready var shell_4: Area2D = $Shells/Shell4
+@onready var hit_box: Area2D = $HitBox
 
 
 static func create(
@@ -35,12 +36,11 @@ static func create(
 	return new_star
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _update(delta: float) -> void:
-	_rotate_star(delta, shell_rotation_speed)
+func _physics_process(_delta: float) -> void:
+	pass
 
 
-func _rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
+func rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
 	sprite.rotate(delta * new_shell_rotation_speed)
 	collision_shape_2d.rotate(delta * new_shell_rotation_speed)
 	shells.rotate(delta * new_shell_rotation_speed)

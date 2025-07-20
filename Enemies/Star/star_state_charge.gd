@@ -1,17 +1,21 @@
-class_name StarStateIdle
+class_name StarStateCharge
 extends State
 
 var star: Star
-var idle_time: float = 2.0
+
+var charge_time: float = 3.0
+var charge_shell_rotation_speed: float
+
 @onready var timer: Timer = $Timer
 
 
 func enter() -> void:
 	star = owner as Star
 	assert(star != null, "The state type must be used only in the Star scene. It needs the owner to be a Star node.")
+	charge_shell_rotation_speed = star.shell_rotation_speed
 	if !timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
-	timer.start(idle_time)
+	timer.start(charge_time)
 
 
 func exit() -> void:
@@ -28,8 +32,9 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 
-	star.rotate_star(delta, star.shell_rotation_speed)
+	charge_shell_rotation_speed = lerpf(star.shell_rotation_speed, star.shell_rotation_speed * 50.0, ease(1 - timer.time_left / timer.wait_time, 2.0))
+	star.rotate_star(delta, charge_shell_rotation_speed)
 
 
 func _on_timer_timeout() -> void:
-	transition.emit("Charge")
+	transition.emit("Teleport")
