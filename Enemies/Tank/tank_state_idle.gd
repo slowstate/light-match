@@ -9,7 +9,7 @@ var tank: Tank
 func enter() -> void:
 	tank = owner as Tank
 	assert(tank != null, "The state type must be used only in the Tank scene. It needs the owner to be a Tank node.")
-
+	tank.sleeping = true
 	if !timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
 	timer.start(randf_range(1.0, 3.0))
