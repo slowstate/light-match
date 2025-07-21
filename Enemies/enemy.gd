@@ -26,10 +26,8 @@ static func create(_initial_position: Vector2, _initial_health: int, _initial_co
 
 
 func _ready() -> void:
-	set_collision_layer_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
 	set_collision_layer_value(Globals.CollisionLayer.CHROME_KNUCKLES, true)
 	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
-	set_collision_mask_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
 	gravity_scale = 0
 	knock_back_timer = Timer.new()
 	knock_back_timer.one_shot = true

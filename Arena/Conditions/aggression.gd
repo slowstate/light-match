@@ -6,7 +6,7 @@ var damage_increase: float = 0.5
 # TODO: Removce this - for development purposes only
 func _init() -> void:
 	name = "Aggression"
-	description = "Enemies deal  " + str(damage_increase * 100) + "% additional damage"
+	description = "Enemies deal " + str(damage_increase * 100) + "% additional damage"
 	points_per_round = 1
 
 

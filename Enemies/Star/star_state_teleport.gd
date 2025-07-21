@@ -3,7 +3,7 @@ extends State
 
 var star: Star
 
-var prep_time: float = randf_range(1.5, 2.5)
+var prep_time: float = randf_range(1.0, 1.5)
 var charge_shell_rotation_speed: float
 var target_location: Vector2
 var cooldown_time: float = 2.0

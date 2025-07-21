@@ -137,8 +137,11 @@ script = ExtResource("8_ta8ex")
 [node name="ShortDash" type="Node" parent="StateMachine"]
 script = ExtResource("9_bsf6j")
 
-[node name="Timer" type="Timer" parent="StateMachine/ShortDash"]
+[node name="ChargeTimer" type="Timer" parent="StateMachine/ShortDash"]
 wait_time = 0.5
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="StateMachine/ShortDash"]
 one_shot = true
 
 [node name="StunTimer" type="Timer" parent="StateMachine/ShortDash"]
@@ -153,5 +156,5 @@ one_shot = true
 [node name="ChargeTimer" type="Timer" parent="StateMachine/AggroDash"]
 one_shot = true
 
-[node name="Timer" type="Timer" parent="StateMachine/AggroDash"]
+[node name="DashTimer" type="Timer" parent="StateMachine/AggroDash"]
 one_shot = true
