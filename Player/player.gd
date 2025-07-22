@@ -31,6 +31,7 @@ var hit_immunity_time: float = 1.0
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var palette: Palette = $Palette
 @onready var shield_sprite: Sprite2D = $ShieldSprite
+@onready var health_bar_inner: Sprite2D = $HealthBar/HealthBarInner
 
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
@@ -48,6 +49,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	health = base_health
+	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
+	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
@@ -262,6 +265,8 @@ func player_hit(enemy: Enemy) -> void:
 		return
 
 	health -= enemy.damage
+	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
+	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
 	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
 	SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 	var log_play_data = {"message": "Player hit", "context": log_context_data}
