@@ -41,7 +41,7 @@ func physics_update(delta: float) -> void:
 
 func _on_stun_timer_timeout() -> void:
 	target_location = lizard.global_position + (Globals.player.global_position - lizard.global_position).normalized() * randf_range(700.0, 800.0)
-	charge_timer.start(randf_range(0.1, 0.2))
+	charge_timer.start(randf_range(0.2, 0.3))
 
 
 func _on_charge_timer_timeout() -> void:

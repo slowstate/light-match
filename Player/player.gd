@@ -173,7 +173,7 @@ func change_colour(new_colour: Globals.Colour) -> void:
 
 func add_upgrade(new_upgrade: Upgrade) -> void:
 	SfxManager.play_sound("AddUpgradeSFX", -10.0, -8.0, 0.9, 1.1)
-	if upgrades.size() < 5:
+	if upgrades.size() < 8:
 		upgrades.push_back(new_upgrade)
 		update_player_upgrades_interface()
 		UpgradeManager.on_upgrade_added(new_upgrade)

@@ -1119,11 +1119,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ml4sl")
 
 [node name="RunInfoHintLabel" type="Label" parent="Tutorial/UserInterface/RunInfoHint"]
 layout_mode = 0
-offset_left = -3.0
+offset_left = -16.0
 offset_top = 140.0
-offset_right = 204.0
-offset_bottom = 157.0
-text = "Run timer and current round."
+offset_right = 215.0
+offset_bottom = 235.0
+text = "Run timer and current round. Complete all waves before the timer runs out or die trying."
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Bipod" type="Sprite2D" parent="Tutorial/UserInterface"]
 position = Vector2(315, 50)
@@ -1155,17 +1157,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ml4sl")
 
 [node name="UpgradesInfoHintLabel" type="Label" parent="Tutorial/UserInterface/UpgradesInfoHint"]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 140.0
-offset_right = 446.0
-offset_bottom = 177.0
-text = "Your upgrades will appear here. Active upgrades will light up.
-You'll get a choice to add one at the end of each round.
-While playing, hover over them for more information.
-
-Upgrades also double up as your health.
-If you're hit by an enemy you'll lose one, right to left.
-If you're hit by an enemy when you have none, you're dead."
+offset_left = -16.0
+offset_top = 137.0
+offset_right = 459.0
+offset_bottom = 194.0
+text = "Your Adaptations will appear here. Active Adaptations will light up.
+You'll get a chance to purchase up to 3 at the end of every round.
+While playing, hover over them for more information."
 horizontal_alignment = 1
 
 [node name="EnemiesInfoHint" type="Panel" parent="Tutorial/UserInterface"]
@@ -1229,12 +1227,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ml4sl")
 
 [node name="PaletteMilestoneHintLabel" type="Label" parent="Tutorial/UserInterface/PaletteMilestoneHint"]
 layout_mode = 0
-offset_left = -37.0
-offset_top = -106.0
+offset_left = -14.0
+offset_top = -51.0
 offset_right = 196.0
 offset_bottom = -9.0
-text = "This counts how many palettes you've cleared this round.
-Clear enough palettes and you'll have more upgrades to choose from at the end of the round"
+text = "This counter shows how many points you've saved up."
 horizontal_alignment = 1
 autowrap_mode = 3
 
