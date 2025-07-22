@@ -40,7 +40,7 @@ offset_left = -605.0
 offset_top = -400.0
 offset_right = -299.0
 offset_bottom = -375.0
-text = "Select an upgrade to replace"
+text = "Select an Adaptation to replace"
 label_settings = SubResource("LabelSettings_mns33")
 script = ExtResource("2_2jnw8")
 
@@ -56,7 +56,7 @@ offset_right = 230.5
 offset_bottom = -334.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Select one or more condition(s) to continue"
+text = "Select one or more Condition(s) to continue. Conditions stay active until the end of the run"
 label_settings = SubResource("LabelSettings_bnji2")
 
 [node name="ConditionOptions" type="HBoxContainer" parent="."]
@@ -75,7 +75,7 @@ offset_top = -45.0
 offset_right = 438.0
 offset_bottom = -11.0
 grow_horizontal = 2
-text = "Upgrades trigger from left to right. New upgrades will be added to the right."
+text = "Adaptations trigger from left to right. New Adaptations will be added to the right"
 label_settings = SubResource("LabelSettings_bnji2")
 horizontal_alignment = 1
 vertical_alignment = 1
