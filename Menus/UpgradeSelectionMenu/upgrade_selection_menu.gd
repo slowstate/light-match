@@ -12,6 +12,7 @@ var currently_selected_upgrade_option: UpgradeOption
 @onready var condition_options: HBoxContainer = $ConditionOptions
 @onready var upgrade_options: HBoxContainer = $UpgradeOptions
 @onready var replace_upgrade_label: Label = $ReplaceUpgradeLabel
+@onready var continue_bg: Sprite2D = $ContinueBG
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +21,7 @@ func _ready() -> void:
 	generate_upgrade_options()
 	generate_condition_options()
 	disable_upgrade_options_that_cannot_be_afforded()
+	continue_bg.visible = false
 
 
 #region Condition option generation
@@ -40,6 +42,7 @@ func generate_condition_options() -> void:
 
 func on_condition_option_selected(condition: Condition) -> void:
 	Globals.player.add_condition(condition)
+	continue_bg.visible = true
 
 
 #endregion
