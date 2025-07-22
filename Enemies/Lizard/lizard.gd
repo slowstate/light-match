@@ -1,9 +1,9 @@
 class_name Lizard
 extends Enemy
 
-@export var head_colour: Globals.Colour = Globals.Colour.BLUE
-
 const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
+
+@export var head_colour: Globals.Colour = Globals.Colour.BLUE
 
 @onready var head: Area2D = $Head
 

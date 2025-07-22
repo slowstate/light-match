@@ -1,4 +1,4 @@
-class_name OracleStateChasing
+class_name OracleStateWalk
 extends State
 
 var oracle: Oracle
@@ -22,7 +22,11 @@ func physics_update(delta: float) -> void:
 		return
 	if !Globals.player:
 		return
+	if oracle.is_stunned():
+		return
+	if oracle.player_is_within_distance(200.0):
+		transition.emit("Attack")
+		return
 
-	var direction_to_player = (Globals.player.global_position - oracle.global_position).normalized().angle()
-	oracle.desired_rotation = direction_to_player
+	oracle.rotate_orbs(delta, oracle.orb_rotation_speed)
 	oracle.move_forward(delta)

@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh5h2d2pwrrpa"]
+[gd_scene load_steps=9 format=3 uid="uid://dh5h2d2pwrrpa"]
 
 [ext_resource type="Script" path="res://Enemies/Bot/bot.gd" id="1_joxph"]
 [ext_resource type="PackedScene" uid="uid://dohxwuksnslb" path="res://Enemies/Bot/Sprite/bot_sprite.tscn" id="2_7h7sy"]
 [ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="3_ufl26"]
+[ext_resource type="Script" path="res://Enemies/Bot/bot_state_machine.gd" id="4_6w5y3"]
+[ext_resource type="Script" path="res://Enemies/Bot/bot_state_idle.gd" id="5_lfiu6"]
+[ext_resource type="Script" path="res://Enemies/Bot/bot_state_aggro.gd" id="6_3v72i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8uqw"]
 radius = 50.04
@@ -12,8 +15,7 @@ radius = 23.0217
 
 [node name="Bot" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Bots"]]
 rotation = -1.5708
-collision_layer = 96
-collision_mask = 33
+collision_layer = 64
 script = ExtResource("1_joxph")
 sprite = NodePath("Sprite")
 
@@ -24,8 +26,33 @@ shape = SubResource("CircleShape2D_y8uqw")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 6
 script = ExtResource("3_ufl26")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_nd0x0")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("4_6w5y3")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_lfiu6")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="RoamTimer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Aggro" type="Node" parent="StateMachine"]
+script = ExtResource("6_3v72i")
+
+[node name="AggroTimer" type="Timer" parent="StateMachine/Aggro"]
+one_shot = true
+
+[node name="AggroCooldownTimer" type="Timer" parent="StateMachine/Aggro"]
+one_shot = true
+
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
+[connection signal="player_hit" from="HurtBox" to="StateMachine/Aggro" method="_on_hurt_box_player_hit"]

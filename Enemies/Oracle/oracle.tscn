@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0jhbqhd4dhhx"]
+[gd_scene load_steps=13 format=3 uid="uid://b0jhbqhd4dhhx"]
 
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle.gd" id="1_4uhgo"]
 [ext_resource type="PackedScene" uid="uid://c0k62py27crqg" path="res://Enemies/Oracle/Sprite/oracle_sprite.tscn" id="2_bhm20"]
 [ext_resource type="Script" path="res://Enemies/Oracle/Orb/orb.gd" id="3_rdk7r"]
 [ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="6_trf8c"]
+[ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_machine.gd" id="7_ayryw"]
+[ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_walk.gd" id="8_nkvch"]
 [ext_resource type="Texture2D" uid="uid://c1nhcfqj5fpm1" path="res://Enemies/Oracle/Orb/Oracle Orb 1.png" id="9_j71aq"]
+[ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_attack.gd" id="9_r57yu"]
 [ext_resource type="Texture2D" uid="uid://b1dakq7bkujow" path="res://Enemies/Oracle/Orb/Oracle Orb Light.png" id="10_v34uc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cdws"]
@@ -17,8 +20,7 @@ radius = 13.0
 height = 64.0
 
 [node name="Oracle" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Oracles"]]
-collision_layer = 96
-collision_mask = 33
+collision_layer = 64
 script = ExtResource("1_4uhgo")
 sprite = NodePath("Sprite")
 
@@ -132,3 +134,25 @@ script = ExtResource("6_trf8c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_qpr8m")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("7_ayryw")
+current_state = NodePath("Walk")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("8_nkvch")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("9_r57yu")
+
+[node name="ExpandTimer" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[node name="SpinUpTimer" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[node name="SpinDownTimer" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[node name="ShrinkTimer" type="Timer" parent="StateMachine/Attack"]
+one_shot = true

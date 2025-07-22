@@ -9,12 +9,12 @@ extends RigidBody2D
 @export var move_speed := 300.0
 @export var sprite: EnemySprite
 
-var can_move: bool = true
 var knocked_back: bool = false
 var knock_back_position: Vector2
 var knock_back_distance: float
 var knock_back_speed: float = 300.0
-var move_timer: Timer
+var knock_back_timer: Timer
+var stunned_timer: Timer
 var immunity_timer: Timer
 var regen_timer: Timer
 var health_regen: int = 0
@@ -26,14 +26,15 @@ static func create(_initial_position: Vector2, _initial_health: int, _initial_co
 
 
 func _ready() -> void:
-	set_collision_layer_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
 	set_collision_layer_value(Globals.CollisionLayer.CHROME_KNUCKLES, true)
 	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
-	set_collision_mask_value(Globals.CollisionLayer.ENEMY_SOCIAL_DISTANCING, true)
 	gravity_scale = 0
-	move_timer = Timer.new()
-	move_timer.one_shot = true
-	add_child(move_timer)
+	knock_back_timer = Timer.new()
+	knock_back_timer.one_shot = true
+	add_child(knock_back_timer)
+	stunned_timer = Timer.new()
+	stunned_timer.one_shot = true
+	add_child(stunned_timer)
 	immunity_timer = Timer.new()
 	immunity_timer.one_shot = true
 	add_child(immunity_timer)
@@ -49,10 +50,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if player_is_within_distance(100.0):
-		play_attack_animation()
-	move_forward(delta)
-	_update(delta)
+	pass
 
 
 # This function should be overriden by inheriting classes; no code should be added to this class
@@ -75,21 +73,36 @@ func set_colour(new_colour: Globals.Colour) -> void:
 	sprite.set_colour(new_colour)
 
 
-func move_forward(_delta: float) -> void:
-	if !can_move:
+func is_stunned() -> bool:
+	if !stunned_timer.is_stopped() || !knock_back_timer.is_stopped():
+		return true
+	return false
+
+
+func move_forward(delta: float, desired_location: Vector2 = Globals.player.global_position, custom_move_speed = move_speed) -> void:
+	if is_stunned():
+		play_move_animation(false)
 		return
+	if global_position.distance_to(desired_location) <= 10:
+		sleeping = true
+		play_move_animation(false)
+		return
+	rotation = lerp_angle(rotation, (desired_location - global_position).angle(), 5.0 * delta)  #clampf((desired_location - global_position).angle() - rotation, deg_to_rad(-360), deg_to_rad(360)) * delta
+	# TODO: Reassess distance_based_move_speed
+	#var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - desired_location).length() / 2000.0, 0.0, 1.0))
+	linear_velocity = Vector2.from_angle(rotation) * custom_move_speed  #(desired_location - global_position).normalized() * custom_move_speed
+	apply_force(linear_velocity)
 	play_move_animation(true)
-	rotation = (Globals.player.global_position - global_position).angle()
-	var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - Globals.player.global_position).length() / 2000.0, 0.0, 1.0))
-	if move_timer.is_stopped():
-		linear_velocity = (Globals.player.global_position - global_position).normalized() * distance_based_move_speed
-		apply_force(linear_velocity)
 
 
 func knock_back(force: float, duration_in_seconds: float) -> void:
-	move_timer.start(duration_in_seconds)
+	knock_back_timer.start(duration_in_seconds)
 	linear_velocity = Vector2(0, 0)
 	apply_impulse((global_position - Globals.player.global_position).normalized() * force)
+
+
+func stun(duration_in_seconds: float) -> void:
+	stunned_timer.start(maxf(stunned_timer.time_left, duration_in_seconds))
 
 
 func player_is_within_distance(distance := 500.0) -> bool:

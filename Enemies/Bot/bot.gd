@@ -10,7 +10,7 @@ static func create(initial_position: Vector2, initial_health: int, initial_colou
 	new_bot.base_health = initial_health
 	new_bot.max_health = 3
 	new_bot.colour = initial_colour
-	new_bot.move_speed = randf_range(150.0, 250.0)
+	new_bot.move_speed = 100.0  #randf_range(150.0, 250.0)
 	return new_bot
 
 

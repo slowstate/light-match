@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://clv4agc2np8fh"]
+[gd_scene load_steps=16 format=3 uid="uid://clv4agc2np8fh"]
 
 [ext_resource type="Script" path="res://Enemies/Lizard/lizard.gd" id="1_d185i"]
 [ext_resource type="PackedScene" uid="uid://cq600o70yc5is" path="res://Enemies/Lizard/Sprite/lizard_sprite.tscn" id="2_pu36a"]
@@ -6,33 +6,10 @@
 [ext_resource type="Script" path="res://Enemies/Lizard/head.gd" id="3_s30g0"]
 [ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="4_w4nmm"]
 [ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="5_k8pbd"]
-
-[sub_resource type="Animation" id="Animation_17b4t"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HeadSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-1.5708]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HeadCollisionShape2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_machine.gd" id="7_vjl12"]
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_walk.gd" id="8_ta8ex"]
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_short_dash.gd" id="9_bsf6j"]
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_aggro_dash.gd" id="11_186c3"]
 
 [sub_resource type="Animation" id="Animation_8s72c"]
 resource_name = "liz_attack"
@@ -61,6 +38,33 @@ tracks/1/keys = {
 "values": [0.0, -0.349066, 0.261799, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_17b4t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadCollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dp0c5"]
 _data = {
 "Liz_Attack": SubResource("Animation_8s72c"),
@@ -75,8 +79,7 @@ radius = 15.5
 height = 64.0
 
 [node name="Lizard" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Lizards"]]
-collision_layer = 96
-collision_mask = 33
+collision_layer = 64
 script = ExtResource("1_d185i")
 sprite = NodePath("Sprite")
 
@@ -123,3 +126,35 @@ script = ExtResource("3_d8xqh")
 position = Vector2(0, 0.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0q6xi")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("7_vjl12")
+current_state = NodePath("Walk")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("8_ta8ex")
+
+[node name="ShortDash" type="Node" parent="StateMachine"]
+script = ExtResource("9_bsf6j")
+
+[node name="ChargeTimer" type="Timer" parent="StateMachine/ShortDash"]
+wait_time = 0.5
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="StateMachine/ShortDash"]
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="StateMachine/ShortDash"]
+one_shot = true
+
+[node name="AggroDash" type="Node" parent="StateMachine"]
+script = ExtResource("11_186c3")
+
+[node name="StunTimer" type="Timer" parent="StateMachine/AggroDash"]
+one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="StateMachine/AggroDash"]
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="StateMachine/AggroDash"]
+one_shot = true

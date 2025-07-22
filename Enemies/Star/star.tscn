@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://duvsa2r7f53oy"]
+[gd_scene load_steps=26 format=3 uid="uid://duvsa2r7f53oy"]
 
 [ext_resource type="Script" path="res://Enemies/Star/star.gd" id="1_a0cwb"]
 [ext_resource type="PackedScene" uid="uid://1d5okjmxlrdj" path="res://Enemies/Star/Sprite/star_sprite.tscn" id="2_iui8m"]
@@ -14,9 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://bhcbajj0cnbyw" path="res://Enemies/Star/Shell/Star Shell 3.png" id="14_3jcek"]
 [ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="14_wdnoj"]
 [ext_resource type="Texture2D" uid="uid://b1ly852qklum0" path="res://Enemies/Star/Shell/Star Shell Light 3.png" id="15_8lkfx"]
+[ext_resource type="Script" path="res://Enemies/Star/star_state_machine.gd" id="15_hndjk"]
+[ext_resource type="Script" path="res://Enemies/Star/hit_box.gd" id="15_iuvkl"]
+[ext_resource type="Script" path="res://Enemies/Star/star_state_idle.gd" id="16_3cf8m"]
+[ext_resource type="Script" path="res://Enemies/Star/star_state_charge.gd" id="17_5rcwd"]
+[ext_resource type="Script" path="res://Enemies/Star/star_state_teleport.gd" id="18_qfcp5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d0wjw"]
-radius = 39.0128
+radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr1nb"]
 size = Vector2(46, 11)
@@ -24,10 +29,24 @@ size = Vector2(46, 11)
 [sub_resource type="CircleShape2D" id="CircleShape2D_5tbji"]
 radius = 18.0
 
+[sub_resource type="Gradient" id="Gradient_pidcx"]
+offsets = PackedFloat32Array(0.126638, 0.873362, 0.995633, 1)
+colors = PackedColorArray(0.53, 0.53, 0.53, 0, 1, 1, 1, 0.0784314, 1, 1, 1, 0.239216, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wwhx6"]
+gradient = SubResource("Gradient_pidcx")
+width = 300
+height = 300
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7m2um"]
+radius = 150.0
+
 [node name="Star" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Stars"]]
 rotation = 6.28319
-collision_layer = 32
-collision_mask = 33
+collision_layer = 0
 script = ExtResource("1_a0cwb")
 sprite = NodePath("Sprite")
 
@@ -155,6 +174,42 @@ collision_mask = 4
 script = ExtResource("14_wdnoj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_5tbji")
+
+[node name="HitBox" type="Area2D" parent="."]
+modulate = Color(1, 1, 0, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("15_iuvkl")
+
+[node name="Sprite2D" type="Sprite2D" parent="HitBox"]
+texture = SubResource("GradientTexture2D_wwhx6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_7m2um")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("15_hndjk")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("16_3cf8m")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Charge" type="Node" parent="StateMachine"]
+script = ExtResource("17_5rcwd")
+
+[node name="Timer" type="Timer" parent="StateMachine/Charge"]
+one_shot = true
+
+[node name="Teleport" type="Node" parent="StateMachine"]
+script = ExtResource("18_qfcp5")
+
+[node name="PrepTimer" type="Timer" parent="StateMachine/Teleport"]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/Teleport"]
+one_shot = true

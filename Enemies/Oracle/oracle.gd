@@ -27,16 +27,15 @@ static func create(
 	new_oracle.max_health = 3
 	new_oracle.colour = initial_colour
 	new_oracle.orb_colour = initial_orb_colour
-	new_oracle.move_speed = randf_range(150.0, 200.0)
+	new_oracle.move_speed = randf_range(250.0, 300.0)
 	return new_oracle
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _update(delta: float) -> void:
-	_rotate_orbs(delta, orb_rotation_speed)
+func _physics_process(_delta: float) -> void:
+	pass
 
 
-func _rotate_orbs(delta: float, new_orb_rotation_speed: float) -> void:
+func rotate_orbs(delta: float, new_orb_rotation_speed: float) -> void:
 	orbs.rotate(delta * new_orb_rotation_speed)
 
 

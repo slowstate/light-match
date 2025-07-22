@@ -7,7 +7,7 @@ const GUN_PARTICLES = preload("res://Player/VFX/gun_particles.tscn")
 
 var base_health := 3
 var health: int
-var base_move_speed := 500.0
+var base_move_speed := 300.0
 var move_speed := base_move_speed
 var current_colour := Globals.Colour.BLUE
 

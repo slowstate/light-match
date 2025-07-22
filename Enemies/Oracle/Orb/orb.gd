@@ -1,6 +1,7 @@
 extends Appendage
 
 var oracle: Oracle
+var original_position: Vector2 = position
 
 
 # Called when the node enters the scene tree for the first time.
