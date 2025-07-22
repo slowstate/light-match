@@ -45,11 +45,6 @@ func physics_update(delta: float) -> void:
 			delta, Globals.player.global_position, lerpf(bot.move_speed, 350.0, ease(1 - aggro_timer.time_left / aggro_timer.wait_time, -2.0) * 2.0)
 		)
 
-	if bot.global_position.distance_to(Globals.player.global_position) <= 20.0:
-		bot.play_attack_animation()
-		aggro_timer.stop()
-		_on_aggro_timer_timeout()
-
 
 func _on_aggro_timer_timeout() -> void:
 	aggro_cooldown_timer.start(aggro_cooldown_time)
@@ -59,3 +54,9 @@ func _on_aggro_timer_timeout() -> void:
 
 func _on_aggro_cooldown_timer_timeout() -> void:
 	transition.emit("Idle")
+
+
+func _on_hurt_box_player_hit() -> void:
+	bot.play_attack_animation()
+	aggro_timer.stop()
+	_on_aggro_timer_timeout()
