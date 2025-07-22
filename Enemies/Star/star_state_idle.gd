@@ -27,7 +27,10 @@ func physics_update(delta: float) -> void:
 		return
 	if !Globals.player:
 		return
-
+	if star.is_stunned():
+		timer.paused = true
+		return
+	timer.paused = false
 	star.rotate_star(delta, star.shell_rotation_speed)
 
 

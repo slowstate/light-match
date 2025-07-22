@@ -22,7 +22,8 @@ func physics_update(delta: float) -> void:
 		return
 	if !Globals.player:
 		return
-
+	if oracle.is_stunned():
+		return
 	if oracle.player_is_within_distance(200.0):
 		transition.emit("Attack")
 		return

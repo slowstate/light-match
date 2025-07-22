@@ -35,6 +35,13 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 
+	if bot.is_stunned():
+		idle_timer.paused = true
+		roam_timer.paused = true
+		return
+	idle_timer.paused = false
+	roam_timer.paused = false
+
 	if bot.player_is_within_distance(500.0):
 		transition.emit("Aggro")
 

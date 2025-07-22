@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=20 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="2_ekdli"]
@@ -7,6 +7,22 @@
 [ext_resource type="FontFile" uid="uid://dt7ijpr3w8s08" path="res://Common/Fonts/exo/Exo-Bold.otf" id="5_qrmso"]
 [ext_resource type="Texture2D" uid="uid://d36h547sfej1u" path="res://HUD/PaletteMilestone1.png" id="6_wpbjh"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="7_u5avh"]
+
+[sub_resource type="Gradient" id="Gradient_2j6n7"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 0.270588, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wyict"]
+gradient = SubResource("Gradient_2j6n7")
+height = 12
+
+[sub_resource type="Gradient" id="Gradient_osjcn"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0.929412, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vvlfp"]
+gradient = SubResource("Gradient_osjcn")
+height = 12
 
 [sub_resource type="Gradient" id="Gradient_6n8lw"]
 offsets = PackedFloat32Array(0, 0.699187)
@@ -66,6 +82,15 @@ width = 2.0
 position = Vector2(56, 19)
 collision_mask = 25
 
+[node name="HealthBar" type="Sprite2D" parent="."]
+position = Vector2(-39, 44)
+texture = SubResource("GradientTexture2D_wyict")
+centered = false
+
+[node name="HealthBarInner" type="Sprite2D" parent="HealthBar"]
+texture = SubResource("GradientTexture2D_vvlfp")
+centered = false
+
 [node name="ShieldSprite" type="Sprite2D" parent="."]
 position = Vector2(-7, 0)
 texture = ExtResource("4_w330a")
@@ -86,7 +111,6 @@ position = Vector2(18.9998, -56.0001)
 position = Vector2(17.9998, -66.0001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-8, 1)
 shape = SubResource("CapsuleShape2D_wb7x1")
 

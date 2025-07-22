@@ -26,7 +26,7 @@ shape = SubResource("CircleShape2D_y8uqw")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 6
 script = ExtResource("3_ufl26")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -53,3 +53,6 @@ one_shot = true
 
 [node name="AggroCooldownTimer" type="Timer" parent="StateMachine/Aggro"]
 one_shot = true
+
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
+[connection signal="player_hit" from="HurtBox" to="StateMachine/Aggro" method="_on_hurt_box_player_hit"]

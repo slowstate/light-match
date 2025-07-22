@@ -44,6 +44,21 @@ text = "Select an upgrade to replace"
 label_settings = SubResource("LabelSettings_mns33")
 script = ExtResource("2_2jnw8")
 
+[node name="OneConditionRequiredLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.5
+offset_top = -359.0
+offset_right = 230.5
+offset_bottom = -334.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Select one or more condition(s) to continue"
+label_settings = SubResource("LabelSettings_bnji2")
+
 [node name="ConditionOptions" type="HBoxContainer" parent="."]
 offset_left = -500.0
 offset_top = -300.0
@@ -56,9 +71,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -438.0
-offset_top = -11.0
+offset_top = -45.0
 offset_right = 438.0
-offset_bottom = 23.0
+offset_bottom = -11.0
 grow_horizontal = 2
 text = "Upgrades trigger from left to right. New upgrades will be added to the right."
 label_settings = SubResource("LabelSettings_bnji2")
@@ -72,16 +87,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -603.0
-offset_top = 109.0
+offset_top = 48.0
 offset_right = 609.0
-offset_bottom = 409.0
+offset_bottom = 348.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
 alignment = 1
 
 [node name="ContinueBG" type="Sprite2D" parent="."]
-position = Vector2(0, 459)
+position = Vector2(0, 433)
 texture = ExtResource("3_44586")
 
 [node name="ContinueButton" type="Button" parent="ContinueBG"]
