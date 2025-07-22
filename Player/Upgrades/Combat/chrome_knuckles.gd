@@ -7,6 +7,7 @@ func _init() -> void:
 	name = "Chrome Knuckles"
 	description = "While there are at least 3 enemies within 400 pixels of you, your bullets deal 1 more damage"
 	icon = preload("res://Player/Upgrades/Combat/Chrome Knuckles.png")
+	points_cost = 1
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

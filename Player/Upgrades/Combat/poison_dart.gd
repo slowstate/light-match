@@ -9,10 +9,11 @@ var effect_timer: Timer
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.POSION_DART
 	name = "Poison Dart"
-	description = "After clearing 2 palettes in a row, your bullets reduce the enemy's HP to 1 for 10s"
+	description = "After clearing 2 palettes, your bullets reduce the enemy's HP to 1 for 10s"
 	icon = preload("res://Player/Upgrades/Combat/Poison Dart.png")
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
+	points_cost = 1
 
 
 func trigger_counter_update() -> void:

@@ -5,8 +5,9 @@ extends Upgrade
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.ROSE_TINTED_GLASSES
 	name = "Rose-Tinted Glasses"
-	description = "While all enemies are the same colour, your bullets instantly kill enemies"
+	description = "While all enemies are the same colour, your bullets deal 100% bonus damage"
 	icon = preload("res://Player/Upgrades/Combat/Rose Tinted Glasses.png")
+	points_cost = 3
 
 
 func on_upgrade_added(_new_upgrade: Upgrade) -> void:
@@ -27,7 +28,7 @@ func on_enemy_killed(enemy: Enemy) -> void:
 
 func on_bullet_fired(bullet: Bullet) -> void:
 	if _all_enemies_alive_are_the_same_colour():
-		bullet.damage = 99
+		bullet.damage *= 2
 
 
 func _all_enemies_alive_are_the_same_colour(enemies_to_ignore: Array[Enemy] = []) -> bool:

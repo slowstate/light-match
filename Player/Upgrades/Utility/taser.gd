@@ -8,8 +8,9 @@ var slowed_enemies: Array[Enemy]
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.TASER
 	name = "Taser"
-	description = "Enemies hit by a different colour have their move speed reduced by 50% for 3s"
+	description = "When you hit an enemy with a different colour, slow it by 50% for 3s"
 	icon = preload("res://Player/Upgrades/Utility/Taser.png")
+	points_cost = 3
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

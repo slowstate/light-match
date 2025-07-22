@@ -1,6 +1,6 @@
 extends Upgrade
 
-var effect_time: float = 15.0
+var effect_time: float = 10.0
 var effect_timer: Timer
 var frozen_enemies: Array[Enemy]
 var palettes_cleared_in_a_row: int = 0
@@ -9,8 +9,9 @@ var palettes_cleared_in_a_row: int = 0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.FREEZE_BOMB
 	name = "Freeze Bomb"
-	description = "After clearing 4 palettes in a row, freeze all enemies for 15s"
+	description = "After clearing 3 palettes in a row, stun all enemies for 10s"
 	icon = preload("res://Player/Upgrades/Utility/Freeze Bomb.png")
+	points_cost = 6
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
 
@@ -21,7 +22,7 @@ func trigger_counter_update() -> void:
 
 func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_in_a_row += 1
-	if palettes_cleared_in_a_row >= 4:
+	if palettes_cleared_in_a_row >= 3:
 		frozen_enemies = Globals.get_all_enemies_alive()
 		for enemy in frozen_enemies:
 			enemy.stun(effect_time)

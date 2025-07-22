@@ -9,6 +9,7 @@ func _init() -> void:
 	name = "Holo Scope"
 	description = "Deal 1 more damage to enemies that are faraway"
 	icon = preload("res://Player/Upgrades/Combat/Holo Scope.png")
+	points_cost = 1
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

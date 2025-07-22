@@ -5,6 +5,8 @@ var main_menu = load("res://Menus/MainMenu/main_menu.tscn")
 var current_round: Round
 var arena
 var enemies_left_to_spawn_this_round: int = 0
+var concurrent_enemies_spawn_limit: int = 1
+var concurrent_enemies_alive: int = 0
 var round_elapsed_time: float
 
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
@@ -54,7 +56,9 @@ func _load_round(round_number: int) -> void:
 	current_round = load(round_resource_path % round_number_string) as Round
 	ConditionManager.on_round_loaded(current_round)
 	arena.total_enemies_to_spawn_this_round = current_round.total_enemies_to_spawn if round_number <= 16 else 5 + round_number * 3
+	concurrent_enemies_spawn_limit = floori(10.0 + float(round_number) / 2.0)
 	if round_number_string == "endless":
+		concurrent_enemies_spawn_limit += floori(pow(float(round_number) - 16.0, 1.7))
 		arena.total_enemies_to_spawn_this_round += floori(pow(float(round_number) - 16.0, 2.0))
 	enemies_left_to_spawn_this_round = arena.total_enemies_to_spawn_this_round
 	arena.enemy_types_to_spawn = current_round.enemy_types_to_spawn()
@@ -69,26 +73,27 @@ func _load_round(round_number: int) -> void:
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	if enemies_left_to_spawn_this_round <= 0:
+	if enemies_left_to_spawn_this_round > 0 && concurrent_enemies_alive < concurrent_enemies_spawn_limit:
+		var new_enemy
+		match arena.enemy_types_to_spawn.pick_random():
+			Globals.EnemyType.BOT:
+				new_enemy = Bot.create(_random_location_in_arena(), current_round.bots_health)
+			Globals.EnemyType.LIZARD:
+				new_enemy = Lizard.create(_random_location_in_arena(), current_round.lizards_health)
+			Globals.EnemyType.TANK:
+				new_enemy = Tank.create(_random_location_in_arena(), current_round.tanks_health)
+			Globals.EnemyType.ORACLE:
+				new_enemy = Oracle.create(_random_location_in_arena(), current_round.oracles_health)
+			Globals.EnemyType.STAR:
+				new_enemy = Star.create(_random_location_in_arena(), current_round.stars_health)
+		concurrent_enemies_alive += 1
+		add_child(new_enemy)
+
+		enemies_left_to_spawn_this_round -= 1
+		enemy_spawn_timer.wait_time = clamp(enemy_spawn_timer.wait_time * 1.1, 0.0, 2.0)
+		enemy_spawn_timer.start()
+	else:
 		return
-	var new_enemy
-	match arena.enemy_types_to_spawn.pick_random():
-		Globals.EnemyType.BOT:
-			new_enemy = Bot.create(_random_location_in_arena(), current_round.bots_health)
-		Globals.EnemyType.LIZARD:
-			new_enemy = Lizard.create(_random_location_in_arena(), current_round.lizards_health)
-		Globals.EnemyType.TANK:
-			new_enemy = Tank.create(_random_location_in_arena(), current_round.tanks_health)
-		Globals.EnemyType.ORACLE:
-			new_enemy = Oracle.create(_random_location_in_arena(), current_round.oracles_health)
-		Globals.EnemyType.STAR:
-			new_enemy = Star.create(_random_location_in_arena(), current_round.stars_health)
-	add_child(new_enemy)
-
-	enemies_left_to_spawn_this_round -= 1
-	enemy_spawn_timer.wait_time = clamp(enemy_spawn_timer.wait_time * 1.1, 0.0, 2.0)
-	enemy_spawn_timer.start()
-
 
 func _random_location_in_arena() -> Vector2:
 	var random_location = Vector2(randi_range(0, 3840), randi_range(0, 2160))
@@ -98,7 +103,8 @@ func _random_location_in_arena() -> Vector2:
 
 
 func on_enemy_died(_enemy: Enemy) -> void:
-	pass
+	concurrent_enemies_alive -= 1
+	enemy_spawn_timer.start()
 
 
 func _on_palette_cleared() -> void:

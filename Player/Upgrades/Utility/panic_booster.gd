@@ -11,6 +11,7 @@ func _init() -> void:
 	name = "Panic Booster"
 	description = "After being hit, gain 20% move speed and hit immunity for 10s"
 	icon = preload("res://Player/Upgrades/Utility/Panic Booster.png")
+	points_cost = 1
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
 

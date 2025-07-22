@@ -7,6 +7,7 @@ func _init() -> void:
 	name = "Charged Ammo"
 	description = "While your gun colour is the same colour as the last colour on your palette, you deal 2 more damage"
 	icon = preload("res://Player/Upgrades/Combat/Charged Ammo.png")
+	points_cost = 3
 
 
 func on_palette_generated() -> void:

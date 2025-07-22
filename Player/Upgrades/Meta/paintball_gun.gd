@@ -6,6 +6,7 @@ func _init() -> void:
 	name = "Paintball Gun"
 	description = "Enemies hit by a different colour have a chance to change to that colour"
 	icon = preload("res://Player/Upgrades/Meta/Paintball Gun.png")
+	points_cost = 3
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
