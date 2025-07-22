@@ -12,7 +12,3 @@ static func create(initial_position: Vector2, initial_health: int, initial_colou
 	new_tank.colour = initial_colour
 	new_tank.move_speed = randf_range(100.0, 125.0)
 	return new_tank
-
-
-func _physics_process(_delta: float) -> void:
-	pass

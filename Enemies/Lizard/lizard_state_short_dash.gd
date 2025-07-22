@@ -22,10 +22,13 @@ func enter() -> void:
 	if !stun_timer.timeout.is_connected(_on_stun_timer_timeout):
 		stun_timer.timeout.connect(_on_stun_timer_timeout)
 	charge_timer.start(randf_range(0.1, 0.2))
+	lizard.play_attack_animation()
 
 
 func exit() -> void:
-	pass
+	charge_timer.stop()
+	dash_timer.stop()
+	stun_timer.stop()
 
 
 func update(_delta: float) -> void:
@@ -33,11 +36,23 @@ func update(_delta: float) -> void:
 
 
 func physics_update(delta: float) -> void:
+	if lizard.is_stunned():
+		stun_timer.paused = true
+		charge_timer.paused = true
+		dash_timer.paused = true
+		return
+	stun_timer.paused = false
+	charge_timer.paused = false
+	dash_timer.paused = false
+
 	if lizard.get_appendages().is_empty():
 		transition.emit("AggroDash")
 		return
+
 	if !charge_timer.is_stopped():
-		lizard.rotation = lerp_angle(lizard.rotation, (target_location - lizard.global_position).angle(), 5.0 * delta)
+		lizard.rotation = lerp_angle(
+			lizard.rotation, (target_location - lizard.global_position).angle(), ease(1 - charge_timer.time_left / charge_timer.wait_time, -2.0)
+		)
 	if !dash_timer.is_stopped():
 		lizard.global_position = lizard.global_position.lerp(target_location, ease(1 - dash_timer.time_left / dash_timer.wait_time, -2.0))
 		lizard.global_position = lizard.global_position.clamp(Vector2(65, 65), Vector2(3775, 2095))

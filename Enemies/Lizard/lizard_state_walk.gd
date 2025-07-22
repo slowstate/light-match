@@ -25,6 +25,9 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 
+	if lizard.is_stunned():
+		return
+
 	if lizard.get_appendages().is_empty():
 		transition.emit("AggroDash")
 		return

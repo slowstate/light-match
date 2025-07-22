@@ -33,12 +33,20 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 
+	if bot.is_stunned():
+		aggro_timer.paused = true
+		aggro_cooldown_timer.paused = true
+		return
+	aggro_timer.paused = false
+	aggro_cooldown_timer.paused = false
+
 	if !aggro_timer.is_stopped():
 		bot.move_forward(
 			delta, Globals.player.global_position, lerpf(bot.move_speed, 350.0, ease(1 - aggro_timer.time_left / aggro_timer.wait_time, -2.0) * 2.0)
 		)
 
 	if bot.global_position.distance_to(Globals.player.global_position) <= 20.0:
+		bot.play_attack_animation()
 		aggro_timer.stop()
 		_on_aggro_timer_timeout()
 

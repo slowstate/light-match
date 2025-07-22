@@ -19,6 +19,7 @@ func _ready() -> void:
 	SignalBus.upgrade_removed.connect(_on_upgrade_removed)
 	generate_upgrade_options()
 	generate_condition_options()
+	disable_upgrade_options_that_cannot_be_afforded()
 
 
 #region Condition option generation

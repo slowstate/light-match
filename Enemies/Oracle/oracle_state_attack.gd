@@ -31,7 +31,10 @@ func enter() -> void:
 
 
 func exit() -> void:
-	pass
+	for orb in oracle.orbs.get_children():
+		orb = orb as Appendage
+		orb.position = orb.original_position
+		orb.scale = Vector2(1.0, 1.0)
 
 
 func update(_delta: float) -> void:
@@ -43,9 +46,16 @@ func physics_update(delta: float) -> void:
 		return
 	if !Globals.player:
 		return
-
-	if oracle.player_is_within_distance():
-		transition.emit("Chasing")
+	if oracle.is_stunned():
+		expand_timer.paused = true
+		shrink_timer.paused = true
+		spin_up_timer.paused = true
+		spin_down_timer.paused = true
+		return
+	expand_timer.paused = false
+	shrink_timer.paused = false
+	spin_up_timer.paused = false
+	spin_down_timer.paused = false
 
 	if !expand_timer.is_stopped():
 		for orb in oracle.orbs.get_children():

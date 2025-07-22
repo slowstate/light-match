@@ -30,7 +30,16 @@ func update(_delta: float) -> void:
 	pass
 
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
+	if lizard.is_stunned():
+		stun_timer.paused = true
+		charge_timer.paused = true
+		dash_timer.paused = true
+		return
+	stun_timer.paused = false
+	charge_timer.paused = false
+	dash_timer.paused = false
+
 	if !charge_timer.is_stopped():
 		lizard.rotation = lerp_angle(
 			lizard.rotation, (target_location - lizard.global_position).angle(), ease(1 - charge_timer.time_left / charge_timer.wait_time, -2.0)
@@ -42,6 +51,7 @@ func physics_update(delta: float) -> void:
 func _on_stun_timer_timeout() -> void:
 	target_location = lizard.global_position + (Globals.player.global_position - lizard.global_position).normalized() * randf_range(700.0, 800.0)
 	charge_timer.start(randf_range(0.1, 0.2))
+	lizard.play_attack_animation()
 
 
 func _on_charge_timer_timeout() -> void:

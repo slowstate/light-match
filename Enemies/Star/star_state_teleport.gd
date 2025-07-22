@@ -42,6 +42,12 @@ func physics_update(delta: float) -> void:
 		return
 	if !Globals.player:
 		return
+	if star.is_stunned():
+		prep_timer.paused = true
+		cooldown_timer.paused = true
+		return
+	prep_timer.paused = false
+	cooldown_timer.paused = false
 
 	if !prep_timer.is_stopped():
 		star.hit_box.modulate.a = lerpf(0.0, 1.0, ease(1 - prep_timer.time_left / prep_timer.wait_time, 0.5))

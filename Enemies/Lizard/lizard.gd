@@ -24,10 +24,6 @@ static func create(
 	return new_lizard
 
 
-func _physics_process(_delta: float) -> void:
-	pass
-
-
 func _setup() -> void:
 	head.set_colour(head_colour)
 
