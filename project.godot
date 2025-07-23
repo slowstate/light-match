@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Light Match"
-config/version="0.4"
+config/version="0.5"
 run/main_scene="res://Menus/MainMenu/main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="3HP/Light Match"
@@ -63,7 +63,9 @@ Stars=""
 [gui]
 
 theme/custom_font="res://Common/Fonts/exo/Exo-Medium.otf"
+theme/default_font_subpixel_positioning=0
 theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
 
 [input]
 
