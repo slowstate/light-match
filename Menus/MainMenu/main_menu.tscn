@@ -897,6 +897,7 @@ autostart = true
 [node name="MusicManager" parent="." instance=ExtResource("27_m1d7y")]
 
 [node name="Tutorial" type="Control" parent="."]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
@@ -1097,17 +1098,17 @@ offset_bottom = 115.0
 text = "4"
 label_settings = SubResource("LabelSettings_5521n")
 
-[node name="PlayerConditionsInterface2" type="VBoxContainer" parent="Tutorial/UserInterface"]
+[node name="PlayerConditionsInterface" type="VBoxContainer" parent="Tutorial/UserInterface"]
 offset_left = 70.0
 offset_top = 128.0
 offset_right = 110.0
 offset_bottom = 168.0
 
-[node name="SwarmConditionLabel" type="Label" parent="Tutorial/UserInterface/PlayerConditionsInterface2"]
+[node name="SwarmConditionLabel" type="Label" parent="Tutorial/UserInterface/PlayerConditionsInterface"]
 layout_mode = 2
 text = "Swarm"
 
-[node name="SuperchargedConditionLabel" type="Label" parent="Tutorial/UserInterface/PlayerConditionsInterface2"]
+[node name="SuperchargedConditionLabel" type="Label" parent="Tutorial/UserInterface/PlayerConditionsInterface"]
 layout_mode = 2
 text = "Supercharged"
 
