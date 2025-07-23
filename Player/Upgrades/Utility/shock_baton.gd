@@ -10,6 +10,7 @@ func _init() -> void:
 	name = "Shock Baton"
 	description = "After standing still for 2s, your bullets knock back enemies for 10s"
 	icon = preload("res://Player/Upgrades/Utility/Shock Baton.png")
+	points_cost = 1
 	trigger_timer = super.new_timer()
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)

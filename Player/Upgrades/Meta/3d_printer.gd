@@ -6,6 +6,7 @@ func _init() -> void:
 	name = "3D Printer"
 	description = "Upgrades you own can appear during Upgrade selection"
 	icon = preload("res://Player/Upgrades/Meta/3D Printer.png")
+	points_cost = 6
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

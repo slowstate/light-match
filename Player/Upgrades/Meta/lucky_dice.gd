@@ -8,6 +8,7 @@ func _init() -> void:
 	name = "Lucky Dice"
 	description = "Increase palette size by 1. Clearing a palette has a 50% chance to count twice"
 	icon = preload("res://Player/Upgrades/Meta/Lucky Dice.png")
+	points_cost = 6
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

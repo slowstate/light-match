@@ -12,6 +12,7 @@ func _init() -> void:
 	name = "Revolver Barrel"
 	description = "After killing 2 enemies of the same colour in a row, your bullets deals 1 more damage for 5s"
 	icon = preload("res://Player/Upgrades/Combat/Revolver Barrel.png")
+	points_cost = 1
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
 

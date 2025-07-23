@@ -7,8 +7,9 @@ var enemy_killed_colour: Globals.Colour
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.SPRAY_PAINT
 	name = "Spray Paint"
-	description = "After killing an enemy, the next enemy to spawn has a 50% chance of being the same colour"
+	description = "After killing an enemy, the next enemy to spawn will be the same colour"
 	icon = preload("res://Player/Upgrades/Meta/Spray Paint.png")
+	points_cost = 1
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
@@ -22,5 +23,4 @@ func on_enemy_killed(enemy: Enemy) -> void:
 
 func on_enemy_spawned(enemy: Enemy) -> void:
 	if enemy_killed_colour != 0:
-		if randi() % 2 == 0:
-			enemy.set_colour(enemy_killed_colour)
+		enemy.set_colour(enemy_killed_colour)

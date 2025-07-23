@@ -11,6 +11,7 @@ var base_move_speed := 300.0
 var move_speed := base_move_speed
 var current_colour := Globals.Colour.BLUE
 
+var max_upgrades: int = 8
 var upgrades: Array[Upgrade] = []
 var conditions: Array[Condition] = []
 var points: int = 1
@@ -176,7 +177,7 @@ func change_colour(new_colour: Globals.Colour) -> void:
 
 func add_upgrade(new_upgrade: Upgrade) -> void:
 	SfxManager.play_sound("AddUpgradeSFX", -10.0, -8.0, 0.9, 1.1)
-	if upgrades.size() < 5:
+	if upgrades.size() < max_upgrades:
 		upgrades.push_back(new_upgrade)
 		update_player_upgrades_interface()
 		UpgradeManager.on_upgrade_added(new_upgrade)

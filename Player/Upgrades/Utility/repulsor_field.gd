@@ -7,6 +7,7 @@ func _init() -> void:
 	name = "Repulsor Field"
 	description = "After clearing a palette, knock back all nearby enemies"
 	icon = preload("res://Player/Upgrades/Utility/Repulsor Field.png")
+	points_cost = 3
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

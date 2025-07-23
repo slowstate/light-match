@@ -9,6 +9,7 @@ func _init() -> void:
 	name = "Power Diverter"
 	description = "Changing gun colour increases your move speed by 30% for 0.5s"
 	icon = preload("res://Player/Upgrades/Utility/Power Divertor.png")
+	points_cost = 3
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
 

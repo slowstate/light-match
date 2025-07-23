@@ -12,6 +12,7 @@ func _init() -> void:
 	name = "Adrenaline Injection"
 	description = "Killing 2 enemies of the same colour in a row grants 20% move speed for 3s"
 	icon = preload("res://Player/Upgrades/Utility/Adrenaline Injection.png")
+	points_cost = 1
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
 

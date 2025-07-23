@@ -11,6 +11,7 @@ func _init() -> void:
 	name = "Shield Generator"
 	description = "After clearing 3 palettes in a row, gain 1 shield. When your shield breaks, slows all nearby enemies by 50% for 10s"
 	icon = preload("res://Player/Upgrades/Utility/Shield Generator.png")
+	points_cost = 1
 
 
 func trigger_counter_update() -> void:

@@ -11,6 +11,7 @@ func _init() -> void:
 	name = "Silver Spoon"
 	description = "After killing 10 enemies, gain a cleared palette"
 	icon = preload("res://Player/Upgrades/Meta/Silver Spoon.png")
+	points_cost = 6
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

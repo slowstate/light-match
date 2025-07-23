@@ -7,6 +7,7 @@ func _init() -> void:
 	name = "Quick Release Mag"
 	description = "Changing gun colour instantly readies your gun"
 	icon = preload("res://Player/Upgrades/Combat/Quick Release Mag.png")
+	points_cost = 1
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

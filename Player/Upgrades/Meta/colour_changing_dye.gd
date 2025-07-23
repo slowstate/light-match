@@ -9,6 +9,7 @@ func _init() -> void:
 	name = "Colour-Changing Dye"
 	description = "Enemies change to a different colour every 15s"
 	icon = preload("res://Player/Upgrades/Meta/Colour Changing Dye.png")
+	points_cost = 3
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:

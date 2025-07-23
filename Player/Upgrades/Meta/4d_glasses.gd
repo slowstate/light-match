@@ -6,6 +6,7 @@ func _init() -> void:
 	name = "4D-Glasses"
 	description = "Increase palette size by 1. Palettes cannot be failed"
 	icon = preload("res://Player/Upgrades/Meta/4D Glasses.png")
+	points_cost = 3
 
 
 func on_upgrade_added(new_upgrade: Upgrade) -> void:
