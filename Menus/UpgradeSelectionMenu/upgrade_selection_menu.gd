@@ -86,7 +86,7 @@ func _input(event: InputEvent) -> void:
 
 
 func on_upgrade_option_selected(selected_upgrade_option: UpgradeOption):
-	if Globals.player.upgrades.size() < 8:
+	if Globals.player.upgrades.size() < Globals.player.max_upgrades:
 		var log_context_data = {"selected_upgrade": selected_upgrade_option.upgrade.name}
 		var log_play_data = {"message": "Upgrade selected", "context": log_context_data}
 		Logger.log_play_data(log_play_data)

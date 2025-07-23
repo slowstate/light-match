@@ -73,27 +73,27 @@ func _load_round(round_number: int) -> void:
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	if enemies_left_to_spawn_this_round > 0 && concurrent_enemies_alive < concurrent_enemies_spawn_limit:
-		var new_enemy
-		match arena.enemy_types_to_spawn.pick_random():
-			Globals.EnemyType.BOT:
-				new_enemy = Bot.create(_random_location_in_arena(), current_round.bots_health)
-			Globals.EnemyType.LIZARD:
-				new_enemy = Lizard.create(_random_location_in_arena(), current_round.lizards_health)
-			Globals.EnemyType.TANK:
-				new_enemy = Tank.create(_random_location_in_arena(), current_round.tanks_health)
-			Globals.EnemyType.ORACLE:
-				new_enemy = Oracle.create(_random_location_in_arena(), current_round.oracles_health)
-			Globals.EnemyType.STAR:
-				new_enemy = Star.create(_random_location_in_arena(), current_round.stars_health)
-		concurrent_enemies_alive += 1
-		add_child(new_enemy)
-
-		enemies_left_to_spawn_this_round -= 1
-		enemy_spawn_timer.wait_time = clamp(enemy_spawn_timer.wait_time * 1.1, 0.0, 2.0)
-		enemy_spawn_timer.start()
-	else:
+	if enemies_left_to_spawn_this_round <= 0 || concurrent_enemies_alive >= concurrent_enemies_spawn_limit:
 		return
+	var new_enemy
+	match arena.enemy_types_to_spawn.pick_random():
+		Globals.EnemyType.BOT:
+			new_enemy = Bot.create(_random_location_in_arena(), current_round.bots_health)
+		Globals.EnemyType.LIZARD:
+			new_enemy = Lizard.create(_random_location_in_arena(), current_round.lizards_health)
+		Globals.EnemyType.TANK:
+			new_enemy = Tank.create(_random_location_in_arena(), current_round.tanks_health)
+		Globals.EnemyType.ORACLE:
+			new_enemy = Oracle.create(_random_location_in_arena(), current_round.oracles_health)
+		Globals.EnemyType.STAR:
+			new_enemy = Star.create(_random_location_in_arena(), current_round.stars_health)
+	concurrent_enemies_alive += 1
+	add_child(new_enemy)
+
+	enemies_left_to_spawn_this_round -= 1
+	enemy_spawn_timer.wait_time = clamp(enemy_spawn_timer.wait_time * 1.1, 0.0, 2.0)
+	enemy_spawn_timer.start()
+
 
 func _random_location_in_arena() -> Vector2:
 	var random_location = Vector2(randi_range(0, 3840), randi_range(0, 2160))

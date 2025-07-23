@@ -1,7 +1,6 @@
 extends Upgrade
 
-var palettes_cleared_in_a_row: int = 0
-var active_bullet_id: String
+var palettes_cleared: int = 0
 var effect_timer: Timer
 
 
@@ -17,30 +16,20 @@ func _init() -> void:
 
 
 func trigger_counter_update() -> void:
-	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
+	upgrade_counter_updated.emit(palettes_cleared)
 
 
 func on_palette_cleared(_palette: Palette) -> void:
-	palettes_cleared_in_a_row += 1
-	if palettes_cleared_in_a_row >= 2:
+	palettes_cleared += 1
+	if palettes_cleared >= 2:
 		effect_timer.start(10)
 		is_active = true
-		palettes_cleared_in_a_row = 0
-	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
-
-
-func on_palette_failed() -> void:
-	palettes_cleared_in_a_row = 0
-	upgrade_counter_updated.emit(palettes_cleared_in_a_row)
-
-
-func on_bullet_fired(bullet: Bullet) -> void:
-	if effect_timer.is_stopped():
-		active_bullet_id = bullet.bullet_id
+		palettes_cleared = 0
+	upgrade_counter_updated.emit(palettes_cleared)
 
 
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null):
-	if bullet.bullet_id == active_bullet_id:
+	if is_active:
 		bullet.damage = maxi(enemy.health - 1, 1)
 
 

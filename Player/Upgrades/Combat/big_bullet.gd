@@ -20,7 +20,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 
 func on_bullet_fired(bullet: Bullet) -> void:
 	if !effect_timer.is_stopped():
-		bullet.damage += 2
+		bullet.damage += 1
 
 
 func _on_effect_timer_timeout() -> void:
