@@ -49,9 +49,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	health = base_health
-	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
-	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
+	set_health(base_health)
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
@@ -237,6 +235,12 @@ func add_points(points_to_add: int) -> void:
 	player_points_label.text = str(points)
 
 
+func set_health(new_health: int) -> void:
+	health = new_health
+	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
+	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
+
+
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	player_hit(_area.owner as Enemy)
 
@@ -265,9 +269,7 @@ func player_hit(enemy: Enemy) -> void:
 		shield_active = false
 		return
 
-	health -= enemy.damage
-	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
-	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
+	set_health(health - enemy.damage)
 	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
 	SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 	var log_play_data = {"message": "Player hit", "context": log_context_data}
