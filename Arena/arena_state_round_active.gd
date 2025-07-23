@@ -25,6 +25,7 @@ func enter() -> void:
 		SignalBus.player_died.connect(_on_player_died)
 	round_elapsed_time = 0.0
 	_load_round(arena.current_round_number)
+	Globals.player.set_health(Globals.player.base_health)
 
 	var log_context_data = {"round_number": arena.current_round_number}
 	var log_play_data = {"message": "Round started", "context": log_context_data}
