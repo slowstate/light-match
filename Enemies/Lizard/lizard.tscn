@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://clv4agc2np8fh"]
+[gd_scene load_steps=17 format=3 uid="uid://clv4agc2np8fh"]
 
 [ext_resource type="Script" path="res://Enemies/Lizard/lizard.gd" id="1_d185i"]
 [ext_resource type="PackedScene" uid="uid://cq600o70yc5is" path="res://Enemies/Lizard/Sprite/lizard_sprite.tscn" id="2_pu36a"]
@@ -75,8 +75,12 @@ _data = {
 radius = 47.0956
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0q6xi"]
-radius = 15.5
+radius = 19.0
 height = 64.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tt65p"]
+radius = 5.0
+height = 24.0
 
 [node name="Lizard" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Lizards"]]
 collision_layer = 64
@@ -122,10 +126,14 @@ collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_d8xqh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 0.5)
+[node name="BodyHurtBox" type="CollisionShape2D" parent="HurtBox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0q6xi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-39, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tt65p")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("7_vjl12")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dh5h2d2pwrrpa"]
+[gd_scene load_steps=13 format=3 uid="uid://dh5h2d2pwrrpa"]
 
 [ext_resource type="Script" path="res://Enemies/Bot/bot.gd" id="1_joxph"]
 [ext_resource type="PackedScene" uid="uid://dohxwuksnslb" path="res://Enemies/Bot/Sprite/bot_sprite.tscn" id="2_7h7sy"]
@@ -13,8 +13,21 @@ radius = 50.04
 [sub_resource type="CircleShape2D" id="CircleShape2D_nd0x0"]
 radius = 23.0217
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntuc7"]
+size = Vector2(26, 9)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_635np"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qa5bv"]
+size = Vector2(26, 9)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w2m2b"]
+radius = 7.0
+height = 22.0
+
 [node name="Bot" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Bots"]]
-rotation = -1.5708
 collision_layer = 64
 script = ExtResource("1_joxph")
 sprite = NodePath("Sprite")
@@ -22,6 +35,7 @@ sprite = NodePath("Sprite")
 [node name="Sprite" parent="." instance=ExtResource("2_7h7sy")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_y8uqw")
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -29,8 +43,24 @@ collision_layer = 8
 collision_mask = 6
 script = ExtResource("3_ufl26")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="BodyHurtBox" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_nd0x0")
+
+[node name="LeftArmHurtBox" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(10, -27.5)
+shape = SubResource("RectangleShape2D_ntuc7")
+
+[node name="LeftHandHurtBox" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(30, -27)
+shape = SubResource("CapsuleShape2D_635np")
+
+[node name="RightArmHurtBox" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(10, 27.5)
+shape = SubResource("RectangleShape2D_qa5bv")
+
+[node name="RightHandHurtBox" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(30, 27)
+shape = SubResource("CapsuleShape2D_w2m2b")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_6w5y3")
