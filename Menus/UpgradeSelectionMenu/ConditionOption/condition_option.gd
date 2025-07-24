@@ -17,7 +17,7 @@ func _ready() -> void:
 	if condition != null:
 		name_label.text = condition.name
 		description_label.text = condition.description
-		reward_label.text = "+" + str(condition.points_per_round) + " POINT(s) per Round"
+		reward_label.text = "+" + str(condition.points_per_round) + " POINT(s) per round"
 
 
 func _on_button_pressed() -> void:
