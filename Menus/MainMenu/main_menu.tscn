@@ -897,7 +897,6 @@ autostart = true
 [node name="MusicManager" parent="." instance=ExtResource("27_m1d7y")]
 
 [node name="Tutorial" type="Control" parent="."]
-visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
@@ -1125,7 +1124,7 @@ offset_left = -40.0
 offset_top = -51.0
 offset_right = 191.0
 offset_bottom = -7.0
-text = "The current round - complete all waves or die trying."
+text = "The current round. Complete all rounds or die trying."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

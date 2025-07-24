@@ -104,7 +104,7 @@ offset_right = 66.5
 offset_bottom = 58.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "+1 POINTs per Test"
+text = "+1 POINT(s) per round"
 
 [node name="AppliedBG" type="Sprite2D" parent="."]
 position = Vector2(150, 100)
