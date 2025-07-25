@@ -42,7 +42,9 @@ func physics_update(delta: float) -> void:
 
 	if !aggro_timer.is_stopped():
 		bot.move_forward(
-			delta, Globals.player.global_position, lerpf(bot.move_speed, 275.0, ease(1 - aggro_timer.time_left / aggro_timer.wait_time, -2.0) * 2.0)
+			delta,
+			Globals.player.global_position,
+			lerpf(bot.move_speed, bot.move_speed * 2.75, ease(1 - aggro_timer.time_left / aggro_timer.wait_time, -2.0) * 2.0)
 		)
 
 

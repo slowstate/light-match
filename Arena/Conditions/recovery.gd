@@ -9,7 +9,7 @@ func _init() -> void:
 	points_per_round = 1
 
 
-func on_enemy_slowed(enemy: Enemy) -> void:
+func on_enemy_slowed(enemy: Enemy, _move_speed_effect: MoveSpeedEffect) -> void:
 	enemy.set_health(enemy.health + heal_amount)
 
 

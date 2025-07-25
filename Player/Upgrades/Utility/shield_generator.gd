@@ -1,15 +1,23 @@
 extends Upgrade
 
+const MOVE_SPEED_EFFECT = preload("res://Common/StatusEffects/MoveSpeedEffect/move_speed_effect.tscn")
+
 var palettes_cleared_in_a_row: int = 0
-var effect_timers: Array[Timer]
-var slowed_enemies: Array[Enemy]
+var slow_amount: float = 0.9
+var effect_duration: float = 10.0
 
 
 # Called when the node enters the scene tree for the first time.
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.SHIELD_GENERATOR
 	name = "Shield Generator"
-	description = "After clearing 3 palettes in a row, gain 1 shield. When your shield breaks, slows all nearby enemies by 50% for 10s"
+	description = (
+		"After clearing 3 palettes in a row, gain 1 shield. When your shield breaks, slows all nearby enemies by "
+		+ str(slow_amount * 100)
+		+ "% for "
+		+ str(effect_duration)
+		+ "s"
+	)
 	icon = preload("res://Player/Upgrades/Utility/Shield Generator.png")
 	points_cost = 1
 
@@ -35,28 +43,9 @@ func on_palette_failed() -> void:
 func on_player_shield_break() -> void:
 	var all_enemies_alive = Globals.get_all_enemies_alive()
 	for enemy in all_enemies_alive:
-		if (enemy.global_position - Globals.player.global_position).length() < 500.0:
-			slowed_enemies.push_back(enemy)
-			var effect_timer = super.new_timer()
-			effect_timer.connect("timeout", _on_effect_timer_timeout)
-			effect_timer.start(10)
-			effect_timers.push_back(effect_timer)
-			enemy.move_speed *= 0.5
+		if enemy.player_is_within_distance(500.0):
+			var move_speed_effect = MOVE_SPEED_EFFECT.instantiate()
+			move_speed_effect.effect_amount = -slow_amount
+			move_speed_effect.effect_duration = effect_duration
+			enemy.add_child(move_speed_effect)
 	is_active = false
-
-
-func _on_effect_timer_timeout() -> void:
-	if slowed_enemies.is_empty():
-		return
-	var slowed_enemy = slowed_enemies.pop_front()
-	if is_instance_valid(slowed_enemy):
-		slowed_enemy = slowed_enemy as Enemy
-		slowed_enemy.move_speed /= 0.5
-	var effect_timer = effect_timers.pop_front() as Timer
-	effect_timer.queue_free()
-
-
-func on_upgrade_removed(removed_upgrade: Upgrade) -> void:
-	if removed_upgrade == self:
-		for enemy in slowed_enemies:
-			enemy.move_speed /= 0.5
