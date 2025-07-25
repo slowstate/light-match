@@ -3,7 +3,7 @@ extends Upgrade
 const MOVE_SPEED_EFFECT = preload("res://Common/StatusEffects/MoveSpeedEffect/move_speed_effect.tscn")
 
 var palettes_cleared_in_a_row: int = 0
-var slow_amount: float = 0.9
+var slow_amount: float = 0.5
 var effect_duration: float = 10.0
 
 

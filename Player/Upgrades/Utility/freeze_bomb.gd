@@ -4,7 +4,7 @@ const STUN_EFFECT = preload("res://Common/StatusEffects/StunEffect/stun_effect.t
 
 var effect_duration: float = 10.0
 var effect_timer: Timer
-var palettes_cleared_in_a_row: int = 2
+var palettes_cleared_in_a_row: int = 0
 
 
 func _init() -> void:
