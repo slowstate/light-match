@@ -2,6 +2,7 @@ class_name Round
 extends Resource
 
 @export var total_enemies_to_spawn: int
+@export var concurrent_enemies_spawn_limit: int
 
 @export var spawn_bots: bool
 @export var spawn_lizards: bool

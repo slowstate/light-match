@@ -5,6 +5,7 @@ const Bulletproof = preload("res://Arena/Conditions/bulletproof.gd")
 const Chameleon = preload("res://Arena/Conditions/chameleon.gd")
 const Fortify = preload("res://Arena/Conditions/fortify.gd")
 const Headstrong = preload("res://Arena/Conditions/headstrong.gd")
+const Poise = preload("res://Arena/Conditions/poise.gd")
 const Reactive = preload("res://Arena/Conditions/reactive.gd")
 const Recovery = preload("res://Arena/Conditions/recovery.gd")
 const Rush = preload("res://Arena/Conditions/rush.gd")
@@ -16,7 +17,7 @@ const Swift = preload("res://Arena/Conditions/swift.gd")
 const Transcendence = preload("res://Arena/Conditions/transcendence.gd")
 
 var ALL_CONDITIONS = [
-	Aggression, Bulletproof, Chameleon, Fortify, Headstrong, Reactive, Recovery, Rush, SelfRepair, Shield, Supercharged, Swarm, Swift, Transcendence
+	Aggression, Bulletproof, Chameleon, Fortify, Headstrong, Poise, Reactive, Recovery, Rush, SelfRepair, Shield, Supercharged, Swarm, Swift, Transcendence
 ]
 
 

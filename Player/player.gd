@@ -43,6 +43,9 @@ var hit_immunity_time: float = 1.0
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
 
+const Taser = preload("res://Player/Upgrades/Utility/taser.gd")
+const Poise = preload("res://Arena/Conditions/poise.gd")
+
 
 func _init() -> void:
 	Globals.player = self
@@ -54,6 +57,8 @@ func _ready() -> void:
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
+	add_upgrade(Taser.new())
+	add_condition(Poise.new())
 
 
 func _process(_delta: float) -> void:
