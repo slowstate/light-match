@@ -3,11 +3,10 @@ extends Condition
 var spawn_increase: float = 0.1
 
 
-# TODO: Remove this - for testing only
 func _init() -> void:
 	name = "Swarm"
 	description = "Spawn " + str(spawn_increase * 100) + "% more enemies"
-	points_per_round = 1
+	points_per_round = 3
 
 
 func on_round_loaded(round: Round) -> void:
