@@ -52,4 +52,5 @@ func on_enemy_hit(_bullet: Bullet, _enemy: Enemy) -> void:
 
 func on_enemy_received_damage(_bullet: Bullet, _enemy: Enemy) -> void:
 	pass
+
 #endregion
