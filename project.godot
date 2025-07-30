@@ -62,6 +62,7 @@ Stars=""
 
 [gui]
 
+timers/tooltip_delay_sec=0.0
 theme/custom_font="res://Common/Fonts/exo/Exo-Medium.otf"
 theme/default_font_subpixel_positioning=0
 theme/default_font_multichannel_signed_distance_field=true
