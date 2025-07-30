@@ -1,6 +1,6 @@
 extends Condition
 
-var chance_to_ignore_damage: float = 0.2
+var chance_to_ignore_damage: float = 0.1
 
 
 func _init() -> void:

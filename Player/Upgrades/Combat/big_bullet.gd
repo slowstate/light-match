@@ -6,7 +6,7 @@ var effect_timer: Timer
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.BIG_BULLET
 	name = "Big Bullet"
-	description = "After clearing 1 palette, your bullets deal 1 bonus damage for 10s"
+	description = "After clearing 1 palette, your bullets deal 1 bonus damage for 15s"
 	icon = preload("res://Player/Upgrades/Combat/Big Bullet.png")
 	effect_timer = super.new_timer()
 	points_cost = 3
@@ -14,7 +14,7 @@ func _init() -> void:
 
 
 func on_palette_cleared(_palette: Palette) -> void:
-	effect_timer.start(10)
+	effect_timer.start(15)
 	is_active = true
 
 

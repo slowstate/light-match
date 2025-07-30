@@ -2,8 +2,8 @@ class_name BotStateAggro
 extends State
 
 var bot: Bot
-var aggro_time: float = 4.0
-var aggro_cooldown_time: float = 3.0
+var aggro_time: float = 2.0
+var aggro_cooldown_time: float = 4.0
 
 @onready var aggro_timer: Timer = $AggroTimer
 @onready var aggro_cooldown_timer: Timer = $AggroCooldownTimer
@@ -42,7 +42,7 @@ func physics_update(delta: float) -> void:
 
 	if !aggro_timer.is_stopped():
 		bot.move_forward(
-			delta, Globals.player.global_position, lerpf(bot.move_speed, 275.0, ease(1 - aggro_timer.time_left / aggro_timer.wait_time, -2.0) * 2.0)
+			delta, Globals.player.global_position, lerpf(bot.move_speed, 250.0, ease(1 - aggro_timer.time_left / aggro_timer.wait_time, -2.0) * 2.0)
 		)
 
 

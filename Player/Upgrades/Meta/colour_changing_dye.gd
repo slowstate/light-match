@@ -20,7 +20,7 @@ func on_upgrade_added(new_upgrade: Upgrade) -> void:
 func on_enemy_spawned(enemy: Enemy) -> void:
 	var trigger_timer = super.new_timer()
 	trigger_timer.connect("timeout", _on_trigger_timer_timeout)
-	trigger_timer.start(15)
+	trigger_timer.start(3)
 	trigger_timers.push_back(trigger_timer)
 	colour_switching_enemies.push_back(enemy)
 
@@ -41,4 +41,4 @@ func _on_trigger_timer_timeout() -> void:
 	enemy_to_colour_switch.set_colour(possible_random_colours.pick_random())
 	var trigger_timer = trigger_timers.pop_front() as Timer
 	trigger_timers.push_back(trigger_timer)
-	trigger_timer.start(15)
+	trigger_timer.start(3)

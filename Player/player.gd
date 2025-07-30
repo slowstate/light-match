@@ -42,7 +42,7 @@ var hit_immunity_time: float = 1.0
 @onready var player_conditions_interface: VBoxContainer = $PlayerInterface/PlayerConditionsInterface
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
-
+const ColourChangingDye = preload("res://Player/Upgrades/Meta/colour_changing_dye.gd")
 
 func _init() -> void:
 	Globals.player = self
@@ -54,6 +54,7 @@ func _ready() -> void:
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
+	add_upgrade(ColourChangingDye.new())
 
 
 func _process(_delta: float) -> void:
