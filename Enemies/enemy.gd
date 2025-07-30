@@ -15,7 +15,7 @@ var knock_back_distance: float
 var knock_back_speed: float = 300.0
 var knock_back_timer: Timer
 var stunned_timer: Timer
-var immunity_timer: Timer
+var invulnerable_timer: Timer
 var regen_timer: Timer
 var health_regen: int = 0
 
@@ -35,9 +35,9 @@ func _ready() -> void:
 	stunned_timer = Timer.new()
 	stunned_timer.one_shot = true
 	add_child(stunned_timer)
-	immunity_timer = Timer.new()
-	immunity_timer.one_shot = true
-	add_child(immunity_timer)
+	invulnerable_timer = Timer.new()
+	invulnerable_timer.one_shot = true
+	add_child(invulnerable_timer)
 	regen_timer = Timer.new()
 	regen_timer.timeout.connect(_on_regen_timer_timeout)
 	add_child(regen_timer)
@@ -73,12 +73,6 @@ func set_colour(new_colour: Globals.Colour) -> void:
 	sprite.set_colour(new_colour)
 
 
-func is_stunned() -> bool:
-	if !stunned_timer.is_stopped() || !knock_back_timer.is_stopped():
-		return true
-	return false
-
-
 func move_forward(delta: float, desired_location: Vector2 = Globals.player.global_position, custom_move_speed = move_speed) -> void:
 	if is_stunned():
 		play_move_animation(false)
@@ -103,6 +97,25 @@ func knock_back(force: float, duration_in_seconds: float) -> void:
 
 func stun(duration_in_seconds: float) -> void:
 	stunned_timer.start(maxf(stunned_timer.time_left, duration_in_seconds))
+	linear_velocity = Vector2(0, 0)
+	sleeping = true
+	play_move_animation(false)
+
+
+func is_stunned() -> bool:
+	if !stunned_timer.is_stopped() || !knock_back_timer.is_stopped():
+		return true
+	return false
+
+
+func set_invulnerable(duration_in_seconds: float) -> void:
+	invulnerable_timer.start(maxf(invulnerable_timer.time_left, duration_in_seconds))
+
+
+func is_invulnerable() -> bool:
+	if !invulnerable_timer.is_stopped():
+		return true
+	return false
 
 
 func player_is_within_distance(distance := 500.0) -> bool:
@@ -114,14 +127,15 @@ func get_appendages() -> Array[Appendage]:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if !immunity_timer.is_stopped():
-		return
 	var bullet = area as Bullet
 	if bullet == null:
 		return
 
 	UpgradeManager.on_enemy_hit(bullet, self)
 	ConditionManager.on_enemy_hit(bullet, self)
+
+	if is_invulnerable():
+		return
 
 	var log_context_data = {
 		"enemy": get_script().get_global_name() + str(get_instance_id()), "bullet": bullet.get_script().get_global_name() + str(bullet.get_instance_id())
@@ -136,6 +150,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 
 	set_health(health - bullet.damage)
+	ConditionManager.on_enemy_received_damage(bullet, self)
 	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 
 	log_play_data = {"message": "Enemy hit for " + str(bullet.damage) + " damage", "context": log_context_data}

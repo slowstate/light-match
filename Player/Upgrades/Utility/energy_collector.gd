@@ -1,11 +1,11 @@
 extends Upgrade
 
+const STUN_EFFECT = preload("res://Common/StatusEffects/StunEffect/stun_effect.tscn")
+
 @warning_ignore("enum_variable_without_default")
-var last_killed_colour: Globals.Colour
+var last_killed_colour: Globals.Colour = Globals.Colour.BLUE
 var number_of_same_colour_kills_in_a_row: int = 0
-var frozen_enemies: Array[Enemy]
-var effect_time: float = 5.0
-var effect_timer: Timer
+var effect_duration: float = 5.0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,7 +14,6 @@ func _init() -> void:
 	name = "Energy Collector"
 	description = "Killing 5 enemies of the same colour in a row grants you 1 shield. When your shield breaks, freeze all enemies for 5s"
 	icon = preload("res://Player/Upgrades/Utility/Energy Collector.png")
-	effect_timer = super.new_timer()
 	points_cost = 3
 
 
@@ -35,8 +34,9 @@ func on_enemy_killed(enemy: Enemy) -> void:
 
 
 func on_player_shield_break() -> void:
-	frozen_enemies = Globals.get_all_enemies_alive()
+	var frozen_enemies = Globals.get_all_enemies_alive()
 	for enemy in frozen_enemies:
-		enemy.stun(effect_time)
-		enemy.linear_velocity = Vector2(0, 0)
+		var stun_effect = STUN_EFFECT.instantiate()
+		stun_effect.effect_duration = effect_duration
+		enemy.add_child(stun_effect)
 	is_active = false

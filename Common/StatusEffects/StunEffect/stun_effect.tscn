@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dei4h2cktvmg"]
+
+[ext_resource type="Script" path="res://Common/StatusEffects/StunEffect/stun_effect.gd" id="1_uron7"]
+
+[node name="StunEffect" type="Node"]
+script = ExtResource("1_uron7")

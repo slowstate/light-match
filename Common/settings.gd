@@ -1,10 +1,25 @@
 extends Node
 
-const WINDOW_MODE_LABELS = {DisplayServer.WINDOW_MODE_FULLSCREEN: "Fullscreen", DisplayServer.WINDOW_MODE_WINDOWED: "Windowed"}
+const WINDOW_MODE_LABELS = {
+	DisplayServer.WINDOW_MODE_FULLSCREEN: "FULLSCREEN", DisplayServer.WINDOW_MODE_WINDOWED: "WINDOWED", DisplayServer.WINDOW_MODE_MAXIMIZED: "MAXIMISED"
+}
 
-var window_mode := DisplayServer.WINDOW_MODE_WINDOWED
-var windowed_resolution: Vector2i
-var master_volume
+var window_mode := DisplayServer.WINDOW_MODE_MAXIMIZED
+var windowed_resolution: Array = [1920, 1080]
+
+#region Control Mapping defaults
+var control_mappings: Dictionary = {
+	"player_next_colour": OS.get_keycode_string(KEY_E),
+	"player_previous_colour": OS.get_keycode_string(KEY_Q),
+	"player_blue": OS.get_keycode_string(KEY_1),
+	"player_green": OS.get_keycode_string(KEY_2),
+	"player_red": OS.get_keycode_string(KEY_3),
+	"player_move_up": OS.get_keycode_string(KEY_W),
+	"player_move_down": OS.get_keycode_string(KEY_S),
+	"player_move_left": OS.get_keycode_string(KEY_A),
+	"player_move_right": OS.get_keycode_string(KEY_D),
+}
+#endregion
 
 
 func set_window_mode(new_window_mode: int) -> void:
@@ -13,8 +28,8 @@ func set_window_mode(new_window_mode: int) -> void:
 
 
 func set_windowed_resolution(new_windowed_resolution: Vector2i) -> void:
-	windowed_resolution = new_windowed_resolution
-	DisplayServer.window_set_size(windowed_resolution)
+	DisplayServer.window_set_size(new_windowed_resolution)
+	windowed_resolution = [new_windowed_resolution.x, new_windowed_resolution.y]
 
 
 func saved_folder_exists() -> bool:
@@ -32,9 +47,11 @@ func saved_folder_exists() -> bool:
 
 func save_user_settings() -> void:
 	var config = ConfigFile.new()
-
-	config.set_value("Display", "window_mode", window_mode)
-	config.set_value("Display", "windowed_resolution", DisplayServer.window_get_size())
+	print(str(DisplayServer.window_get_mode()))
+	if !WINDOW_MODE_LABELS.has(DisplayServer.window_get_mode()):
+		window_mode = DisplayServer.WINDOW_MODE_MAXIMIZED
+	config.set_value("Display", "window_mode", DisplayServer.window_get_mode())
+	config.set_value("Display", "windowed_resolution", [DisplayServer.window_get_size().x, DisplayServer.window_get_size().y])
 
 	var bus_index = AudioServer.get_bus_index("Master")
 	config.set_value("Volume", "Master", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
@@ -42,6 +59,9 @@ func save_user_settings() -> void:
 	config.set_value("Volume", "Music", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
 	bus_index = AudioServer.get_bus_index("SFX")
 	config.set_value("Volume", "SFX", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
+
+	for control_mapping in control_mappings.keys():
+		config.set_value("Controls", control_mapping, control_mappings[control_mapping])
 
 	if saved_folder_exists():
 		var err = config.save(Config.USER_SETTINGS_FILE_PATH)
@@ -55,8 +75,11 @@ func load_user_settings() -> void:
 	if err != OK:
 		return
 
-	set_window_mode(config.get_value("Display", "window_mode", DisplayServer.WINDOW_MODE_WINDOWED))
-	set_windowed_resolution(config.get_value("Display", "windowed_resolution", Vector2i(1920, 1080)))
+	set_window_mode(config.get_value("Display", "window_mode", DisplayServer.WINDOW_MODE_MAXIMIZED))
+	windowed_resolution = config.get_value("Display", "windowed_resolution", [1920, 1080])
+	if windowed_resolution.size() != 2:
+		windowed_resolution = [1920, 1080]
+	set_windowed_resolution(Vector2i(windowed_resolution[0], windowed_resolution[1]))
 
 	var bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "Master", 1.0)))
@@ -64,3 +87,7 @@ func load_user_settings() -> void:
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "Music", 1.0)))
 	bus_index = AudioServer.get_bus_index("SFX")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "SFX", 1.0)))
+
+	if config.has_section("Controls"):
+		for control in config.get_section_keys("Controls"):
+			control_mappings[control] = config.get_value("Controls", control)

@@ -1,13 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://8p11gjdp0ijq"]
+[gd_scene load_steps=42 format=3 uid="uid://8p11gjdp0ijq"]
 
 [ext_resource type="PackedScene" uid="uid://cchxi4827hi2" path="res://Menus/Settings/volume_slider.tscn" id="1_5l60q"]
 [ext_resource type="Script" path="res://Menus/Settings/settings.gd" id="1_nbhcb"]
 [ext_resource type="Script" path="res://Menus/Settings/window_mode_picker.gd" id="2_0c5lk"]
 [ext_resource type="Script" path="res://Menus/Settings/credits.gd" id="3_v8hf4"]
+[ext_resource type="Script" path="res://Menus/Settings/controls.gd" id="5_2xtng"]
+[ext_resource type="PackedScene" uid="uid://bp87g1gjo81sg" path="res://Menus/Settings/control_remapper.tscn" id="6_bhigi"]
 
 [sub_resource type="Gradient" id="Gradient_7orx7"]
-offsets = PackedFloat32Array(0.995, 0.998, 1)
-colors = PackedColorArray(0, 0, 0, 0.784314, 1, 1, 1, 0.196078, 0, 0, 0, 0.784314)
+offsets = PackedFloat32Array(0.998, 1)
+colors = PackedColorArray(0, 0, 0, 0.784314, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gdq2v"]
 gradient = SubResource("Gradient_7orx7")
@@ -37,6 +39,10 @@ font_size = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ri5wm"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kxsp3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kprgw"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hku03"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncs3v"]
@@ -45,12 +51,11 @@ font_size = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgfmy"]
 
-[sub_resource type="Gradient" id="Gradient_10eef"]
-offsets = PackedFloat32Array(0.995, 0.998, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.196078, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_e7n77"]
+offsets = PackedFloat32Array(0.998, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bl27k"]
-gradient = SubResource("Gradient_10eef")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fsxx7"]
+gradient = SubResource("Gradient_e7n77")
 width = 600
 height = 500
 fill = 2
@@ -69,6 +74,68 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_onyix"]
+
+[sub_resource type="Gradient" id="Gradient_10eef"]
+offsets = PackedFloat32Array(0.998, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bl27k"]
+gradient = SubResource("Gradient_10eef")
+width = 800
+height = 600
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n1sge"]
+font_size = 24
+
+[sub_resource type="InputEventKey" id="InputEventKey_644gb"]
+device = -1
+keycode = 69
+unicode = 101
+
+[sub_resource type="InputEventKey" id="InputEventKey_rr488"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="InputEventKey" id="InputEventKey_uiqpd"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="InputEventKey" id="InputEventKey_isyr3"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="InputEventKey" id="InputEventKey_2unxy"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="InputEventKey" id="InputEventKey_yehcf"]
+device = -1
+keycode = 87
+unicode = 119
+
+[sub_resource type="InputEventKey" id="InputEventKey_grpcl"]
+device = -1
+keycode = 83
+unicode = 115
+
+[sub_resource type="InputEventKey" id="InputEventKey_oadhr"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="InputEventKey" id="InputEventKey_od5hx"]
+device = -1
+keycode = 68
+unicode = 100
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3d7km"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0pac8"]
 
 [node name="Settings" type="Control"]
 z_index = 1
@@ -137,13 +204,30 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ri5wm")
 text = ">"
 
-[node name="IgnoreThis-Spacing" type="Control" parent="SettingsButtons"]
-custom_minimum_size = Vector2(0, 8)
+[node name="HSeparator" type="HSeparator" parent="SettingsButtons"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ControlsButtonHorizontalAligner" type="HBoxContainer" parent="SettingsButtons"]
+layout_mode = 2
+alignment = 1
+
+[node name="ControlsButton" type="Button" parent="SettingsButtons/ControlsButtonHorizontalAligner"]
+custom_minimum_size = Vector2(130, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kxsp3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kprgw")
+text = "CONTROLS"
+
+[node name="HSeparator2" type="HSeparator" parent="SettingsButtons"]
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
 [node name="MasterVolumeLabel" type="Label" parent="SettingsButtons"]
 layout_mode = 2
-text = "Master Volume"
+text = "MASTER VOLUME"
 label_settings = SubResource("LabelSettings_q71aq")
 horizontal_alignment = 1
 
@@ -171,11 +255,16 @@ horizontal_alignment = 1
 layout_mode = 2
 bus_name = "SFX"
 
-[node name="IgnoreThis-Spacing2" type="Control" parent="SettingsButtons"]
-custom_minimum_size = Vector2(0, 16)
+[node name="HSeparator3" type="HSeparator" parent="SettingsButtons"]
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="CreditsButton" type="Button" parent="SettingsButtons"]
+[node name="CreditsButtonHorizontalAligner" type="HBoxContainer" parent="SettingsButtons"]
+layout_mode = 2
+alignment = 1
+
+[node name="CreditsButton" type="Button" parent="SettingsButtons/CreditsButtonHorizontalAligner"]
+custom_minimum_size = Vector2(110, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hku03")
@@ -183,10 +272,16 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ncs3v")
 text = "CREDITS"
 
-[node name="IgnoreThis-Spacing3" type="Control" parent="SettingsButtons"]
+[node name="HSeparator4" type="HSeparator" parent="SettingsButtons"]
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="SettingsBackButton" type="Button" parent="SettingsButtons"]
+[node name="SettingsButtonHorizontalAligner" type="HBoxContainer" parent="SettingsButtons"]
+layout_mode = 2
+alignment = 1
+
+[node name="SettingsBackButton" type="Button" parent="SettingsButtons/SettingsButtonHorizontalAligner"]
+custom_minimum_size = Vector2(70, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hbp21")
@@ -195,6 +290,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_fgfmy")
 text = "BACK"
 
 [node name="Credits" type="Control" parent="."]
+visible = false
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
@@ -205,7 +301,7 @@ offset_bottom = 550.0
 script = ExtResource("3_v8hf4")
 
 [node name="BG" type="Sprite2D" parent="Credits"]
-texture = SubResource("GradientTexture2D_bl27k")
+texture = SubResource("GradientTexture2D_fsxx7")
 centered = false
 
 [node name="3HPLabel" type="Label" parent="Credits"]
@@ -235,8 +331,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -39.0
 offset_top = 147.0
-offset_right = 39.0
-offset_bottom = 186.0
+offset_right = 31.0
+offset_bottom = 177.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
@@ -245,11 +341,166 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i2yk0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_onyix")
 text = "BACK"
 
+[node name="Controls" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+script = ExtResource("5_2xtng")
+
+[node name="BG" type="Sprite2D" parent="Controls"]
+texture = SubResource("GradientTexture2D_bl27k")
+centered = false
+
+[node name="ControlRemapping" type="VBoxContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -20.0
+offset_right = 227.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="ShootControl" type="HBoxContainer" parent="Controls/ControlRemapping"]
+layout_mode = 2
+
+[node name="ControlNameLabel" type="Label" parent="Controls/ControlRemapping/ShootControl"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "SHOOT"
+label_settings = SubResource("LabelSettings_n1sge")
+vertical_alignment = 1
+
+[node name="ControlMappingLabel" type="Label" parent="Controls/ControlRemapping/ShootControl"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "LEFT MOUSE BUTTON"
+label_settings = SubResource("LabelSettings_n1sge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextColourControl" type="HBoxContainer" parent="Controls/ControlRemapping"]
+layout_mode = 2
+
+[node name="ControlNameLabel" type="Label" parent="Controls/ControlRemapping/NextColourControl"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "NEXT COLOUR"
+label_settings = SubResource("LabelSettings_n1sge")
+vertical_alignment = 1
+
+[node name="ControlMappingLabel" type="Label" parent="Controls/ControlRemapping/NextColourControl"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "SCROLL WHEEL DOWN"
+label_settings = SubResource("LabelSettings_n1sge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PreviousColourControl" type="HBoxContainer" parent="Controls/ControlRemapping"]
+layout_mode = 2
+
+[node name="ControlNameLabel" type="Label" parent="Controls/ControlRemapping/PreviousColourControl"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "PREVIOUS COLOUR"
+label_settings = SubResource("LabelSettings_n1sge")
+vertical_alignment = 1
+
+[node name="ControlMappingLabel" type="Label" parent="Controls/ControlRemapping/PreviousColourControl"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "SCROLL WHEEL UP"
+label_settings = SubResource("LabelSettings_n1sge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextColourControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "NEXT COLOUR (ALT)"
+action_name = "player_next_colour"
+input_event_key = SubResource("InputEventKey_644gb")
+
+[node name="PreviousColourControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "PREV. COLOUR (ALT)"
+action_name = "player_previous_colour"
+input_event_key = SubResource("InputEventKey_rr488")
+
+[node name="SwitchToBlueControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "SWITCH TO BLUE"
+action_name = "player_blue"
+input_event_key = SubResource("InputEventKey_uiqpd")
+
+[node name="SwitchToGreenControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "SWITCH TO GREEN"
+action_name = "player_green"
+input_event_key = SubResource("InputEventKey_isyr3")
+
+[node name="SwitchToRedControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "SWITCH TO RED"
+action_name = "player_red"
+input_event_key = SubResource("InputEventKey_2unxy")
+
+[node name="MoveUpControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "MOVE UP"
+action_name = "player_move_up"
+input_event_key = SubResource("InputEventKey_yehcf")
+
+[node name="MoveDownControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "MOVE DOWN"
+action_name = "player_move_down"
+input_event_key = SubResource("InputEventKey_grpcl")
+
+[node name="MoveLeftControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "MOVE LEFT"
+action_name = "player_move_left"
+input_event_key = SubResource("InputEventKey_oadhr")
+
+[node name="MoveRightControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "MOVE RIGHT"
+action_name = "player_move_right"
+input_event_key = SubResource("InputEventKey_od5hx")
+
+[node name="HSeparator" type="HSeparator" parent="Controls/ControlRemapping"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ControlsBackButtonHorizontalAligner" type="HBoxContainer" parent="Controls/ControlRemapping"]
+layout_mode = 2
+alignment = 1
+
+[node name="ControlsBackButton" type="Button" parent="Controls/ControlRemapping/ControlsBackButtonHorizontalAligner"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3d7km")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2yk0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0pac8")
+text = "BACK"
+
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/LeftButton" to="SettingsButtons/WindowModePicker" method="_on_left_button_pressed"]
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/RightButton" to="SettingsButtons/WindowModePicker" method="_on_right_button_pressed"]
-[connection signal="mouse_entered" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
-[connection signal="pressed" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="mouse_entered" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
-[connection signal="pressed" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/ControlsButtonHorizontalAligner/ControlsButton" to="." method="_on_controls_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/ControlsButtonHorizontalAligner/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/CreditsButtonHorizontalAligner/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/CreditsButtonHorizontalAligner/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/SettingsButtonHorizontalAligner/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/SettingsButtonHorizontalAligner/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
 [connection signal="mouse_entered" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_mouse_entered"]
 [connection signal="pressed" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_pressed"]
+[connection signal="mouse_entered" from="Controls/ControlRemapping/ControlsBackButtonHorizontalAligner/ControlsBackButton" to="." method="_on_controls_back_button_mouse_entered"]
+[connection signal="pressed" from="Controls/ControlRemapping/ControlsBackButtonHorizontalAligner/ControlsBackButton" to="." method="_on_controls_back_button_pressed"]

@@ -53,15 +53,12 @@ func physics_update(_delta: float) -> void:
 
 func _load_round(round_number: int) -> void:
 	var round_resource_path = "res://Arena/Rounds/%s.tres"
-	var round_number_string := str(round_number) if round_number <= 16 else "endless"
+	var round_number_string := str(round_number)
 	current_round = load(round_resource_path % round_number_string) as Round
 	ConditionManager.on_round_loaded(current_round)
-	arena.total_enemies_to_spawn_this_round = current_round.total_enemies_to_spawn if round_number <= 16 else 5 + round_number * 3
-	concurrent_enemies_spawn_limit = floori(10.0 + float(round_number) / 2.0)
-	if round_number_string == "endless":
-		concurrent_enemies_spawn_limit += floori(pow(float(round_number) - 16.0, 1.7))
-		arena.total_enemies_to_spawn_this_round += floori(pow(float(round_number) - 16.0, 2.0))
+	arena.total_enemies_to_spawn_this_round = current_round.total_enemies_to_spawn
 	enemies_left_to_spawn_this_round = arena.total_enemies_to_spawn_this_round
+	concurrent_enemies_spawn_limit = current_round.concurrent_enemies_spawn_limit
 	arena.enemy_types_to_spawn = current_round.enemy_types_to_spawn()
 
 	var enemy_spawn_timer_wait_time := 1.3 / round_number
