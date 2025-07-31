@@ -142,6 +142,10 @@ player_cancel={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Common/Localisation/locales.en.translation", "res://Common/Localisation/locales.en_US.translation", "res://Common/Localisation/locales.es.translation")
+
 [layer_names]
 
 2d_physics/layer_1="Boundaries"
