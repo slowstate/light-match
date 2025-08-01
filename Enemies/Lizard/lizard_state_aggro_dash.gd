@@ -46,17 +46,18 @@ func physics_update(_delta: float) -> void:
 		)
 	if !dash_timer.is_stopped():
 		lizard.global_position = lizard.global_position.lerp(target_location, ease(1 - dash_timer.time_left / dash_timer.wait_time, -2.0))
+		lizard.global_position = lizard.global_position.clamp(Vector2(65, 65), Vector2(2495, 1385))
 
 
 func _on_stun_timer_timeout() -> void:
 	target_location = lizard.global_position + (Globals.player.global_position - lizard.global_position).normalized() * randf_range(700.0, 800.0)
-	charge_timer.start(randf_range(0.1, 0.2))
+	charge_timer.start(0.2)
 	lizard.play_attack_animation()
 
 
 func _on_charge_timer_timeout() -> void:
-	dash_timer.start(1.0)
+	dash_timer.start(1.5)
 
 
 func _on_dash_timer_timeout() -> void:
-	stun_timer.start(randf_range(1.0, 1.5))
+	stun_timer.start(3.0)

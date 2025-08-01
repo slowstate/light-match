@@ -48,4 +48,4 @@ func _set_random_location() -> void:
 	var random_x := tank.global_position.x + randf_range(-300.0, 300.0) + vector_to_player.x * randf_range(50.0, 100.0)
 	var random_y := tank.global_position.y + randf_range(-300.0, 300.0) + vector_to_player.y * randf_range(50.0, 100.0)
 
-	desired_location = Vector2(clampf(random_x, 100.0, 3740.0), clampf(random_y, 100.0, 2060.0))
+	desired_location = Vector2(clampf(random_x, 100.0, 2460.0), clampf(random_y, 100.0, 1340.0))

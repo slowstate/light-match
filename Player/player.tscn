@@ -69,8 +69,8 @@ script = ExtResource("1_plba5")
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
-limit_right = 3840
-limit_bottom = 2160
+limit_right = 2560
+limit_bottom = 1440
 limit_smoothed = true
 position_smoothing_enabled = true
 
