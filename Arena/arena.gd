@@ -8,7 +8,7 @@ var total_enemies_to_spawn_this_round: int = 0
 var enemy_types_to_spawn: Array[Globals.EnemyType]
 var palette_milestone_1_this_round: int = 0
 var palette_milestone_2_this_round: int = 0
-var palettes_cleared_this_round: int = 0
+var palettes_cleared_this_run: int = 0
 
 @onready var round_number_label: Label = $UserInterface/RoundNumberLabel
 @onready var state_machine: ArenaStateMachine = $StateMachine

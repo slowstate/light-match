@@ -67,7 +67,6 @@ func _load_round(round_number: int) -> void:
 
 	arena.palette_milestone_1_this_round = floori(float(arena.total_enemies_to_spawn_this_round) / float(Globals.player.palette.palette_size) * 0.3)
 	arena.palette_milestone_2_this_round = floori(float(arena.total_enemies_to_spawn_this_round) / float(Globals.player.palette.palette_size) * 0.8)
-	arena.palettes_cleared_this_round = 0
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
@@ -89,7 +88,6 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	add_child(new_enemy)
 
 	enemies_left_to_spawn_this_round -= 1
-	enemy_spawn_timer.wait_time = clamp(enemy_spawn_timer.wait_time * 1.1, 0.0, 2.0)
 	enemy_spawn_timer.start()
 
 
@@ -106,7 +104,7 @@ func on_enemy_died(_enemy: Enemy) -> void:
 
 
 func _on_palette_cleared() -> void:
-	arena.palettes_cleared_this_round += 1
+	arena.palettes_cleared_this_run += 1
 
 
 func no_enemies_remaining_this_round() -> bool:

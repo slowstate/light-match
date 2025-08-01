@@ -47,7 +47,6 @@ func saved_folder_exists() -> bool:
 
 func save_user_settings() -> void:
 	var config = ConfigFile.new()
-	print(str(DisplayServer.window_get_mode()))
 	if !WINDOW_MODE_LABELS.has(DisplayServer.window_get_mode()):
 		window_mode = DisplayServer.WINDOW_MODE_MAXIMIZED
 	config.set_value("Display", "window_mode", DisplayServer.window_get_mode())

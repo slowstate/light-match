@@ -35,6 +35,7 @@ Config="*res://Common/config.gd"
 Utiliies="*res://Common/utiliies.gd"
 Settings="*res://Common/settings.gd"
 ConditionManager="*res://Arena/Conditions/condition_manager.gd"
+Save="*res://Common/save.gd"
 
 [debug]
 
