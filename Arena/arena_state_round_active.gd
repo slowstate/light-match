@@ -41,7 +41,7 @@ func exit() -> void:
 func update(delta: float) -> void:
 	round_elapsed_time += delta
 	if no_enemies_remaining_this_round():
-		if arena.current_round_number >= 12:
+		if arena.current_round_number >= 10:
 			transition.emit("ScoreScreen")
 		else:
 			transition.emit("ConditionAndAdaptationSelection")
