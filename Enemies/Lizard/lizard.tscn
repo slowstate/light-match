@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clv4agc2np8fh"]
+[gd_scene load_steps=18 format=3 uid="uid://clv4agc2np8fh"]
 
 [ext_resource type="Script" path="res://Enemies/Lizard/lizard.gd" id="1_d185i"]
 [ext_resource type="PackedScene" uid="uid://cq600o70yc5is" path="res://Enemies/Lizard/Sprite/lizard_sprite.tscn" id="2_pu36a"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="4_w4nmm"]
 [ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="5_k8pbd"]
 [ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_machine.gd" id="7_vjl12"]
+[ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_spawn.gd" id="8_gy2xi"]
 [ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_walk.gd" id="8_ta8ex"]
 [ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_short_dash.gd" id="9_bsf6j"]
 [ext_resource type="Script" path="res://Enemies/Lizard/lizard_state_aggro_dash.gd" id="11_186c3"]
@@ -75,7 +76,7 @@ _data = {
 radius = 47.0956
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0q6xi"]
-radius = 19.0
+radius = 11.0
 height = 64.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tt65p"]
@@ -110,7 +111,7 @@ texture = ExtResource("5_k8pbd")
 
 [node name="HeadCollisionShape2D" type="CollisionPolygon2D" parent="Head"]
 position = Vector2(29, 0)
-polygon = PackedVector2Array(3, 11, 3, -10, 38, 0)
+polygon = PackedVector2Array(3, 12, 3, -11, 38, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
 libraries = {
@@ -137,7 +138,13 @@ shape = SubResource("CapsuleShape2D_tt65p")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("7_vjl12")
-current_state = NodePath("Walk")
+current_state = NodePath("Spawn")
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource("8_gy2xi")
+
+[node name="Timer" type="Timer" parent="StateMachine/Spawn"]
+one_shot = true
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("8_ta8ex")

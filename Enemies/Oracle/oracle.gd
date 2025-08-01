@@ -3,6 +3,8 @@ extends Enemy
 
 const ORACLE: PackedScene = preload("res://Enemies/Oracle/oracle.tscn")
 
+@onready var hurt_box: Area2D = $HurtBox
+
 @export var orb_colour: Globals.Colour = Globals.Colour.BLUE
 @export var orb_rotation_speed := 1.0
 
@@ -31,13 +33,16 @@ static func create(
 	return new_oracle
 
 
-func _physics_process(_delta: float) -> void:
-	pass
-
-
 func rotate_orbs(delta: float, new_orb_rotation_speed: float) -> void:
 	orbs.rotate(delta * new_orb_rotation_speed)
 
 
 func get_appendages() -> Array[Appendage]:
 	return [orb_0, orb_1, orb_2, orb_3, orb_4, orb_5]
+
+
+func enable_hurtbox(enable: bool) -> void:
+	hurt_box.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+	for orb in get_appendages():
+		orb.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+		orb.set_collision_mask_value(Globals.CollisionLayer.BULLETS, enable)

@@ -6,6 +6,7 @@ const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
 @export var head_colour: Globals.Colour = Globals.Colour.BLUE
 
 @onready var head: Area2D = $Head
+@onready var hurt_box: Area2D = $HurtBox
 
 
 static func create(
@@ -32,6 +33,11 @@ func get_appendages() -> Array[Appendage]:
 	if head == null:
 		return []
 	return [head]
+
+
+func enable_hurtbox(enable: bool) -> void:
+	hurt_box.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+	head.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
 
 
 func play_move_animation(play: bool) -> void:

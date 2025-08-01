@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ua5firl6innu"]
+[gd_scene load_steps=23 format=3 uid="uid://ua5firl6innu"]
 
 [ext_resource type="Script" path="res://Enemies/Tank/tank.gd" id="1_vdwel"]
 [ext_resource type="Texture2D" uid="uid://dev068qadnb34" path="res://Enemies/Tank/Stream.png" id="3_erh0f"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="7_vj1ov"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_machine.gd" id="8_a4xqc"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_idle.gd" id="9_2dj7l"]
+[ext_resource type="Script" path="res://Enemies/Tank/tank_state_spawn.gd" id="9_mq5ch"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_roam.gd" id="10_2kdqp"]
 [ext_resource type="Texture2D" uid="uid://wbk7k5ddxw45" path="res://Enemies/Tank/Shield.png" id="17_awigq"]
 
@@ -203,7 +204,13 @@ shape = SubResource("CapsuleShape2D_aw4st")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("8_a4xqc")
-current_state = NodePath("Idle")
+current_state = NodePath("Spawn")
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource("9_mq5ch")
+
+[node name="Timer" type="Timer" parent="StateMachine/Spawn"]
+one_shot = true
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("9_2dj7l")

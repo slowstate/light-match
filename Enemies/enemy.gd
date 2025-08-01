@@ -44,22 +44,15 @@ func _ready() -> void:
 
 	set_health(base_health)
 	set_colour(colour)
+	enable_hurtbox(false)
 	ConditionManager.on_enemy_spawned(self)
 	UpgradeManager.on_enemy_spawned(self)
 	_setup()
 
 
-func _physics_process(delta: float) -> void:
-	pass
-
-
 # This function should be overriden by inheriting classes; no code should be added to this class
 func _setup() -> void:
 	# Keep this empty as child nodes will override this function
-	pass
-
-
-func _update(_delta: float) -> void:
 	pass
 
 
@@ -71,6 +64,10 @@ func set_health(new_health: int) -> void:
 func set_colour(new_colour: Globals.Colour) -> void:
 	colour = new_colour
 	sprite.set_colour(new_colour)
+
+
+func enable_hurtbox(enable: bool) -> void:
+	pass
 
 
 func move_forward(delta: float, desired_location: Vector2 = Globals.player.global_position, custom_move_speed = move_speed) -> void:
