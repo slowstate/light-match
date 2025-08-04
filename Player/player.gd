@@ -23,7 +23,6 @@ var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
 var hit_immunity_time: float = 1.0
 
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
 @onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
