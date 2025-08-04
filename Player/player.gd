@@ -50,7 +50,7 @@ func _init() -> void:
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	set_health(base_health)
-	base_health = floori(Save.lifetime_palettes / 100)
+	base_health += floori(Save.lifetime_palettes / 100)
 	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.005))
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
