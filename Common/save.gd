@@ -34,6 +34,6 @@ func load_user_save() -> void:
 		return
 	var save_file = FileAccess.open(Config.USER_SAVE_FILE_PATH, FileAccess.READ)
 	var save_data = save_file.get_var() as Dictionary
-	lifetime_palettes = 0  # save_data.get("lifetime_palettes")
+	lifetime_palettes = save_data.get("lifetime_palettes")
 	save_file.close()
 	Logger.log_info({"message": "User save loaded"})

@@ -44,6 +44,7 @@ func _ready() -> void:
 
 	set_health(base_health)
 	set_colour(colour)
+	modulate.a = 0
 	enable_hurtbox(false)
 	ConditionManager.on_enemy_spawned(self)
 	UpgradeManager.on_enemy_spawned(self)
