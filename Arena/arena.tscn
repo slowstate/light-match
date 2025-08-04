@@ -917,7 +917,8 @@ script = ExtResource("1_ea2pg")
 
 [node name="BG" type="Sprite2D" parent="."]
 self_modulate = Color(0.999608, 0.89644, 1, 1)
-position = Vector2(1920, 1080)
+position = Vector2(1280, 720)
+scale = Vector2(0.667, 0.667)
 texture = ExtResource("2_1mo21")
 
 [node name="Light1" type="Sprite2D" parent="BG"]
@@ -1071,18 +1072,18 @@ libraries = {
 speed_scale = 0.5
 
 [node name="Player" parent="." instance=ExtResource("1_pqj1j")]
-position = Vector2(1920, 1080)
+position = Vector2(1280, 720)
 
 [node name="Boundaries" type="Node2D" parent="."]
 
 [node name="RightBoundary" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(3840, 1080)
+position = Vector2(2560, 1080)
 
 [node name="RightBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBoundary"]
 shape = SubResource("WorldBoundaryShape2D_4bo3i")
 
 [node name="BottomBoundary" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(1920, 2160)
+position = Vector2(1920, 1440)
 
 [node name="BottomBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomBoundary"]
 shape = SubResource("WorldBoundaryShape2D_sr50s")

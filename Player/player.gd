@@ -23,7 +23,6 @@ var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
 var hit_immunity_time: float = 1.0
 
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
 @onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -49,8 +48,11 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	set_health(base_health)
 	SignalBus.upgrade_removed.connect(remove_upgrade)
+	set_health(base_health)
+	base_move_speed *= 1 + Save.lifetime_palettes * 0.005
+	move_speed = base_move_speed
+	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.005))
 	player_sprite.set_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
@@ -128,7 +130,7 @@ func _fire_bullet():
 	if new_bullet != null:
 		UpgradeManager.on_bullet_fired(new_bullet)
 		get_tree().root.add_child(new_bullet)
-		gun_cooldown_timer.wait_time = 0.7
+		gun_cooldown_timer.wait_time = gun_cooldown
 		UpgradeManager.on_gun_cooldown_start(gun_cooldown_timer)
 		gun_cooldown_timer.start()
 

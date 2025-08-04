@@ -3,6 +3,8 @@ extends Enemy
 
 const BOT: PackedScene = preload("res://Enemies/Bot/bot.tscn")
 
+@onready var hurt_box: Area2D = $HurtBox
+
 
 static func create(initial_position: Vector2, initial_health: int, initial_colour: Globals.Colour = Globals.pick_random_colour()) -> Bot:
 	var new_bot: Bot = BOT.instantiate()
@@ -12,6 +14,10 @@ static func create(initial_position: Vector2, initial_health: int, initial_colou
 	new_bot.colour = initial_colour
 	new_bot.move_speed = 100.0
 	return new_bot
+
+
+func enable_hurtbox(enable: bool) -> void:
+	hurt_box.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
 
 
 func play_move_animation(play: bool) -> void:

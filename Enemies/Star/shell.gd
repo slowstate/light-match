@@ -13,8 +13,5 @@ func _ready() -> void:
 	star = owner as Star
 	assert(star != null, "The state type must be used only in the Star scene. It needs the owner to be a Star node.")
 
-	set_collision_layer_value(Globals.CollisionLayer.ENEMIES, true)
-	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
-	set_collision_mask_value(Globals.CollisionLayer.BULLETS, true)
 	self.area_entered.connect(_on_area_entered)
 	set_colour(star.shell_colours[shell_number])

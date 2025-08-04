@@ -37,4 +37,5 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
+	Save.lifetime_palettes += arena.palettes_cleared_this_run
 	get_tree().call_deferred("change_scene_to_packed", main_menu)

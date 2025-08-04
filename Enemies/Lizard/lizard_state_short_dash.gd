@@ -21,7 +21,7 @@ func enter() -> void:
 		dash_timer.timeout.connect(_on_dash_timer_timeout)
 	if !stun_timer.timeout.is_connected(_on_stun_timer_timeout):
 		stun_timer.timeout.connect(_on_stun_timer_timeout)
-	charge_timer.start(randf_range(0.1, 0.2))
+	charge_timer.start(0.2)
 	lizard.play_attack_animation()
 
 
@@ -55,8 +55,7 @@ func physics_update(delta: float) -> void:
 		)
 	if !dash_timer.is_stopped():
 		lizard.global_position = lizard.global_position.lerp(target_location, ease(1 - dash_timer.time_left / dash_timer.wait_time, -2.0))
-		lizard.global_position = lizard.global_position.clamp(Vector2(65, 65), Vector2(3775, 2095))
-		lizard.rotation = lerp_angle(lizard.rotation, (Globals.player.global_position - lizard.global_position).angle(), 2.0 * delta)
+		lizard.global_position = lizard.global_position.clamp(Vector2(65, 65), Vector2(2495, 1385))
 	if !stun_timer.is_stopped():
 		lizard.rotation = lerp_angle(lizard.rotation, (Globals.player.global_position - lizard.global_position).angle(), 3.0 * delta)
 
@@ -66,7 +65,7 @@ func _on_charge_timer_timeout() -> void:
 
 
 func _on_dash_timer_timeout() -> void:
-	stun_timer.start(randf_range(1.0, 2.0))
+	stun_timer.start(2.0)
 
 
 func _on_stun_timer_timeout() -> void:

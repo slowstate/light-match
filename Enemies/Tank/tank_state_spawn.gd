@@ -1,4 +1,4 @@
-class_name TankStateIdle
+class_name TankStateSpawn
 extends State
 
 var tank: Tank
@@ -9,10 +9,9 @@ var tank: Tank
 func enter() -> void:
 	tank = owner as Tank
 	assert(tank != null, "The state type must be used only in the Tank scene. It needs the owner to be a Tank node.")
-	tank.sleeping = true
 	if !timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
-	timer.start(randf_range(1.0, 3.0))
+	timer.start(3)
 
 
 func exit() -> void:
@@ -23,10 +22,10 @@ func update(_delta: float) -> void:
 	pass
 
 
-func physics_update(delta: float) -> void:
-	if tank.shield.modulate.a < 1.0:
-		tank.shield.modulate.a += delta
+func physics_update(_delta: float) -> void:
+	tank.modulate = lerp(Color(50, 50, 50, 0), Color(1, 1, 1, 1), 1 - timer.time_left / timer.wait_time)
 
 
 func _on_timer_timeout() -> void:
-	transition.emit("Roam")
+	tank.enable_hurtbox(true)
+	transition.emit("Idle")

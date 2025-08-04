@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b0jhbqhd4dhhx"]
+[gd_scene load_steps=14 format=3 uid="uid://b0jhbqhd4dhhx"]
 
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle.gd" id="1_4uhgo"]
 [ext_resource type="PackedScene" uid="uid://c0k62py27crqg" path="res://Enemies/Oracle/Sprite/oracle_sprite.tscn" id="2_bhm20"]
 [ext_resource type="Script" path="res://Enemies/Oracle/Orb/orb.gd" id="3_rdk7r"]
 [ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="6_trf8c"]
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_machine.gd" id="7_ayryw"]
+[ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_spawn.gd" id="8_5t67c"]
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_walk.gd" id="8_nkvch"]
 [ext_resource type="Texture2D" uid="uid://c1nhcfqj5fpm1" path="res://Enemies/Oracle/Orb/Oracle Orb 1.png" id="9_j71aq"]
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_attack.gd" id="9_r57yu"]
@@ -137,7 +138,13 @@ shape = SubResource("CapsuleShape2D_qpr8m")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("7_ayryw")
-current_state = NodePath("Walk")
+current_state = NodePath("Spawn")
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource("8_5t67c")
+
+[node name="Timer" type="Timer" parent="StateMachine/Spawn"]
+one_shot = true
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("8_nkvch")

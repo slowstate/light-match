@@ -3,7 +3,7 @@ extends State
 
 var lizard: Lizard
 var player_detection_distance := randf_range(280.0, 320.0)
-var move_speed := randf_range(180.0, 220.0)
+var move_speed := randf_range(100.0, 150.0)
 
 
 func enter() -> void:

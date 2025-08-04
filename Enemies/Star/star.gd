@@ -14,6 +14,7 @@ const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
 @onready var shell_3: Area2D = $Shells/Shell3
 @onready var shell_4: Area2D = $Shells/Shell4
 @onready var hit_box: Area2D = $HitBox
+@onready var hurt_box: Area2D = $HurtBox
 
 
 static func create(
@@ -36,10 +37,6 @@ static func create(
 	return new_star
 
 
-func _physics_process(_delta: float) -> void:
-	pass
-
-
 func rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
 	sprite.rotate(delta * new_shell_rotation_speed)
 	collision_shape_2d.rotate(delta * new_shell_rotation_speed)
@@ -48,3 +45,10 @@ func rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
 
 func get_appendages() -> Array[Appendage]:
 	return [shell_0, shell_1, shell_2, shell_3, shell_4]
+
+
+func enable_hurtbox(enable: bool) -> void:
+	hurt_box.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+	for shell in get_appendages():
+		shell.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+		shell.set_collision_mask_value(Globals.CollisionLayer.BULLETS, enable)
