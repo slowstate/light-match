@@ -28,5 +28,6 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	bot.modulate = Color(1, 1, 1, 1)
 	bot.enable_hurtbox(true)
 	transition.emit("Idle")

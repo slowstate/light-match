@@ -27,5 +27,6 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	star.modulate = Color(1, 1, 1, 1)
 	star.enable_hurtbox(true)
 	transition.emit("Idle")
