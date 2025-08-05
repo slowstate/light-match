@@ -17,6 +17,9 @@ var shrink_time: float = 2.0
 func enter() -> void:
 	oracle = owner as Oracle
 	assert(oracle != null, "The state type must be used only in the Oracle scene. It needs the owner to be a Oracle node.")
+
+	oracle.enable_attack_warning_indicator(true)
+
 	attack_rotation_speed = oracle.orb_rotation_speed
 	oracle.sleeping = true
 	if !expand_timer.timeout.is_connected(_on_expand_timer_timeout):
@@ -47,11 +50,16 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 	if oracle.is_stunned():
+		oracle.set_stun_indicator_percentage_completion(1 - oracle.stunned_timer.time_left / oracle.stunned_timer.wait_time)
+		oracle.enable_attack_warning_indicator(false)
+		oracle.enable_stun_indicator(true)
 		expand_timer.paused = true
 		shrink_timer.paused = true
 		spin_up_timer.paused = true
 		spin_down_timer.paused = true
 		return
+	oracle.enable_stun_indicator(false)
+	oracle.enable_attack_warning_indicator(true)
 	expand_timer.paused = false
 	shrink_timer.paused = false
 	spin_up_timer.paused = false

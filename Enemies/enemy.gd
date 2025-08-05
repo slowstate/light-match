@@ -46,6 +46,8 @@ func _ready() -> void:
 	set_colour(colour)
 	modulate.a = 0
 	enable_hurtbox(false)
+	enable_attack_warning_indicator(false)
+	enable_stun_indicator(false)
 	ConditionManager.on_enemy_spawned(self)
 	UpgradeManager.on_enemy_spawned(self)
 	_setup()
@@ -71,6 +73,14 @@ func enable_hurtbox(enable: bool) -> void:
 	pass
 
 
+func enable_attack_warning_indicator(enable: bool) -> void:
+	pass
+
+
+func enable_stun_indicator(enable: bool) -> void:
+	pass
+
+
 func move_forward(delta: float, desired_location: Vector2 = Globals.player.global_position, custom_move_speed = move_speed) -> void:
 	if is_stunned():
 		play_move_animation(false)
@@ -79,10 +89,8 @@ func move_forward(delta: float, desired_location: Vector2 = Globals.player.globa
 		sleeping = true
 		play_move_animation(false)
 		return
-	rotation = lerp_angle(rotation, (desired_location - global_position).angle(), 5.0 * delta)  #clampf((desired_location - global_position).angle() - rotation, deg_to_rad(-360), deg_to_rad(360)) * delta
-	# TODO: Reassess distance_based_move_speed
-	#var distance_based_move_speed = move_speed * lerp(1.2, 0.3, clamp((global_position - desired_location).length() / 2000.0, 0.0, 1.0))
-	linear_velocity = Vector2.from_angle(rotation) * custom_move_speed  #(desired_location - global_position).normalized() * custom_move_speed
+	rotation = lerp_angle(rotation, (desired_location - global_position).angle(), 5.0 * delta)
+	linear_velocity = Vector2.from_angle(rotation) * custom_move_speed
 	apply_force(linear_velocity)
 	play_move_animation(true)
 

@@ -7,6 +7,9 @@ const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
 
 @onready var head: Area2D = $Head
 @onready var hurt_box: Area2D = $HurtBox
+@onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
+@onready var attack_area_indicator: Sprite2D = $AttackAreaIndicator
+@onready var stun_indicator: StunIndicator = $StunIndicator
 
 
 static func create(
@@ -27,6 +30,7 @@ static func create(
 
 func _setup() -> void:
 	head.set_colour(head_colour)
+	enable_attack_area_indicator(false)
 
 
 func get_appendages() -> Array[Appendage]:
@@ -38,6 +42,22 @@ func get_appendages() -> Array[Appendage]:
 func enable_hurtbox(enable: bool) -> void:
 	hurt_box.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
 	head.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+
+
+func enable_attack_warning_indicator(enable: bool) -> void:
+	attack_warning_indicator.visible = enable
+
+
+func enable_attack_area_indicator(enable: bool) -> void:
+	attack_area_indicator.visible = enable
+
+
+func enable_stun_indicator(enable: bool) -> void:
+	stun_indicator.visible = enable
+
+
+func set_stun_indicator_percentage_completion(percentage_complete: float) -> void:
+	stun_indicator.set_stun_percentage_completion(percentage_complete)
 
 
 func play_move_animation(play: bool) -> void:

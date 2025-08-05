@@ -32,6 +32,7 @@ var hit_immunity_time: float = 1.0
 @onready var palette: Palette = $Palette
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var health_bar_inner: Sprite2D = $HealthBar/HealthBarInner
+@onready var health_label: Label = $HealthBar/HealthLabel
 
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
@@ -50,9 +51,10 @@ func _init() -> void:
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	set_health(base_health)
-	base_health += floori(Save.lifetime_palettes / 100)
+	base_health += floori(Save.lifetime_palettes / 20)
 	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.005))
 	player_sprite.set_colour(current_colour)
+	Globals.set_crosshair_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
 
@@ -238,8 +240,13 @@ func add_points(points_to_add: int) -> void:
 
 func set_health(new_health: int) -> void:
 	health = new_health
+	if health <= 0:
+		health_bar_inner.visible = false
+	else:
+		health_bar_inner.visible = true
 	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
 	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
+	health_label.text = str(health)
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:

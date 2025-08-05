@@ -9,6 +9,7 @@ var bot: Bot
 func enter() -> void:
 	bot = owner as Bot
 	assert(bot != null, "The state type must be used only in the Bot scene. It needs the owner to be a Bot node.")
+
 	if !timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
 	timer.start(3)
@@ -27,5 +28,6 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	bot.modulate = Color(1, 1, 1, 1)
 	bot.enable_hurtbox(true)
 	transition.emit("Idle")

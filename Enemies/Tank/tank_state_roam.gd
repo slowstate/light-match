@@ -32,9 +32,9 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 	if tank.is_stunned():
-		timer.paused = true
+		transition.emit("Idle")
+		timer.stop()
 		return
-	timer.paused = false
 
 	tank.move_forward(delta, desired_location, move_speed)
 

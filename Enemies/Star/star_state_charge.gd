@@ -12,6 +12,9 @@ var charge_shell_rotation_speed: float
 func enter() -> void:
 	star = owner as Star
 	assert(star != null, "The state type must be used only in the Star scene. It needs the owner to be a Star node.")
+
+	star.enable_attack_warning_indicator(false)
+
 	charge_shell_rotation_speed = star.shell_rotation_speed
 	if !timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
@@ -32,9 +35,9 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 	if star.is_stunned():
-		timer.paused = true
+		transition.emit("Idle")
+		timer.stop()
 		return
-	timer.paused = false
 
 	charge_shell_rotation_speed = lerpf(star.shell_rotation_speed, star.shell_rotation_speed * 50.0, ease(1 - timer.time_left / timer.wait_time, 2.0))
 	star.rotate_star(delta, charge_shell_rotation_speed)

@@ -13,8 +13,11 @@ const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
 @onready var shell_2: Area2D = $Shells/Shell2
 @onready var shell_3: Area2D = $Shells/Shell3
 @onready var shell_4: Area2D = $Shells/Shell4
+
 @onready var hit_box: Area2D = $HitBox
 @onready var hurt_box: Area2D = $HurtBox
+@onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
+@onready var stun_indicator: StunIndicator = $StunIndicator
 
 
 static func create(
@@ -52,3 +55,15 @@ func enable_hurtbox(enable: bool) -> void:
 	for shell in get_appendages():
 		shell.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
 		shell.set_collision_mask_value(Globals.CollisionLayer.BULLETS, enable)
+
+
+func enable_attack_warning_indicator(enable: bool) -> void:
+	attack_warning_indicator.visible = enable
+
+
+func enable_stun_indicator(enable: bool) -> void:
+	stun_indicator.visible = enable
+
+
+func set_stun_indicator_percentage_completion(percentage_complete: float) -> void:
+	stun_indicator.set_stun_percentage_completion(percentage_complete)
