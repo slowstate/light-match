@@ -59,6 +59,10 @@ func set_action_event() -> void:
 		var mouse_button = InputEventMouseButton.new()
 		mouse_button.button_index = MOUSE_BUTTON_WHEEL_DOWN
 		InputMap.action_add_event(action_name, mouse_button)
+
+		var mouse_right_button = InputEventMouseButton.new()
+		mouse_right_button.button_index = MOUSE_BUTTON_RIGHT
+		InputMap.action_add_event(action_name, mouse_right_button)
 	if action_name == "player_previous_colour":
 		var mouse_button = InputEventMouseButton.new()
 		mouse_button.button_index = MOUSE_BUTTON_WHEEL_UP
