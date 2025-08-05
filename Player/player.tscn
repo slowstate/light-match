@@ -94,6 +94,17 @@ centered = false
 texture = SubResource("GradientTexture2D_vvlfp")
 centered = false
 
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+offset_right = 64.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 15
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ShieldSprite" type="Sprite2D" parent="."]
 position = Vector2(-7, 0)
 texture = ExtResource("4_w330a")

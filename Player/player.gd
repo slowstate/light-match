@@ -32,6 +32,7 @@ var hit_immunity_time: float = 1.0
 @onready var palette: Palette = $Palette
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var health_bar_inner: Sprite2D = $HealthBar/HealthBarInner
+@onready var health_label: Label = $HealthBar/HealthLabel
 
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
@@ -239,8 +240,13 @@ func add_points(points_to_add: int) -> void:
 
 func set_health(new_health: int) -> void:
 	health = new_health
+	if health <= 0:
+		health_bar_inner.visible = false
+	else:
+		health_bar_inner.visible = true
 	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
 	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
+	health_label.text = str(health)
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
