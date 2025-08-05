@@ -53,6 +53,7 @@ func _ready() -> void:
 	base_health += floori(Save.lifetime_palettes / 100)
 	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.005))
 	player_sprite.set_colour(current_colour)
+	Globals.set_crosshair_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
 

@@ -90,6 +90,9 @@ script = ExtResource("6_3v72i")
 [node name="AggroTimer" type="Timer" parent="StateMachine/Aggro"]
 one_shot = true
 
+[node name="Aggro2Timer" type="Timer" parent="StateMachine/Aggro"]
+one_shot = true
+
 [node name="AggroCooldownTimer" type="Timer" parent="StateMachine/Aggro"]
 one_shot = true
 
