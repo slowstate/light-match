@@ -14,7 +14,7 @@ func enter() -> void:
 
 	if !timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
-	timer.start(idle_time)
+	timer.start(randf_range(1.5, 3.5))
 
 
 func exit() -> void:

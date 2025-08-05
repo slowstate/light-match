@@ -13,7 +13,7 @@ func enter() -> void:
 	star = owner as Star
 	assert(star != null, "The state type must be used only in the Star scene. It needs the owner to be a Star node.")
 
-	star.enable_attack_warning_indicator(true)
+	star.enable_attack_warning_indicator(false)
 
 	charge_shell_rotation_speed = star.shell_rotation_speed
 	if !timer.timeout.is_connected(_on_timer_timeout):

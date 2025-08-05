@@ -86,4 +86,4 @@ func _on_charge_timer_timeout() -> void:
 func _on_dash_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(false)
 	lizard.enable_stun_indicator(true)
-	stun_timer.start(3.0)
+	stun_timer.start(randf_range(2.0, 4.0))

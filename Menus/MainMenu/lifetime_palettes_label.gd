@@ -7,7 +7,7 @@ func _ready() -> void:
 	Permanent Fire Rate Gained: {fire_rate}%
 	Permanent Max Health Gained: {max_health}"""
 	var fire_rate = Save.lifetime_palettes * 0.005 * 100
-	var max_health = floori(Save.lifetime_palettes / 100)
+	var max_health = floori(Save.lifetime_palettes / 20)
 	text = text_string.format({"lifetime_palettes": Save.lifetime_palettes, "fire_rate": fire_rate, "max_health": max_health})
 
 
