@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ua5firl6innu"]
+[gd_scene load_steps=24 format=3 uid="uid://ua5firl6innu"]
 
 [ext_resource type="Script" path="res://Enemies/Tank/tank.gd" id="1_vdwel"]
 [ext_resource type="Texture2D" uid="uid://dev068qadnb34" path="res://Enemies/Tank/Stream.png" id="3_erh0f"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_idle.gd" id="9_2dj7l"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_spawn.gd" id="9_mq5ch"]
 [ext_resource type="Script" path="res://Enemies/Tank/tank_state_roam.gd" id="10_2kdqp"]
+[ext_resource type="PackedScene" uid="uid://n88qgch6n50w" path="res://Enemies/Indicators/stun_indicator.tscn" id="12_rhgkm"]
 [ext_resource type="Texture2D" uid="uid://wbk7k5ddxw45" path="res://Enemies/Tank/Shield.png" id="17_awigq"]
 
 [sub_resource type="Gradient" id="Gradient_nocgx"]
@@ -222,3 +223,7 @@ one_shot = true
 script = ExtResource("10_2kdqp")
 
 [node name="Timer" type="Timer" parent="StateMachine/Roam"]
+
+[node name="StunIndicator" parent="." instance=ExtResource("12_rhgkm")]
+position = Vector2(0, -50)
+custom_offset = Vector2(0, -50)

@@ -5,6 +5,7 @@ const ORACLE: PackedScene = preload("res://Enemies/Oracle/oracle.tscn")
 
 @onready var hurt_box: Area2D = $HurtBox
 @onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
+@onready var stun_indicator: StunIndicator = $StunIndicator
 
 @export var orb_colour: Globals.Colour = Globals.Colour.BLUE
 @export var orb_rotation_speed := 1.0
@@ -51,3 +52,11 @@ func enable_hurtbox(enable: bool) -> void:
 
 func enable_attack_warning_indicator(enable: bool) -> void:
 	attack_warning_indicator.visible = enable
+
+
+func enable_stun_indicator(enable: bool) -> void:
+	stun_indicator.visible = enable
+
+
+func set_stun_indicator_percentage_completion(percentage_complete: float) -> void:
+	stun_indicator.set_stun_percentage_completion(percentage_complete)

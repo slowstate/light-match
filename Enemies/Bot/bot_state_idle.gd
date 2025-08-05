@@ -39,11 +39,10 @@ func physics_update(delta: float) -> void:
 		return
 
 	if bot.is_stunned():
-		idle_timer.paused = true
-		roam_timer.paused = true
+		bot.set_stun_indicator_percentage_completion(1 - bot.stunned_timer.time_left / bot.stunned_timer.wait_time)
+		bot.enable_stun_indicator(true)
 		return
-	idle_timer.paused = false
-	roam_timer.paused = false
+	bot.enable_stun_indicator(false)
 
 	if bot.player_is_within_distance(500.0):
 		transition.emit("Aggro")

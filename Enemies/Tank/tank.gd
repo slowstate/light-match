@@ -5,6 +5,7 @@ const TANK: PackedScene = preload("res://Enemies/Tank/tank.tscn")
 
 @onready var hurt_box: Area2D = $HurtBox
 @onready var shield: Area2D = $Shield
+@onready var stun_indicator: StunIndicator = $StunIndicator
 
 
 static func create(initial_position: Vector2, initial_health: int, initial_colour: Globals.Colour = Globals.pick_random_colour()) -> Tank:
@@ -21,3 +22,11 @@ func enable_hurtbox(enable: bool) -> void:
 	hurt_box.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
 	shield.set_collision_layer_value(Globals.CollisionLayer.TANK_SHIELD, enable)
 	shield.set_collision_mask_value(Globals.CollisionLayer.BULLETS, enable)
+
+
+func enable_stun_indicator(enable: bool) -> void:
+	stun_indicator.visible = enable
+
+
+func set_stun_indicator_percentage_completion(percentage_complete: float) -> void:
+	stun_indicator.set_stun_percentage_completion(percentage_complete)

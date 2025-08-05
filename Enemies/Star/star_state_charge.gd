@@ -35,9 +35,9 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 	if star.is_stunned():
-		timer.paused = true
+		transition.emit("Idle")
+		timer.stop()
 		return
-	timer.paused = false
 
 	charge_shell_rotation_speed = lerpf(star.shell_rotation_speed, star.shell_rotation_speed * 50.0, ease(1 - timer.time_left / timer.wait_time, 2.0))
 	star.rotate_star(delta, charge_shell_rotation_speed)

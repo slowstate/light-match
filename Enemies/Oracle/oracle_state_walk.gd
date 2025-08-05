@@ -25,7 +25,11 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 	if oracle.is_stunned():
+		oracle.set_stun_indicator_percentage_completion(1 - oracle.stunned_timer.time_left / oracle.stunned_timer.wait_time)
+		oracle.enable_stun_indicator(true)
 		return
+	oracle.enable_stun_indicator(false)
+
 	if oracle.player_is_within_distance(200.0):
 		transition.emit("Attack")
 		return

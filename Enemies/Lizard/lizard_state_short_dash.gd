@@ -45,13 +45,11 @@ func update(_delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	if lizard.is_stunned():
-		stun_timer.paused = true
-		charge_timer.paused = true
-		dash_timer.paused = true
+		transition.emit("Walk")
+		stun_timer.stop()
+		charge_timer.stop()
+		dash_timer.stop()
 		return
-	stun_timer.paused = false
-	charge_timer.paused = false
-	dash_timer.paused = false
 
 	if lizard.get_appendages().is_empty():
 		transition.emit("AggroDash")

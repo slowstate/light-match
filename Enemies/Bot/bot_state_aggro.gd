@@ -37,11 +37,10 @@ func physics_update(delta: float) -> void:
 		return
 
 	if bot.is_stunned():
-		aggro_timer.paused = true
-		aggro_cooldown_timer.paused = true
+		transition.emit("Idle")
+		aggro_timer.stop()
+		aggro_cooldown_timer.stop()
 		return
-	aggro_timer.paused = false
-	aggro_cooldown_timer.paused = false
 
 	if !aggro_timer.is_stopped():
 		bot.move_forward(

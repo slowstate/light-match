@@ -37,13 +37,17 @@ func update(_delta: float) -> void:
 
 func physics_update(_delta: float) -> void:
 	if lizard.is_stunned():
-		stun_timer.paused = true
-		charge_timer.paused = true
-		dash_timer.paused = true
+		lizard.set_stun_indicator_percentage_completion(1 - lizard.stunned_timer.time_left / lizard.stunned_timer.wait_time)
+		lizard.enable_attack_warning_indicator(false)
+		lizard.enable_attack_area_indicator(false)
+		lizard.enable_stun_indicator(true)
+
+		stun_timer.stop()
+		charge_timer.stop()
+		dash_timer.stop()
 		return
-	stun_timer.paused = false
-	charge_timer.paused = false
-	dash_timer.paused = false
+	if stun_timer.is_stopped() and charge_timer.is_stopped() and dash_timer.is_stopped():
+		stun_timer.start(0.01)
 
 	if !charge_timer.is_stopped():
 		lizard.rotation = lerp_angle(
@@ -60,6 +64,8 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_stun_timer_timeout() -> void:
+	if lizard.is_stunned():
+		return
 	lizard.attack_area_indicator.scale.x = 0
 	lizard.attack_area_indicator.modulate.a = 0
 	lizard.enable_attack_warning_indicator(true)
