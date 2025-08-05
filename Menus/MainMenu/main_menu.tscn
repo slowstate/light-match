@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d0dfysmqkrlrt" path="res://Menus/MainMenu/Light.png" id="7_gjco6"]
 [ext_resource type="Texture2D" uid="uid://c4eb0ypcq86g6" path="res://Menus/MainMenu/HOW TO PLAY.png" id="8_6ouhu"]
 [ext_resource type="Texture2D" uid="uid://cqfxbdt8yg400" path="res://Menus/MainMenu/MATCH.png" id="8_7n2il"]
-[ext_resource type="Texture2D" uid="uid://dqs7558opf5lp" path="res://Arena/BG.png" id="9_ke1b8"]
+[ext_resource type="Texture2D" uid="uid://0j3j1ifosde8" path="res://Arena/Background.png" id="9_ke1b8"]
 [ext_resource type="Texture2D" uid="uid://d3y73cmvctw5" path="res://Menus/MainMenu/START.png" id="9_ptbja"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="10_a5kyi"]
 [ext_resource type="Texture2D" uid="uid://dlk7j8t2lgvxl" path="res://Menus/MainMenu/EXIT.png" id="10_kcve7"]
