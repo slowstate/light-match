@@ -8,6 +8,8 @@ func enter() -> void:
 	oracle = owner as Oracle
 	assert(oracle != null, "The state type must be used only in the Oracle scene. It needs the owner to be a Oracle node.")
 
+	oracle.enable_attack_warning_indicator(false)
+
 
 func exit() -> void:
 	pass

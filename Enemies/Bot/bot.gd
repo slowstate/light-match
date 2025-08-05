@@ -4,6 +4,8 @@ extends Enemy
 const BOT: PackedScene = preload("res://Enemies/Bot/bot.tscn")
 
 @onready var hurt_box: Area2D = $HurtBox
+@onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
+@onready var stun_indicator: StunIndicator = $StunIndicator
 
 
 static func create(initial_position: Vector2, initial_health: int, initial_colour: Globals.Colour = Globals.pick_random_colour()) -> Bot:
@@ -18,6 +20,18 @@ static func create(initial_position: Vector2, initial_health: int, initial_colou
 
 func enable_hurtbox(enable: bool) -> void:
 	hurt_box.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+
+
+func enable_attack_warning_indicator(enable: bool) -> void:
+	attack_warning_indicator.visible = enable
+
+
+func enable_stun_indicator(enable: bool) -> void:
+	stun_indicator.visible = enable
+
+
+func set_stun_indicator_percentage_completion(percentage_complete: float) -> void:
+	stun_indicator.set_stun_percentage_completion(percentage_complete)
 
 
 func play_move_animation(play: bool) -> void:

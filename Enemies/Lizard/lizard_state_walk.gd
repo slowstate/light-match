@@ -10,6 +10,10 @@ func enter() -> void:
 	lizard = owner as Lizard
 	assert(lizard != null, "The state type must be used only in the Lizard scene. It needs the owner to be a Lizard node.")
 
+	lizard.enable_attack_warning_indicator(false)
+	lizard.enable_attack_area_indicator(false)
+	lizard.enable_stun_indicator(false)
+
 
 func exit() -> void:
 	pass

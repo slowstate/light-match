@@ -4,6 +4,7 @@ extends Enemy
 const ORACLE: PackedScene = preload("res://Enemies/Oracle/oracle.tscn")
 
 @onready var hurt_box: Area2D = $HurtBox
+@onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
 
 @export var orb_colour: Globals.Colour = Globals.Colour.BLUE
 @export var orb_rotation_speed := 1.0
@@ -46,3 +47,7 @@ func enable_hurtbox(enable: bool) -> void:
 	for orb in get_appendages():
 		orb.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
 		orb.set_collision_mask_value(Globals.CollisionLayer.BULLETS, enable)
+
+
+func enable_attack_warning_indicator(enable: bool) -> void:
+	attack_warning_indicator.visible = enable

@@ -9,6 +9,9 @@ var idle_time: float = 2.0
 func enter() -> void:
 	star = owner as Star
 	assert(star != null, "The state type must be used only in the Star scene. It needs the owner to be a Star node.")
+
+	star.enable_attack_warning_indicator(false)
+
 	if !timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
 	timer.start(idle_time)

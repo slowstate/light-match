@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://duvsa2r7f53oy"]
+[gd_scene load_steps=28 format=3 uid="uid://duvsa2r7f53oy"]
 
 [ext_resource type="Script" path="res://Enemies/Star/star.gd" id="1_a0cwb"]
 [ext_resource type="PackedScene" uid="uid://1d5okjmxlrdj" path="res://Enemies/Star/Sprite/star_sprite.tscn" id="2_iui8m"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://Enemies/Star/star_state_charge.gd" id="17_5rcwd"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_spawn.gd" id="17_7wqf0"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_teleport.gd" id="18_qfcp5"]
+[ext_resource type="PackedScene" uid="uid://b8c6s8ng5867s" path="res://Enemies/Indicators/attack_warning_indicator.tscn" id="21_ives3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d0wjw"]
 radius = 40.0
@@ -220,3 +221,7 @@ one_shot = true
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/Teleport"]
 one_shot = true
+
+[node name="AttackWarningIndicator" parent="." instance=ExtResource("21_ives3")]
+position = Vector2(0, -50)
+custom_offset = Vector2(0, -50)

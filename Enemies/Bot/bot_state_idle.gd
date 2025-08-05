@@ -12,6 +12,9 @@ func enter() -> void:
 	bot = owner as Bot
 	assert(bot != null, "The state type must be used only in the Bot scene. It needs the owner to be a Bot node.")
 
+	bot.enable_attack_warning_indicator(false)
+	bot.enable_stun_indicator(false)
+
 	if !idle_timer.timeout.is_connected(_on_idle_timer_timeout):
 		idle_timer.timeout.connect(_on_idle_timer_timeout)
 	if !roam_timer.timeout.is_connected(_on_roam_timer_timeout):

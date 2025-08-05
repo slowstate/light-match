@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0jhbqhd4dhhx"]
+[gd_scene load_steps=15 format=3 uid="uid://b0jhbqhd4dhhx"]
 
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle.gd" id="1_4uhgo"]
 [ext_resource type="PackedScene" uid="uid://c0k62py27crqg" path="res://Enemies/Oracle/Sprite/oracle_sprite.tscn" id="2_bhm20"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c1nhcfqj5fpm1" path="res://Enemies/Oracle/Orb/Oracle Orb 1.png" id="9_j71aq"]
 [ext_resource type="Script" path="res://Enemies/Oracle/oracle_state_attack.gd" id="9_r57yu"]
 [ext_resource type="Texture2D" uid="uid://b1dakq7bkujow" path="res://Enemies/Oracle/Orb/Oracle Orb Light.png" id="10_v34uc"]
+[ext_resource type="PackedScene" uid="uid://b8c6s8ng5867s" path="res://Enemies/Indicators/attack_warning_indicator.tscn" id="11_hcnwp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cdws"]
 radius = 60.0083
@@ -163,3 +164,7 @@ one_shot = true
 
 [node name="ShrinkTimer" type="Timer" parent="StateMachine/Attack"]
 one_shot = true
+
+[node name="AttackWarningIndicator" parent="." instance=ExtResource("11_hcnwp")]
+position = Vector2(0, -50)
+custom_offset = Vector2(0, -50)

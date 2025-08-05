@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dh5h2d2pwrrpa"]
+[gd_scene load_steps=16 format=3 uid="uid://dh5h2d2pwrrpa"]
 
 [ext_resource type="Script" path="res://Enemies/Bot/bot.gd" id="1_joxph"]
 [ext_resource type="PackedScene" uid="uid://dohxwuksnslb" path="res://Enemies/Bot/Sprite/bot_sprite.tscn" id="2_7h7sy"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Enemies/Bot/bot_state_spawn.gd" id="5_1j77v"]
 [ext_resource type="Script" path="res://Enemies/Bot/bot_state_idle.gd" id="5_lfiu6"]
 [ext_resource type="Script" path="res://Enemies/Bot/bot_state_aggro.gd" id="6_3v72i"]
+[ext_resource type="PackedScene" uid="uid://b8c6s8ng5867s" path="res://Enemies/Indicators/attack_warning_indicator.tscn" id="8_ynx2k"]
+[ext_resource type="PackedScene" uid="uid://n88qgch6n50w" path="res://Enemies/Indicators/stun_indicator.tscn" id="9_hovb2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8uqw"]
 radius = 50.04
@@ -90,5 +92,13 @@ one_shot = true
 
 [node name="AggroCooldownTimer" type="Timer" parent="StateMachine/Aggro"]
 one_shot = true
+
+[node name="AttackWarningIndicator" parent="." instance=ExtResource("8_ynx2k")]
+position = Vector2(0, -50)
+custom_offset = Vector2(0, -50)
+
+[node name="StunIndicator" parent="." instance=ExtResource("9_hovb2")]
+position = Vector2(0, -50)
+custom_offset = Vector2(0, -50)
 
 [connection signal="player_hit" from="HurtBox" to="StateMachine/Aggro" method="_on_hurt_box_player_hit"]

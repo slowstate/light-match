@@ -46,6 +46,8 @@ func _ready() -> void:
 	set_colour(colour)
 	modulate.a = 0
 	enable_hurtbox(false)
+	enable_attack_warning_indicator(false)
+	enable_stun_indicator(false)
 	ConditionManager.on_enemy_spawned(self)
 	UpgradeManager.on_enemy_spawned(self)
 	_setup()
@@ -68,6 +70,14 @@ func set_colour(new_colour: Globals.Colour) -> void:
 
 
 func enable_hurtbox(enable: bool) -> void:
+	pass
+
+
+func enable_attack_warning_indicator(enable: bool) -> void:
+	pass
+
+
+func enable_stun_indicator(enable: bool) -> void:
 	pass
 
 
