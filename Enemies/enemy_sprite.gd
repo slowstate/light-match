@@ -1,5 +1,5 @@
 class_name EnemySprite
-extends Node
+extends Sprite2D
 
 # All functions should be overriden
 

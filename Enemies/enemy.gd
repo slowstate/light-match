@@ -164,9 +164,11 @@ func _on_area_entered(area: Area2D) -> void:
 
 	if health <= 0:
 		log_play_data = {"message": "Enemy killed", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
+		ScreenFreezer.freeze(0.05)
 		UpgradeManager.on_enemy_killed(self)
 		SignalBus.emit_signal("enemy_died", self)
-		Logger.log_play_data(log_play_data)
+		spawn_death_particles()
 		queue_free()
 
 
@@ -180,4 +182,8 @@ func play_move_animation(_play: bool) -> void:
 
 
 func play_attack_animation() -> void:
+	pass
+
+
+func spawn_death_particles() -> void:
 	pass

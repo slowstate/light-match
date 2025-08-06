@@ -1,0 +1,117 @@
+[gd_scene load_steps=19 format=3 uid="uid://bb78eda5ojuxs"]
+
+[ext_resource type="Script" path="res://Enemies/VFX/enemy_death_particles.gd" id="1_e3so4"]
+[ext_resource type="Texture2D" uid="uid://bberwgb1fkftk" path="res://Enemies/Bot/Sprite/Bot Left Arm.png" id="1_n1214"]
+[ext_resource type="Texture2D" uid="uid://chhxpd32t4gp5" path="res://Enemies/Bot/Sprite/Bot Head.png" id="2_3018k"]
+[ext_resource type="Texture2D" uid="uid://cthvj2i6u33qs" path="res://Enemies/Bot/Sprite/Bot Right Arm.png" id="4_10nx3"]
+
+[sub_resource type="Curve" id="Curve_2h268"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26374, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o36kb"]
+curve = SubResource("Curve_2h268")
+
+[sub_resource type="Curve" id="Curve_lcv74"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72668, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_24n5d"]
+curve = SubResource("Curve_lcv74")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5feou"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 15.0
+emission_ring_inner_radius = 0.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+damping_min = 200.0
+damping_max = 250.0
+scale_curve = SubResource("CurveTexture_24n5d")
+alpha_curve = SubResource("CurveTexture_o36kb")
+
+[sub_resource type="Gradient" id="Gradient_onl2i"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kvf4m"]
+gradient = SubResource("Gradient_onl2i")
+width = 4
+height = 4
+
+[sub_resource type="Curve" id="Curve_spkw6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26373, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o6qph"]
+curve = SubResource("Curve_spkw6")
+
+[sub_resource type="Curve" id="Curve_qk5mb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72308, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_au26k"]
+curve = SubResource("Curve_qk5mb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ghner"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 0.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+scale_curve = SubResource("CurveTexture_au26k")
+alpha_curve = SubResource("CurveTexture_o6qph")
+
+[sub_resource type="Gradient" id="Gradient_ouvjw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.141176, 0.137255, 0.137255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tj5ko"]
+gradient = SubResource("Gradient_ouvjw")
+width = 4
+height = 4
+
+[node name="EnemyDeathParticles" type="GPUParticles2D"]
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_5feou")
+texture = SubResource("GradientTexture2D_kvf4m")
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("1_e3so4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+show_behind_parent = true
+texture = ExtResource("2_3018k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(27, 18)
+texture = ExtResource("1_n1214")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-27, 18)
+texture = ExtResource("4_10nx3")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ghner")
+texture = SubResource("GradientTexture2D_tj5ko")
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="finished" from="." to="." method="_on_finished"]

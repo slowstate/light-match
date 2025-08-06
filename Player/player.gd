@@ -42,6 +42,7 @@ var hit_immunity_time: float = 1.0
 @onready var player_conditions_interface: VBoxContainer = $PlayerInterface/PlayerConditionsInterface
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
+@onready var player_hit_overlay: Sprite2D = $PlayerInterface/PlayerHitOverlay
 
 
 func _init() -> void:
@@ -57,6 +58,7 @@ func _ready() -> void:
 	Globals.set_crosshair_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
+	player_hit_overlay.modulate.a = 0
 
 
 func _process(_delta: float) -> void:
@@ -101,8 +103,9 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 
 
-func _physics_process(_delta: float) -> void:
-	pass
+func _physics_process(delta: float) -> void:
+	if player_hit_overlay.modulate.a > 0:
+		player_hit_overlay.modulate.a -= delta
 
 
 func _input(_event: InputEvent) -> void:
@@ -278,6 +281,9 @@ func player_hit(enemy: Enemy) -> void:
 		return
 
 	set_health(health - enemy.damage)
+	player_hit_overlay.modulate.a = 1
+	ScreenFreezer.freeze(0.2)
+	ScreenShaker.shake()
 	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
 	SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 	var log_play_data = {"message": "Player hit", "context": log_context_data}

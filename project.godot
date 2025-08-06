@@ -36,6 +36,8 @@ Utiliies="*res://Common/utilities.gd"
 Settings="*res://Common/settings.gd"
 ConditionManager="*res://Arena/Conditions/condition_manager.gd"
 Save="*res://Common/save.gd"
+ScreenFreezer="*res://Common/VFX/screen_freezer.gd"
+ScreenShaker="*res://Common/VFX/screen_shaker.gd"
 
 [debug]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=23 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="2_ekdli"]
@@ -60,6 +60,18 @@ radius = 400.0
 [sub_resource type="LabelSettings" id="LabelSettings_0a4sd"]
 font = ExtResource("5_qrmso")
 font_size = 60
+
+[sub_resource type="Gradient" id="Gradient_qhjbm"]
+offsets = PackedFloat32Array(0.502128, 0.953192)
+colors = PackedColorArray(0, 0, 0, 0, 0.5, 0, 0, 0.38)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vy72v"]
+gradient = SubResource("Gradient_qhjbm")
+width = 1920
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.9)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -210,6 +222,10 @@ texture = ExtResource("6_wpbjh")
 [node name="PlayerPointsBGRight" type="Sprite2D" parent="PlayerInterface/PlayerPoints"]
 position = Vector2(33.5, 0)
 texture = ExtResource("7_u5avh")
+
+[node name="PlayerHitOverlay" type="Sprite2D" parent="PlayerInterface"]
+texture = SubResource("GradientTexture2D_vy72v")
+centered = false
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_area_entered"]
