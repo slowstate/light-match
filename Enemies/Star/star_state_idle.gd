@@ -33,11 +33,11 @@ func physics_update(delta: float) -> void:
 	if star.is_stunned():
 		star.set_stun_indicator_percentage_completion(1 - star.stunned_timer.time_left / star.stunned_timer.wait_time)
 		star.enable_stun_indicator(true)
-		star.dim_lights(true)
+		star.dim_lights(ease(1 - star.stunned_timer.time_left / star.stunned_timer.wait_time, 0.2) * 0.5)
 		timer.paused = true
 		return
 	star.enable_stun_indicator(false)
-	star.dim_lights(false)
+	star.dim_lights(0.0)
 	timer.paused = false
 
 	star.rotate_star(delta, star.shell_rotation_speed)

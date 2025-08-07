@@ -25,5 +25,5 @@ func _on_area_entered(area: Area2D) -> void:
 		queue_free()
 
 
-func dim_lights(enabled: bool) -> void:
-	sprite.self_modulate.a = 0.5 if enabled else 1.0
+func dim_lights(dim_amount: float) -> void:
+	sprite.self_modulate.a = 1.0 - dim_amount

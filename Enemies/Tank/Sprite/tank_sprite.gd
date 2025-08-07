@@ -23,9 +23,9 @@ func set_health(health: int) -> void:
 	tank_light_5.visible = false if health < 5 else true
 
 
-func dim_lights(enabled: bool) -> void:
-	tank_light_1.self_modulate.a = 0.5 if enabled else 1.0
-	tank_light_2.self_modulate.a = 0.5 if enabled else 1.0
-	tank_light_3.self_modulate.a = 0.5 if enabled else 1.0
-	tank_light_4.self_modulate.a = 0.5 if enabled else 1.0
-	tank_light_5.self_modulate.a = 0.5 if enabled else 1.0
+func dim_lights(dim_amount: float) -> void:
+	tank_light_1.self_modulate.a = 1.0 - dim_amount
+	tank_light_2.self_modulate.a = 1.0 - dim_amount
+	tank_light_3.self_modulate.a = 1.0 - dim_amount
+	tank_light_4.self_modulate.a = 1.0 - dim_amount
+	tank_light_5.self_modulate.a = 1.0 - dim_amount

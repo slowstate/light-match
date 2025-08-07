@@ -57,10 +57,12 @@ func physics_update(delta: float) -> void:
 		bot.move_forward(
 			delta,
 			Globals.player.global_position,
-			lerpf(bot.move_speed * 2.5, bot.move_speed * 0.75, ease(1 - aggro_2_timer.time_left / aggro_2_timer.wait_time, 2.0))
+			lerpf(bot.move_speed * 2.5, bot.move_speed * 0.5, ease(1 - aggro_2_timer.time_left / aggro_2_timer.wait_time, 2.0))
 		)
 
-	bot.set_stun_indicator_percentage_completion(1 - aggro_cooldown_timer.time_left / aggro_cooldown_timer.wait_time)
+	if !aggro_cooldown_timer.is_stopped():
+		bot.set_stun_indicator_percentage_completion(1 - aggro_cooldown_timer.time_left / aggro_cooldown_timer.wait_time)
+		bot.dim_lights(ease(1 - aggro_2_timer.time_left / aggro_2_timer.wait_time, 0.2) * 0.5)
 
 
 func _on_aggro_timer_timeout() -> void:
@@ -71,7 +73,6 @@ func _on_aggro_timer_timeout() -> void:
 func _on_aggro_2_timer_timeout() -> void:
 	bot.enable_attack_warning_indicator(false)
 	bot.enable_stun_indicator(true)
-	bot.dim_lights(true)
 
 	aggro_cooldown_timer.start(aggro_cooldown_time)
 	bot.sleeping = true
@@ -80,7 +81,7 @@ func _on_aggro_2_timer_timeout() -> void:
 
 func _on_aggro_cooldown_timer_timeout() -> void:
 	bot.enable_stun_indicator(false)
-	bot.dim_lights(false)
+	bot.dim_lights(0.0)
 	transition.emit("Idle")
 
 

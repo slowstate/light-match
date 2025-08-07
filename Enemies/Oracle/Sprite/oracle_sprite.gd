@@ -24,7 +24,7 @@ func set_health(health: int) -> void:
 	oracle_body_light_2.visible = false if health < 3 else true
 
 
-func dim_lights(enabled: bool) -> void:
-	oracle_eye_light.self_modulate.a = 0.5 if enabled else 1.0
-	oracle_body_light_1.self_modulate.a = 0.5 if enabled else 1.0
-	oracle_body_light_2.self_modulate.a = 0.5 if enabled else 1.0
+func dim_lights(dim_amount: float) -> void:
+	oracle_eye_light.self_modulate.a = 1.0 - dim_amount
+	oracle_body_light_1.self_modulate.a = 1.0 - dim_amount
+	oracle_body_light_2.self_modulate.a = 1.0 - dim_amount

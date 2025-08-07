@@ -50,6 +50,7 @@ radius = 150.0
 [node name="Star" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Stars"]]
 rotation = 6.28319
 collision_layer = 0
+linear_damp = 5.0
 script = ExtResource("1_a0cwb")
 sprite = NodePath("Sprite")
 

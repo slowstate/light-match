@@ -12,5 +12,5 @@ func set_colour(_colour: Globals.Colour) -> void:
 	pass
 
 
-func dim_lights(_enabled: bool) -> void:
+func dim_lights(_amount: float) -> void:
 	pass

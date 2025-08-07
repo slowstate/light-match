@@ -16,7 +16,6 @@ func enter() -> void:
 	lizard.enable_attack_warning_indicator(false)
 	lizard.enable_attack_area_indicator(false)
 	lizard.enable_stun_indicator(true)
-	lizard.dim_lights(true)
 
 	lizard.sleeping = true
 	if !stun_timer.timeout.is_connected(_on_stun_timer_timeout):
@@ -61,7 +60,9 @@ func physics_update(_delta: float) -> void:
 		lizard.global_position = lizard.global_position.lerp(target_location, ease(1 - dash_timer.time_left / dash_timer.wait_time, -2.0))
 		lizard.global_position = lizard.global_position.clamp(Vector2(65, 65), Vector2(2495, 1385))
 
-	lizard.set_stun_indicator_percentage_completion(1 - stun_timer.time_left / stun_timer.wait_time)
+	if !stun_timer.is_stopped():
+		lizard.set_stun_indicator_percentage_completion(1 - stun_timer.time_left / stun_timer.wait_time)
+		lizard.dim_lights(ease(1 - stun_timer.time_left / stun_timer.wait_time, 0.2) * 0.5)
 
 
 func _on_stun_timer_timeout() -> void:
@@ -72,7 +73,7 @@ func _on_stun_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(true)
 	lizard.enable_attack_area_indicator(true)
 	lizard.enable_stun_indicator(false)
-	lizard.dim_lights(false)
+	lizard.dim_lights(0.0)
 	target_location = lizard.global_position + (Globals.player.global_position - lizard.global_position).normalized() * randf_range(700.0, 800.0)
 	var texture = lizard.attack_area_indicator.texture as GradientTexture2D
 	texture.width = (target_location - lizard.global_position).length()
@@ -88,5 +89,4 @@ func _on_charge_timer_timeout() -> void:
 func _on_dash_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(false)
 	lizard.enable_stun_indicator(true)
-	lizard.dim_lights(true)
 	stun_timer.start(randf_range(2.0, 4.0))

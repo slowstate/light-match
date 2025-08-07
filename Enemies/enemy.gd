@@ -17,8 +17,10 @@ var knock_back_timer: Timer
 var stunned_timer: Timer
 var invulnerable_timer: Timer
 var regen_timer: Timer
+var change_colour_timer: Timer
 var health_regen: int = 0
 var show_hit_flash: bool = false
+var change_colour_timer_threshold: float = 0.0
 
 
 # This function should be overriden by inheriting classes; no code should be added to this class
@@ -42,6 +44,10 @@ func _ready() -> void:
 	regen_timer = Timer.new()
 	regen_timer.timeout.connect(_on_regen_timer_timeout)
 	add_child(regen_timer)
+	change_colour_timer = Timer.new()
+	change_colour_timer.one_shot = true
+	change_colour_timer.timeout.connect(_on_change_colour_timer_timeout)
+	add_child(change_colour_timer)
 
 	set_health(base_health)
 	set_colour(colour)
@@ -65,6 +71,14 @@ func _process(delta: float) -> void:
 	if show_hit_flash:
 		sprite.modulate += Color(50, 50, 50, 1)
 		show_hit_flash = false
+	elif !change_colour_timer.is_stopped():
+		change_colour_timer_threshold += (1 - change_colour_timer.time_left / change_colour_timer.wait_time) * delta
+		if change_colour_timer_threshold < 0.07:
+			sprite.modulate = Color(1.5, 1.5, 1.5, 1)
+		elif change_colour_timer_threshold < 0.14:
+			sprite.modulate = Color(1, 1, 1, 1)
+		else:
+			change_colour_timer_threshold = 0.0
 	else:
 		sprite.modulate = Color(1, 1, 1, 1)
 
@@ -168,6 +182,8 @@ func _on_area_entered(area: Area2D) -> void:
 	set_health(health - bullet.damage)
 	show_hit_flash = true
 	knock_back(50.0, 0.05)
+	if change_colour_timer.is_stopped():
+		change_colour()
 	ConditionManager.on_enemy_received_damage(bullet, self)
 	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 
@@ -197,10 +213,20 @@ func play_attack_animation() -> void:
 	pass
 
 
-func dim_lights(enabled: bool) -> void:
-	sprite.dim_lights(enabled)
+func dim_lights(dim_amount: float) -> void:
+	sprite.dim_lights(dim_amount)
 	for appendage in get_appendages():
-		appendage.dim_lights(enabled)
+		appendage.dim_lights(dim_amount)
+
+
+func change_colour() -> void:
+	change_colour_timer.start(3.0)
+
+
+func _on_change_colour_timer_timeout() -> void:
+	var possible_random_colours = Globals.Colour.values().duplicate()
+	possible_random_colours.erase(colour)
+	set_colour(possible_random_colours.pick_random())
 
 
 func spawn_death_particles() -> void:

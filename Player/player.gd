@@ -39,6 +39,7 @@ var show_flash: bool = false
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
 @onready var hit_immunity_timer: Timer = $HitImmunityTimer
+@onready var switch_colour_flash: Sprite2D = $SwitchColourFlash
 
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
 @onready var player_conditions_interface: VBoxContainer = $PlayerInterface/PlayerConditionsInterface
@@ -61,14 +62,18 @@ func _ready() -> void:
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
 	player_hit_overlay.modulate.a = 0
+	switch_colour_flash.modulate.a = 0
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if show_flash:
 		flash.visible = true
 		show_flash = false
 	else:
 		flash.visible = false
+
+	switch_colour_flash.modulate.a = lerp(switch_colour_flash.modulate.a, 0.0, delta * 5.0)
+	switch_colour_flash.scale = lerp(switch_colour_flash.scale, Vector2(1.0, 1.0), delta * 5.0)
 
 	shield_sprite.visible = true if shield_active else false
 	if !hit_immunity_timer.is_stopped():  # Hit immunity flashing
@@ -183,6 +188,9 @@ func change_colour(new_colour: Globals.Colour) -> void:
 
 	current_colour = new_colour
 	player_sprite.set_colour(current_colour)
+	switch_colour_flash.scale = Vector2(0.1, 0.1)
+	switch_colour_flash.modulate = Globals.COLOUR_VISUAL_VALUE[current_colour]
+	switch_colour_flash.modulate.a = 1.0
 	Globals.set_crosshair_colour(current_colour)
 	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	gun_switch_cooldown_timer.start(gun_switch_cooldown)
@@ -292,6 +300,7 @@ func player_hit(enemy: Enemy) -> void:
 
 	set_health(health - enemy.damage)
 	player_hit_overlay.modulate.a = 1
+	player_hit_overlay.visible = true
 	ScreenFreezer.freeze(0.2)
 	ScreenShaker.shake()
 	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})

@@ -11,5 +11,5 @@ func set_health(health: int) -> void:
 	star_light_6.visible = false if health < 1 else true
 
 
-func dim_lights(enabled: bool) -> void:
-	star_light_6.self_modulate.a = 0.5 if enabled else 1.0
+func dim_lights(dim_amount: float) -> void:
+	star_light_6.self_modulate.a = 1.0 - dim_amount
