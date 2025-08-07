@@ -53,6 +53,7 @@ func physics_update(delta: float) -> void:
 		oracle.set_stun_indicator_percentage_completion(1 - oracle.stunned_timer.time_left / oracle.stunned_timer.wait_time)
 		oracle.enable_attack_warning_indicator(false)
 		oracle.enable_stun_indicator(true)
+		oracle.dim_lights(true)
 		expand_timer.paused = true
 		shrink_timer.paused = true
 		spin_up_timer.paused = true
@@ -60,6 +61,7 @@ func physics_update(delta: float) -> void:
 		return
 	oracle.enable_stun_indicator(false)
 	oracle.enable_attack_warning_indicator(true)
+	oracle.dim_lights(false)
 	expand_timer.paused = false
 	shrink_timer.paused = false
 	spin_up_timer.paused = false

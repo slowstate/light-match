@@ -18,6 +18,7 @@ var stunned_timer: Timer
 var invulnerable_timer: Timer
 var regen_timer: Timer
 var health_regen: int = 0
+var show_hit_flash: bool = false
 
 
 # This function should be overriden by inheriting classes; no code should be added to this class
@@ -45,6 +46,7 @@ func _ready() -> void:
 	set_health(base_health)
 	set_colour(colour)
 	modulate.a = 0
+	z_index = 1
 	enable_hurtbox(false)
 	enable_attack_warning_indicator(false)
 	enable_stun_indicator(false)
@@ -57,6 +59,14 @@ func _ready() -> void:
 func _setup() -> void:
 	# Keep this empty as child nodes will override this function
 	pass
+
+
+func _process(delta: float) -> void:
+	if show_hit_flash:
+		sprite.modulate += Color(50, 50, 50, 1)
+		show_hit_flash = false
+	else:
+		sprite.modulate = Color(1, 1, 1, 1)
 
 
 func set_health(new_health: int) -> void:
@@ -82,7 +92,7 @@ func enable_stun_indicator(enable: bool) -> void:
 
 
 func move_forward(delta: float, desired_location: Vector2 = Globals.player.global_position, custom_move_speed = move_speed) -> void:
-	if is_stunned():
+	if is_stunned() or !knock_back_timer.is_stopped():
 		play_move_animation(false)
 		return
 	if global_position.distance_to(desired_location) <= 10:
@@ -109,7 +119,7 @@ func stun(duration_in_seconds: float) -> void:
 
 
 func is_stunned() -> bool:
-	if !stunned_timer.is_stopped() || !knock_back_timer.is_stopped():
+	if !stunned_timer.is_stopped():
 		return true
 	return false
 
@@ -156,6 +166,8 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 
 	set_health(health - bullet.damage)
+	show_hit_flash = true
+	knock_back(50.0, 0.05)
 	ConditionManager.on_enemy_received_damage(bullet, self)
 	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 
@@ -183,6 +195,12 @@ func play_move_animation(_play: bool) -> void:
 
 func play_attack_animation() -> void:
 	pass
+
+
+func dim_lights(enabled: bool) -> void:
+	sprite.dim_lights(enabled)
+	for appendage in get_appendages():
+		appendage.dim_lights(enabled)
 
 
 func spawn_death_particles() -> void:

@@ -47,7 +47,10 @@ func rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
 
 
 func get_appendages() -> Array[Appendage]:
-	return [shell_0, shell_1, shell_2, shell_3, shell_4]
+	var appendages: Array[Appendage] = []
+	for appendage in shells.get_children():
+		appendages.append(appendage as Appendage)
+	return appendages
 
 
 func enable_hurtbox(enable: bool) -> void:

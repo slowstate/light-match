@@ -71,6 +71,7 @@ func _on_aggro_timer_timeout() -> void:
 func _on_aggro_2_timer_timeout() -> void:
 	bot.enable_attack_warning_indicator(false)
 	bot.enable_stun_indicator(true)
+	bot.dim_lights(true)
 
 	aggro_cooldown_timer.start(aggro_cooldown_time)
 	bot.sleeping = true
@@ -79,6 +80,7 @@ func _on_aggro_2_timer_timeout() -> void:
 
 func _on_aggro_cooldown_timer_timeout() -> void:
 	bot.enable_stun_indicator(false)
+	bot.dim_lights(false)
 	transition.emit("Idle")
 
 

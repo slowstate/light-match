@@ -26,6 +26,12 @@ func set_colour(colour: Globals.Colour) -> void:
 	bot_light_3.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 
 
+func dim_lights(enabled: bool) -> void:
+	bot_light_1.self_modulate.a = 0.5 if enabled else 1.0
+	bot_light_2.self_modulate.a = 0.5 if enabled else 1.0
+	bot_light_3.self_modulate.a = 0.5 if enabled else 1.0
+
+
 func set_health(health: int) -> void:
 	bot_light_1.visible = false if health < 1 else true
 	bot_light_2.visible = false if health < 2 else true

@@ -22,11 +22,13 @@ var shield_active: bool = false
 var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
 var hit_immunity_time: float = 1.0
+var show_flash: bool = false
 
 @onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
 @onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hurt_box: Area2D = $HurtBox
+@onready var flash: Sprite2D = $PlayerSprite/BulletSpawnPoint/Flash
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var palette: Palette = $Palette
@@ -62,6 +64,12 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if show_flash:
+		flash.visible = true
+		show_flash = false
+	else:
+		flash.visible = false
+
 	shield_sprite.visible = true if shield_active else false
 	if !hit_immunity_timer.is_stopped():  # Hit immunity flashing
 		player_sprite.set_light_visibility(false)
@@ -125,6 +133,8 @@ func _input(_event: InputEvent) -> void:
 func _fire_bullet():
 	if !gun_cooldown_timer.is_stopped():
 		return
+	show_flash = true
+	ScreenShaker.shake(0.05, 5.0)
 	player_sprite.play_shoot_animation()
 	SfxManager.play_sound("ShootingSFX", -30.0, -28.0, 1.0, 1.2)
 	var gun_angle = (tip_of_barrel_point.global_position - bullet_spawn_point.global_position).angle()

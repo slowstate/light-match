@@ -23,3 +23,7 @@ func _on_area_entered(area: Area2D) -> void:
 	SfxManager.play_sound("EnemyHitSFX", -25.0, -23.0, 2.0, 2.2)
 	if bullet.damage > 0:
 		queue_free()
+
+
+func dim_lights(enabled: bool) -> void:
+	sprite.self_modulate.a = 0.5 if enabled else 1.0

@@ -32,8 +32,10 @@ func physics_update(delta: float) -> void:
 	if lizard.is_stunned():
 		lizard.set_stun_indicator_percentage_completion(1 - lizard.stunned_timer.time_left / lizard.stunned_timer.wait_time)
 		lizard.enable_stun_indicator(true)
+		lizard.dim_lights(true)
 		return
 	lizard.enable_stun_indicator(false)
+	lizard.dim_lights(false)
 
 	if lizard.get_appendages().is_empty():
 		transition.emit("AggroDash")

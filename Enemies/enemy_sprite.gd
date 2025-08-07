@@ -10,3 +10,7 @@ func set_health(_health: int) -> void:
 
 func set_colour(_colour: Globals.Colour) -> void:
 	pass
+
+
+func dim_lights(_enabled: bool) -> void:
+	pass

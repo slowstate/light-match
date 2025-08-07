@@ -78,8 +78,10 @@ func _on_charge_timer_timeout() -> void:
 func _on_dash_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(false)
 	lizard.enable_stun_indicator(true)
+	lizard.dim_lights(true)
 	stun_timer.start(2.0)
 
 
 func _on_stun_timer_timeout() -> void:
+	lizard.dim_lights(false)
 	transition.emit("Walk")

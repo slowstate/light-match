@@ -16,6 +16,7 @@ func enter() -> void:
 	lizard.enable_attack_warning_indicator(false)
 	lizard.enable_attack_area_indicator(false)
 	lizard.enable_stun_indicator(true)
+	lizard.dim_lights(true)
 
 	lizard.sleeping = true
 	if !stun_timer.timeout.is_connected(_on_stun_timer_timeout):
@@ -71,6 +72,7 @@ func _on_stun_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(true)
 	lizard.enable_attack_area_indicator(true)
 	lizard.enable_stun_indicator(false)
+	lizard.dim_lights(false)
 	target_location = lizard.global_position + (Globals.player.global_position - lizard.global_position).normalized() * randf_range(700.0, 800.0)
 	var texture = lizard.attack_area_indicator.texture as GradientTexture2D
 	texture.width = (target_location - lizard.global_position).length()
@@ -86,4 +88,5 @@ func _on_charge_timer_timeout() -> void:
 func _on_dash_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(false)
 	lizard.enable_stun_indicator(true)
+	lizard.dim_lights(true)
 	stun_timer.start(randf_range(2.0, 4.0))

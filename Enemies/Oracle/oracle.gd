@@ -40,7 +40,10 @@ func rotate_orbs(delta: float, new_orb_rotation_speed: float) -> void:
 
 
 func get_appendages() -> Array[Appendage]:
-	return [orb_0, orb_1, orb_2, orb_3, orb_4, orb_5]
+	var appendages: Array[Appendage] = []
+	for appendage in orbs.get_children():
+		appendages.append(appendage as Appendage)
+	return appendages
 
 
 func enable_hurtbox(enable: bool) -> void:

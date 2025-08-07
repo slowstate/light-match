@@ -32,6 +32,7 @@ height = 22.0
 
 [node name="Bot" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Bots"]]
 collision_layer = 64
+linear_damp = 5.0
 script = ExtResource("1_joxph")
 sprite = NodePath("Sprite")
 
