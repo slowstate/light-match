@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bb78eda5ojuxs"]
+[gd_scene load_steps=29 format=3 uid="uid://bb78eda5ojuxs"]
 
 [ext_resource type="Script" path="res://Enemies/VFX/enemy_death_particles.gd" id="1_e3so4"]
 [ext_resource type="Texture2D" uid="uid://bberwgb1fkftk" path="res://Enemies/Bot/Sprite/Bot Left Arm.png" id="1_n1214"]
@@ -84,6 +84,74 @@ gradient = SubResource("Gradient_ouvjw")
 width = 4
 height = 4
 
+[sub_resource type="Curve" id="Curve_252ny"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ylnib"]
+curve = SubResource("Curve_252ny")
+
+[sub_resource type="Curve" id="Curve_lgjiu"]
+min_value = -30.0
+max_value = 30.0
+_data = [Vector2(0, 30), 0.0, -48.956, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0pesl"]
+curve = SubResource("Curve_lgjiu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dle1m"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 0.0
+angle_min = -4.99999
+angle_max = -4.99999
+angle_curve = SubResource("CurveTexture_0pesl")
+spread = 90.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_ylnib")
+
+[sub_resource type="Curve" id="Curve_5nwk2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3d54j"]
+curve = SubResource("Curve_5nwk2")
+
+[sub_resource type="Curve" id="Curve_k4syf"]
+min_value = -30.0
+max_value = 30.0
+_data = [Vector2(0, 30), 0.0, -48.956, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ifkty"]
+curve = SubResource("Curve_k4syf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n0x7k"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 0.0
+angle_min = 5.00001
+angle_max = 5.00001
+angle_curve = SubResource("CurveTexture_ifkty")
+spread = 90.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_3d54j")
+
 [node name="EnemyDeathParticles" type="GPUParticles2D"]
 process_mode = 3
 emitting = false
@@ -96,7 +164,6 @@ explosiveness = 1.0
 script = ExtResource("1_e3so4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 show_behind_parent = true
 texture = ExtResource("2_3018k")
 
@@ -116,5 +183,19 @@ texture = SubResource("GradientTexture2D_tj5ko")
 lifetime = 60.0
 one_shot = true
 explosiveness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_dle1m")
+texture = ExtResource("1_n1214")
+one_shot = true
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_n0x7k")
+texture = ExtResource("4_10nx3")
+one_shot = true
 
 [connection signal="finished" from="." to="." method="_on_finished"]
