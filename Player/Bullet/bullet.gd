@@ -35,6 +35,7 @@ func _ready() -> void:
 	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
 	sprite.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 	rotation = angle
+	scale *= 1.0 + (damage - 1.0) / 2.0
 
 
 func _physics_process(delta: float) -> void:

@@ -1,48 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://bb78eda5ojuxs"]
+[gd_scene load_steps=31 format=3 uid="uid://bb78eda5ojuxs"]
 
 [ext_resource type="Script" path="res://Enemies/Bot/VFX/bot_death_particles.gd" id="1_a4an5"]
 [ext_resource type="Texture2D" uid="uid://chhxpd32t4gp5" path="res://Enemies/Bot/Sprite/Bot Head.png" id="2_b3kt4"]
 [ext_resource type="Texture2D" uid="uid://bberwgb1fkftk" path="res://Enemies/Bot/Sprite/Bot Left Arm.png" id="3_ccweq"]
 [ext_resource type="Texture2D" uid="uid://cthvj2i6u33qs" path="res://Enemies/Bot/Sprite/Bot Right Arm.png" id="4_di5ka"]
-
-[sub_resource type="Curve" id="Curve_2h268"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26374, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_o36kb"]
-curve = SubResource("Curve_2h268")
-
-[sub_resource type="Curve" id="Curve_lcv74"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72668, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_24n5d"]
-curve = SubResource("Curve_lcv74")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5feou"]
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 15.0
-emission_ring_inner_radius = 0.0
-angle_min = -90.0
-angle_max = 90.0
-initial_velocity_min = 50.0
-initial_velocity_max = 200.0
-damping_min = 200.0
-damping_max = 250.0
-scale_curve = SubResource("CurveTexture_24n5d")
-alpha_curve = SubResource("CurveTexture_o36kb")
-
-[sub_resource type="Gradient" id="Gradient_onl2i"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kvf4m"]
-gradient = SubResource("Gradient_onl2i")
-width = 4
-height = 4
 
 [sub_resource type="Curve" id="Curve_spkw6"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26373, 0.0, 0, 0]
@@ -70,8 +31,8 @@ angle_max = 90.0
 initial_velocity_min = 50.0
 initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
-damping_min = 200.0
-damping_max = 250.0
+damping_min = 300.0
+damping_max = 300.0
 scale_curve = SubResource("CurveTexture_au26k")
 alpha_curve = SubResource("CurveTexture_o6qph")
 
@@ -83,6 +44,56 @@ colors = PackedColorArray(0.141176, 0.137255, 0.137255, 1)
 gradient = SubResource("Gradient_ouvjw")
 width = 4
 height = 4
+
+[sub_resource type="Curve" id="Curve_2h268"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26374, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o36kb"]
+curve = SubResource("Curve_2h268")
+
+[sub_resource type="Curve" id="Curve_lcv74"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72668, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_24n5d"]
+curve = SubResource("Curve_lcv74")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5feou"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 15.0
+emission_ring_inner_radius = 0.0
+angle_min = -90.0
+angle_max = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+damping_min = 300.0
+damping_max = 300.0
+scale_curve = SubResource("CurveTexture_24n5d")
+alpha_curve = SubResource("CurveTexture_o36kb")
+
+[sub_resource type="Gradient" id="Gradient_onl2i"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kvf4m"]
+gradient = SubResource("Gradient_onl2i")
+width = 4
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_h76qo"]
+colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6nlnm"]
+gradient = SubResource("Gradient_h76qo")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="Curve" id="Curve_252ny"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -144,19 +155,35 @@ damping_min = 200.0
 damping_max = 250.0
 alpha_curve = SubResource("CurveTexture_3d54j")
 
-[node name="EnemyDeathParticles" type="GPUParticles2D"]
-process_mode = 3
+[node name="BotDeathParticles" type="GPUParticles2D"]
 emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_5feou")
-texture = SubResource("GradientTexture2D_kvf4m")
-lifetime = 60.0
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_ghner")
+texture = SubResource("GradientTexture2D_tj5ko")
+lifetime = 30.0
 one_shot = true
 explosiveness = 1.0
 script = ExtResource("1_a4an5")
 
+[node name="ColouredParticles" type="GPUParticles2D" parent="."]
+process_mode = 3
+position = Vector2(2, -1)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_5feou")
+texture = SubResource("GradientTexture2D_kvf4m")
+lifetime = 30.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="Flash" type="Sprite2D" parent="."]
+position = Vector2(2, -1)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_6nlnm")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
+position = Vector2(2, -1)
 rotation = 1.5708
 texture = ExtResource("2_b3kt4")
 
@@ -168,17 +195,8 @@ texture = ExtResource("3_ccweq")
 position = Vector2(-27, 18)
 texture = ExtResource("4_di5ka")
 
-[node name="BodyParticles" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_ghner")
-texture = SubResource("GradientTexture2D_tj5ko")
-lifetime = 60.0
-one_shot = true
-explosiveness = 1.0
-
 [node name="LeftArmParticle" type="GPUParticles2D" parent="."]
-position = Vector2(0, 24)
+position = Vector2(2, 23)
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_dle1m")
@@ -186,7 +204,7 @@ texture = ExtResource("3_ccweq")
 one_shot = true
 
 [node name="RightArmParticle" type="GPUParticles2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(2, -25)
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_n0x7k")

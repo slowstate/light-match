@@ -22,6 +22,8 @@ func _physics_process(delta: float) -> void:
 
 
 func shake(duration: float = 0.2, strength: float = 20.0) -> void:
+	if !Settings.screen_shake:
+		return
 	camera = get_viewport().get_camera_2d()
 	shake_duration = duration
 	shake_strength = strength

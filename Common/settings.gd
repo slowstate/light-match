@@ -6,6 +6,7 @@ const WINDOW_MODE_LABELS = {
 
 var window_mode := DisplayServer.WINDOW_MODE_MAXIMIZED
 var windowed_resolution: Array = [1920, 1080]
+var screen_shake: bool
 
 #region Control Mapping defaults
 var control_mappings: Dictionary = {
@@ -32,6 +33,10 @@ func set_windowed_resolution(new_windowed_resolution: Vector2i) -> void:
 	windowed_resolution = [new_windowed_resolution.x, new_windowed_resolution.y]
 
 
+func set_screen_shake(enabled: bool) -> void:
+	screen_shake = enabled
+
+
 func saved_folder_exists() -> bool:
 	var user_path = "user://"
 	var saved_subpath = "saved"
@@ -51,6 +56,7 @@ func save_user_settings() -> void:
 		window_mode = DisplayServer.WINDOW_MODE_MAXIMIZED
 	config.set_value("Display", "window_mode", DisplayServer.window_get_mode())
 	config.set_value("Display", "windowed_resolution", [DisplayServer.window_get_size().x, DisplayServer.window_get_size().y])
+	config.set_value("Gameplay", "screen_shake", screen_shake)
 
 	var bus_index = AudioServer.get_bus_index("Master")
 	config.set_value("Volume", "Master", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
@@ -79,6 +85,7 @@ func load_user_settings() -> void:
 	if windowed_resolution.size() != 2:
 		windowed_resolution = [1920, 1080]
 	set_windowed_resolution(Vector2i(windowed_resolution[0], windowed_resolution[1]))
+	screen_shake = config.get_value("Gameplay", "screen_shake", true)
 
 	var bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "Master", 1.0)))

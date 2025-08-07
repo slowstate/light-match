@@ -182,7 +182,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 	set_health(health - bullet.damage)
 	show_hit_flash = true
-	knock_back(50.0, 0.05)
+	knock_back(50.0 * bullet.damage, 0.05 * bullet.damage)
 	if change_colour_timer.is_stopped():
 		change_colour()
 	ConditionManager.on_enemy_received_damage(bullet, self)
@@ -194,10 +194,10 @@ func _on_area_entered(area: Area2D) -> void:
 	if health <= 0:
 		log_play_data = {"message": "Enemy killed", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
-		ScreenFreezer.freeze(0.05)
+		ScreenFreezer.freeze(0.05 * bullet.damage)
 		UpgradeManager.on_enemy_killed(self)
 		SignalBus.emit_signal("enemy_died", self)
-		spawn_death_particles()
+		spawn_death_particles(bullet.damage)
 		queue_free()
 
 
@@ -230,5 +230,5 @@ func _on_change_colour_timer_timeout() -> void:
 	set_colour(possible_random_colours.pick_random())
 
 
-func spawn_death_particles() -> void:
+func spawn_death_particles(_amplitude: float = 1.0) -> void:
 	pass

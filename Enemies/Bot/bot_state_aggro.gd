@@ -62,7 +62,7 @@ func physics_update(delta: float) -> void:
 
 	if !aggro_cooldown_timer.is_stopped():
 		bot.set_stun_indicator_percentage_completion(1 - aggro_cooldown_timer.time_left / aggro_cooldown_timer.wait_time)
-		bot.dim_lights(ease(1 - aggro_2_timer.time_left / aggro_2_timer.wait_time, 0.2) * 0.5)
+		bot.dim_lights(ease(1 - aggro_cooldown_timer.time_left / aggro_cooldown_timer.wait_time, 0.2) * 0.5)
 
 
 func _on_aggro_timer_timeout() -> void:
