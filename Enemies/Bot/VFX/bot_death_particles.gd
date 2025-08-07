@@ -3,9 +3,9 @@ extends GPUParticles2D
 
 var sprite_global_rotation: float
 
-@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
-@onready var gpu_particles_2d_2: GPUParticles2D = $GPUParticles2D2
-@onready var gpu_particles_2d_3: GPUParticles2D = $GPUParticles2D3
+@onready var body_particles: GPUParticles2D = $BodyParticles
+@onready var left_arm_particle: GPUParticles2D = $LeftArmParticle
+@onready var right_arm_particle: GPUParticles2D = $RightArmParticle
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 
@@ -20,9 +20,9 @@ func set_sprite_global_rotation(global_rotation: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if emitting:
-		gpu_particles_2d.emitting = true
-		gpu_particles_2d_2.emitting = true
-		gpu_particles_2d_3.emitting = true
+		body_particles.emitting = true
+		left_arm_particle.emitting = true
+		right_arm_particle.emitting = true
 		sprite_2d.modulate.a = lerp(sprite_2d.modulate.a, 0.0, 15.0 * delta)
 
 

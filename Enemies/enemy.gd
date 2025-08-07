@@ -53,6 +53,7 @@ func _ready() -> void:
 	set_colour(colour)
 	modulate.a = 0
 	z_index = 1
+	rotation = randf_range(0, 2 * PI)
 	enable_hurtbox(false)
 	enable_attack_warning_indicator(false)
 	enable_stun_indicator(false)

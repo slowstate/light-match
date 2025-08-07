@@ -2,7 +2,7 @@ class_name Bot
 extends Enemy
 
 const BOT: PackedScene = preload("res://Enemies/Bot/bot.tscn")
-const ENEMY_DEATH_PARTICLES = preload("res://Enemies/VFX/enemy_death_particles.tscn")
+const BOT_DEATH_PARTICLES = preload("res://Enemies/Bot/VFX/bot_death_particles.tscn")
 
 @onready var hurt_box: Area2D = $HurtBox
 @onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
@@ -44,7 +44,7 @@ func play_attack_animation() -> void:
 
 
 func spawn_death_particles() -> void:
-	var death_particles = ENEMY_DEATH_PARTICLES.instantiate()
+	var death_particles = BOT_DEATH_PARTICLES.instantiate()
 	death_particles.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 	death_particles.global_position = global_position
 	death_particles.rotation = (global_position - Globals.player.global_position).angle()
