@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c7845x7xoc1g2"]
+[gd_scene load_steps=62 format=3 uid="uid://c7845x7xoc1g2"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
 [ext_resource type="Texture2D" uid="uid://r26c27hrvnw1" path="res://Arena/BG Hex Light.png" id="3_dyfs6"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://b180nk1o8yx2v" path="res://Menus/MainMenu/Scroll.png" id="25_b51qq"]
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="27_m1d7y"]
 [ext_resource type="PackedScene" uid="uid://8p11gjdp0ijq" path="res://Menus/Settings/settings.tscn" id="30_mfnn7"]
+[ext_resource type="Script" path="res://Menus/MainMenu/lifetime_palettes_label.gd" id="32_4yuew"]
 
 [sub_resource type="Gradient" id="Gradient_dpln6"]
 offsets = PackedFloat32Array(0)
@@ -555,9 +556,6 @@ size = Vector2(103, 19)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tohs8"]
 size = Vector2(43, 17.5)
 
-[sub_resource type="LabelSettings" id="LabelSettings_bs6sr"]
-font_color = Color(0.5, 0.5, 0.5, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ml4sl"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 4
@@ -614,6 +612,9 @@ corner_radius_bottom_left = 4
 expand_margin_left = 4.0
 expand_margin_top = 4.0
 expand_margin_right = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bs6sr"]
+font_color = Color(0.5, 0.5, 0.5, 1)
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_q4nro")
@@ -782,9 +783,8 @@ shape = SubResource("CircleShape2D_52mh4")
 [node name="MenuButtons" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_top = -170.0
 offset_right = 1920.0
-offset_bottom = 910.0
+offset_bottom = 1080.0
 
 [node name="StartButton" type="Button" parent="MenuButtons"]
 layout_mode = 1
@@ -794,9 +794,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -38.5
-offset_top = 126.0
+offset_top = -40.0
 offset_right = 38.5
-offset_bottom = 157.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yk0bt")
@@ -820,9 +820,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -76.0
-offset_top = 220.0
+offset_top = 50.0
 offset_right = 77.0
-offset_bottom = 251.0
+offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dhd0s")
@@ -847,9 +847,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -60.0
-offset_top = 305.0
+offset_top = 140.0
 offset_right = 60.0
-offset_bottom = 336.0
+offset_bottom = 171.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
@@ -875,9 +875,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -28.5
-offset_top = 397.0
+offset_top = 220.0
 offset_right = 28.5
-offset_bottom = 428.0
+offset_bottom = 251.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dhd0s")
@@ -893,15 +893,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/ExitButton/StaticBody2D"]
 position = Vector2(0.5, 0.25)
 shape = SubResource("RectangleShape2D_tohs8")
-
-[node name="VersionLabel" type="Label" parent="."]
-offset_left = 10.0
-offset_top = 1052.0
-offset_right = 96.0
-offset_bottom = 1069.0
-text = "Version: 0.6"
-label_settings = SubResource("LabelSettings_bs6sr")
-script = ExtResource("11_dopid")
 
 [node name="BulletSpawnTimer" type="Timer" parent="."]
 one_shot = true
@@ -1520,15 +1511,46 @@ text = "BACK"
 [node name="Settings" parent="." instance=ExtResource("30_mfnn7")]
 visible = false
 
+[node name="VersionLabel" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 1052.0
+offset_right = 96.0
+offset_bottom = 1069.0
+text = "Version: 0.6"
+label_settings = SubResource("LabelSettings_bs6sr")
+script = ExtResource("11_dopid")
+
 [node name="BugReportButton" type="LinkButton" parent="."]
 offset_left = 106.0
 offset_top = 1052.0
-offset_right = 197.0
+offset_right = 223.0
 offset_bottom = 1069.0
 tooltip_text = "This will open a new page in a browser"
 text = "🪲 Report a bug"
 underline = 1
 uri = "https://docs.google.com/forms/d/e/1FAIpQLSesTRUk84vd64ahVYHY6CWUBLzCTzkcQt8Cp85G2fQjj0X66w/viewform?usp=dialog"
+
+[node name="LifetimePalettesLabel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1641.0
+offset_top = 1012.0
+offset_right = 1910.0
+offset_bottom = 1069.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "You gain permanent stats based on the number of palettes you've cleared"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 16
+text = "Lifetime Palettes: 100
+Permanent Fire Rate Gained: 50%
+Permanent Max Health Gained: 1"
+horizontal_alignment = 2
+vertical_alignment = 2
+script = ExtResource("32_4yuew")
 
 [connection signal="mouse_entered" from="MenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="MenuButtons/StartButton" to="." method="_on_start_button_pressed"]

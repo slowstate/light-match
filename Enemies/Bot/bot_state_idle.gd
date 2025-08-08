@@ -12,6 +12,9 @@ func enter() -> void:
 	bot = owner as Bot
 	assert(bot != null, "The state type must be used only in the Bot scene. It needs the owner to be a Bot node.")
 
+	bot.enable_attack_warning_indicator(false)
+	bot.enable_stun_indicator(false)
+
 	if !idle_timer.timeout.is_connected(_on_idle_timer_timeout):
 		idle_timer.timeout.connect(_on_idle_timer_timeout)
 	if !roam_timer.timeout.is_connected(_on_roam_timer_timeout):
@@ -36,11 +39,10 @@ func physics_update(delta: float) -> void:
 		return
 
 	if bot.is_stunned():
-		idle_timer.paused = true
-		roam_timer.paused = true
+		bot.set_stun_indicator_percentage_completion(1 - bot.stunned_timer.time_left / bot.stunned_timer.wait_time)
+		bot.enable_stun_indicator(true)
 		return
-	idle_timer.paused = false
-	roam_timer.paused = false
+	bot.enable_stun_indicator(false)
 
 	if bot.player_is_within_distance(500.0):
 		transition.emit("Aggro")
@@ -65,4 +67,4 @@ func _set_random_location() -> void:
 	var random_x := bot.global_position.x + randf_range(-300.0, 300.0) + vector_to_player.x * randf_range(50.0, 100.0)
 	var random_y := bot.global_position.y + randf_range(-300.0, 300.0) + vector_to_player.y * randf_range(50.0, 100.0)
 
-	desired_location = Vector2(clampf(random_x, 100.0, 3740.0), clampf(random_y, 100.0, 2060.0))
+	desired_location = Vector2(clampf(random_x, 100.0, 2460.0), clampf(random_y, 100.0, 1340.0))

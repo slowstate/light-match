@@ -23,8 +23,15 @@ func update(_delta: float) -> void:
 	pass
 
 
-func physics_update(_delta: float) -> void:
-	pass
+func physics_update(delta: float) -> void:
+	if tank.shield.modulate.a < 1.0:
+		tank.shield.modulate.a += delta
+
+	if tank.is_stunned():
+		tank.set_stun_indicator_percentage_completion(1 - tank.stunned_timer.time_left / tank.stunned_timer.wait_time)
+		tank.enable_stun_indicator(true)
+		return
+	tank.enable_stun_indicator(false)
 
 
 func _on_timer_timeout() -> void:

@@ -23,7 +23,6 @@ var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
 var hit_immunity_time: float = 1.0
 
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
 @onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -33,6 +32,7 @@ var hit_immunity_time: float = 1.0
 @onready var palette: Palette = $Palette
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var health_bar_inner: Sprite2D = $HealthBar/HealthBarInner
+@onready var health_label: Label = $HealthBar/HealthLabel
 
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
@@ -49,9 +49,12 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	set_health(base_health)
 	SignalBus.upgrade_removed.connect(remove_upgrade)
+	set_health(base_health)
+	base_health += floori(Save.lifetime_palettes / 20)
+	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.005))
 	player_sprite.set_colour(current_colour)
+	Globals.set_crosshair_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
 
@@ -128,7 +131,7 @@ func _fire_bullet():
 	if new_bullet != null:
 		UpgradeManager.on_bullet_fired(new_bullet)
 		get_tree().root.add_child(new_bullet)
-		gun_cooldown_timer.wait_time = 0.7
+		gun_cooldown_timer.wait_time = gun_cooldown
 		UpgradeManager.on_gun_cooldown_start(gun_cooldown_timer)
 		gun_cooldown_timer.start()
 
@@ -237,8 +240,13 @@ func add_points(points_to_add: int) -> void:
 
 func set_health(new_health: int) -> void:
 	health = new_health
+	if health <= 0:
+		health_bar_inner.visible = false
+	else:
+		health_bar_inner.visible = true
 	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
 	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
+	health_label.text = str(health)
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:

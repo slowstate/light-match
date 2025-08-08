@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=21 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="2_ekdli"]
+[ext_resource type="Script" path="res://Player/camera_2d.gd" id="2_rraco"]
 [ext_resource type="PackedScene" uid="uid://dnshaeplewb85" path="res://Player/Palette/palette.tscn" id="2_ybmla"]
 [ext_resource type="Texture2D" uid="uid://dom47dbbu8wyy" path="res://Player/VFX/Player Shield.png" id="4_w330a"]
 [ext_resource type="FontFile" uid="uid://dt7ijpr3w8s08" path="res://Common/Fonts/exo/Exo-Bold.otf" id="5_qrmso"]
@@ -69,10 +70,12 @@ script = ExtResource("1_plba5")
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
-limit_right = 3840
-limit_bottom = 2160
+limit_right = 2560
+limit_bottom = 1440
 limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 50.0
+script = ExtResource("2_rraco")
 
 [node name="LaserSight" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
@@ -90,6 +93,17 @@ centered = false
 [node name="HealthBarInner" type="Sprite2D" parent="HealthBar"]
 texture = SubResource("GradientTexture2D_vvlfp")
 centered = false
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+offset_right = 64.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 15
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ShieldSprite" type="Sprite2D" parent="."]
 position = Vector2(-7, 0)

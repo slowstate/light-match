@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Light Match"
-config/version="0.6"
+config/version="0.7"
 run/main_scene="res://Menus/MainMenu/main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="3HP/Light Match"
@@ -32,9 +32,10 @@ UpgradeManager="*res://Player/Upgrades/upgrade_manager.gd"
 SfxManager="*res://Common/AudioManagers/sfx_manager.tscn"
 Logger="*res://Common/Logging/logger.gd"
 Config="*res://Common/config.gd"
-Utiliies="*res://Common/utiliies.gd"
+Utiliies="*res://Common/utilities.gd"
 Settings="*res://Common/settings.gd"
 ConditionManager="*res://Arena/Conditions/condition_manager.gd"
+Save="*res://Common/save.gd"
 
 [debug]
 

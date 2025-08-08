@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp87g1gjo81sg"]
+[gd_scene load_steps=6 format=3 uid="uid://be833cwtu3e0m"]
 
 [ext_resource type="Script" path="res://Menus/Settings/control_remapper.gd" id="1_d70i0"]
 

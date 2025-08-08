@@ -55,5 +55,18 @@ func set_action_event() -> void:
 		return
 	InputMap.action_erase_events(action_name)
 	InputMap.action_add_event(action_name, input_event_key)
+	if action_name == "player_next_colour":
+		var mouse_button = InputEventMouseButton.new()
+		mouse_button.button_index = MOUSE_BUTTON_WHEEL_DOWN
+		InputMap.action_add_event(action_name, mouse_button)
+
+		var mouse_right_button = InputEventMouseButton.new()
+		mouse_right_button.button_index = MOUSE_BUTTON_RIGHT
+		InputMap.action_add_event(action_name, mouse_right_button)
+	if action_name == "player_previous_colour":
+		var mouse_button = InputEventMouseButton.new()
+		mouse_button.button_index = MOUSE_BUTTON_WHEEL_UP
+		InputMap.action_add_event(action_name, mouse_button)
 	Settings.control_mappings[action_name] = OS.get_keycode_string(input_event_key.keycode)
+
 	control_remap_button.text = Settings.control_mappings[action_name]
