@@ -1,10 +1,10 @@
 class_name ConditionAndAdaptationSelectionState
 extends State
 
-const UPGRADE_SELECTION_MENU = preload("res://Menus/UpgradeSelectionMenu/upgrade_selection_menu.tscn")
+const CONDITION_AND_ADAPTATION_NOTIFICATION = preload("res://Menus/ConditionAndAdaptationNotification/condition_and_adaptation_notification.tscn")
 
 var arena
-var upgrade_selection_menu
+var condition_and_adaptation_notification
 
 @onready var upgrade_selection_interface: CanvasLayer = $UpgradeSelectionInterface
 
@@ -13,15 +13,14 @@ func enter() -> void:
 	arena = owner as Arena
 	assert(arena != null, "Arena is null.")
 	arena.current_round_number += 1
-	upgrade_selection_menu = UPGRADE_SELECTION_MENU.instantiate()
-	upgrade_selection_menu.upgrade_selection_completed.connect(on_upgrade_selected)
-	upgrade_selection_interface.add_child.call_deferred(upgrade_selection_menu)
+	condition_and_adaptation_notification = CONDITION_AND_ADAPTATION_NOTIFICATION.instantiate()
+	condition_and_adaptation_notification.upgrade_selection_completed.connect(on_upgrade_selected)
+	condition_and_adaptation_notification.add_child.call_deferred(condition_and_adaptation_notification)
 	Globals.player.controls_enabled = false
-	Globals.player.add_end_of_round_points()
 
 
 func exit() -> void:
-	upgrade_selection_menu.queue_free()
+	condition_and_adaptation_notification.queue_free()
 
 
 func update(_delta: float) -> void:
