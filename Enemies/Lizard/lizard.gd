@@ -2,6 +2,7 @@ class_name Lizard
 extends Enemy
 
 const LIZARD: PackedScene = preload("res://Enemies/Lizard/lizard.tscn")
+const LIZARD_DEATH_PARTICLES = preload("res://Enemies/Lizard/VFX/lizard_death_particles.tscn")
 
 @export var head_colour: Globals.Colour = Globals.Colour.BLUE
 
@@ -67,3 +68,13 @@ func play_move_animation(play: bool) -> void:
 func play_attack_animation() -> void:
 	if head != null:
 		head.play_attack_animation()
+
+
+func spawn_death_particles(amplitude: float = 1.0) -> void:
+	var death_particles = LIZARD_DEATH_PARTICLES.instantiate()
+	death_particles.global_position = global_position
+	death_particles.rotation = (global_position - Globals.player.global_position).angle()
+	death_particles.set_sprite_global_rotation(global_rotation - deg_to_rad(90))
+	death_particles.set_amplitude(amplitude)
+	death_particles.set_colour(colour)
+	get_tree().root.add_child(death_particles)

@@ -84,17 +84,6 @@ gradient = SubResource("Gradient_onl2i")
 width = 4
 height = 4
 
-[sub_resource type="Gradient" id="Gradient_h76qo"]
-colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6nlnm"]
-gradient = SubResource("Gradient_h76qo")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
 [sub_resource type="Curve" id="Curve_252ny"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -155,7 +144,19 @@ damping_min = 200.0
 damping_max = 250.0
 alpha_curve = SubResource("CurveTexture_3d54j")
 
+[sub_resource type="Gradient" id="Gradient_8rs85"]
+colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6nlnm"]
+gradient = SubResource("Gradient_8rs85")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="BotDeathParticles" type="GPUParticles2D"]
+process_mode = 3
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_ghner")
@@ -164,22 +165,6 @@ lifetime = 30.0
 one_shot = true
 explosiveness = 1.0
 script = ExtResource("1_a4an5")
-
-[node name="ColouredParticles" type="GPUParticles2D" parent="."]
-process_mode = 3
-position = Vector2(2, -1)
-emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_5feou")
-texture = SubResource("GradientTexture2D_kvf4m")
-lifetime = 30.0
-one_shot = true
-explosiveness = 1.0
-
-[node name="Flash" type="Sprite2D" parent="."]
-position = Vector2(2, -1)
-scale = Vector2(0.5, 0.5)
-texture = SubResource("GradientTexture2D_6nlnm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -194,6 +179,16 @@ texture = ExtResource("3_ccweq")
 [node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(-27, 18)
 texture = ExtResource("4_di5ka")
+
+[node name="ColouredParticles" type="GPUParticles2D" parent="."]
+position = Vector2(2, -1)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_5feou")
+texture = SubResource("GradientTexture2D_kvf4m")
+lifetime = 30.0
+one_shot = true
+explosiveness = 1.0
 
 [node name="LeftArmParticle" type="GPUParticles2D" parent="."]
 position = Vector2(2, 23)
@@ -210,5 +205,9 @@ amount = 1
 process_material = SubResource("ParticleProcessMaterial_n0x7k")
 texture = ExtResource("4_di5ka")
 one_shot = true
+
+[node name="Flash" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_6nlnm")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

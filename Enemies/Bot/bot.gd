@@ -45,9 +45,9 @@ func play_attack_animation() -> void:
 
 func spawn_death_particles(amplitude: float = 1.0) -> void:
 	var death_particles = BOT_DEATH_PARTICLES.instantiate()
-	death_particles.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 	death_particles.global_position = global_position
 	death_particles.rotation = (global_position - Globals.player.global_position).angle()
 	death_particles.set_sprite_global_rotation(global_rotation - deg_to_rad(90))
 	death_particles.set_amplitude(amplitude)
+	death_particles.set_colour(colour)
 	get_tree().root.add_child(death_particles)
