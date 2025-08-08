@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wdlkwjp6eu0h"
-path="res://.godot/imported/Floor Arrows.png-b3f7058bc41fb31c4d096d685344f423.ctex"
+uid="uid://brc2v502yy20g"
+path="res://.godot/imported/Background.png-7d438dffaa3a3f7abcd761b746ad108b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arena/Decorations/Floor Arrows.png"
-dest_files=["res://.godot/imported/Floor Arrows.png-b3f7058bc41fb31c4d096d685344f423.ctex"]
+source_file="res://Arena/Decorations/Background.png"
+dest_files=["res://.godot/imported/Background.png-7d438dffaa3a3f7abcd761b746ad108b.ctex"]
 
 [params]
 

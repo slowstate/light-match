@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1smktbhqxdij"
-path="res://.godot/imported/Specimen Containment Zone A.png-50a5983935d0caa5847d742a7ce26be6.ctex"
+uid="uid://dykhmrnlw2e76"
+path="res://.godot/imported/Ceiling Light.png-d1ef0e5cd27f62ac4d4d132c7863cc09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arena/Decorations/Specimen Containment Zone A.png"
-dest_files=["res://.godot/imported/Specimen Containment Zone A.png-50a5983935d0caa5847d742a7ce26be6.ctex"]
+source_file="res://Arena/Decorations/Ceiling Light.png"
+dest_files=["res://.godot/imported/Ceiling Light.png-d1ef0e5cd27f62ac4d4d132c7863cc09.ctex"]
 
 [params]
 
