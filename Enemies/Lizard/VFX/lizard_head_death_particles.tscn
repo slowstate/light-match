@@ -40,5 +40,6 @@ amount = 1
 process_material = SubResource("ParticleProcessMaterial_xis2g")
 texture = ExtResource("1_epmur")
 one_shot = true
-explosiveness = 1.0
 script = ExtResource("2_10gfb")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

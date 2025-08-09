@@ -1,4 +1,4 @@
-class_name BotDeathParticles
+class_name OracleDeathParticles
 extends GPUParticles2D
 
 var sprite_global_rotation: float
@@ -6,8 +6,6 @@ var amplitude: float = 1.0
 var colour: Globals.Colour = Globals.Colour.BLUE
 
 @onready var coloured_particles: GPUParticles2D = $ColouredParticles
-@onready var left_arm_particle: GPUParticles2D = $LeftArmParticle
-@onready var right_arm_particle: GPUParticles2D = $RightArmParticle
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var flash: Sprite2D = $Flash
 
@@ -36,8 +34,6 @@ func _ready() -> void:
 	flash.visible = true
 	emitting = true
 	coloured_particles.emitting = true
-	left_arm_particle.emitting = true
-	right_arm_particle.emitting = true
 
 
 func set_amplitude(new_amplitude: float = 1.0) -> void:
