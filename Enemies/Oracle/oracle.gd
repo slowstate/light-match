@@ -77,7 +77,4 @@ func spawn_death_particles(amplitude: float = 1.0) -> void:
 	get_tree().root.add_child(death_particles)
 
 	for appendage in get_appendages():
-		var orb_death_particles = ORACLE_ORB_DEATH_PARTICLES.instantiate()
-		orb_death_particles.global_position = appendage.global_position
-		orb_death_particles.set_colour(appendage.colour)
-		get_tree().root.add_child(orb_death_particles)
+		appendage.spawn_death_particles()
