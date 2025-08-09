@@ -85,6 +85,7 @@ font_size = 24
 [sub_resource type="Environment" id="Environment_366ba"]
 background_mode = 3
 glow_enabled = true
+glow_strength = 0.9
 glow_blend_mode = 1
 
 [node name="Arena" type="Node2D"]

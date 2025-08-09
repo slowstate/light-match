@@ -9,10 +9,16 @@ const CROSSHAIR_HALF_GREEN = preload("res://HUD/Crosshair Half Green.png")
 const CROSSHAIR_HALF_RED = preload("res://HUD/Crosshair Half Red.png")
 
 const COLOUR_STRING: Dictionary = {Colour.BLUE: "Blue", Colour.RED: "Red", Colour.GREEN: "Green"}
-const _COLOUR_VISUAL_VALUE_BLUE: Color = Color(0.0118, 0.6275, 1, 1)
-const _COLOUR_VISUAL_VALUE_GREEN: Color = Color(0, 0.93, 0, 1)
-const _COLOUR_VISUAL_VALUE_RED: Color = Color.ORANGE_RED
+const _COLOUR_VISUAL_VALUE_BLUE: Color = Color(0.0118 * 2.5, 0.6275 * 2.5, 1 * 2.5, 1)
+const _COLOUR_VISUAL_VALUE_GREEN: Color = Color(0 * 2.5, 0.93 * 2.5, 0 * 2.5, 1)
+const _COLOUR_VISUAL_VALUE_RED: Color = Color(1 * 2.5, 0.270588 * 2.5, 0 * 2.5, 1)
+const _COLOUR_VISUAL_VALUE_BLUE_NO_GLOW: Color = Color(0.0118 * 1.5, 0.6275 * 1.5, 1 * 1.5, 1)
+const _COLOUR_VISUAL_VALUE_GREEN_NO_GLOW: Color = Color(0 * 1.5, 0.93 * 1.5, 0 * 1.5, 1)
+const _COLOUR_VISUAL_VALUE_RED_NO_GLOW: Color = Color(1 * 1.5, 0.270588 * 1.5, 0 * 1.5, 1)
 const COLOUR_VISUAL_VALUE: Dictionary = {Colour.BLUE: _COLOUR_VISUAL_VALUE_BLUE, Colour.GREEN: _COLOUR_VISUAL_VALUE_GREEN, Colour.RED: _COLOUR_VISUAL_VALUE_RED}
+const COLOUR_VISUAL_VALUE_NO_GLOW: Dictionary = {
+	Colour.BLUE: _COLOUR_VISUAL_VALUE_BLUE_NO_GLOW, Colour.GREEN: _COLOUR_VISUAL_VALUE_GREEN_NO_GLOW, Colour.RED: _COLOUR_VISUAL_VALUE_RED_NO_GLOW
+}
 const ENEMY_TYPE_GROUP: Dictionary = {
 	EnemyType.BOT: "Bots", EnemyType.LIZARD: "Lizards", EnemyType.TANK: "Tanks", EnemyType.ORACLE: "Oracles", EnemyType.STAR: "Stars"
 }

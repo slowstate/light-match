@@ -97,7 +97,7 @@ func generate_new_palette() -> void:
 		var random_colour = Globals.Colour.values().pick_random()
 		palette_colours[palette_colour] = random_colour
 		var palette_colour_sprite: PaletteColour = palette_colour_sprites[palette_colour]
-		palette_colour_sprite.update_shader_modulate(Globals.COLOUR_VISUAL_VALUE[random_colour])
+		palette_colour_sprite.update_shader_modulate(Globals.COLOUR_VISUAL_VALUE_NO_GLOW[random_colour])
 	current_palette_colour_index = 0
 
 	UpgradeManager.on_palette_generated()
