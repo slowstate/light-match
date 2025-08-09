@@ -194,7 +194,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if health <= 0:
 		log_play_data = {"message": "Enemy killed", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
-		ScreenFreezer.freeze(0.05 * bullet.damage)
+		ScreenFreezer.freeze(0.02 * bullet.damage)
 		UpgradeManager.on_enemy_killed(self)
 		SignalBus.emit_signal("enemy_died", self)
 		spawn_death_particles(bullet.damage)
