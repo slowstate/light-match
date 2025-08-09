@@ -29,7 +29,6 @@ func _ready() -> void:
 	Logger.log_info(log_data)
 	var log_play_data = {"message": "Run started"}
 	Logger.log_play_data(log_play_data)
-	animation_player.play("Arena_Lights")
 	music_manager.update_music(0.0)
 	timer_0_12s.start()
 
