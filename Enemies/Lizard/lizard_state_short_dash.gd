@@ -55,6 +55,8 @@ func physics_update(delta: float) -> void:
 		transition.emit("AggroDash")
 		return
 
+	lizard.dim_lights(clampf(lizard.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
+
 	if !charge_timer.is_stopped():
 		lizard.rotation = lerp_angle(
 			lizard.rotation, (target_location - lizard.global_position).angle(), ease(1 - charge_timer.time_left / charge_timer.wait_time, -2.0)

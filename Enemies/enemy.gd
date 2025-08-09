@@ -50,10 +50,10 @@ func _ready() -> void:
 	add_child(change_colour_timer)
 
 	set_health(base_health)
-	set_colour(colour)
 	modulate.a = 0
 	z_index = 1
 	rotation = randf_range(0, 2 * PI)
+	dim_lights(1.0)
 	enable_hurtbox(false)
 	enable_attack_warning_indicator(false)
 	enable_stun_indicator(false)
@@ -218,6 +218,10 @@ func dim_lights(dim_amount: float) -> void:
 	sprite.dim_lights(dim_amount)
 	for appendage in get_appendages():
 		appendage.dim_lights(dim_amount)
+
+
+func get_dim_lights_amount() -> float:
+	return sprite.get_dim_lights_amount()
 
 
 func change_colour() -> void:

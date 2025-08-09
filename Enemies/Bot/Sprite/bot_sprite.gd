@@ -32,6 +32,10 @@ func dim_lights(dim_amount: float) -> void:
 	bot_light_3.self_modulate.a = 1.0 - dim_amount
 
 
+func get_dim_lights_amount() -> float:
+	return 1.0 - bot_light_1.self_modulate.a
+
+
 func set_health(health: int) -> void:
 	bot_light_1.visible = false if health < 1 else true
 	bot_light_2.visible = false if health < 2 else true

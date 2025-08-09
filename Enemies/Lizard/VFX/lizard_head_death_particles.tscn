@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://d18mnskgrkv5"]
+
+[ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="1_epmur"]
+[ext_resource type="Script" path="res://Enemies/Lizard/VFX/lizard_head_death_particles.gd" id="2_10gfb"]
+
+[sub_resource type="Curve" id="Curve_rkjkj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_10unw"]
+curve = SubResource("Curve_rkjkj")
+
+[sub_resource type="Curve" id="Curve_r0n6u"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vpg5a"]
+curve = SubResource("Curve_r0n6u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xis2g"]
+particle_flag_disable_z = true
+angle_min = 180.0
+angle_max = 180.0
+angle_curve = SubResource("CurveTexture_vpg5a")
+spread = 15.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_10unw")
+
+[node name="LizardHeadDeathParticles" type="GPUParticles2D"]
+process_mode = 3
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_xis2g")
+texture = ExtResource("1_epmur")
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("2_10gfb")

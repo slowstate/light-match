@@ -33,7 +33,7 @@ func physics_update(delta: float) -> void:
 		tank.dim_lights(ease(1 - tank.stunned_timer.time_left / tank.stunned_timer.wait_time, 0.2) * 0.5)
 		return
 	tank.enable_stun_indicator(false)
-	tank.dim_lights(0.0)
+	tank.dim_lights(clampf(tank.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
 
 
 func _on_timer_timeout() -> void:

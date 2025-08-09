@@ -37,7 +37,7 @@ func physics_update(delta: float) -> void:
 		timer.paused = true
 		return
 	star.enable_stun_indicator(false)
-	star.dim_lights(0.0)
+	star.dim_lights(clampf(star.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
 	timer.paused = false
 
 	star.rotate_star(delta, star.shell_rotation_speed)

@@ -79,6 +79,7 @@ libraries = {
 }
 
 [node name="OracleBlinkTimer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 autostart = true
 

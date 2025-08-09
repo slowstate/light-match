@@ -28,3 +28,7 @@ func dim_lights(dim_amount: float) -> void:
 	oracle_eye_light.self_modulate.a = 1.0 - dim_amount
 	oracle_body_light_1.self_modulate.a = 1.0 - dim_amount
 	oracle_body_light_2.self_modulate.a = 1.0 - dim_amount
+
+
+func get_dim_lights_amount() -> float:
+	return 1.0 - oracle_body_light_2.self_modulate.a

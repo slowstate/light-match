@@ -62,7 +62,7 @@ shape = SubResource("CircleShape2D_d0wjw")
 [node name="Shells" type="Node2D" parent="."]
 
 [node name="Shell0" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
-position = Vector2(-4.54598e-06, -26)
+position = Vector2(0, -25)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
@@ -79,7 +79,7 @@ visible = false
 shape = SubResource("RectangleShape2D_nr1nb")
 
 [node name="Shell1" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
-position = Vector2(26, -9)
+position = Vector2(26, -8.5)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
@@ -102,7 +102,7 @@ rotation = 1.25664
 shape = SubResource("RectangleShape2D_nr1nb")
 
 [node name="Shell2" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
-position = Vector2(18, 25)
+position = Vector2(18, 23.5)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
@@ -125,7 +125,7 @@ rotation = 2.49582
 shape = SubResource("RectangleShape2D_nr1nb")
 
 [node name="Shell3" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
-position = Vector2(-19, 25)
+position = Vector2(-18.5, 23.5)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")
@@ -150,7 +150,7 @@ rotation = 0.645772
 shape = SubResource("RectangleShape2D_nr1nb")
 
 [node name="Shell4" type="Area2D" parent="Shells" node_paths=PackedStringArray("sprite")]
-position = Vector2(-26, -10)
+position = Vector2(-26, -9.5)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_yfsqo")

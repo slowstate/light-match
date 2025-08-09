@@ -108,7 +108,6 @@ limit_right = 2560
 limit_bottom = 1440
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 50.0
 script = ExtResource("2_rraco")
 
 [node name="LaserSight" type="Line2D" parent="."]
@@ -166,12 +165,10 @@ texture = SubResource("GradientTexture2D_8svhs")
 position = Vector2(17.9998, -66.0001)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-8, 1)
 shape = SubResource("CapsuleShape2D_wb7x1")
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 8
 

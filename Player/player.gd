@@ -275,7 +275,7 @@ func _on_hurt_box_area_entered(_area: Area2D) -> void:
 
 
 func player_hit(enemy: Enemy) -> void:
-	if !hit_immunity_timer.is_stopped():
+	if !hit_immunity_timer.is_stopped() or health <= 0:
 		return
 
 	var player_upgrade_strings = []
@@ -309,6 +309,7 @@ func player_hit(enemy: Enemy) -> void:
 	Logger.log_play_data(log_play_data)
 
 	if health <= 0:
+		set_health(0)
 		log_play_data = {"message": "Player killed", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)

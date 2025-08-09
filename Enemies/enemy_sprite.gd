@@ -14,3 +14,7 @@ func set_colour(_colour: Globals.Colour) -> void:
 
 func dim_lights(_amount: float) -> void:
 	pass
+
+
+func get_dim_lights_amount() -> float:
+	return 0.0

@@ -40,6 +40,8 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 
+	bot.dim_lights(clampf(bot.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
+
 	if bot.is_stunned():
 		transition.emit("Idle")
 		aggro_timer.stop()
