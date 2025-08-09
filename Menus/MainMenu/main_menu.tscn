@@ -936,9 +936,6 @@ modulate = Color(0.0117647, 0.627451, 1, 1)
 [node name="GunLight3" parent="Tutorial/PlayerSprite/Torso/Gun" index="3"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
-[node name="RightForearmLight" parent="Tutorial/PlayerSprite/Torso/Gun" index="5"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
 [node name="LeftShoulderLight" parent="Tutorial/PlayerSprite/Torso/LeftShoulder" index="0"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
