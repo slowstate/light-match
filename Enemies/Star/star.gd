@@ -3,7 +3,6 @@ extends Enemy
 
 const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
 const STAR_DEATH_PARTICLES = preload("res://Enemies/Star/VFX/star_death_particles.tscn")
-const STAR_SHELL_DEATH_PARTICLES = preload("res://Enemies/Star/VFX/star_shell_death_particles.tscn")
 
 @export var shell_colours: Array[Globals.Colour]
 @export var shell_rotation_speed := 0.5

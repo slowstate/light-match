@@ -22,5 +22,4 @@ func _ready() -> void:
 func spawn_death_particles(_amplitude: float = 1.0) -> void:
 	var death_particles = STAR_SHELL_DEATH_PARTICLES.instantiate()
 	death_particles.global_position = global_position
-	#death_particles.set_angle(get_parent().rotation_degrees)
 	get_tree().root.add_child(death_particles)

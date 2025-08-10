@@ -83,7 +83,6 @@ func _on_aggro_2_timer_timeout() -> void:
 
 func _on_aggro_cooldown_timer_timeout() -> void:
 	bot.enable_stun_indicator(false)
-	bot.dim_lights(0.0)
 	transition.emit("Idle")
 
 
