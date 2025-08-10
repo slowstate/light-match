@@ -9,9 +9,9 @@ var palettes_cleared_counter: int = 0
 
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.FREEZE_BOMB
-	name = "Freeze Bomb"
+	name = "Stun Grenade"
 	description = "After clearing 2 Palettes, stun all enemies for " + str(floor(effect_duration + Save.lifetime_palettes * 0.02)) + "s"
-	icon = preload("res://Player/Upgrades/Utility/Freeze Bomb.png")
+	icon = preload("res://Player/Upgrades/Utility/Stun Grenade.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)

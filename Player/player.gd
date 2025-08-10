@@ -46,10 +46,7 @@ var show_flash: bool = false
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
 @onready var player_hit_overlay: Sprite2D = $PlayerInterface/PlayerHitOverlay
-const Taser = preload("res://Player/Upgrades/Utility/taser.gd")
-const AdrenalineInjection = preload("res://Player/Upgrades/Utility/adrenaline_injection.gd")
-const FreezeBomb = preload("res://Player/Upgrades/Utility/freeze_bomb.gd")
-const ExosuitOverdrive = preload("res://Player/Upgrades/Utility/exosuit_overdrive.gd")
+
 
 func _init() -> void:
 	Globals.player = self
@@ -66,11 +63,7 @@ func _ready() -> void:
 	player_points_label.text = str(points)
 	player_hit_overlay.modulate.a = 0
 	switch_colour_flash.modulate.a = 0
-	#add_upgrade(Taser.new())
-	#add_upgrade(AdrenalineInjection.new())
-	#add_upgrade(FreezeBomb.new())
-	#add_upgrade(ExosuitOverdrive.new())
-	
+
 
 func _process(delta: float) -> void:
 	if show_flash:
@@ -305,6 +298,7 @@ func player_hit(enemy: Enemy) -> void:
 		shield_active = false
 		return
 
+	ConditionManager.on_player_received_damage()
 	set_health(health - enemy.damage)
 	player_hit_overlay.modulate.a = 1
 	player_hit_overlay.visible = true
