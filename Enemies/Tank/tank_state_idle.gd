@@ -30,8 +30,10 @@ func physics_update(delta: float) -> void:
 	if tank.is_stunned():
 		tank.set_stun_indicator_percentage_completion(1 - tank.stunned_timer.time_left / tank.stunned_timer.wait_time)
 		tank.enable_stun_indicator(true)
+		tank.dim_lights(ease(1 - tank.stunned_timer.time_left / tank.stunned_timer.wait_time, 0.2) * 0.5)
 		return
 	tank.enable_stun_indicator(false)
+	tank.dim_lights(clampf(tank.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
 
 
 func _on_timer_timeout() -> void:

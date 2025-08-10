@@ -1,5 +1,7 @@
 extends Appendage
 
+const ORACLE_ORB_DEATH_PARTICLES = preload("res://Enemies/Oracle/VFX/oracle_orb_death_particles.tscn")
+
 var oracle: Oracle
 var original_position: Vector2 = position
 
@@ -12,3 +14,10 @@ func _ready() -> void:
 
 	self.area_entered.connect(_on_area_entered)
 	set_colour(oracle.orb_colour)
+
+
+func spawn_death_particles(_amplitude: float = 1.0) -> void:
+	var death_particles = ORACLE_ORB_DEATH_PARTICLES.instantiate()
+	death_particles.global_position = global_position
+	death_particles.set_colour(colour)
+	get_tree().root.add_child(death_particles)

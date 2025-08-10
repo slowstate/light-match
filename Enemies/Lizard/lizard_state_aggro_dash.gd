@@ -35,17 +35,21 @@ func update(_delta: float) -> void:
 	pass
 
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 	if lizard.is_stunned():
 		lizard.set_stun_indicator_percentage_completion(1 - lizard.stunned_timer.time_left / lizard.stunned_timer.wait_time)
 		lizard.enable_attack_warning_indicator(false)
 		lizard.enable_attack_area_indicator(false)
 		lizard.enable_stun_indicator(true)
+		lizard.dim_lights(ease(1 - lizard.stunned_timer.time_left / lizard.stunned_timer.wait_time, 0.2) * 0.5)
 
 		stun_timer.stop()
 		charge_timer.stop()
 		dash_timer.stop()
 		return
+
+	lizard.dim_lights(clampf(lizard.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
+
 	if stun_timer.is_stopped() and charge_timer.is_stopped() and dash_timer.is_stopped():
 		stun_timer.start(0.01)
 
@@ -60,7 +64,9 @@ func physics_update(_delta: float) -> void:
 		lizard.global_position = lizard.global_position.lerp(target_location, ease(1 - dash_timer.time_left / dash_timer.wait_time, -2.0))
 		lizard.global_position = lizard.global_position.clamp(Vector2(65, 65), Vector2(2495, 1385))
 
-	lizard.set_stun_indicator_percentage_completion(1 - stun_timer.time_left / stun_timer.wait_time)
+	if !stun_timer.is_stopped():
+		lizard.set_stun_indicator_percentage_completion(1 - stun_timer.time_left / stun_timer.wait_time)
+		lizard.dim_lights(ease(1 - stun_timer.time_left / stun_timer.wait_time, 0.2) * 0.5)
 
 
 func _on_stun_timer_timeout() -> void:
@@ -71,6 +77,7 @@ func _on_stun_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(true)
 	lizard.enable_attack_area_indicator(true)
 	lizard.enable_stun_indicator(false)
+	lizard.dim_lights(0.0)
 	target_location = lizard.global_position + (Globals.player.global_position - lizard.global_position).normalized() * randf_range(700.0, 800.0)
 	var texture = lizard.attack_area_indicator.texture as GradientTexture2D
 	texture.width = (target_location - lizard.global_position).length()

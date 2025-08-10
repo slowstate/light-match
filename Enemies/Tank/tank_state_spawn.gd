@@ -27,6 +27,7 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	tank.set_colour(tank.colour)
 	tank.modulate = Color(1, 1, 1, 1)
 	tank.enable_hurtbox(true)
 	transition.emit("Idle")

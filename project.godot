@@ -36,6 +36,8 @@ Utiliies="*res://Common/utilities.gd"
 Settings="*res://Common/settings.gd"
 ConditionManager="*res://Arena/Conditions/condition_manager.gd"
 Save="*res://Common/save.gd"
+ScreenFreezer="*res://Common/VFX/screen_freezer.gd"
+ScreenShaker="*res://Common/VFX/screen_shaker.gd"
 
 [debug]
 
@@ -46,7 +48,6 @@ file_logging/log_path="user://logs/game.log"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
