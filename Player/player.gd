@@ -22,13 +22,12 @@ var shield_active: bool = false
 var gun_cooldown: float = 0.7
 var gun_switch_cooldown: float = 0.3
 var hit_immunity_time: float = 1.0
-var show_flash: bool = false
 
 @onready var bullet_spawn_point: Node2D = $PlayerSprite/BulletSpawnPoint
 @onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hurt_box: Area2D = $HurtBox
-@onready var flash: Sprite2D = $PlayerSprite/BulletSpawnPoint/Flash
+@onready var muzzle_flash: Sprite2D = $PlayerSprite/BulletSpawnPoint/MuzzleFlash
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var palette: Palette = $Palette
@@ -63,15 +62,11 @@ func _ready() -> void:
 	player_points_label.text = str(points)
 	player_hit_overlay.modulate.a = 0
 	switch_colour_flash.modulate.a = 0
+	muzzle_flash.modulate.a = 0
 
 
 func _process(delta: float) -> void:
-	if show_flash:
-		flash.visible = true
-		show_flash = false
-	else:
-		flash.visible = false
-
+	muzzle_flash.modulate.a = lerp(muzzle_flash.modulate.a, 0.0, delta * 30.0)
 	switch_colour_flash.modulate.a = lerp(switch_colour_flash.modulate.a, 0.0, delta * 5.0)
 	switch_colour_flash.scale = lerp(switch_colour_flash.scale, Vector2(1.0, 1.0), delta * 5.0)
 
@@ -138,7 +133,8 @@ func _input(_event: InputEvent) -> void:
 func _fire_bullet():
 	if !gun_cooldown_timer.is_stopped():
 		return
-	show_flash = true
+	muzzle_flash.modulate = Globals.COLOUR_VISUAL_VALUE[current_colour]
+	muzzle_flash.modulate.a = 1.0
 	ScreenShaker.shake(0.05, 5.0)
 	player_sprite.play_shoot_animation()
 	SfxManager.play_sound("ShootingSFX", -30.0, -28.0, 1.0, 1.2)
@@ -302,7 +298,7 @@ func player_hit(enemy: Enemy) -> void:
 	player_hit_overlay.modulate.a = 1
 	player_hit_overlay.visible = true
 	ScreenFreezer.freeze(0.2)
-	ScreenShaker.shake()
+	ScreenShaker.shake(0.2, 20.0)
 	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
 	SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 	var log_play_data = {"message": "Player hit", "context": log_context_data}

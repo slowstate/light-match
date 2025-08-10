@@ -45,6 +45,18 @@ width = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_56wlf"]
+offsets = PackedFloat32Array(0, 0.49, 0.5, 0.99, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccwe6"]
+gradient = SubResource("Gradient_56wlf")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb7x1"]
 radius = 19.0
 height = 64.0
@@ -82,18 +94,6 @@ height = 1080
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.9)
-
-[sub_resource type="Gradient" id="Gradient_56wlf"]
-offsets = PackedFloat32Array(0, 0.49, 0.5, 0.99, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccwe6"]
-gradient = SubResource("Gradient_56wlf")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
@@ -156,14 +156,17 @@ texture = SubResource("GradientTexture2D_h7qcx")
 [node name="BulletSpawnPoint" type="Node2D" parent="PlayerSprite"]
 position = Vector2(18.9998, -56.0001)
 
-[node name="Flash" type="Sprite2D" parent="PlayerSprite/BulletSpawnPoint"]
-visible = false
+[node name="MuzzleFlash" type="Sprite2D" parent="PlayerSprite/BulletSpawnPoint"]
 z_index = 1
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_8svhs")
 
 [node name="TipOfBarrelPoint" type="Node2D" parent="PlayerSprite"]
 position = Vector2(17.9998, -66.0001)
+
+[node name="SwitchColourFlash" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture = SubResource("GradientTexture2D_ccwe6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8, 1)
@@ -255,10 +258,6 @@ texture = ExtResource("7_u5avh")
 visible = false
 texture = SubResource("GradientTexture2D_vy72v")
 centered = false
-
-[node name="SwitchColourFlash" type="Sprite2D" parent="."]
-show_behind_parent = true
-texture = SubResource("GradientTexture2D_ccwe6")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_area_entered"]

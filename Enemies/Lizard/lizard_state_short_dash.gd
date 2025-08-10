@@ -86,5 +86,4 @@ func _on_dash_timer_timeout() -> void:
 
 
 func _on_stun_timer_timeout() -> void:
-	lizard.dim_lights(0.0)
 	transition.emit("Walk")

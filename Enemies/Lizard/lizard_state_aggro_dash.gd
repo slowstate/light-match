@@ -77,7 +77,6 @@ func _on_stun_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(true)
 	lizard.enable_attack_area_indicator(true)
 	lizard.enable_stun_indicator(false)
-	lizard.dim_lights(0.0)
 	target_location = lizard.global_position + (Globals.player.global_position - lizard.global_position).normalized() * randf_range(700.0, 800.0)
 	var texture = lizard.attack_area_indicator.texture as GradientTexture2D
 	texture.width = (target_location - lizard.global_position).length()

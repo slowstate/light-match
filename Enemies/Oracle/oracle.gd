@@ -3,7 +3,6 @@ extends Enemy
 
 const ORACLE: PackedScene = preload("res://Enemies/Oracle/oracle.tscn")
 const ORACLE_DEATH_PARTICLES = preload("res://Enemies/Oracle/VFX/oracle_death_particles.tscn")
-const ORACLE_ORB_DEATH_PARTICLES = preload("res://Enemies/Oracle/VFX/oracle_orb_death_particles.tscn")
 
 @onready var hurt_box: Area2D = $HurtBox
 @onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
