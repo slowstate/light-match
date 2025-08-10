@@ -145,6 +145,7 @@ texture = ExtResource("4_w330a")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("2_ekdli")]
 position = Vector2(0, 1.90735e-06)
+rotation = 0.0
 
 [node name="Shadow" type="Sprite2D" parent="PlayerSprite"]
 z_as_relative = false

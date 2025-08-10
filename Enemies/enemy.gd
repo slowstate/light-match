@@ -183,8 +183,7 @@ func _on_area_entered(area: Area2D) -> void:
 	set_health(health - bullet.damage)
 	show_hit_flash = true
 	knock_back(50.0 * bullet.damage, 0.05 * bullet.damage)
-	if change_colour_timer.is_stopped():
-		change_colour()
+
 	ConditionManager.on_enemy_received_damage(bullet, self)
 	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 
@@ -225,7 +224,8 @@ func get_dim_lights_amount() -> float:
 
 
 func change_colour() -> void:
-	change_colour_timer.start(3.0)
+	if change_colour_timer.is_stopped():
+		change_colour_timer.start(3.0)
 
 
 func _on_change_colour_timer_timeout() -> void:

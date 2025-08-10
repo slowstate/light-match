@@ -26,6 +26,7 @@
 resource_name = "Player_Move"
 length = 4.0
 loop_mode = 1
+step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -217,13 +218,11 @@ offset = Vector2(-6, -24)
 [node name="RightArm" type="Sprite2D" parent="Torso"]
 position = Vector2(21.1188, -17.7175)
 rotation = 0.290146
-scale = Vector2(1, 1)
 texture = ExtResource("13_gyih6")
 
 [node name="RightForearmLight" type="Sprite2D" parent="Torso"]
 position = Vector2(21.1187, -17.7175)
 rotation = 0.290146
-scale = Vector2(1, 1)
 texture = ExtResource("14_qesk8")
 
 [node name="LeftShoulder" type="Sprite2D" parent="Torso"]
