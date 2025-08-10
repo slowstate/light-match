@@ -55,7 +55,7 @@ func set_colour(new_colour: Globals.Colour) -> void:
 func _physics_process(delta: float) -> void:
 	if emitting:
 		sprite_2d.modulate.a = lerp(sprite_2d.modulate.a, 0.0, 15.0 * delta)
-		flash.modulate.a = lerp(sprite_2d.modulate.a, 0.0, 15.0 * delta)
+		flash.modulate.a = lerp(flash.modulate.a, 0.0, 15.0 * delta)
 
 
 func _on_finished() -> void:

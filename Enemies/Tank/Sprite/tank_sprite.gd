@@ -29,3 +29,7 @@ func dim_lights(dim_amount: float) -> void:
 	tank_light_3.self_modulate.a = 1.0 - dim_amount
 	tank_light_4.self_modulate.a = 1.0 - dim_amount
 	tank_light_5.self_modulate.a = 1.0 - dim_amount
+
+
+func get_dim_lights_amount() -> float:
+	return 1.0 - tank_light_1.self_modulate.a

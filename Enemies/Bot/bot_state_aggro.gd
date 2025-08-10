@@ -40,6 +40,8 @@ func physics_update(delta: float) -> void:
 	if !Globals.player:
 		return
 
+	bot.dim_lights(clampf(bot.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
+
 	if bot.is_stunned():
 		transition.emit("Idle")
 		aggro_timer.stop()
@@ -81,7 +83,6 @@ func _on_aggro_2_timer_timeout() -> void:
 
 func _on_aggro_cooldown_timer_timeout() -> void:
 	bot.enable_stun_indicator(false)
-	bot.dim_lights(0.0)
 	transition.emit("Idle")
 
 

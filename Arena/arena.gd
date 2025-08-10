@@ -13,7 +13,6 @@ var palettes_cleared_this_run: int = 0
 @onready var round_number_label: Label = $UserInterface/RoundNumberLabel
 @onready var state_machine: ArenaStateMachine = $StateMachine
 @onready var round_active: RoundActiveState = $StateMachine/RoundActive
-@onready var animation_player: AnimationPlayer = $BG/AnimationPlayer
 @onready var music_manager: Node2D = $MusicManager
 @onready var timer_0_12s: Timer = $"MusicManager/Timer0-12s"
 @onready var timer_12_30s: Timer = $"MusicManager/Timer12-30s"
@@ -29,7 +28,6 @@ func _ready() -> void:
 	Logger.log_info(log_data)
 	var log_play_data = {"message": "Run started"}
 	Logger.log_play_data(log_play_data)
-	animation_player.play("Arena_Lights")
 	music_manager.update_music(0.0)
 	timer_0_12s.start()
 

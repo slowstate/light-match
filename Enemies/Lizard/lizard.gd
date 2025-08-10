@@ -78,3 +78,6 @@ func spawn_death_particles(amplitude: float = 1.0) -> void:
 	death_particles.set_amplitude(amplitude)
 	death_particles.set_colour(colour)
 	get_tree().root.add_child(death_particles)
+
+	if head != null:
+		head.spawn_death_particles()

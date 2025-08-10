@@ -1,5 +1,7 @@
 extends Appendage
 
+const STAR_SHELL_DEATH_PARTICLES = preload("res://Enemies/Star/VFX/star_shell_death_particles.tscn")
+
 @export var shell_number: int
 
 var star: Star
@@ -15,3 +17,9 @@ func _ready() -> void:
 
 	self.area_entered.connect(_on_area_entered)
 	set_colour(star.shell_colours[shell_number])
+
+
+func spawn_death_particles(_amplitude: float = 1.0) -> void:
+	var death_particles = STAR_SHELL_DEATH_PARTICLES.instantiate()
+	death_particles.global_position = global_position
+	get_tree().root.add_child(death_particles)

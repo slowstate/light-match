@@ -2,6 +2,7 @@ class_name Oracle
 extends Enemy
 
 const ORACLE: PackedScene = preload("res://Enemies/Oracle/oracle.tscn")
+const ORACLE_DEATH_PARTICLES = preload("res://Enemies/Oracle/VFX/oracle_death_particles.tscn")
 
 @onready var hurt_box: Area2D = $HurtBox
 @onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
@@ -63,3 +64,16 @@ func enable_stun_indicator(enable: bool) -> void:
 
 func set_stun_indicator_percentage_completion(percentage_complete: float) -> void:
 	stun_indicator.set_stun_percentage_completion(percentage_complete)
+
+
+func spawn_death_particles(amplitude: float = 1.0) -> void:
+	var death_particles = ORACLE_DEATH_PARTICLES.instantiate()
+	death_particles.global_position = global_position
+	death_particles.rotation = (global_position - Globals.player.global_position).angle()
+	death_particles.set_sprite_global_rotation(global_rotation - deg_to_rad(90))
+	death_particles.set_amplitude(amplitude)
+	death_particles.set_colour(colour)
+	get_tree().root.add_child(death_particles)
+
+	for appendage in get_appendages():
+		appendage.spawn_death_particles()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bxre6ebtr7wtm"]
+[gd_scene load_steps=41 format=3 uid="uid://bxre6ebtr7wtm"]
 
 [ext_resource type="Script" path="res://Enemies/Lizard/VFX/lizard_death_particles.gd" id="1_4y8cf"]
 [ext_resource type="Texture2D" uid="uid://demfmd5v0bu0i" path="res://Enemies/Lizard/Sprite/Liz Body.png" id="2_nci38"]
@@ -51,14 +51,14 @@ height = 4
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26374, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8gjtt"]
+[sub_resource type="CurveTexture" id="CurveTexture_v274b"]
 curve = SubResource("Curve_2h268")
 
 [sub_resource type="Curve" id="Curve_lcv74"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72668, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_sa5fi"]
+[sub_resource type="CurveTexture" id="CurveTexture_4wkoc"]
 curve = SubResource("Curve_lcv74")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ikf3j"]
@@ -72,23 +72,112 @@ initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 damping_min = 300.0
 damping_max = 300.0
-scale_curve = SubResource("CurveTexture_sa5fi")
-alpha_curve = SubResource("CurveTexture_8gjtt")
+scale_curve = SubResource("CurveTexture_4wkoc")
+alpha_curve = SubResource("CurveTexture_v274b")
 
-[sub_resource type="Gradient" id="Gradient_3hao0"]
+[sub_resource type="Gradient" id="Gradient_xof63"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_aihhg"]
-gradient = SubResource("Gradient_3hao0")
+gradient = SubResource("Gradient_xof63")
 width = 4
 height = 4
 
-[sub_resource type="Gradient" id="Gradient_h76qo"]
+[sub_resource type="Curve" id="Curve_vlgsq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yo02j"]
+curve = SubResource("Curve_vlgsq")
+
+[sub_resource type="Curve" id="Curve_n264d"]
+min_value = -30.0
+max_value = 30.0
+_data = [Vector2(0, 30), 0.0, -48.956, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tw0al"]
+curve = SubResource("Curve_n264d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fnsln"]
+particle_flag_disable_z = true
+angle_min = -2.99999
+angle_max = -2.99999
+angle_curve = SubResource("CurveTexture_tw0al")
+direction = Vector3(2, 1, 0)
+spread = 30.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_yo02j")
+
+[sub_resource type="Curve" id="Curve_6ybgl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jlucq"]
+curve = SubResource("Curve_6ybgl")
+
+[sub_resource type="Curve" id="Curve_lc6q7"]
+min_value = -30.0
+max_value = 30.0
+_data = [Vector2(0, 30), 0.0, -48.956, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bgwur"]
+curve = SubResource("Curve_lc6q7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n4f5l"]
+particle_flag_disable_z = true
+angle_min = 3.00001
+angle_max = 3.00001
+angle_curve = SubResource("CurveTexture_bgwur")
+direction = Vector3(2, -1, 0)
+spread = 30.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_jlucq")
+
+[sub_resource type="Curve" id="Curve_iygsx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tcxon"]
+curve = SubResource("Curve_iygsx")
+
+[sub_resource type="Curve" id="Curve_sy7j4"]
+min_value = -30.0
+max_value = 30.0
+_data = [Vector2(0, -30), 0.0, 45.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6abkq"]
+curve = SubResource("Curve_sy7j4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpia8"]
+particle_flag_disable_z = true
+angle_min = 3.00001
+angle_max = 3.00001
+angle_curve = SubResource("CurveTexture_6abkq")
+spread = 30.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_tcxon")
+
+[sub_resource type="Gradient" id="Gradient_wc020"]
 colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_50myv"]
-gradient = SubResource("Gradient_h76qo")
+gradient = SubResource("Gradient_wc020")
 width = 256
 height = 256
 fill = 1
@@ -148,7 +237,73 @@ lifetime = 30.0
 one_shot = true
 explosiveness = 1.0
 
+[node name="FrontLeftLegParticle" type="GPUParticles2D" parent="."]
+position = Vector2(-19, 18)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_fnsln")
+texture = ExtResource("3_7tyih")
+one_shot = true
+
+[node name="BackLeftLegParticle" type="GPUParticles2D" parent="."]
+position = Vector2(28, 15)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_fnsln")
+texture = ExtResource("4_x2bgl")
+one_shot = true
+
+[node name="FrontRightLegParticle" type="GPUParticles2D" parent="."]
+position = Vector2(-18, -18)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_n4f5l")
+texture = ExtResource("5_e0ic1")
+one_shot = true
+
+[node name="BackRightLegParticle" type="GPUParticles2D" parent="."]
+process_mode = 3
+position = Vector2(27, -16)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_n4f5l")
+texture = ExtResource("6_278tu")
+one_shot = true
+
+[node name="Tail1Particle" type="GPUParticles2D" parent="."]
+position = Vector2(47, 0)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_mpia8")
+texture = ExtResource("7_i2smv")
+one_shot = true
+
+[node name="Tail2Particle" type="GPUParticles2D" parent="."]
+position = Vector2(63, 0)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_mpia8")
+texture = ExtResource("8_d3mhy")
+one_shot = true
+
+[node name="Tail3Particle" type="GPUParticles2D" parent="."]
+position = Vector2(80, 0)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_mpia8")
+texture = ExtResource("9_2gkkc")
+one_shot = true
+
 [node name="Flash" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_50myv")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

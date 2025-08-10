@@ -2,6 +2,7 @@ class_name Star
 extends Enemy
 
 const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
+const STAR_DEATH_PARTICLES = preload("res://Enemies/Star/VFX/star_death_particles.tscn")
 
 @export var shell_colours: Array[Globals.Colour]
 @export var shell_rotation_speed := 0.5
@@ -70,3 +71,16 @@ func enable_stun_indicator(enable: bool) -> void:
 
 func set_stun_indicator_percentage_completion(percentage_complete: float) -> void:
 	stun_indicator.set_stun_percentage_completion(percentage_complete)
+
+
+func spawn_death_particles(amplitude: float = 1.0) -> void:
+	var death_particles = STAR_DEATH_PARTICLES.instantiate()
+	death_particles.global_position = global_position
+	death_particles.rotation = (global_position - Globals.player.global_position).angle()
+	death_particles.set_sprite_global_rotation(global_rotation - deg_to_rad(90))
+	death_particles.set_amplitude(amplitude)
+	death_particles.set_colour(colour)
+	get_tree().root.add_child(death_particles)
+
+	for appendage in get_appendages():
+		appendage.spawn_death_particles()

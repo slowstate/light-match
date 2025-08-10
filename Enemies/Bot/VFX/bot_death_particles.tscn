@@ -88,7 +88,7 @@ height = 4
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ylnib"]
+[sub_resource type="CurveTexture" id="CurveTexture_6ncq8"]
 curve = SubResource("Curve_252ny")
 
 [sub_resource type="Curve" id="Curve_lgjiu"]
@@ -97,14 +97,14 @@ max_value = 30.0
 _data = [Vector2(0, 30), 0.0, -48.956, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_0pesl"]
+[sub_resource type="CurveTexture" id="CurveTexture_vtocd"]
 curve = SubResource("Curve_lgjiu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dle1m"]
 particle_flag_disable_z = true
 angle_min = -4.99999
 angle_max = -4.99999
-angle_curve = SubResource("CurveTexture_0pesl")
+angle_curve = SubResource("CurveTexture_vtocd")
 direction = Vector3(2, 1, 0)
 spread = 30.0
 initial_velocity_min = 200.0
@@ -112,13 +112,13 @@ initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 damping_min = 200.0
 damping_max = 250.0
-alpha_curve = SubResource("CurveTexture_ylnib")
+alpha_curve = SubResource("CurveTexture_6ncq8")
 
 [sub_resource type="Curve" id="Curve_5nwk2"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_3d54j"]
+[sub_resource type="CurveTexture" id="CurveTexture_t7v0o"]
 curve = SubResource("Curve_5nwk2")
 
 [sub_resource type="Curve" id="Curve_k4syf"]
@@ -127,14 +127,14 @@ max_value = 30.0
 _data = [Vector2(0, 30), 0.0, -48.956, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ifkty"]
+[sub_resource type="CurveTexture" id="CurveTexture_etqji"]
 curve = SubResource("Curve_k4syf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n0x7k"]
 particle_flag_disable_z = true
 angle_min = 5.00001
 angle_max = 5.00001
-angle_curve = SubResource("CurveTexture_ifkty")
+angle_curve = SubResource("CurveTexture_etqji")
 direction = Vector3(2, -1, 0)
 spread = 30.0
 initial_velocity_min = 200.0
@@ -142,7 +142,7 @@ initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 damping_min = 200.0
 damping_max = 250.0
-alpha_curve = SubResource("CurveTexture_3d54j")
+alpha_curve = SubResource("CurveTexture_t7v0o")
 
 [sub_resource type="Gradient" id="Gradient_8rs85"]
 colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)

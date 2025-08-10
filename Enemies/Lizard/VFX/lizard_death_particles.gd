@@ -6,8 +6,13 @@ var amplitude: float = 1.0
 var colour: Globals.Colour = Globals.Colour.BLUE
 
 @onready var coloured_particles: GPUParticles2D = $ColouredParticles
-#@onready var left_arm_particle: GPUParticles2D = $LeftArmParticle
-#@onready var right_arm_particle: GPUParticles2D = $RightArmParticle
+@onready var front_left_leg_particle: GPUParticles2D = $FrontLeftLegParticle
+@onready var back_left_leg_particle: GPUParticles2D = $BackLeftLegParticle
+@onready var front_right_leg_particle: GPUParticles2D = $FrontRightLegParticle
+@onready var back_right_leg_particle: GPUParticles2D = $BackRightLegParticle
+@onready var tail_1_particle: GPUParticles2D = $Tail1Particle
+@onready var tail_2_particle: GPUParticles2D = $Tail2Particle
+@onready var tail_3_particle: GPUParticles2D = $Tail3Particle
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var flash: Sprite2D = $Flash
 
@@ -36,8 +41,13 @@ func _ready() -> void:
 	flash.visible = true
 	emitting = true
 	coloured_particles.emitting = true
-	#left_arm_particle.emitting = true
-	#right_arm_particle.emitting = true
+	front_left_leg_particle.emitting = true
+	back_left_leg_particle.emitting = true
+	front_right_leg_particle.emitting = true
+	back_right_leg_particle.emitting = true
+	tail_1_particle.emitting = true
+	tail_2_particle.emitting = true
+	tail_3_particle.emitting = true
 
 
 func set_amplitude(new_amplitude: float = 1.0) -> void:

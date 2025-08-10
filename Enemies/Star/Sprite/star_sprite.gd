@@ -13,3 +13,7 @@ func set_health(health: int) -> void:
 
 func dim_lights(dim_amount: float) -> void:
 	star_light_6.self_modulate.a = 1.0 - dim_amount
+
+
+func get_dim_lights_amount() -> float:
+	return 1.0 - star_light_6.self_modulate.a

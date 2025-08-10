@@ -30,7 +30,7 @@ func physics_update(delta: float) -> void:
 		oracle.dim_lights(ease(1 - oracle.stunned_timer.time_left / oracle.stunned_timer.wait_time, 0.2) * 0.5)
 		return
 	oracle.enable_stun_indicator(false)
-	oracle.dim_lights(0.0)
+	oracle.dim_lights(clampf(oracle.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
 
 	if oracle.player_is_within_distance(200.0):
 		transition.emit("Attack")

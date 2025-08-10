@@ -27,6 +27,7 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	oracle.set_colour(oracle.colour)
 	oracle.modulate = Color(1, 1, 1, 1)
 	oracle.enable_hurtbox(true)
 	transition.emit("Walk")

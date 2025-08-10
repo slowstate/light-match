@@ -14,6 +14,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_lm8em")
 
 [node name="StarLight6" type="Sprite2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 3.5)
 scale = Vector2(2, 2)
 texture = ExtResource("3_hg6pe")

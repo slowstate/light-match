@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 		camera.offset = random_offset()
 
 
-func shake(duration: float = 0.2, strength: float = 20.0) -> void:
+func shake(duration: float = 0.05, strength: float = 5.0) -> void:
 	if !Settings.screen_shake:
 		return
 	camera = get_viewport().get_camera_2d()
