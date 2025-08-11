@@ -78,6 +78,7 @@ func _on_reload_timer_timeout() -> void:
 
 
 func on_palette_failed() -> void:
+	UpgradeManager.on_palette_failed()
 	if !failed_cooldown_timer.is_stopped():
 		return
 	for palette_colour in palette_colour_sprites.get_children():
@@ -99,7 +100,6 @@ func on_palette_failed() -> void:
 
 
 func _on_failed_cooldown_timer_timeout() -> void:
-	UpgradeManager.on_palette_failed()
 	generate_new_palette()
 
 
@@ -118,11 +118,37 @@ func on_palette_cleared() -> void:
 	generate_new_palette()
 
 
+func sort_by_distance_to_player_ascending(a: Enemy, b: Enemy):
+	if a.global_position.distance_to(Globals.player.global_position) < b.global_position.distance_to(Globals.player.global_position):
+		return true
+	return false
+
+
 func generate_new_palette() -> void:
 	_set_palette_sprites()
 	palette_colours.resize(palette_size)
+
+	# Recalculation: Gets the closest enemies and uses their colours to generate the palette
+	# If there are too little enemies to fill out the palette, the remaining colours will be filled only using colours previously picked
+	# If there are no enemies, the palette will be filled with random colours
+	var all_enemies_alive = Globals.get_all_enemies_alive()
+	all_enemies_alive.sort_custom(sort_by_distance_to_player_ascending)
+
+	var closest_enemies: Array[Enemy]
+	closest_enemies = all_enemies_alive.slice(0, palette_size)
+
+	var pickable_colours: Array[Globals.Colour]
+	for enemy in closest_enemies:
+		pickable_colours.append(enemy.colour)
+
+	for remaining_colours in palette_size - pickable_colours.size():
+		if closest_enemies.size() <= 0:
+			pickable_colours.append(Globals.Colour.values().pick_random())
+			continue
+		pickable_colours.append(pickable_colours.pick_random())
+
 	for palette_colour in palette_colours.size():
-		var random_colour = Globals.Colour.values().pick_random()
+		var random_colour = pickable_colours.pop_front()
 		palette_colours[palette_colour] = random_colour
 		var palette_colour_sprite: PaletteColour = palette_colour_sprites.get_children()[palette_colour]
 		palette_colour_sprite.update_shader_modulate(Globals.COLOUR_VISUAL_VALUE[random_colour])
