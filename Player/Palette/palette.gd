@@ -63,7 +63,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 
 func reload_palette() -> void:
-	if !reload_timer.is_stopped():
+	if !failed_cooldown_timer.is_stopped() or !reload_timer.is_stopped():
 		return
 
 	for palette_colour in palette_colour_sprites.get_children():
