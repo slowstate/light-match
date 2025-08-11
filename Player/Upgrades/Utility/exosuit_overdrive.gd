@@ -25,14 +25,12 @@ func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_counter += 1
 	if palettes_cleared_counter >= 3:
 		if effect_timer.is_stopped():
-			effect_timer.start(effect_duration)
-			Globals.player.shield_active = true
-			is_active = true
-			palettes_cleared_counter = 0
 			Globals.player.move_speed *= (1 + speed_amount)
-		else:
-			effect_timer.set_wait_time(effect_duration)
-
+		
+		effect_timer.start(effect_duration)
+		Globals.player.shield_active = true
+		is_active = true
+		palettes_cleared_counter = 0
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= (1 + speed_amount)

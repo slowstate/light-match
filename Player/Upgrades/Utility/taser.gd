@@ -19,18 +19,16 @@ func _init() -> void:
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
 
 func on_palette_cleared(_palette: Palette) -> void:
-	if effect_timer.is_stopped():
-		effect_timer.start(effect_duration)
-		is_active = true
-	else:
-		effect_timer.set_wait_time(effect_duration)
+	is_active = true
+	effect_timer.start(effect_duration)
 
-func _on_effect_timer_timeout () -> void:
+func _on_effect_timer_timeout() -> void:
 	is_active = false
 	
 
 func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
-	var move_speed_effect = MOVE_SPEED_EFFECT.instantiate()
-	move_speed_effect.effect_amount = -slow_amount
-	move_speed_effect.effect_duration = slow_duration
-	enemy.add_child(move_speed_effect)
+	if is_active:
+		var move_speed_effect = MOVE_SPEED_EFFECT.instantiate()
+		move_speed_effect.effect_amount = -slow_amount
+		move_speed_effect.effect_duration = slow_duration
+		enemy.add_child(move_speed_effect)

@@ -10,9 +10,11 @@ func _init() -> void:
 
 
 func on_condition_added(condition: Condition) -> void:
-	Globals.player.palette.palette_lockout = 6.0
+	if condition == self:
+		Globals.player.palette.palette_lockout += palette_lockout_amount
 
 
 func on_condition_removed(condition: Condition) -> void:
-	Globals.player.palette.palette_lockout = 3.0
+	if condition == self:
+		Globals.player.palette.palette_lockout -= palette_lockout_amount
 	
