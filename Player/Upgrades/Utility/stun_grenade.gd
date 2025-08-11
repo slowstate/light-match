@@ -8,7 +8,7 @@ var palettes_cleared_counter: int = 0
 
 
 func _init() -> void:
-	type = UpgradeManager.UpgradeTypes.FREEZE_BOMB
+	type = UpgradeManager.UpgradeTypes.STUN_GRENADE
 	name = "Stun Grenade"
 	description = "After clearing 2 Palettes, stun all enemies for " + str(floor(effect_duration + Save.lifetime_palettes * 0.02)) + "s"
 	icon = preload("res://Player/Upgrades/Utility/Stun Grenade.png")
