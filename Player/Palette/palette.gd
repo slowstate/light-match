@@ -103,6 +103,7 @@ func generate_new_palette() -> void:
 
 	# Recalculation: Gets the closest enemies and uses their colours to generate the palette
 	# If there are too little enemies to fill out the palette, the remaining colours will be filled only using colours previously picked
+	# If there are no enemies, the palette will be filled with random colours
 	var all_enemies_alive = Globals.get_all_enemies_alive()
 	all_enemies_alive.sort_custom(sort_by_distance_to_player_ascending)
 
