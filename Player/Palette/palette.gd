@@ -6,6 +6,7 @@ var current_palette_colour_index: int = 0
 var palette_size: int = 3
 var palette_can_fail: bool = true
 var timer_progress: float = 0.0
+var palette_lockout: float = 3.0
 
 var palette_colour_sprites: Array[PaletteColour]
 @onready var palette_colour_0: PaletteColour = $PaletteColour0
@@ -55,19 +56,20 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 
 func on_palette_failed() -> void:
-	failed_cooldown_timer.start(1)
-	SfxManager.play_sound("PaletteFailSFX", -15.0, -13.0, 0.95, 1.05)
-	for palette_colour_sprite in palette_colour_sprites:
-		palette_colour_sprite.update_shader_rand(randf_range(-1.0, 1.0))
+	if failed_cooldown_timer.is_stopped():
+		failed_cooldown_timer.start(palette_lockout)
+		SfxManager.play_sound("PaletteFailSFX", -15.0, -13.0, 0.95, 1.05)
+		for palette_colour_sprite in palette_colour_sprites:
+			palette_colour_sprite.update_shader_rand(randf_range(-1.0, 1.0))
 
-	var palette_colours_strings = []
-	for palette_colour in palette_colours:
-		palette_colours_strings.append(Globals.COLOUR_STRING[palette_colour])
-	var log_context_data = {
-		"palette_colours": palette_colours_strings, "palette_size": palette_size, "palette_colours_remaining": palette_size - current_palette_colour_index
-	}
-	var log_play_data = {"message": "Palette failed", "context": log_context_data}
-	Logger.log_play_data(log_play_data)
+		var palette_colours_strings = []
+		for palette_colour in palette_colours:
+			palette_colours_strings.append(Globals.COLOUR_STRING[palette_colour])
+		var log_context_data = {
+			"palette_colours": palette_colours_strings, "palette_size": palette_size, "palette_colours_remaining": palette_size - current_palette_colour_index
+		}
+		var log_play_data = {"message": "Palette failed", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
 
 
 func _on_failed_cooldown_timer_timeout() -> void:

@@ -22,6 +22,10 @@ func on_condition_added(_condition: Condition) -> void:
 	pass
 
 
+func on_palette_failed(_player: Player) -> void:
+	pass
+
+
 func on_round_loaded(_round: Round) -> void:
 	pass
 
@@ -51,6 +55,9 @@ func on_enemy_hit(_bullet: Bullet, _enemy: Enemy) -> void:
 
 
 func on_enemy_received_damage(_bullet: Bullet, _enemy: Enemy) -> void:
+	pass
+
+func on_player_received_damage() -> void:
 	pass
 
 #endregion

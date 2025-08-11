@@ -31,6 +31,7 @@ enum UpgradeTypes {
 	SILVER_SPOON,
 	SPRAY_PAINT,
 	#STOPWATCH,
+	STUN_GRENADE,
 }
 
 #region Combat upgrades
@@ -50,7 +51,7 @@ const RoseTintedGlasses = preload("res://Player/Upgrades/Combat/rose_tinted_glas
 const AdrenalineInjection = preload("res://Player/Upgrades/Utility/adrenaline_injection.gd")
 const BionicLegs = preload("res://Player/Upgrades/Utility/bionic_legs.gd")
 const EnergyCollector = preload("res://Player/Upgrades/Utility/energy_collector.gd")
-const FreezeBomb = preload("res://Player/Upgrades/Utility/freeze_bomb.gd")
+const StunGrenade = preload("res://Player/Upgrades/Utility/stun_grenade.gd")
 const PanicBooster = preload("res://Player/Upgrades/Utility/panic_booster.gd")
 const PowerDiverter = preload("res://Player/Upgrades/Utility/power_diverter.gd")
 const RepulsorField = preload("res://Player/Upgrades/Utility/repulsor_field.gd")
@@ -86,7 +87,7 @@ const ALL_UPGRADES: Dictionary = {
 	UpgradeTypes.ADRENALINE_INJECTION: AdrenalineInjection,
 	UpgradeTypes.BIONIC_LEGS: BionicLegs,
 	UpgradeTypes.ENERGY_COLLECTOR: EnergyCollector,
-	UpgradeTypes.FREEZE_BOMB: FreezeBomb,
+	UpgradeTypes.STUN_GRENADE: StunGrenade,
 	UpgradeTypes.PANIC_BOOSTER: PanicBooster,
 	UpgradeTypes.POWER_DIVERTER: PowerDiverter,
 	UpgradeTypes.REPULSOR_FIELD: RepulsorField,
