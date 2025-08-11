@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://8p11gjdp0ijq"]
+[gd_scene load_steps=46 format=3 uid="uid://8p11gjdp0ijq"]
 
 [ext_resource type="PackedScene" uid="uid://cchxi4827hi2" path="res://Menus/Settings/volume_slider.tscn" id="1_5l60q"]
 [ext_resource type="Script" path="res://Menus/Settings/settings.gd" id="1_nbhcb"]
@@ -96,8 +96,8 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.196078)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bl27k"]
 gradient = SubResource("Gradient_10eef")
-width = 800
-height = 600
+width = 900
+height = 700
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
@@ -128,6 +128,11 @@ unicode = 50
 device = -1
 keycode = 51
 unicode = 51
+
+[sub_resource type="InputEventKey" id="InputEventKey_5wftn"]
+device = -1
+keycode = 82
+unicode = 114
 
 [sub_resource type="InputEventKey" id="InputEventKey_yehcf"]
 device = -1
@@ -373,10 +378,18 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_onyix")
 text = "BACK"
 
 [node name="Controls" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 800.0
-offset_bottom = 600.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -350.0
+offset_right = 450.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_2xtng")
 
 [node name="BG" type="Sprite2D" parent="Controls"]
@@ -396,7 +409,7 @@ offset_right = 227.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 8
 
 [node name="ShootControl" type="HBoxContainer" parent="Controls/ControlRemapping"]
 layout_mode = 2
@@ -481,6 +494,12 @@ layout_mode = 2
 control_name = "SWITCH TO RED"
 action_name = "player_red"
 input_event_key = SubResource("InputEventKey_2unxy")
+
+[node name="ReloadControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "RELOAD CHAIN"
+action_name = "player_reload"
+input_event_key = SubResource("InputEventKey_5wftn")
 
 [node name="MoveUpControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
 layout_mode = 2

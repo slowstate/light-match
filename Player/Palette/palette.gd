@@ -63,6 +63,9 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 
 func reload_palette() -> void:
+	if !reload_timer.is_stopped():
+		return
+
 	for palette_colour in palette_colour_sprites.get_children():
 		palette_colour.update_shader_modulate(Color(1.0, 1.0, 1.0, 1.0))
 		palette_colour.update_shader_alpha(0.4)

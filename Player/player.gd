@@ -158,7 +158,6 @@ func _fire_bullet():
 
 func _get_next_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
-	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	if current_colour == Globals.Colour.RED:
 		change_colour(Globals.Colour.BLUE)
 	else:
@@ -167,7 +166,6 @@ func _get_next_colour() -> void:
 
 func _get_previous_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
-	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	if current_colour == Globals.Colour.BLUE:
 		change_colour(Globals.Colour.RED)
 	else:
