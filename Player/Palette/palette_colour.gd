@@ -1,18 +1,24 @@
 class_name PaletteColour
-extends Sprite2D
+extends Control
+
+@onready var palette_colour_sprite: Sprite2D = $PaletteColourSprite
 
 
 func update_shader_rand(random_number: float) -> void:
-	material.set_shader_parameter("random_number", random_number)
+	palette_colour_sprite.material.set_shader_parameter("random_number", random_number)
 
 
 func update_shader_timer_progress(timer_progress: float) -> void:
-	material.set_shader_parameter("timer_progress", timer_progress)
+	palette_colour_sprite.material.set_shader_parameter("timer_progress", timer_progress)
+
+
+func get_shader_modulate() -> Color:
+	return palette_colour_sprite.material.get_shader_parameter("modulation")
 
 
 func update_shader_modulate(modulation: Color) -> void:
-	material.set_shader_parameter("modulation", modulation)
+	palette_colour_sprite.material.set_shader_parameter("modulation", modulation)
 
 
 func update_shader_alpha(alpha: float) -> void:
-	material.set_shader_parameter("alpha", alpha)
+	palette_colour_sprite.material.set_shader_parameter("alpha", alpha)

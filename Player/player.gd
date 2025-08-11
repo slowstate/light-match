@@ -128,6 +128,8 @@ func _input(_event: InputEvent) -> void:
 		_get_next_colour()
 	if Input.is_action_pressed("player_previous_colour"):
 		_get_previous_colour()
+	if Input.is_action_just_pressed("player_reload"):
+		palette.reload_palette()
 
 
 func _fire_bullet():
