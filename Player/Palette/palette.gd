@@ -53,7 +53,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		return
 
 	if current_palette_colour_index >= palette_colours.size() - 1:
-		on_palette_cleared()
+		on_palette_cleared(enemy)
 		return
 
 	palette_colour_sprites.get_children()[current_palette_colour_index].visible = false
@@ -103,7 +103,7 @@ func _on_failed_cooldown_timer_timeout() -> void:
 	generate_new_palette()
 
 
-func on_palette_cleared() -> void:
+func on_palette_cleared(enemy_to_ignore: Enemy = null) -> void:
 	SfxManager.play_sound("PaletteClearedSFX", -17.0, -15.0, 0.95, 1.05)
 	SignalBus.palette_cleared.emit()
 	UpgradeManager.on_palette_cleared(self)
@@ -115,7 +115,7 @@ func on_palette_cleared() -> void:
 	var log_play_data = {"message": "Palette cleared", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
 
-	generate_new_palette()
+	generate_new_palette(enemy_to_ignore)
 
 
 func sort_by_distance_to_player_ascending(a: Enemy, b: Enemy):
@@ -124,7 +124,7 @@ func sort_by_distance_to_player_ascending(a: Enemy, b: Enemy):
 	return false
 
 
-func generate_new_palette() -> void:
+func generate_new_palette(enemy_to_ignore: Enemy = null) -> void:
 	_set_palette_sprites()
 	palette_colours.resize(palette_size)
 
@@ -132,6 +132,7 @@ func generate_new_palette() -> void:
 	# If there are too little enemies to fill out the palette, the remaining colours will be filled only using colours previously picked
 	# If there are no enemies, the palette will be filled with random colours
 	var all_enemies_alive = Globals.get_all_enemies_alive()
+	all_enemies_alive.erase(enemy_to_ignore)
 	all_enemies_alive.sort_custom(sort_by_distance_to_player_ascending)
 
 	var closest_enemies: Array[Enemy]

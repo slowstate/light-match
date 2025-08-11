@@ -2,8 +2,8 @@ class_name BotStateAggro
 extends State
 
 var bot: Bot
-var aggro_time: float = 2.0
-var aggro_cooldown_time: float = 3.0
+var aggro_time: float = 3.0
+var aggro_cooldown_time: float = 1.5
 var target_location: Vector2
 
 @onready var aggro_timer: Timer = $AggroTimer

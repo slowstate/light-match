@@ -182,7 +182,8 @@ func _on_area_entered(area: Area2D) -> void:
 
 	set_health(health - bullet.damage)
 	show_hit_flash = true
-	knock_back(50.0 * bullet.damage, 0.05 * bullet.damage)
+	var close_proximity_knock_back = 300.0 if player_is_within_distance(100) else 0.0
+	knock_back(50.0 * bullet.damage + close_proximity_knock_back, 0.05 * bullet.damage)
 
 	ConditionManager.on_enemy_received_damage(bullet, self)
 	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
