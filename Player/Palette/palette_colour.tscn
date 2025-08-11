@@ -4,9 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://v68ffp3gg0iy" path="res://Player/Palette/Palette.png" id="2_crq5w"]
 [ext_resource type="Script" path="res://Player/Palette/palette_colour.gd" id="3_atwb0"]
 
-[node name="PaletteColour" type="Sprite2D"]
+[node name="PaletteColour" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_atwb0")
+
+[node name="PaletteColourSprite" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = ExtResource("1_lwdmo")
-position = Vector2(-64, 0)
 texture = ExtResource("2_crq5w")
-script = ExtResource("3_atwb0")

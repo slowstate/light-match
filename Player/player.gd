@@ -128,6 +128,8 @@ func _input(_event: InputEvent) -> void:
 		_get_next_colour()
 	if Input.is_action_pressed("player_previous_colour"):
 		_get_previous_colour()
+	if Input.is_action_just_pressed("player_reload"):
+		palette.reload_palette()
 
 
 func _fire_bullet():
@@ -156,7 +158,6 @@ func _fire_bullet():
 
 func _get_next_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
-	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	if current_colour == Globals.Colour.RED:
 		change_colour(Globals.Colour.BLUE)
 	else:
@@ -165,7 +166,6 @@ func _get_next_colour() -> void:
 
 func _get_previous_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
-	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	if current_colour == Globals.Colour.BLUE:
 		change_colour(Globals.Colour.RED)
 	else:
