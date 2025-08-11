@@ -15,6 +15,7 @@ var control_mappings: Dictionary = {
 	"player_blue": OS.get_keycode_string(KEY_1),
 	"player_green": OS.get_keycode_string(KEY_2),
 	"player_red": OS.get_keycode_string(KEY_3),
+	"player_reload": OS.get_keycode_string(KEY_R),
 	"player_move_up": OS.get_keycode_string(KEY_W),
 	"player_move_down": OS.get_keycode_string(KEY_S),
 	"player_move_left": OS.get_keycode_string(KEY_A),
