@@ -1,7 +1,6 @@
 extends Upgrade
 
 @warning_ignore("enum_variable_without_default")
-var last_killed_colour: Globals.Colour
 var effect_timer: Timer
 var speed_amount: float = 0.2
 var effect_duration: float = 5.0
