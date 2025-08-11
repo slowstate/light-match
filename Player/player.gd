@@ -294,6 +294,7 @@ func player_hit(enemy: Enemy) -> void:
 		shield_active = false
 		return
 
+	ConditionManager.on_player_received_damage()
 	set_health(health - enemy.damage)
 	player_hit_overlay.modulate.a = 1
 	player_hit_overlay.visible = true

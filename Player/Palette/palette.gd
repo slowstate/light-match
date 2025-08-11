@@ -11,6 +11,7 @@ var timer_progress: float = 0.0
 var reload_time: float = 1.0
 var reload_animation_progress: float = 0.0
 var grace_period_time: float = 0.5
+var palette_lockout: float = 3.0
 
 @onready var palette_colour_sprites: HBoxContainer = $PaletteColourSprites
 @onready var reload_timer: Timer = $ReloadTimer
@@ -77,10 +78,12 @@ func _on_reload_timer_timeout() -> void:
 
 
 func on_palette_failed() -> void:
+	if !failed_cooldown_timer.is_stopped():
+		return
 	for palette_colour in palette_colour_sprites.get_children():
 		palette_colour.update_shader_modulate(Color(1.0, 1.0, 1.0, 1.0))
 		palette_colour.update_shader_alpha(0.4)
-	failed_cooldown_timer.start(1)
+	failed_cooldown_timer.start(palette_lockout)
 	SfxManager.play_sound("PaletteFailSFX", -15.0, -13.0, 0.95, 1.05)
 	for palette_colour_sprite in palette_colour_sprites.get_children():
 		palette_colour_sprite.update_shader_rand(randf_range(-1.0, 1.0))
