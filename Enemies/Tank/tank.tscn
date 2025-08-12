@@ -135,6 +135,7 @@ height = 26.0
 
 [node name="Tank" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Tanks"]]
 collision_layer = 64
+linear_damp = 5.0
 script = ExtResource("1_vdwel")
 sprite = NodePath("Sprite")
 

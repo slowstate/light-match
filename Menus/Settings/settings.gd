@@ -28,6 +28,15 @@ func _on_settings_back_button_pressed() -> void:
 	credits.visible = false
 
 
+func _on_check_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	Settings.screen_shake = toggled_on
+
+
 func _on_controls_button_mouse_entered() -> void:
 	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
 

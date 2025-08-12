@@ -24,6 +24,7 @@ height = 64.0
 
 [node name="Oracle" type="RigidBody2D" node_paths=PackedStringArray("sprite") groups=["Oracles"]]
 collision_layer = 64
+linear_damp = 5.0
 script = ExtResource("1_4uhgo")
 sprite = NodePath("Sprite")
 

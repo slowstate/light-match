@@ -55,6 +55,8 @@ func physics_update(delta: float) -> void:
 		transition.emit("AggroDash")
 		return
 
+	lizard.dim_lights(clampf(lizard.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
+
 	if !charge_timer.is_stopped():
 		lizard.rotation = lerp_angle(
 			lizard.rotation, (target_location - lizard.global_position).angle(), ease(1 - charge_timer.time_left / charge_timer.wait_time, -2.0)
@@ -66,7 +68,9 @@ func physics_update(delta: float) -> void:
 		lizard.global_position = lizard.global_position.lerp(target_location, ease(1 - dash_timer.time_left / dash_timer.wait_time, -2.0))
 		lizard.global_position = lizard.global_position.clamp(Vector2(65, 65), Vector2(2495, 1385))
 
-	lizard.set_stun_indicator_percentage_completion(1 - stun_timer.time_left / stun_timer.wait_time)
+	if !stun_timer.is_stopped():
+		lizard.set_stun_indicator_percentage_completion(1 - stun_timer.time_left / stun_timer.wait_time)
+		lizard.dim_lights(ease(1 - stun_timer.time_left / stun_timer.wait_time, 0.2) * 0.5)
 
 
 func _on_charge_timer_timeout() -> void:

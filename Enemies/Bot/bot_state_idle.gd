@@ -41,8 +41,10 @@ func physics_update(delta: float) -> void:
 	if bot.is_stunned():
 		bot.set_stun_indicator_percentage_completion(1 - bot.stunned_timer.time_left / bot.stunned_timer.wait_time)
 		bot.enable_stun_indicator(true)
+		bot.dim_lights(ease(1 - bot.stunned_timer.time_left / bot.stunned_timer.wait_time, 0.2) * 0.5)
 		return
 	bot.enable_stun_indicator(false)
+	bot.dim_lights(clampf(bot.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
 
 	if bot.player_is_within_distance(500.0):
 		transition.emit("Aggro")

@@ -27,6 +27,7 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	lizard.set_colour(lizard.colour)
 	lizard.modulate = Color(1, 1, 1, 1)
 	lizard.enable_hurtbox(true)
 	transition.emit("Walk")

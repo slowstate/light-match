@@ -1,5 +1,5 @@
 class_name EnemySprite
-extends Node
+extends Sprite2D
 
 # All functions should be overriden
 
@@ -10,3 +10,11 @@ func set_health(_health: int) -> void:
 
 func set_colour(_colour: Globals.Colour) -> void:
 	pass
+
+
+func dim_lights(_amount: float) -> void:
+	pass
+
+
+func get_dim_lights_amount() -> float:
+	return 0.0

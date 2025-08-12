@@ -4,6 +4,7 @@
 
 [node name="AttackWarningIndicator" type="Sprite2D"]
 top_level = true
+z_index = 1
 script = ExtResource("1_1f8pf")
 
 [node name="Label" type="Label" parent="."]

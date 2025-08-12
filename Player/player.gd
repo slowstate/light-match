@@ -27,6 +27,7 @@ var hit_immunity_time: float = 1.0
 @onready var tip_of_barrel_point: Node2D = $PlayerSprite/TipOfBarrelPoint
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hurt_box: Area2D = $HurtBox
+@onready var muzzle_flash: Sprite2D = $PlayerSprite/BulletSpawnPoint/MuzzleFlash
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var palette: Palette = $Palette
@@ -37,11 +38,13 @@ var hit_immunity_time: float = 1.0
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
 @onready var hit_immunity_timer: Timer = $HitImmunityTimer
+@onready var switch_colour_flash: Sprite2D = $SwitchColourFlash
 
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
 @onready var player_conditions_interface: VBoxContainer = $PlayerInterface/PlayerConditionsInterface
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
+@onready var player_hit_overlay: Sprite2D = $PlayerInterface/PlayerHitOverlay
 
 
 func _init() -> void:
@@ -51,15 +54,22 @@ func _init() -> void:
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	set_health(base_health)
-	base_health += floori(Save.lifetime_palettes / 20)
-	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.005))
+	base_health += floori(Save.lifetime_palettes / 100)
+	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.002))
 	player_sprite.set_colour(current_colour)
 	Globals.set_crosshair_colour(current_colour)
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
+	player_hit_overlay.modulate.a = 0
+	switch_colour_flash.modulate.a = 0
+	muzzle_flash.modulate.a = 0
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	muzzle_flash.modulate.a = lerp(muzzle_flash.modulate.a, 0.0, delta * 30.0)
+	switch_colour_flash.modulate.a = lerp(switch_colour_flash.modulate.a, 0.0, delta * 5.0)
+	switch_colour_flash.scale = lerp(switch_colour_flash.scale, Vector2(1.0, 1.0), delta * 5.0)
+
 	shield_sprite.visible = true if shield_active else false
 	if !hit_immunity_timer.is_stopped():  # Hit immunity flashing
 		player_sprite.set_light_visibility(false)
@@ -101,8 +111,9 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 
 
-func _physics_process(_delta: float) -> void:
-	pass
+func _physics_process(delta: float) -> void:
+	if player_hit_overlay.modulate.a > 0:
+		player_hit_overlay.modulate.a -= delta
 
 
 func _input(_event: InputEvent) -> void:
@@ -117,11 +128,16 @@ func _input(_event: InputEvent) -> void:
 		_get_next_colour()
 	if Input.is_action_pressed("player_previous_colour"):
 		_get_previous_colour()
+	if Input.is_action_just_pressed("player_reload"):
+		palette.reload_palette()
 
 
 func _fire_bullet():
 	if !gun_cooldown_timer.is_stopped():
 		return
+	muzzle_flash.modulate = Globals.COLOUR_VISUAL_VALUE[current_colour]
+	muzzle_flash.modulate.a = 1.0
+	ScreenShaker.shake(0.05, 5.0)
 	player_sprite.play_shoot_animation()
 	SfxManager.play_sound("ShootingSFX", -30.0, -28.0, 1.0, 1.2)
 	var gun_angle = (tip_of_barrel_point.global_position - bullet_spawn_point.global_position).angle()
@@ -142,7 +158,6 @@ func _fire_bullet():
 
 func _get_next_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
-	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	if current_colour == Globals.Colour.RED:
 		change_colour(Globals.Colour.BLUE)
 	else:
@@ -151,7 +166,6 @@ func _get_next_colour() -> void:
 
 func _get_previous_colour() -> void:
 	var bullet_colours = Globals.Colour.values()
-	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	if current_colour == Globals.Colour.BLUE:
 		change_colour(Globals.Colour.RED)
 	else:
@@ -170,6 +184,9 @@ func change_colour(new_colour: Globals.Colour) -> void:
 
 	current_colour = new_colour
 	player_sprite.set_colour(current_colour)
+	switch_colour_flash.scale = Vector2(0.1, 0.1)
+	switch_colour_flash.modulate = Globals.COLOUR_VISUAL_VALUE[current_colour]
+	switch_colour_flash.modulate.a = 1.0
 	Globals.set_crosshair_colour(current_colour)
 	player_sprite.play_change_colour_animation()
 	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
@@ -255,7 +272,7 @@ func _on_hurt_box_area_entered(_area: Area2D) -> void:
 
 
 func player_hit(enemy: Enemy) -> void:
-	if !hit_immunity_timer.is_stopped():
+	if !hit_immunity_timer.is_stopped() or health <= 0:
 		return
 
 	var player_upgrade_strings = []
@@ -278,13 +295,19 @@ func player_hit(enemy: Enemy) -> void:
 		shield_active = false
 		return
 
+	ConditionManager.on_player_received_damage()
 	set_health(health - enemy.damage)
+	player_hit_overlay.modulate.a = 1
+	player_hit_overlay.visible = true
+	ScreenFreezer.freeze(0.2)
+	ScreenShaker.shake(0.2, 20.0)
 	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
 	SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
 	var log_play_data = {"message": "Player hit", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
 
 	if health <= 0:
+		set_health(0)
 		log_play_data = {"message": "Player killed", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)

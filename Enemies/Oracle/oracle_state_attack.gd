@@ -49,10 +49,12 @@ func physics_update(delta: float) -> void:
 		return
 	if !Globals.player:
 		return
+
 	if oracle.is_stunned():
 		oracle.set_stun_indicator_percentage_completion(1 - oracle.stunned_timer.time_left / oracle.stunned_timer.wait_time)
 		oracle.enable_attack_warning_indicator(false)
 		oracle.enable_stun_indicator(true)
+		oracle.dim_lights(ease(1 - oracle.stunned_timer.time_left / oracle.stunned_timer.wait_time, 0.2) * 0.5)
 		expand_timer.paused = true
 		shrink_timer.paused = true
 		spin_up_timer.paused = true
@@ -60,6 +62,7 @@ func physics_update(delta: float) -> void:
 		return
 	oracle.enable_stun_indicator(false)
 	oracle.enable_attack_warning_indicator(true)
+	oracle.dim_lights(clampf(oracle.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
 	expand_timer.paused = false
 	shrink_timer.paused = false
 	spin_up_timer.paused = false

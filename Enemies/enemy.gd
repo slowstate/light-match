@@ -17,7 +17,10 @@ var knock_back_timer: Timer
 var stunned_timer: Timer
 var invulnerable_timer: Timer
 var regen_timer: Timer
+var change_colour_timer: Timer
 var health_regen: int = 0
+var show_hit_flash: bool = false
+var change_colour_timer_threshold: float = 0.0
 
 
 # This function should be overriden by inheriting classes; no code should be added to this class
@@ -41,10 +44,16 @@ func _ready() -> void:
 	regen_timer = Timer.new()
 	regen_timer.timeout.connect(_on_regen_timer_timeout)
 	add_child(regen_timer)
+	change_colour_timer = Timer.new()
+	change_colour_timer.one_shot = true
+	change_colour_timer.timeout.connect(_on_change_colour_timer_timeout)
+	add_child(change_colour_timer)
 
 	set_health(base_health)
-	set_colour(colour)
 	modulate.a = 0
+	z_index = 1
+	rotation = randf_range(0, 2 * PI)
+	dim_lights(1.0)
 	enable_hurtbox(false)
 	enable_attack_warning_indicator(false)
 	enable_stun_indicator(false)
@@ -57,6 +66,22 @@ func _ready() -> void:
 func _setup() -> void:
 	# Keep this empty as child nodes will override this function
 	pass
+
+
+func _process(delta: float) -> void:
+	if show_hit_flash:
+		sprite.modulate += Color(50, 50, 50, 1)
+		show_hit_flash = false
+	elif !change_colour_timer.is_stopped():
+		change_colour_timer_threshold += (1 - change_colour_timer.time_left / change_colour_timer.wait_time) * delta
+		if change_colour_timer_threshold < 0.07:
+			sprite.modulate = Color(1.5, 1.5, 1.5, 1)
+		elif change_colour_timer_threshold < 0.14:
+			sprite.modulate = Color(1, 1, 1, 1)
+		else:
+			change_colour_timer_threshold = 0.0
+	else:
+		sprite.modulate = Color(1, 1, 1, 1)
 
 
 func set_health(new_health: int) -> void:
@@ -82,7 +107,7 @@ func enable_stun_indicator(enable: bool) -> void:
 
 
 func move_forward(delta: float, desired_location: Vector2 = Globals.player.global_position, custom_move_speed = move_speed) -> void:
-	if is_stunned():
+	if is_stunned() or !knock_back_timer.is_stopped():
 		play_move_animation(false)
 		return
 	if global_position.distance_to(desired_location) <= 10:
@@ -109,7 +134,7 @@ func stun(duration_in_seconds: float) -> void:
 
 
 func is_stunned() -> bool:
-	if !stunned_timer.is_stopped() || !knock_back_timer.is_stopped():
+	if !stunned_timer.is_stopped():
 		return true
 	return false
 
@@ -156,6 +181,10 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 
 	set_health(health - bullet.damage)
+	show_hit_flash = true
+	var close_proximity_knock_back = 300.0 if player_is_within_distance(100) else 0.0
+	knock_back(50.0 * bullet.damage + close_proximity_knock_back, 0.05 * bullet.damage)
+
 	ConditionManager.on_enemy_received_damage(bullet, self)
 	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 
@@ -164,9 +193,11 @@ func _on_area_entered(area: Area2D) -> void:
 
 	if health <= 0:
 		log_play_data = {"message": "Enemy killed", "context": log_context_data}
+		Logger.log_play_data(log_play_data)
+		ScreenFreezer.freeze(0.02 * bullet.damage)
 		UpgradeManager.on_enemy_killed(self)
 		SignalBus.emit_signal("enemy_died", self)
-		Logger.log_play_data(log_play_data)
+		spawn_death_particles(bullet.damage)
 		queue_free()
 
 
@@ -180,4 +211,29 @@ func play_move_animation(_play: bool) -> void:
 
 
 func play_attack_animation() -> void:
+	pass
+
+
+func dim_lights(dim_amount: float) -> void:
+	sprite.dim_lights(dim_amount)
+	for appendage in get_appendages():
+		appendage.dim_lights(dim_amount)
+
+
+func get_dim_lights_amount() -> float:
+	return sprite.get_dim_lights_amount()
+
+
+func change_colour(colour_change_delay: float) -> void:
+	if change_colour_timer.is_stopped():
+		change_colour_timer.start(colour_change_delay)
+
+
+func _on_change_colour_timer_timeout() -> void:
+	var possible_random_colours = Globals.Colour.values().duplicate()
+	possible_random_colours.erase(colour)
+	set_colour(possible_random_colours.pick_random())
+
+
+func spawn_death_particles(_amplitude: float = 1.0) -> void:
 	pass
