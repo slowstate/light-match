@@ -191,15 +191,12 @@ texture = ExtResource("3_y00nd")
 offset = Vector2(9, 16)
 
 [node name="BotLight1" type="Sprite2D" parent="."]
-modulate = Color(1.6, 1.6, 1.6, 1)
 texture = ExtResource("4_mn52t")
 
 [node name="BotLight2" type="Sprite2D" parent="."]
-modulate = Color(1.6, 1.6, 1.6, 1)
 texture = ExtResource("5_or6tu")
 
 [node name="BotLight3" type="Sprite2D" parent="."]
-modulate = Color(1.6, 1.6, 1.6, 1)
 texture = ExtResource("6_l4ghs")
 
 [node name="BotRightArm" type="Sprite2D" parent="."]

@@ -246,7 +246,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(30, 22)]
+"values": [Vector2(5, 22)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -371,7 +371,7 @@ position = Vector2(-13, -5)
 texture = ExtResource("15_elvp7")
 
 [node name="Gun" type="Sprite2D" parent="Torso"]
-position = Vector2(30, 22)
+position = Vector2(5, 22)
 offset = Vector2(23, -1)
 
 [node name="GunStock" type="Sprite2D" parent="Torso/Gun"]
