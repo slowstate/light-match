@@ -10,7 +10,7 @@ var palettes_cleared_counter: int = 0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.STUN_GRENADE
 	name = "Stun Grenade"
-	description = "After clearing 2 Palettes, stun all enemies for " + str(floor(effect_duration + Save.lifetime_palettes * 0.02)) + "s"
+	description = "After clearing 2 Chains, stun all enemies for " + str(floor(effect_duration + Save.lifetime_palettes * 0.02)) + "s"
 	icon = preload("res://Player/Upgrades/Utility/Stun Grenade.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
@@ -28,6 +28,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 			var stun_effect = STUN_EFFECT.instantiate()
 			stun_effect.effect_duration = effect_duration
 			enemy.add_child(stun_effect)
+		effect_timer.start(effect_duration)
 		is_active = true
 		palettes_cleared_counter = 0
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=36 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
@@ -9,13 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://c858e4dsfmjdb" path="res://Arena/Decorations/Specimen Pod.png" id="4_b8tu2"]
 [ext_resource type="Texture2D" uid="uid://dajgnj550x52u" path="res://Arena/Decorations/Terminal.png" id="5_reyu3"]
 [ext_resource type="Script" path="res://Arena/arena_state_round_active.gd" id="5_vs3oy"]
-[ext_resource type="Script" path="res://Arena/arena_state_upgrade_selection.gd" id="6_303ff"]
+[ext_resource type="Script" path="res://Arena/arena_state_round_information.gd" id="6_303ff"]
 [ext_resource type="Texture2D" uid="uid://d6annd5ludj6" path="res://Arena/Decorations/TV Screen.png" id="6_impxk"]
 [ext_resource type="Texture2D" uid="uid://8wq4wuurwel7" path="res://Arena/Decorations/Loose Cables.png" id="7_eljs4"]
 [ext_resource type="Texture2D" uid="uid://566fe8tibsl5" path="res://Arena/Decorations/Window.png" id="8_c1m3y"]
 [ext_resource type="Script" path="res://Arena/arena_state_score_screen.gd" id="8_p700b"]
 [ext_resource type="Texture2D" uid="uid://bdyuxu8blv5f8" path="res://Arena/Decorations/Ceiling Light 2.png" id="10_o7cfw"]
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="11_gl3pw"]
+[ext_resource type="PackedScene" uid="uid://bfffamsp774mm" path="res://Menus/RoundInformation/round_information.tscn" id="14_fia8t"]
 
 [sub_resource type="Gradient" id="Gradient_gucvv"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -471,28 +472,28 @@ shape = SubResource("WorldBoundaryShape2D_o1cin")
 [node name="RoundLabel" type="Label" parent="UserInterface"]
 offset_left = 70.0
 offset_top = 80.0
-offset_right = 167.0
-offset_bottom = 115.0
-text = "Round"
+offset_right = 139.0
+offset_bottom = 116.0
+text = "Test"
 label_settings = SubResource("LabelSettings_p3kqb")
 horizontal_alignment = 1
 
 [node name="RoundNumberLabel" type="Label" parent="UserInterface"]
-offset_left = 180.0
+offset_left = 143.0
 offset_top = 80.0
-offset_right = 270.0
-offset_bottom = 115.0
+offset_right = 233.0
+offset_bottom = 116.0
 text = "1"
 label_settings = SubResource("LabelSettings_ejvh2")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_53yap")
-current_state = NodePath("ConditionAndAdaptationSelection")
+current_state = NodePath("RoundInformation")
 
-[node name="ConditionAndAdaptationSelection" type="Node" parent="StateMachine"]
+[node name="RoundInformation" type="Node" parent="StateMachine"]
 script = ExtResource("6_303ff")
 
-[node name="UpgradeSelectionInterface" type="CanvasLayer" parent="StateMachine/ConditionAndAdaptationSelection"]
+[node name="RoundInformation" parent="StateMachine/RoundInformation" instance=ExtResource("14_fia8t")]
 
 [node name="RoundActive" type="Node" parent="StateMachine"]
 script = ExtResource("5_vs3oy")
