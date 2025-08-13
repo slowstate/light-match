@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://blx24l4b7fviv"]
+
+[ext_resource type="Script" path="res://Menus/RoundInformation/NewConditionInformation/new_condition_information.gd" id="1_pj581"]
+[ext_resource type="Texture2D" uid="uid://bru1ov8ut3x3a" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Box 1.png" id="2_7luv1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3qray"]
+font_size = 24
+
+[node name="NewConditionInformation" type="Control"]
+custom_minimum_size = Vector2(317, 302)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_pj581")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(0, -55)
+texture = ExtResource("2_7luv1")
+centered = false
+
+[node name="ConditionNameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -21.0
+offset_right = 128.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Condition Name"
+label_settings = SubResource("LabelSettings_3qray")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ConditionDescriptionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 29.0
+offset_right = 128.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Condition description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
