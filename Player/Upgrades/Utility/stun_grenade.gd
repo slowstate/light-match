@@ -28,6 +28,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 			var stun_effect = STUN_EFFECT.instantiate()
 			stun_effect.effect_duration = effect_duration
 			enemy.add_child(stun_effect)
+		effect_timer.start(effect_duration)
 		is_active = true
 		palettes_cleared_counter = 0
 

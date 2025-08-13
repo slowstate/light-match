@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfffamsp774mm"]
+
+[ext_resource type="Texture2D" uid="uid://c8rwnovtuiom4" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Skip.png" id="1_cvnda"]
+[ext_resource type="Script" path="res://Menus/RoundInformation/round_information.gd" id="1_roaae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qo32t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uw7wr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy3so"]
+bg_color = Color(1, 1, 1, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wro0q"]
+bg_color = Color(0, 0, 0, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0akc4"]
+
+[node name="RoundInformation" type="CanvasLayer"]
+script = ExtResource("1_roaae")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1920, 600)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 400
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qo32t")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_uw7wr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dy3so")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wro0q")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0akc4")
+text = "Continue"
+icon = ExtResource("1_cvnda")
+icon_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

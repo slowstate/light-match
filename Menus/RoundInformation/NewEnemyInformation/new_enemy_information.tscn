@@ -1,0 +1,237 @@
+[gd_scene load_steps=25 format=3 uid="uid://bdcvry1hmr6xa"]
+
+[ext_resource type="Texture2D" uid="uid://ivl8ard58lpk" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Box 2.png" id="1_2ct5h"]
+[ext_resource type="PackedScene" uid="uid://dohxwuksnslb" path="res://Enemies/Bot/Sprite/bot_sprite.tscn" id="1_7gyp0"]
+[ext_resource type="Script" path="res://Menus/RoundInformation/NewEnemyInformation/new_enemy_information.gd" id="1_kq4cc"]
+[ext_resource type="Texture2D" uid="uid://chhxpd32t4gp5" path="res://Enemies/Bot/Sprite/Bot Head.png" id="2_iipdu"]
+[ext_resource type="Texture2D" uid="uid://bberwgb1fkftk" path="res://Enemies/Bot/Sprite/Bot Left Arm.png" id="3_uhxst"]
+[ext_resource type="Texture2D" uid="uid://cthvj2i6u33qs" path="res://Enemies/Bot/Sprite/Bot Right Arm.png" id="4_huwr5"]
+[ext_resource type="PackedScene" uid="uid://cq600o70yc5is" path="res://Enemies/Lizard/Sprite/lizard_sprite.tscn" id="5_axfxv"]
+[ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="6_gfx75"]
+[ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="7_5f7m1"]
+[ext_resource type="PackedScene" uid="uid://l7a4srfb3iih" path="res://Enemies/Tank/Sprite/tank_sprite.tscn" id="8_qcx3n"]
+[ext_resource type="PackedScene" uid="uid://c0k62py27crqg" path="res://Enemies/Oracle/Sprite/oracle_sprite.tscn" id="9_u3vra"]
+[ext_resource type="Texture2D" uid="uid://c1nhcfqj5fpm1" path="res://Enemies/Oracle/Orb/Oracle Orb 1.png" id="10_vnwi2"]
+[ext_resource type="Texture2D" uid="uid://b1dakq7bkujow" path="res://Enemies/Oracle/Orb/Oracle Orb Light.png" id="11_0y85c"]
+[ext_resource type="PackedScene" uid="uid://1d5okjmxlrdj" path="res://Enemies/Star/Sprite/star_sprite.tscn" id="12_r0xl8"]
+[ext_resource type="Texture2D" uid="uid://bcqu0p5xce1cp" path="res://Enemies/Star/Shell/Star Shell 1.png" id="13_elrps"]
+[ext_resource type="Texture2D" uid="uid://dvpxrbokg15c6" path="res://Enemies/Star/Shell/Star Shell Light 1.png" id="14_iajcs"]
+[ext_resource type="Texture2D" uid="uid://myhd2mq0ulj4" path="res://Enemies/Star/Shell/Star Shell 2.png" id="15_paupv"]
+[ext_resource type="Texture2D" uid="uid://dtlffnwerr7y3" path="res://Enemies/Star/Shell/Star Shell Light 2.png" id="16_fxp3r"]
+[ext_resource type="Texture2D" uid="uid://drv6ho0eho4fd" path="res://Enemies/Star/Shell/Star Shell 4.png" id="17_eqiqn"]
+[ext_resource type="Texture2D" uid="uid://cinrj6bbhxoyw" path="res://Enemies/Star/Shell/Star Shell Light 4.png" id="18_ndjpv"]
+[ext_resource type="Texture2D" uid="uid://b3lga7xhaa4u3" path="res://Enemies/Star/Shell/Star Shell 5.png" id="19_85a3w"]
+[ext_resource type="Texture2D" uid="uid://ddu3y2lv5d54k" path="res://Enemies/Star/Shell/Star Shell Light 5.png" id="20_yjpq1"]
+[ext_resource type="Texture2D" uid="uid://bhcbajj0cnbyw" path="res://Enemies/Star/Shell/Star Shell 3.png" id="21_x00no"]
+[ext_resource type="Texture2D" uid="uid://b1ly852qklum0" path="res://Enemies/Star/Shell/Star Shell Light 3.png" id="22_pd2cq"]
+
+[node name="NewEnemyInformation" type="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 200.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_kq4cc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "New Enemy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotSprite" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BotSprite" parent="VBoxContainer/BotSprite" instance=ExtResource("1_7gyp0")]
+script = null
+
+[node name="BotHead" type="Sprite2D" parent="VBoxContainer/BotSprite"]
+visible = false
+position = Vector2(0, -30)
+texture = ExtResource("2_iipdu")
+
+[node name="BotLeftArm" type="Sprite2D" parent="VBoxContainer/BotSprite"]
+visible = false
+texture = ExtResource("3_uhxst")
+
+[node name="BotRightArm" type="Sprite2D" parent="VBoxContainer/BotSprite"]
+visible = false
+texture = ExtResource("4_huwr5")
+
+[node name="LizardSprite" type="Control" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LizardSprite" parent="VBoxContainer/LizardSprite" instance=ExtResource("5_axfxv")]
+scale = Vector2(1.2, 1.2)
+script = null
+
+[node name="HeadSprite2D" type="Sprite2D" parent="VBoxContainer/LizardSprite"]
+position = Vector2(36, 0)
+rotation = -1.5708
+scale = Vector2(1.2, 1.2)
+offset = Vector2(-0.149141, 37.3588)
+
+[node name="LizHead" type="Sprite2D" parent="VBoxContainer/LizardSprite/HeadSprite2D"]
+position = Vector2(0, 18)
+texture = ExtResource("6_gfx75")
+
+[node name="LizHeadLight" type="Sprite2D" parent="VBoxContainer/LizardSprite/HeadSprite2D/LizHead"]
+position = Vector2(1.19209e-07, -3)
+texture = ExtResource("7_5f7m1")
+
+[node name="TankSprite" type="Control" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TankSprite" parent="VBoxContainer/TankSprite" instance=ExtResource("8_qcx3n")]
+script = null
+
+[node name="OracleSprite" type="Control" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OracleSprite" parent="VBoxContainer/OracleSprite" instance=ExtResource("9_u3vra")]
+script = null
+
+[node name="Orbs" type="Node2D" parent="VBoxContainer/OracleSprite"]
+
+[node name="OracleOrb" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(50, 0)
+texture = ExtResource("10_vnwi2")
+
+[node name="OracleOrbLight" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(50, 0)
+texture = ExtResource("11_0y85c")
+
+[node name="OracleOrb2" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(25, -43)
+texture = ExtResource("10_vnwi2")
+
+[node name="OracleOrbLight2" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(25, -43)
+texture = ExtResource("11_0y85c")
+
+[node name="OracleOrb3" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(-25, -43)
+texture = ExtResource("10_vnwi2")
+
+[node name="OracleOrbLight3" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(-25, -43)
+texture = ExtResource("11_0y85c")
+
+[node name="OracleOrb4" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(-50, 0)
+texture = ExtResource("10_vnwi2")
+
+[node name="OracleOrbLight4" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(-50, 0)
+texture = ExtResource("11_0y85c")
+
+[node name="OracleOrb5" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(-25, 43)
+texture = ExtResource("10_vnwi2")
+
+[node name="OracleOrbLight5" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(-25, 43)
+texture = ExtResource("11_0y85c")
+
+[node name="OracleOrb6" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(25, 43)
+texture = ExtResource("10_vnwi2")
+
+[node name="OracleOrbLight6" type="Sprite2D" parent="VBoxContainer/OracleSprite/Orbs"]
+position = Vector2(25, 43)
+texture = ExtResource("11_0y85c")
+
+[node name="StarSprite" type="Control" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" parent="VBoxContainer/StarSprite" instance=ExtResource("12_r0xl8")]
+script = null
+
+[node name="Shells" type="Node2D" parent="VBoxContainer/StarSprite"]
+
+[node name="StarShell" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(0, -25)
+texture = ExtResource("13_elrps")
+
+[node name="StarShellLight" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(0, -25)
+texture = ExtResource("14_iajcs")
+
+[node name="StarShell2" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(26, -8.5)
+scale = Vector2(1.00001, 0.999994)
+texture = ExtResource("15_paupv")
+
+[node name="StarShellLight2" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(25, -7.5)
+scale = Vector2(1.00001, 0.999994)
+texture = ExtResource("16_fxp3r")
+
+[node name="StarShell3" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(18, 23.5)
+scale = Vector2(1.00001, 0.999984)
+texture = ExtResource("17_eqiqn")
+
+[node name="StarShellLight3" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(16, 22.5)
+scale = Vector2(1.00001, 0.999984)
+texture = ExtResource("18_ndjpv")
+
+[node name="StarShell4" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(-18.5, 23.5)
+scale = Vector2(1, 1.00001)
+skew = -1.41859e-05
+texture = ExtResource("19_85a3w")
+
+[node name="StarShellLight4" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(-15.5, 21.5)
+scale = Vector2(1, 1.00001)
+skew = -1.41859e-05
+texture = ExtResource("20_yjpq1")
+
+[node name="StarShell5" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(-26, -9.5)
+scale = Vector2(1, 0.999995)
+texture = ExtResource("21_x00no")
+
+[node name="StarShellLight5" type="Sprite2D" parent="VBoxContainer/StarSprite/Shells"]
+position = Vector2(-25, -8.5)
+scale = Vector2(1, 0.999995)
+texture = ExtResource("22_pd2cq")
+
+[node name="BG" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_2ct5h")

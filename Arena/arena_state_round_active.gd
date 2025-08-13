@@ -44,7 +44,7 @@ func update(delta: float) -> void:
 		if arena.current_round_number >= 10:
 			transition.emit("ScoreScreen")
 		else:
-			transition.emit("ConditionAndAdaptationSelection")
+			transition.emit("RoundInformation")
 
 
 func physics_update(_delta: float) -> void:
