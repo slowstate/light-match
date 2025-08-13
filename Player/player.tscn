@@ -221,6 +221,7 @@ offset_right = 110.0
 offset_bottom = 168.0
 
 [node name="PlayerPoints" type="Control" parent="PlayerInterface"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1810.0

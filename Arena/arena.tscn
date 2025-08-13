@@ -472,17 +472,17 @@ shape = SubResource("WorldBoundaryShape2D_o1cin")
 [node name="RoundLabel" type="Label" parent="UserInterface"]
 offset_left = 70.0
 offset_top = 80.0
-offset_right = 167.0
-offset_bottom = 115.0
-text = "Round"
+offset_right = 139.0
+offset_bottom = 116.0
+text = "Test"
 label_settings = SubResource("LabelSettings_p3kqb")
 horizontal_alignment = 1
 
 [node name="RoundNumberLabel" type="Label" parent="UserInterface"]
-offset_left = 180.0
+offset_left = 143.0
 offset_top = 80.0
-offset_right = 270.0
-offset_bottom = 115.0
+offset_right = 233.0
+offset_bottom = 116.0
 text = "1"
 label_settings = SubResource("LabelSettings_ejvh2")
 

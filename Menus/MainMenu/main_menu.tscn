@@ -900,6 +900,7 @@ autostart = true
 [node name="MusicManager" parent="." instance=ExtResource("27_m1d7y")]
 
 [node name="Tutorial" type="Control" parent="."]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
@@ -1150,7 +1151,6 @@ position = Vector2(39, 42)
 texture = ExtResource("20_vxnj5")
 
 [node name="UpgradesInfoHint" type="Panel" parent="Tutorial/UserInterface"]
-visible = false
 offset_left = 300.0
 offset_top = 40.0
 offset_right = 968.0
@@ -1529,7 +1529,7 @@ offset_right = 1910.0
 offset_bottom = 1069.0
 grow_horizontal = 0
 grow_vertical = 0
-tooltip_text = "You gain permanent stats based on the number of palettes you've cleared"
+tooltip_text = "You gain permanent stats based on the number of Chains you've completed"
 mouse_filter = 0
 theme_override_font_sizes/font_size = 16
 text = "Lifetime Chains completed: 100
