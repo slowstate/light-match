@@ -3,7 +3,7 @@ extends Condition
 
 func _init() -> void:
 	name = "Frequency Disruption"
-	description = "When you receive damage from an enemy, you immediately fail your Palette"
+	description = "When you receive damage from an enemy, you immediately fail your current Chain"
 	points_per_round = 0
 
 

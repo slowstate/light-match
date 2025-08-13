@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfffamsp774mm"]
+[gd_scene load_steps=9 format=3 uid="uid://bfffamsp774mm"]
 
 [ext_resource type="Texture2D" uid="uid://c8rwnovtuiom4" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Skip.png" id="1_cvnda"]
 [ext_resource type="Script" path="res://Menus/RoundInformation/round_information.gd" id="1_roaae"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0f4qa"]
+font_size = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qo32t"]
 
@@ -42,8 +45,14 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "A new test condition has been added..."
+label_settings = SubResource("LabelSettings_0f4qa")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(1920, 600)
+custom_minimum_size = Vector2(1920, 500)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

@@ -7,10 +7,19 @@ var speed_amount: float = 0.2
 var effect_duration: float = 10.0
 var palettes_cleared_counter: int = 0
 
+
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.BIGGER_BULLET
 	name = "Exosuit Overdrive"
-	description = "After clearing 3 Palettes, you gain " + str(damage_amount) + " bonus damage, " + str(fire_rate_amount * 100) + "% fire rate, " + str(speed_amount * 100) + "% speed, and a shield for 10s"
+	description = (
+		"After clearing 3 Chains, you gain "
+		+ str(damage_amount)
+		+ " bonus damage, "
+		+ str(fire_rate_amount * 100)
+		+ "% fire rate, "
+		+ str(speed_amount * 100)
+		+ "% speed, and a shield for 10s"
+	)
 	#icon = preload("res://Player/Upgrades/Combat/Exosuit Overdrive.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
@@ -26,11 +35,12 @@ func on_palette_cleared(_palette: Palette) -> void:
 	if palettes_cleared_counter >= 3:
 		if effect_timer.is_stopped():
 			Globals.player.move_speed *= (1 + speed_amount)
-		
+
 		effect_timer.start(effect_duration)
 		Globals.player.shield_active = true
 		is_active = true
 		palettes_cleared_counter = 0
+
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= (1 + speed_amount)
