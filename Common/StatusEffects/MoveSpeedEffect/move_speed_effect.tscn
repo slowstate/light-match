@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5xkq2622qg61"]
+[gd_scene load_steps=3 format=3 uid="uid://c5xkq2622qg61"]
 
 [ext_resource type="Script" path="res://Common/StatusEffects/MoveSpeedEffect/move_speed_effect.gd" id="1_7dygs"]
+[ext_resource type="PackedScene" uid="uid://iptbl2mxx7h6" path="res://Enemies/VFX/slow_particles.tscn" id="2_6fryu"]
 
-[node name="MoveSpeedEffect" type="Node"]
+[node name="MoveSpeedEffect" type="Node2D"]
 script = ExtResource("1_7dygs")
+
+[node name="SlowParticles" parent="." instance=ExtResource("2_6fryu")]
