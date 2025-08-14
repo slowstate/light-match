@@ -20,17 +20,18 @@ func _init() -> void:
 func on_palette_cleared(_palette: Palette) -> void:
 	if effect_timer.is_stopped():
 		Globals.player.move_speed *= (1 + speed_amount)
-		effect_timer.start(effect_duration + Save.lifetime_palettes * 0.05)
-		is_active = true
-	else:
-		effect_timer.set_wait_time(effect_duration + Save.lifetime_palettes * 0.05)
+	Globals.player.enable_after_image(true)
+	effect_timer.start(effect_duration + Save.lifetime_palettes * 0.05)
+	is_active = true
 
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= (1 + speed_amount)
+	Globals.player.enable_after_image(false)
 	is_active = false
 
 
 func on_upgrade_removed(removed_upgrade: Upgrade) -> void:
 	if removed_upgrade == self and !effect_timer.is_stopped():
 		Globals.player.move_speed /= (1 + speed_amount)
+		Globals.player.enable_after_image(false)

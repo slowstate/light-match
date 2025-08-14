@@ -4,6 +4,7 @@ extends CharacterBody2D
 const PLAYER_UPGRADE_BUTTON = preload("res://Player/Upgrades/player_upgrade_button.tscn")
 const CONDITION_LABEL = preload("res://Player/Conditions/condition_label.tscn")
 const GUN_PARTICLES = preload("res://Player/VFX/gun_particles.tscn")
+const AFTER_IMAGE_PARTICLES = preload("res://Player/VFX/after_image_particles.tscn")
 
 var base_health := 3
 var health: int
@@ -39,6 +40,7 @@ var hit_immunity_time: float = 1.0
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
 @onready var hit_immunity_timer: Timer = $HitImmunityTimer
 @onready var switch_colour_flash: Sprite2D = $SwitchColourFlash
+@onready var after_image_timer: Timer = $AfterImageTimer
 
 @onready var chrome_knuckles_proximity: Area2D = $ChromeKnucklesProximity
 @onready var player_conditions_interface: VBoxContainer = $PlayerInterface/PlayerConditionsInterface
@@ -69,6 +71,9 @@ func _process(delta: float) -> void:
 	muzzle_flash.modulate.a = lerp(muzzle_flash.modulate.a, 0.0, delta * 30.0)
 	switch_colour_flash.modulate.a = lerp(switch_colour_flash.modulate.a, 0.0, delta * 5.0)
 	switch_colour_flash.scale = lerp(switch_colour_flash.scale, Vector2(1.0, 1.0), delta * 5.0)
+
+	if player_hit_overlay.modulate.a > 0:
+		player_hit_overlay.modulate.a -= delta
 
 	shield_sprite.visible = true if shield_active else false
 	if !hit_immunity_timer.is_stopped():  # Hit immunity flashing
@@ -106,14 +111,10 @@ func _process(delta: float) -> void:
 	velocity = move_vec * move_speed
 	if controls_enabled:
 		player_sprite.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(90)
-		collision_shape_2d.rotation = -velocity.angle()
+		collision_shape_2d.rotation = (get_global_mouse_position() - global_position).angle()  #-velocity.angle()
+		hurt_box.rotation = (get_global_mouse_position() - global_position).angle()
 
 	move_and_slide()
-
-
-func _physics_process(delta: float) -> void:
-	if player_hit_overlay.modulate.a > 0:
-		player_hit_overlay.modulate.a -= delta
 
 
 func _input(_event: InputEvent) -> void:
@@ -330,3 +331,17 @@ func _on_chrome_knuckles_proximity_body_exited(_body: Node2D) -> void:
 		if upgrade.type == UpgradeManager.UpgradeTypes.CHROME_KNUCKLES:
 			if chrome_knuckles_proximity.get_overlapping_bodies().size() < 3:
 				upgrade.is_active = false
+
+
+func enable_after_image(enabled: bool) -> void:
+	if enabled:
+		after_image_timer.start(0.3)
+	else:
+		after_image_timer.stop()
+
+
+func _on_after_image_timer_timeout() -> void:
+	var after_image_particles = AFTER_IMAGE_PARTICLES.instantiate()
+	after_image_particles.global_position = global_position
+	after_image_particles.emitting = true
+	get_tree().root.add_child(after_image_particles)
