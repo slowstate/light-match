@@ -10,7 +10,7 @@ var effect_duration: float = 5.0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.ADRENALINE_INJECTION
 	name = "Adrenaline Injection"
-	description = "After clearing 1 Palette, you gain " + str(speed_amount * 100) + "% speed for " + str(effect_duration + Save.lifetime_palettes * 0.05) + "s"
+	description = "After clearing 1 Chain, you gain " + str(speed_amount * 100) + "% speed for " + str(effect_duration + Save.lifetime_palettes * 0.05) + "s"
 	icon = preload("res://Player/Upgrades/Utility/Adrenaline Injection.png")
 	points_cost = 0
 	effect_timer = super.new_timer()

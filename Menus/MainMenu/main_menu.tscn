@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://c7845x7xoc1g2"]
+[gd_scene load_steps=61 format=3 uid="uid://c7845x7xoc1g2"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
 [ext_resource type="Texture2D" uid="uid://r26c27hrvnw1" path="res://Arena/BG Hex Light.png" id="3_dyfs6"]
@@ -20,11 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="15_b20bq"]
 [ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="16_3cfnn"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="16_ltpam"]
-[ext_resource type="Texture2D" uid="uid://kcovw5iw32l7" path="res://Player/Upgrades/Combat/Bipod.png" id="16_maefu"]
-[ext_resource type="Texture2D" uid="uid://5gajlo6clh5q" path="res://Player/Upgrades/Combat/Charged Ammo.png" id="17_locs0"]
 [ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="17_wvdvq"]
 [ext_resource type="FontFile" uid="uid://dt7ijpr3w8s08" path="res://Common/Fonts/exo/Exo-Bold.otf" id="18_40nhg"]
 [ext_resource type="FontFile" uid="uid://ct74ild18mpl5" path="res://Common/Fonts/exo/Exo-Medium.otf" id="19_bj3y6"]
+[ext_resource type="Texture2D" uid="uid://bum1yyyf3kfbl" path="res://Player/Upgrades/Utility/Taser.png" id="20_vxnj5"]
 [ext_resource type="Texture2D" uid="uid://cf231u6471cib" path="res://Menus/MainMenu/Mouse.png" id="21_s6df7"]
 [ext_resource type="Texture2D" uid="uid://ycuh2y744c8d" path="res://Menus/MainMenu/Left Button Mouse.png" id="23_brnj6"]
 [ext_resource type="Texture2D" uid="uid://cbc5pni83c6y4" path="res://Menus/MainMenu/Right Button Mouse.png" id="24_s1j0b"]
@@ -992,7 +991,7 @@ offset_left = -222.0
 offset_top = -45.0
 offset_right = 351.0
 offset_bottom = -8.0
-text = "This is your palette.
+text = "This is your Chain.
 Kill enemies of these colours from left to right to clear it."
 horizontal_alignment = 1
 
@@ -1031,6 +1030,7 @@ active = false
 [node name="LizardSprite" parent="Tutorial" instance=ExtResource("13_rwsq0")]
 position = Vector2(476, 514)
 rotation = -1.49051
+scale = Vector2(1.2, 1.2)
 
 [node name="LizBodyLight1" parent="Tutorial/LizardSprite" index="6"]
 modulate = Color(1, 0.270588, 0, 1)
@@ -1045,8 +1045,9 @@ modulate = Color(1, 0.270588, 0, 1)
 modulate = Color(1, 0.270588, 0, 1)
 
 [node name="LizHead" type="Sprite2D" parent="Tutorial"]
-position = Vector2(524, 519)
+position = Vector2(533, 520)
 rotation = -1.49051
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("16_3cfnn")
 
 [node name="LizHeadLight" type="Sprite2D" parent="Tutorial/LizHead"]
@@ -1057,6 +1058,7 @@ texture = ExtResource("17_wvdvq")
 [node name="LizardSprite2" parent="Tutorial" instance=ExtResource("13_rwsq0")]
 position = Vector2(441, 764)
 rotation = -1.98618
+scale = Vector2(1.2, 1.2)
 
 [node name="LizBodyLight1" parent="Tutorial/LizardSprite2" index="6"]
 modulate = Color(0, 0.929412, 0, 1)
@@ -1071,8 +1073,9 @@ modulate = Color(0, 0.929412, 0, 1)
 modulate = Color(0, 0.929412, 0, 1)
 
 [node name="LizHead2" type="Sprite2D" parent="Tutorial"]
-position = Vector2(485, 744)
+position = Vector2(493, 740)
 rotation = -1.98618
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("16_3cfnn")
 
 [node name="LizHeadLight" type="Sprite2D" parent="Tutorial/LizHead2"]
@@ -1085,18 +1088,18 @@ texture = ExtResource("17_wvdvq")
 [node name="RoundLabel" type="Label" parent="Tutorial/UserInterface"]
 offset_left = 70.0
 offset_top = 80.0
-offset_right = 167.0
-offset_bottom = 115.0
-text = "Round"
+offset_right = 138.0
+offset_bottom = 116.0
+text = "Test"
 label_settings = SubResource("LabelSettings_d7clj")
 horizontal_alignment = 1
 
 [node name="RoundNumberLabel" type="Label" parent="Tutorial/UserInterface"]
-offset_left = 180.0
+offset_left = 143.0
 offset_top = 80.0
-offset_right = 270.0
-offset_bottom = 115.0
-text = "4"
+offset_right = 233.0
+offset_bottom = 116.0
+text = "3"
 label_settings = SubResource("LabelSettings_5521n")
 
 [node name="PlayerConditionsInterface" type="VBoxContainer" parent="Tutorial/UserInterface"]
@@ -1107,17 +1110,13 @@ offset_bottom = 168.0
 
 [node name="SwarmConditionLabel" type="Label" parent="Tutorial/UserInterface/PlayerConditionsInterface"]
 layout_mode = 2
-text = "Swarm"
-
-[node name="SuperchargedConditionLabel" type="Label" parent="Tutorial/UserInterface/PlayerConditionsInterface"]
-layout_mode = 2
-text = "Supercharged"
+text = "Chromatic Reaction"
 
 [node name="RunInfoHint" type="Panel" parent="Tutorial/UserInterface"]
 offset_left = 58.0
 offset_top = 71.0
-offset_right = 214.0
-offset_bottom = 174.0
+offset_right = 223.0
+offset_bottom = 156.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ml4sl")
 
 [node name="RoundLabel" type="Label" parent="Tutorial/UserInterface/RunInfoHint"]
@@ -1126,7 +1125,7 @@ offset_left = -40.0
 offset_top = -51.0
 offset_right = 191.0
 offset_bottom = -7.0
-text = "The current round. Complete all rounds or die trying."
+text = "The current test. Complete all tests or die trying."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -1134,33 +1133,22 @@ autowrap_mode = 3
 [node name="ConditionsHintLabel" type="Label" parent="Tutorial/UserInterface/RunInfoHint"]
 layout_mode = 0
 offset_left = -40.0
-offset_top = 113.0
+offset_top = 98.0
 offset_right = 191.0
-offset_bottom = 170.0
+offset_bottom = 175.0
 text = "This is a list of active Conditions. Conditions increase the difficulty and grant POINTs for the rest of the run."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Bipod" type="Sprite2D" parent="Tutorial/UserInterface"]
+[node name="Taser" type="Sprite2D" parent="Tutorial/UserInterface"]
 position = Vector2(315, 50)
 texture = ExtResource("15_b20bq")
 centered = false
 offset = Vector2(2, 0)
 
-[node name="IconSprite" type="Sprite2D" parent="Tutorial/UserInterface/Bipod"]
+[node name="IconSprite" type="Sprite2D" parent="Tutorial/UserInterface/Taser"]
 position = Vector2(39, 42)
-texture = ExtResource("16_maefu")
-
-[node name="ChargedAmmo" type="Sprite2D" parent="Tutorial/UserInterface"]
-modulate = Color(1, 1, 1, 0.3)
-position = Vector2(394, 50)
-texture = ExtResource("15_b20bq")
-centered = false
-offset = Vector2(2, 0)
-
-[node name="IconSprite" type="Sprite2D" parent="Tutorial/UserInterface/ChargedAmmo"]
-position = Vector2(39, 42)
-texture = ExtResource("17_locs0")
+texture = ExtResource("20_vxnj5")
 
 [node name="UpgradesInfoHint" type="Panel" parent="Tutorial/UserInterface"]
 offset_left = 300.0
@@ -1176,7 +1164,7 @@ offset_top = 109.0
 offset_right = 601.0
 offset_bottom = 166.0
 text = "Your Adaptations will appear here. Active Adaptations will light up.
-You'll get a chance to purchase up to 3 at the end of every round using POINTs.
+You will periodically receive Adaptations as you progress through tests.
 While playing, hover over them for more information."
 horizontal_alignment = 1
 
@@ -1198,6 +1186,7 @@ Shoot them with matching colours."
 horizontal_alignment = 1
 
 [node name="PointsCounter" type="Control" parent="Tutorial/UserInterface"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1810.0
@@ -1232,6 +1221,7 @@ position = Vector2(33.5, 0)
 texture = ExtResource("16_ltpam")
 
 [node name="PointsCounterHint" type="Panel" parent="Tutorial/UserInterface"]
+visible = false
 offset_left = 1724.0
 offset_top = 894.0
 offset_right = 1894.0
@@ -1539,12 +1529,12 @@ offset_right = 1910.0
 offset_bottom = 1069.0
 grow_horizontal = 0
 grow_vertical = 0
-tooltip_text = "You gain permanent stats based on the number of palettes you've cleared"
+tooltip_text = "You gain permanent stats based on the number of Chains you've completed"
 mouse_filter = 0
 theme_override_font_sizes/font_size = 16
-text = "Lifetime Palettes: 100
-Permanent Fire Rate Gained: 50%
-Permanent Max Health Gained: 1"
+text = "Lifetime Chains completed: 100
+Permanent fire rate gained: 50%
+Permanent max health gained: 1"
 horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("32_4yuew")
