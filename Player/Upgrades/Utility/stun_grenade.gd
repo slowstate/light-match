@@ -23,7 +23,7 @@ func trigger_counter_update() -> void:
 
 func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_counter += 1
-	if palettes_cleared_counter >= 2:
+	if palettes_cleared_counter >= 4:
 		for enemy in Globals.get_all_enemies_alive():
 			var stun_effect = STUN_EFFECT.instantiate()
 			stun_effect.effect_duration = effect_duration
@@ -31,6 +31,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 		effect_timer.start(effect_duration)
 		is_active = true
 		palettes_cleared_counter = 0
+		SfxManager.play_sound("StunGrenadeActiveSFX", -15.0, -13.0, 0.9, 1.0)
 
 	upgrade_counter_updated.emit(palettes_cleared_counter)
 

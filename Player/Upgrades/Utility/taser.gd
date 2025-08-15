@@ -28,6 +28,7 @@ func _init() -> void:
 func on_palette_cleared(_palette: Palette) -> void:
 	is_active = true
 	effect_timer.start(effect_duration)
+	SfxManager.play_sound("TaserActiveSFX", -20.0, -18.0, 0.9, 1.0)
 
 
 func _on_effect_timer_timeout() -> void:

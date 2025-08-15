@@ -24,6 +24,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 		is_active = true
 	else:
 		effect_timer.set_wait_time(effect_duration + Save.lifetime_palettes * 0.05)
+	SfxManager.play_sound("AdrenalineInjectionActiveSFX", -15.0, -13.0, 0.7, 0.8)
 
 
 func _on_effect_timer_timeout() -> void:

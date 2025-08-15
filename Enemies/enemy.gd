@@ -60,7 +60,8 @@ func _ready() -> void:
 	ConditionManager.on_enemy_spawned(self)
 	UpgradeManager.on_enemy_spawned(self)
 	_setup()
-
+	
+	SfxManager.play_sound("EnemySpawnSFX", -45.0, -43.0, 0.9, 1.0)
 
 # This function should be overriden by inheriting classes; no code should be added to this class
 func _setup() -> void:
@@ -186,7 +187,6 @@ func _on_area_entered(area: Area2D) -> void:
 	knock_back(50.0 * bullet.damage + close_proximity_knock_back, 0.05 * bullet.damage)
 
 	ConditionManager.on_enemy_received_damage(bullet, self)
-	SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 
 	log_play_data = {"message": "Enemy hit for " + str(bullet.damage) + " damage", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
@@ -198,8 +198,10 @@ func _on_area_entered(area: Area2D) -> void:
 		UpgradeManager.on_enemy_killed(self)
 		SignalBus.emit_signal("enemy_died", self)
 		spawn_death_particles(bullet.damage)
+		SfxManager.play_sound("EnemyDeathSFX", -20.0, -18.0, 1, 1.2)
 		queue_free()
-
+	else:
+		SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
 
 func _on_regen_timer_timeout() -> void:
 	if health < base_health:
@@ -233,6 +235,7 @@ func _on_change_colour_timer_timeout() -> void:
 	var possible_random_colours = Globals.Colour.values().duplicate()
 	possible_random_colours.erase(colour)
 	set_colour(possible_random_colours.pick_random())
+	SfxManager.play_sound("EnemyChangeColourSFX", -35.0, -33.0, 0.7, 0.8)
 
 
 func spawn_death_particles(_amplitude: float = 1.0) -> void:

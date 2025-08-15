@@ -12,3 +12,4 @@ func _init() -> void:
 func on_enemy_hit(bullet: Bullet, enemy: Enemy) -> void:
 	if bullet.colour != enemy.colour:
 		enemy.set_health(enemy.health + 1)
+		SfxManager.play_sound("EnemyHealSFX", -40.0, -38.0, 0.7, 0.8)

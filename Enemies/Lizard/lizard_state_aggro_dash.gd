@@ -81,13 +81,13 @@ func _on_stun_timer_timeout() -> void:
 	var texture = lizard.attack_area_indicator.texture as GradientTexture2D
 	texture.width = (target_location - lizard.global_position).length()
 	charge_timer.start(0.5)
-
+	SfxManager.play_sound("LizardChargeSFX", -20.0, -18.0, 0.9, 1.0)
 
 func _on_charge_timer_timeout() -> void:
 	lizard.enable_attack_area_indicator(false)
 	lizard.play_attack_animation()
 	dash_timer.start(1.5)
-
+	SfxManager.play_sound("LizardDashSFX", -25.0, -23.0, 0.8, 1.0)
 
 func _on_dash_timer_timeout() -> void:
 	lizard.enable_attack_warning_indicator(false)

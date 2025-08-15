@@ -31,6 +31,7 @@ func enter() -> void:
 		cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
 	prep_timer.start(prep_time)
 
+	
 
 func exit() -> void:
 	pass
@@ -68,7 +69,7 @@ func _on_prep_timer_timeout() -> void:
 		Globals.player.player_hit(star)
 	star.global_position = target_location
 	cooldown_timer.start(cooldown_time)
-
+	SfxManager.play_sound("StarBlinkSFX", -30.0, -28.0, 0.9, 1.0)
 
 func _on_cooldown_timer_timeout() -> void:
 	transition.emit("Idle")

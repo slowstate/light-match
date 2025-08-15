@@ -31,7 +31,7 @@ func enter() -> void:
 	if !stun_timer.timeout.is_connected(_on_stun_timer_timeout):
 		stun_timer.timeout.connect(_on_stun_timer_timeout)
 	charge_timer.start(0.5)
-
+	SfxManager.play_sound("LizardChargeSFX", -20.0, -18.0, 0.9, 1.0)
 
 func exit() -> void:
 	charge_timer.stop()
@@ -77,6 +77,7 @@ func _on_charge_timer_timeout() -> void:
 	lizard.enable_attack_area_indicator(false)
 	lizard.play_attack_animation()
 	dash_timer.start(dash_time)
+	SfxManager.play_sound("LizardDashSFX", -32.0, -30.0, 1.2, 1.5)
 
 
 func _on_dash_timer_timeout() -> void:
