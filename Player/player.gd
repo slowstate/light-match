@@ -19,6 +19,10 @@ var upgrades: Array[Upgrade] = []
 var conditions: Array[Condition] = []
 var points: int = 1
 
+var tutorial_movement_controls: bool = true
+var tutorial_colour_controls: bool = true
+var tutorial_colour_reload_controls: bool = true
+
 var controls_enabled: bool = true
 var shield_active: bool = false
 var taser_particles_enabled: bool = false
@@ -100,7 +104,7 @@ func _process(delta: float) -> void:
 		player_sprite.set_light_visibility(true)
 
 	var move_vec = Vector2(0, 0)
-	if controls_enabled:
+	if controls_enabled and tutorial_movement_controls:
 		# Handle movement
 		if Input.is_action_pressed("player_move_up"):
 			move_vec.y = -1
@@ -125,7 +129,7 @@ func _process(delta: float) -> void:
 		player_sprite.play_move_animation(false)
 
 	velocity = move_vec * move_speed
-	if controls_enabled:
+	if controls_enabled and tutorial_movement_controls:
 		player_sprite.rotation = (get_global_mouse_position() - global_position).angle()
 		collision_shape_2d.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(24)
 		hurt_box.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(24)
@@ -134,19 +138,20 @@ func _process(delta: float) -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	# Handle colour switching
-	if Input.is_action_pressed("player_red"):
-		change_colour(Globals.Colour.RED)
-	if Input.is_action_pressed("player_green"):
-		change_colour(Globals.Colour.GREEN)
-	if Input.is_action_pressed("player_blue"):
-		change_colour(Globals.Colour.BLUE)
-	if Input.is_action_pressed("player_next_colour"):
-		_get_next_colour()
-	if Input.is_action_pressed("player_previous_colour"):
-		_get_previous_colour()
-	if Input.is_action_just_pressed("player_reload"):
-		palette.reload_palette()
+	if controls_enabled and tutorial_colour_controls:
+		# Handle colour switching
+		if Input.is_action_pressed("player_red"):
+			change_colour(Globals.Colour.RED)
+		if Input.is_action_pressed("player_green"):
+			change_colour(Globals.Colour.GREEN)
+		if Input.is_action_pressed("player_blue"):
+			change_colour(Globals.Colour.BLUE)
+		if Input.is_action_pressed("player_next_colour"):
+			_get_next_colour()
+		if Input.is_action_pressed("player_previous_colour"):
+			_get_previous_colour()
+		if Input.is_action_just_pressed("player_reload") and tutorial_colour_reload_controls:
+			palette.reload_palette()
 
 
 func _fire_bullet():

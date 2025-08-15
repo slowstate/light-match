@@ -5,7 +5,7 @@ var speed_increase: float = 0.1
 
 func _init() -> void:
 	name = "Supercharged"
-	description = "Enemies move " + str(speed_increase * 100) + "% faster"
+	description = "Enemies become more aggressive"
 	points_per_round = 1
 
 

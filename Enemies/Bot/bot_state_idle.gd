@@ -35,6 +35,7 @@ func update(_delta: float) -> void:
 func physics_update(delta: float) -> void:
 	if !bot:
 		return
+
 	if !Globals.player:
 		return
 
@@ -45,6 +46,9 @@ func physics_update(delta: float) -> void:
 		return
 	bot.enable_stun_indicator(false)
 	bot.dim_lights(clampf(bot.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
+
+	if bot.dumdum:
+		return
 
 	if bot.player_is_within_distance(500.0):
 		transition.emit("Aggro")

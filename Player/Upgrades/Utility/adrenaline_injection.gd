@@ -10,7 +10,7 @@ var effect_duration: float = 5.0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.ADRENALINE_INJECTION
 	name = "Adrenaline Injection"
-	description = "After clearing 1 Chain, you gain " + str(speed_amount * 100) + "% speed for " + str(effect_duration + Save.lifetime_palettes * 0.05) + "s"
+	description = "After clearing 1 Sequence, you temporarily move faster"
 	icon = preload("res://Player/Upgrades/Utility/Adrenaline Injection.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
@@ -19,19 +19,19 @@ func _init() -> void:
 
 func on_palette_cleared(_palette: Palette) -> void:
 	if effect_timer.is_stopped():
-		Globals.player.move_speed *= (1 + speed_amount)
+		Globals.player.move_speed *= clamp(1 + speed_amount + Save.lifetime_palettes * 0.05, 1, 1.4)
 	Globals.player.enable_after_image(true)
-	effect_timer.start(effect_duration + Save.lifetime_palettes * 0.05)
+	effect_timer.start(effect_duration)
 	is_active = true
 
 
 func _on_effect_timer_timeout() -> void:
-	Globals.player.move_speed /= (1 + speed_amount)
+	Globals.player.move_speed /= clamp(1 + speed_amount + Save.lifetime_palettes * 0.05, 1, 1.4)
 	Globals.player.enable_after_image(false)
 	is_active = false
 
 
 func on_upgrade_removed(removed_upgrade: Upgrade) -> void:
 	if removed_upgrade == self and !effect_timer.is_stopped():
-		Globals.player.move_speed /= (1 + speed_amount)
+		Globals.player.move_speed /= clamp(1 + speed_amount + Save.lifetime_palettes * 0.05, 1, 1.4)
 		Globals.player.enable_after_image(false)

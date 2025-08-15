@@ -12,13 +12,7 @@ var effect_duration: float = 10.0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.TASER
 	name = "Taser"
-	description = (
-		"After clearing 1 Chain, for the next 10s, your bullets reduce enemies' speed by "
-		+ str(floor(slow_amount * 100 + Save.lifetime_palettes * 0.1))
-		+ "% for "
-		+ str(slow_duration)
-		+ "s"
-	)
+	description = "After clearing 1 Sequence, your bullets temporarily slow enemies"
 	icon = preload("res://Player/Upgrades/Utility/Taser.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
@@ -40,5 +34,5 @@ func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
 	if is_active:
 		var move_speed_effect = MOVE_SPEED_EFFECT.instantiate()
 		move_speed_effect.effect_amount = -slow_amount
-		move_speed_effect.effect_duration = slow_duration
+		move_speed_effect.effect_duration = slow_duration + Save.lifetime_palettes * 0.01
 		enemy.add_child(move_speed_effect)

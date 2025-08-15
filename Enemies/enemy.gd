@@ -1,6 +1,7 @@
 class_name Enemy
 extends RigidBody2D
 
+@export var dumdum: bool = false
 @export var colour: Globals.Colour = Globals.Colour.BLUE
 @export var max_health := 1
 @export var base_health := 1
@@ -178,6 +179,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 		log_play_data = {"message": "Enemy hit with wrong colour", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
+		SignalBus.enemy_hit_with_wrong_colour.emit(self)
 		return
 
 	set_health(health - bullet.damage)

@@ -1,0 +1,172 @@
+[gd_scene load_steps=19 format=3 uid="uid://bqrcb6a621oxt"]
+
+[ext_resource type="Script" path="res://Tutorial/tutorial.gd" id="1_3b0sp"]
+[ext_resource type="Texture2D" uid="uid://brc2v502yy20g" path="res://Arena/Decorations/Background.png" id="2_rcrtg"]
+[ext_resource type="Texture2D" uid="uid://dxw01xuq15eox" path="res://Enemies/Bot/Sprite/Bot's Drop Shadow.png" id="3_ugbxk"]
+[ext_resource type="Texture2D" uid="uid://chhxpd32t4gp5" path="res://Enemies/Bot/Sprite/Bot Head.png" id="4_i5loq"]
+[ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="4_uj1bv"]
+[ext_resource type="Texture2D" uid="uid://bberwgb1fkftk" path="res://Enemies/Bot/Sprite/Bot Left Arm.png" id="5_1n061"]
+[ext_resource type="Texture2D" uid="uid://dmbqe8fb8we13" path="res://Enemies/Bot/Sprite/Bot Light 1.png" id="6_ywtm0"]
+[ext_resource type="Texture2D" uid="uid://bq6hevqleaeqe" path="res://Enemies/Bot/Sprite/Bot Light 2.png" id="7_pdiah"]
+[ext_resource type="Texture2D" uid="uid://bf6ynr5b6evp" path="res://Enemies/Bot/Sprite/Bot Light 3.png" id="8_6qge5"]
+[ext_resource type="Texture2D" uid="uid://cthvj2i6u33qs" path="res://Enemies/Bot/Sprite/Bot Right Arm.png" id="9_fimif"]
+
+[sub_resource type="Environment" id="Environment_bk2wy"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_strength = 1.2
+glow_blend_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_eq6nu"]
+font_size = 24
+
+[sub_resource type="Gradient" id="Gradient_87ap2"]
+offsets = PackedFloat32Array(0.97644, 0.979058, 1)
+colors = PackedColorArray(0.518, 0.486, 0.192, 0, 0.517647, 0.486275, 0.192157, 1, 0.517647, 0.486275, 0.192157, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6mear"]
+gradient = SubResource("Gradient_87ap2")
+width = 720
+height = 720
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nttrq"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jp8xi"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n03jq"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rp5mg"]
+normal = Vector2(0, 1)
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_3b0sp")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(1280, 720)
+texture = ExtResource("2_rcrtg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bk2wy")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.629675, 0.629675, 0.629675, 1)
+
+[node name="BotSprite" type="Sprite2D" parent="."]
+modulate = Color(2.5, 2.5, 2.5, 1)
+self_modulate = Color(3, 3, 3, 1)
+position = Vector2(1280, 420)
+offset = Vector2(-19, 3)
+
+[node name="Bot\'sDropShadow" type="Sprite2D" parent="BotSprite"]
+visible = false
+position = Vector2(0, 13)
+texture = ExtResource("3_ugbxk")
+
+[node name="BotHead" type="Sprite2D" parent="BotSprite"]
+self_modulate = Color(0.601223, 0.601223, 0.601223, 1)
+texture = ExtResource("4_i5loq")
+
+[node name="BotLeftArm" type="Sprite2D" parent="BotSprite"]
+self_modulate = Color(0.601223, 0.601223, 0.601223, 1)
+position = Vector2(18, 2)
+texture = ExtResource("5_1n061")
+offset = Vector2(9, 16)
+
+[node name="BotLight1" type="Sprite2D" parent="BotSprite"]
+texture = ExtResource("6_ywtm0")
+
+[node name="BotLight2" type="Sprite2D" parent="BotSprite"]
+texture = ExtResource("7_pdiah")
+
+[node name="BotLight3" type="Sprite2D" parent="BotSprite"]
+texture = ExtResource("8_6qge5")
+
+[node name="BotRightArm" type="Sprite2D" parent="BotSprite"]
+self_modulate = Color(0.601223, 0.601223, 0.601223, 1)
+position = Vector2(-20, 0.108535)
+texture = ExtResource("9_fimif")
+offset = Vector2(-7, 17)
+
+[node name="DialogueLabel" type="Label" parent="BotSprite"]
+modulate = Color(0.8, 0.7, 0.7, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.5
+offset_top = 51.5
+offset_right = 296.5
+offset_bottom = 201.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hello Test Subject"
+label_settings = SubResource("LabelSettings_eq6nu")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Player" parent="." instance=ExtResource("4_uj1bv")]
+position = Vector2(1280, 720)
+
+[node name="Boundaries" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Boundaries"]
+modulate = Color(4, 4, 4, 0.8)
+position = Vector2(1280, 720)
+texture = SubResource("GradientTexture2D_6mear")
+
+[node name="RightBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(1640, 720)
+
+[node name="RightBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBoundary"]
+shape = SubResource("WorldBoundaryShape2D_nttrq")
+
+[node name="BottomBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(1280, 1080)
+
+[node name="BottomBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomBoundary"]
+shape = SubResource("WorldBoundaryShape2D_jp8xi")
+
+[node name="LeftBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(920, 720)
+
+[node name="LeftBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftBoundary"]
+shape = SubResource("WorldBoundaryShape2D_n03jq")
+
+[node name="TopBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(1280, 360)
+
+[node name="TopBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/TopBoundary"]
+shape = SubResource("WorldBoundaryShape2D_rp5mg")
+
+[node name="DialogueTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BotRespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FadeInTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="FadeOutTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Fade" type="ColorRect" parent="."]
+z_index = 9
+custom_minimum_size = Vector2(2560, 1440)
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="timeout" from="DialogueTimer" to="." method="_on_dialogue_timer_timeout"]
+[connection signal="timeout" from="BotRespawnTimer" to="." method="_on_bot_respawn_timer_timeout"]
+[connection signal="timeout" from="FadeOutTimer" to="." method="_on_fade_out_timer_timeout"]
