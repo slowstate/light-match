@@ -1,0 +1,123 @@
+[gd_scene load_steps=14 format=3 uid="uid://bihgjnbnsf8se"]
+
+[ext_resource type="Texture2D" uid="uid://d1qhw7lk8kewq" path="res://Player/Sprite/Torso.png" id="1_nxc4q"]
+[ext_resource type="Script" path="res://Player/VFX/player_death_particles.gd" id="2_c3bm8"]
+[ext_resource type="Texture2D" uid="uid://c1um7m7mwmaog" path="res://Player/Sprite/Head.png" id="2_ibgpg"]
+[ext_resource type="Texture2D" uid="uid://cqql4t8gipxdy" path="res://Player/Sprite/Left Forearm.png" id="3_ntqq3"]
+[ext_resource type="Texture2D" uid="uid://kpqlod8xt1ii" path="res://Player/Sprite/Right Arm.png" id="4_mta82"]
+[ext_resource type="Texture2D" uid="uid://dr67l8lyblpd7" path="res://Player/Sprite/Gun.png" id="5_v10vk"]
+
+[sub_resource type="Curve" id="Curve_1061a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e15ri"]
+curve = SubResource("Curve_1061a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b2bba"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ic5f1"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r3r2p"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5gkkb"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lxxah"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[node name="PlayerDeathParticles" type="GPUParticles2D"]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_b2bba")
+texture = ExtResource("1_nxc4q")
+one_shot = true
+script = ExtResource("2_c3bm8")
+
+[node name="HeadParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ic5f1")
+texture = ExtResource("2_ibgpg")
+one_shot = true
+
+[node name="LeftArmParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_r3r2p")
+texture = ExtResource("3_ntqq3")
+one_shot = true
+
+[node name="RightArmParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_5gkkb")
+texture = ExtResource("4_mta82")
+one_shot = true
+
+[node name="GunParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_lxxah")
+texture = ExtResource("5_v10vk")
+one_shot = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]

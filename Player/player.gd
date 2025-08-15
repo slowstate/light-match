@@ -6,6 +6,7 @@ const CONDITION_LABEL = preload("res://Player/Conditions/condition_label.tscn")
 const GUN_PARTICLES = preload("res://Player/VFX/gun_particles.tscn")
 const TASER_PARTICLES = preload("res://Player/VFX/taser_particles.tscn")
 const AFTER_IMAGE_PARTICLES = preload("res://Player/VFX/after_image_particles.tscn")
+const PLAYER_DEATH_PARTICLES = preload("res://Player/VFX/player_death_particles.tscn")
 
 var base_health := 3
 var health: int
@@ -332,6 +333,11 @@ func player_hit(enemy: Enemy) -> void:
 		log_play_data = {"message": "Player killed", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
+		visible = false
+		var player_death_particles = PLAYER_DEATH_PARTICLES.instantiate()
+		player_death_particles.emitting = true
+		player_death_particles.global_position = global_position
+		get_tree().root.add_child(player_death_particles)
 		SignalBus.player_died.emit()
 
 
