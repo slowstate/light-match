@@ -168,7 +168,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_h7qcx")
 
 [node name="BulletSpawnPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(18.9998, -56.0001)
+position = Vector2(73, 23)
 
 [node name="MuzzleFlash" type="Sprite2D" parent="PlayerSprite/BulletSpawnPoint"]
 visible = false
@@ -177,7 +177,7 @@ rotation = -1.5708
 texture = SubResource("GradientTexture2D_8svhs")
 
 [node name="TipOfBarrelPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(17.9998, -66.0001)
+position = Vector2(86, 22)
 
 [node name="SwitchColourFlash" type="Sprite2D" parent="."]
 visible = false

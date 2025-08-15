@@ -151,8 +151,10 @@ func generate_new_palette(enemy_to_ignore: Enemy = null) -> void:
 	for palette_colour in palette_colours.size():
 		var random_colour = pickable_colours.pop_front()
 		palette_colours[palette_colour] = random_colour
+
 		var palette_colour_sprite: PaletteColour = palette_colour_sprites.get_children()[palette_colour]
-		palette_colour_sprite.update_shader_modulate(Globals.COLOUR_VISUAL_VALUE[random_colour])
+		palette_colour_sprite.update_shader_modulate(Globals.COLOUR_VISUAL_VALUE_NO_GLOW[random_colour])
+
 	current_palette_colour_index = 0
 
 	grace_period_timer.start(grace_period_time)

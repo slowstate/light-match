@@ -126,8 +126,8 @@ func _process(delta: float) -> void:
 
 	velocity = move_vec * move_speed
 	if controls_enabled:
-		player_sprite.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(90)
-		collision_shape_2d.rotation = (get_global_mouse_position() - global_position).angle()  #-velocity.angle()
+		player_sprite.rotation = (get_global_mouse_position() - global_position).angle()
+		collision_shape_2d.rotation = -velocity.angle()
 		hurt_box.rotation = (get_global_mouse_position() - global_position).angle()
 
 	move_and_slide()
@@ -211,6 +211,7 @@ func change_colour(new_colour: Globals.Colour) -> void:
 	switch_colour_flash.modulate = Globals.COLOUR_VISUAL_VALUE[current_colour]
 	switch_colour_flash.modulate.a = 1.0
 	Globals.set_crosshair_colour(current_colour)
+	player_sprite.play_change_colour_animation()
 	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	gun_switch_cooldown_timer.start(gun_switch_cooldown)
 	UpgradeManager.on_gun_colour_switch(gun_cooldown_timer)
