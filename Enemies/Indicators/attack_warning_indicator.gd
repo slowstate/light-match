@@ -1,4 +1,3 @@
-@tool
 class_name AttackWarningIndicator
 extends Sprite2D
 

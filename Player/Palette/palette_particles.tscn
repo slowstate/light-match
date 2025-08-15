@@ -29,6 +29,7 @@ radial_accel_min = -2000.0
 radial_accel_max = -2000.0
 damping_min = 500.0
 damping_max = 500.0
+scale_min = 0.1
 alpha_curve = SubResource("CurveTexture_r7f3q")
 
 [sub_resource type="Gradient" id="Gradient_4qfni"]

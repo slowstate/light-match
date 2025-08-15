@@ -367,7 +367,7 @@ func enable_taser_particles(enabled: bool) -> void:
 
 func enable_after_image(enabled: bool) -> void:
 	if enabled:
-		after_image_timer.start(0.3)
+		after_image_timer.start(0.2)
 	else:
 		after_image_timer.stop()
 

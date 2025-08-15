@@ -48,6 +48,7 @@ _data = {
 script = ExtResource("2_ev0gh")
 
 [node name="OracleBody" type="Sprite2D" parent="."]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(1.90735e-05, 4.76837e-06)
 texture = ExtResource("2_lqyxq")
 
