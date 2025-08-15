@@ -30,6 +30,8 @@ func on_palette_cleared(_palette: Palette) -> void:
 			enemy.add_child(stun_effect)
 		effect_timer.start(effect_duration)
 		is_active = true
+		Globals.player.display_stun_grenade_overlay()
+		ScreenShaker.shake(0.1, 10.0)
 		palettes_cleared_counter = 0
 
 	upgrade_counter_updated.emit(palettes_cleared_counter)

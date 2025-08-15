@@ -27,12 +27,13 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w5y12"]
 gradient = SubResource("Gradient_d3mb1")
-width = 8
-height = 8
+width = 16
+height = 16
 
 [node name="HealParticles" type="GPUParticles2D"]
 process_mode = 3
 emitting = false
+amount = 1
 process_material = SubResource("ParticleProcessMaterial_wtf5a")
 texture = SubResource("GradientTexture2D_w5y12")
 lifetime = 0.5

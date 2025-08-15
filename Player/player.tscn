@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=32 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="2_ekdli"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dnshaeplewb85" path="res://Player/Palette/palette.tscn" id="2_ybmla"]
 [ext_resource type="Texture2D" uid="uid://dom47dbbu8wyy" path="res://Player/VFX/Player Shield.png" id="4_w330a"]
 [ext_resource type="FontFile" uid="uid://dt7ijpr3w8s08" path="res://Common/Fonts/exo/Exo-Bold.otf" id="5_qrmso"]
+[ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="5_ssooe"]
 [ext_resource type="Texture2D" uid="uid://d36h547sfej1u" path="res://HUD/PaletteMilestone1.png" id="6_wpbjh"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="7_u5avh"]
 
@@ -51,6 +52,18 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ccwe6"]
 gradient = SubResource("Gradient_56wlf")
+width = 96
+height = 96
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_i1nk4"]
+offsets = PackedFloat32Array(0.538462, 0.995726, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oywpf"]
+gradient = SubResource("Gradient_i1nk4")
 width = 128
 height = 128
 fill = 1
@@ -95,6 +108,18 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.9)
 
+[sub_resource type="Gradient" id="Gradient_8ndxk"]
+offsets = PackedFloat32Array(0.708333, 0.786111, 0.846674, 0.9177, 0.928974, 0.997917, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.2, 1, 1, 1, 0.5, 1, 1, 1, 0.2, 1, 1, 1, 0.2, 1, 1, 1, 0.5, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_liuqh"]
+gradient = SubResource("Gradient_8ndxk")
+width = 3840
+height = 3840
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 position = Vector2(290, 138)
@@ -110,16 +135,8 @@ limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("2_rraco")
 
-[node name="LaserSight" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, 0)
-width = 2.0
-
-[node name="RayCast2D" type="RayCast2D" parent="LaserSight"]
-position = Vector2(56, 19)
-collision_mask = 25
-
 [node name="HealthBar" type="Sprite2D" parent="."]
-position = Vector2(-39, 44)
+position = Vector2(-32, 44)
 texture = SubResource("GradientTexture2D_wyict")
 centered = false
 
@@ -140,16 +157,13 @@ vertical_alignment = 1
 
 [node name="ShieldSprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-7, 0)
 texture = ExtResource("4_w330a")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("2_ekdli")]
 position = Vector2(0, 1.90735e-06)
-rotation = 0.0
 
 [node name="Shadow" type="Sprite2D" parent="PlayerSprite"]
 z_as_relative = false
-position = Vector2(3.49164e-05, 8)
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_h7qcx")
 
@@ -157,6 +171,7 @@ texture = SubResource("GradientTexture2D_h7qcx")
 position = Vector2(18.9998, -56.0001)
 
 [node name="MuzzleFlash" type="Sprite2D" parent="PlayerSprite/BulletSpawnPoint"]
+visible = false
 z_index = 1
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_8svhs")
@@ -165,11 +180,20 @@ texture = SubResource("GradientTexture2D_8svhs")
 position = Vector2(17.9998, -66.0001)
 
 [node name="SwitchColourFlash" type="Sprite2D" parent="."]
+visible = false
 show_behind_parent = true
 texture = SubResource("GradientTexture2D_ccwe6")
 
+[node name="ExosuitOverdriveAura" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.5)
+show_behind_parent = true
+texture = SubResource("GradientTexture2D_oywpf")
+
+[node name="Sprite2D" type="Sprite2D" parent="ExosuitOverdriveAura"]
+texture = ExtResource("5_ssooe")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8, 1)
 shape = SubResource("CapsuleShape2D_wb7x1")
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -177,7 +201,6 @@ collision_layer = 2
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(-8, 1)
 shape = SubResource("CapsuleShape2D_p5nhg")
 
 [node name="Palette" parent="." instance=ExtResource("2_ybmla")]
@@ -260,7 +283,14 @@ visible = false
 texture = SubResource("GradientTexture2D_vy72v")
 centered = false
 
+[node name="AfterImageTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="StunGrenadeOverlay" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_liuqh")
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_area_entered"]
 [connection signal="body_entered" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_body_entered"]
 [connection signal="body_exited" from="ChromeKnucklesProximity" to="." method="_on_chrome_knuckles_proximity_body_exited"]
+[connection signal="timeout" from="AfterImageTimer" to="." method="_on_after_image_timer_timeout"]

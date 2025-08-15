@@ -27,13 +27,15 @@ func on_palette_cleared(_palette: Palette) -> void:
 	palettes_cleared_counter += 1
 	if palettes_cleared_counter >= 3:
 		effect_timer.start(effect_duration)
-		Globals.player.shield_active = true
+		Globals.player.enable_exosuit_overdrive_aura(true)
 		is_active = true
 		palettes_cleared_counter = 0
+	upgrade_counter_updated.emit(palettes_cleared_counter)
 
 
 func _on_effect_timer_timeout() -> void:
 	is_active = false
+	Globals.player.enable_exosuit_overdrive_aura(false)
 
 
 func on_gun_cooldown_start(gun_cooldown_timer: Timer) -> void:
