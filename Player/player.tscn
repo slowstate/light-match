@@ -278,6 +278,7 @@ position = Vector2(33.5, 0)
 texture = ExtResource("7_u5avh")
 
 [node name="PlayerHitOverlay" type="Sprite2D" parent="PlayerInterface"]
+visible = false
 texture = SubResource("GradientTexture2D_vy72v")
 centered = false
 
