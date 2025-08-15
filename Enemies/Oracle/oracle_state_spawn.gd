@@ -23,7 +23,7 @@ func update(_delta: float) -> void:
 
 
 func physics_update(_delta: float) -> void:
-	oracle.modulate = lerp(Color(50, 50, 50, 0), Color(1, 1, 1, 1), 1 - timer.time_left / timer.wait_time)
+	oracle.modulate = lerp(Color(24, 24, 24, 0), Color(1, 1, 1, 1), 1 - timer.time_left / timer.wait_time)
 
 
 func _on_timer_timeout() -> void:

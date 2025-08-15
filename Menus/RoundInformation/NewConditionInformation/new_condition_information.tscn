@@ -15,6 +15,7 @@ size_flags_vertical = 4
 script = ExtResource("1_pj581")
 
 [node name="BG" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -55)
 texture = ExtResource("2_7luv1")
 centered = false

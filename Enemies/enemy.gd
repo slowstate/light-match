@@ -71,12 +71,12 @@ func _setup() -> void:
 
 func _process(delta: float) -> void:
 	if show_hit_flash:
-		sprite.modulate += Color(50, 50, 50, 1)
+		sprite.modulate = Color(5, 5, 5, 1)
 		show_hit_flash = false
 	elif !change_colour_timer.is_stopped():
 		change_colour_timer_threshold += (1 - change_colour_timer.time_left / change_colour_timer.wait_time) * delta
 		if change_colour_timer_threshold < 0.07:
-			sprite.modulate = Color(1.5, 1.5, 1.5, 1)
+			sprite.modulate = Color(1, 1, 1, 1) + Color(0.4, 0.4, 0.4, 1) / health
 		elif change_colour_timer_threshold < 0.14:
 			sprite.modulate = Color(1, 1, 1, 1)
 		else:

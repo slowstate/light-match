@@ -1,10 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://lrajlv44pymq"]
+[gd_scene load_steps=35 format=3 uid="uid://lrajlv44pymq"]
 
 [ext_resource type="Script" path="res://Enemies/Tank/VFX/tank_death_particles.gd" id="1_vd0y7"]
 [ext_resource type="Texture2D" uid="uid://bttbk3egeya7q" path="res://Enemies/Tank/Sprite/Tank Left Leg.png" id="2_yulo0"]
 [ext_resource type="Texture2D" uid="uid://qrfkoor2dh7l" path="res://Enemies/Tank/Sprite/Tank Left Leg-1.png" id="3_40kfl"]
 [ext_resource type="Texture2D" uid="uid://dw68kgmrcpibk" path="res://Enemies/Tank/Sprite/Tank Gun.png" id="4_3y0p2"]
-[ext_resource type="Texture2D" uid="uid://yiavaejju3jn" path="res://Enemies/Tank/Sprite/Tank Body.png" id="5_2xfwr"]
+[ext_resource type="Texture2D" uid="uid://cjjy0rqpw61co" path="res://Enemies/Tank/Sprite/Tank Body.png" id="5_2xfwr"]
 
 [sub_resource type="Curve" id="Curve_nq17q"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26373, 0.0, 0, 0]
@@ -50,13 +50,6 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_8gjtt"]
 curve = SubResource("Curve_xi8i3")
 
-[sub_resource type="Curve" id="Curve_ct4of"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72668, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_sa5fi"]
-curve = SubResource("Curve_ct4of")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hxkek"]
 particle_flag_disable_z = true
 emission_shape = 3
@@ -68,7 +61,6 @@ initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 damping_min = 300.0
 damping_max = 300.0
-scale_curve = SubResource("CurveTexture_sa5fi")
 alpha_curve = SubResource("CurveTexture_8gjtt")
 
 [sub_resource type="Gradient" id="Gradient_3hao0"]
@@ -170,7 +162,7 @@ damping_max = 250.0
 alpha_curve = SubResource("CurveTexture_jk8a8")
 
 [sub_resource type="Gradient" id="Gradient_h76qo"]
-colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 0.1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wsn37"]
 gradient = SubResource("Gradient_h76qo")
@@ -186,7 +178,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_i1yu3")
 texture = SubResource("GradientTexture2D_yql0u")
-lifetime = 30.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 script = ExtResource("1_vd0y7")
@@ -215,7 +207,7 @@ emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_hxkek")
 texture = SubResource("GradientTexture2D_txxcf")
-lifetime = 30.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 

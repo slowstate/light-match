@@ -92,9 +92,9 @@ func _on_enemy_spawn_timer_timeout() -> void:
 
 
 func _random_location_in_arena() -> Vector2:
-	var random_location = Vector2(randi_range(0, 2560), randi_range(0, 1440))
+	var random_location = Vector2(randi_range(0, 2460), randi_range(0, 1340))
 	while (random_location - Globals.player.global_position).length() < 200:
-		random_location = Vector2(randi_range(0, 2560), randi_range(0, 1440))
+		random_location = Vector2(randi_range(0, 2460), randi_range(0, 1340))
 	return random_location
 
 

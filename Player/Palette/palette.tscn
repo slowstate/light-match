@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnshaeplewb85"]
+[gd_scene load_steps=5 format=3 uid="uid://dnshaeplewb85"]
 
 [ext_resource type="Script" path="res://Player/Palette/palette.gd" id="1_u6kec"]
 [ext_resource type="PackedScene" uid="uid://cx7w0mo5dqth5" path="res://Player/Palette/palette_colour.tscn" id="4_k5f8u"]
+
+[sub_resource type="Gradient" id="Gradient_62hvk"]
+offsets = PackedFloat32Array(0.502128, 0.953192)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.01)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7jmt3"]
+gradient = SubResource("Gradient_62hvk")
+width = 1920
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.9)
 
 [node name="Palette" type="Node2D"]
 script = ExtResource("1_u6kec")
@@ -28,6 +40,13 @@ one_shot = true
 [node name="FailedCooldownTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="PaletteCompletedOverlay" type="CanvasLayer" parent="."]
+
+[node name="PaletteCompletedOverlay" type="Sprite2D" parent="PaletteCompletedOverlay"]
+modulate = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_7jmt3")
+centered = false
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="FailedCooldownTimer" to="." method="_on_failed_cooldown_timer_timeout"]

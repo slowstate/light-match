@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=39 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
@@ -18,6 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="11_gl3pw"]
 [ext_resource type="PackedScene" uid="uid://bfffamsp774mm" path="res://Menus/RoundInformation/round_information.tscn" id="14_fia8t"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5srqq"]
+radius = 30.0
+height = 936.0
+
 [sub_resource type="Gradient" id="Gradient_gucvv"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -35,6 +39,10 @@ gradient = SubResource("Gradient_36lnp")
 fill = 1
 fill_from = Vector2(0.270642, 0.472477)
 fill_to = Vector2(0.688073, 0.43578)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_833fb"]
+radius = 21.0
+height = 72.0
 
 [sub_resource type="Gradient" id="Gradient_qivkg"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -83,6 +91,13 @@ font_size = 60
 [sub_resource type="LabelSettings" id="LabelSettings_fdvfh"]
 font_size = 24
 
+[sub_resource type="Environment" id="Environment_366ba"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_strength = 1.2
+glow_blend_mode = 1
+
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
 
@@ -98,7 +113,24 @@ color = Color(0, 0, 0, 1)
 position = Vector2(1280, 720)
 texture = ExtResource("2_lxqbl")
 
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1590, 1385)
+
 [node name="Decorations" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Decorations"]
+position = Vector2(496, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5srqq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Decorations"]
+position = Vector2(2060, 1385)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/StaticBody2D2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5srqq")
 
 [node name="SpecimenPod" type="Sprite2D" parent="Decorations"]
 position = Vector2(247, 53)
@@ -151,7 +183,7 @@ scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod7" type="Sprite2D" parent="Decorations"]
-position = Vector2(1791, 1390)
+position = Vector2(1922, 1390)
 rotation = 3.14159
 texture = ExtResource("4_b8tu2")
 
@@ -161,7 +193,7 @@ scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod8" type="Sprite2D" parent="Decorations"]
-position = Vector2(1922, 1390)
+position = Vector2(2050, 1390)
 rotation = 3.14159
 texture = ExtResource("4_b8tu2")
 
@@ -171,7 +203,7 @@ scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod9" type="Sprite2D" parent="Decorations"]
-position = Vector2(2050, 1390)
+position = Vector2(2181, 1390)
 rotation = 3.14159
 texture = ExtResource("4_b8tu2")
 
@@ -181,21 +213,11 @@ scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod10" type="Sprite2D" parent="Decorations"]
-position = Vector2(2181, 1390)
-rotation = 3.14159
-texture = ExtResource("4_b8tu2")
-
-[node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod10"]
-position = Vector2(-0.999987, 45.5)
-scale = Vector2(1.125, 0.765625)
-texture = SubResource("GradientTexture2D_et5pj")
-
-[node name="SpecimenPod11" type="Sprite2D" parent="Decorations"]
 position = Vector2(2311, 1390)
 rotation = 3.14159
 texture = ExtResource("4_b8tu2")
 
-[node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod11"]
+[node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod10"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
@@ -210,6 +232,12 @@ scale = Vector2(2, 1.75)
 energy = 1.5
 texture = SubResource("GradientTexture2D_6w4b7")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Decorations/Terminal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Terminal/StaticBody2D"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_833fb")
+
 [node name="Terminal2" type="Sprite2D" parent="Decorations"]
 position = Vector2(2513, 710)
 rotation = 3.14159
@@ -220,6 +248,12 @@ position = Vector2(24, -8)
 scale = Vector2(2, 1.75)
 energy = 1.5
 texture = SubResource("GradientTexture2D_6w4b7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Decorations/Terminal2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Terminal2/StaticBody2D"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_833fb")
 
 [node name="Terminal3" type="Sprite2D" parent="Decorations"]
 position = Vector2(924, 51)
@@ -369,6 +403,7 @@ texture = ExtResource("8_c1m3y")
 position = Vector2(-3.00003, -708.005)
 rotation = 3.14159
 scale = Vector2(4.42188, 20.75)
+energy = 0.75
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_26yt2")
 offset = Vector2(0, -30.0096)
@@ -394,6 +429,7 @@ occluder = SubResource("OccluderPolygon2D_6g06c")
 position = Vector2(-3.00003, -708.005)
 rotation = 3.14159
 scale = Vector2(4.42188, 20.75)
+energy = 0.75
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_26yt2")
 offset = Vector2(0, -30.0096)
@@ -405,35 +441,36 @@ occluder = SubResource("OccluderPolygon2D_6g06c")
 [node name="Lighting" type="Node2D" parent="."]
 
 [node name="CeilingLight5" type="Sprite2D" parent="Lighting"]
-modulate = Color(0.396078, 0.635294, 0.741176, 0.823529)
-position = Vector2(1281, 396)
+modulate = Color(0.396078, 0.635294, 0.741176, 0.196078)
+position = Vector2(1281, 722)
 texture = ExtResource("10_o7cfw")
 
 [node name="CeilingLight6" type="Sprite2D" parent="Lighting"]
-modulate = Color(0.396078, 0.635294, 0.741176, 0.823529)
+visible = false
+modulate = Color(0.396078, 0.635294, 0.741176, 0.196078)
 position = Vector2(1283, 1013)
 texture = ExtResource("10_o7cfw")
 
 [node name="CeilingLight" type="Sprite2D" parent="Lighting"]
-modulate = Color(0.431373, 0.662745, 0.756863, 0.101961)
+modulate = Color(0.431373, 0.662745, 0.756863, 0.0588235)
 position = Vector2(426, 715)
 scale = Vector2(1, 1.02975)
 texture = ExtResource("3_8geih")
 
 [node name="CeilingLight2" type="Sprite2D" parent="Lighting"]
-modulate = Color(0.431373, 0.662745, 0.756863, 0.101961)
+modulate = Color(0.431373, 0.662745, 0.756863, 0.0588235)
 position = Vector2(866, 715)
 scale = Vector2(1, 1.02975)
 texture = ExtResource("3_8geih")
 
 [node name="CeilingLight3" type="Sprite2D" parent="Lighting"]
-modulate = Color(0.431373, 0.662745, 0.756863, 0.101961)
+modulate = Color(0.431373, 0.662745, 0.756863, 0.0588235)
 position = Vector2(1716, 715)
 scale = Vector2(1, 1.02975)
 texture = ExtResource("3_8geih")
 
 [node name="CeilingLight4" type="Sprite2D" parent="Lighting"]
-modulate = Color(0.431373, 0.662745, 0.756863, 0.101961)
+modulate = Color(0.431373, 0.662745, 0.756863, 0.0588235)
 position = Vector2(2132, 715)
 scale = Vector2(1, 1.02975)
 texture = ExtResource("3_8geih")
@@ -444,27 +481,27 @@ position = Vector2(1280, 720)
 [node name="Boundaries" type="Node2D" parent="."]
 
 [node name="RightBoundary" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(2560, 1080)
+position = Vector2(2531, 1080)
 
 [node name="RightBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBoundary"]
 shape = SubResource("WorldBoundaryShape2D_4bo3i")
 
 [node name="BottomBoundary" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(1920, 1440)
+position = Vector2(1280, 1392)
 
 [node name="BottomBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomBoundary"]
 shape = SubResource("WorldBoundaryShape2D_sr50s")
 
 [node name="LeftBoundary" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(0, 1080)
+position = Vector2(30, 1080)
 
 [node name="LeftBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftBoundary"]
 shape = SubResource("WorldBoundaryShape2D_hbnfl")
 
 [node name="TopBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(1280, 50)
 
 [node name="TopBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/TopBoundary"]
-position = Vector2(1920, 0)
 shape = SubResource("WorldBoundaryShape2D_o1cin")
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
@@ -576,6 +613,12 @@ one_shot = true
 [node name="Timer78-90s" type="Timer" parent="MusicManager"]
 wait_time = 12.0
 one_shot = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_366ba")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.629675, 0.629675, 0.629675, 1)
 
 [connection signal="timeout" from="StateMachine/RoundActive/EnemySpawnTimer" to="StateMachine/RoundActive" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="StateMachine/ScoreScreen/ScoreInterface/MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]

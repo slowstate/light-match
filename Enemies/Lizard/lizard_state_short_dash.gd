@@ -66,7 +66,12 @@ func physics_update(delta: float) -> void:
 		lizard.attack_area_indicator.modulate.g = lerpf(1.0, 0.0, ease(1 - charge_timer.time_left / charge_timer.wait_time, 1.0))
 	if !dash_timer.is_stopped():
 		lizard.global_position = lizard.global_position.lerp(target_location, ease(1 - dash_timer.time_left / dash_timer.wait_time, -2.0))
-		lizard.global_position = lizard.global_position.clamp(Vector2(65, 65), Vector2(2495, 1385))
+		if lizard.global_position.x <= 970.0:
+			lizard.global_position = lizard.global_position.clamp(Vector2(65 + 32, 65 + 84), Vector2(2495 - 32, 1385 - 50))
+		elif lizard.global_position.x >= 1590.0:
+			lizard.global_position = lizard.global_position.clamp(Vector2(65 + 32, 65 + 50), Vector2(2495 - 32, 1385 - 84))
+		else:
+			lizard.global_position = lizard.global_position.clamp(Vector2(65 + 32, 65 + 50), Vector2(2495 - 32, 1385 - 50))
 
 	if !stun_timer.is_stopped():
 		lizard.set_stun_indicator_percentage_completion(1 - stun_timer.time_left / stun_timer.wait_time)

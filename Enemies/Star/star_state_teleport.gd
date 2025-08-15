@@ -23,7 +23,7 @@ func enter() -> void:
 	target_location = star.global_position + (Globals.player.global_position - star.global_position).limit_length(500.0)
 	target_location.x += randf_range(-100.0, 100.0)
 	target_location.y += randf_range(-100.0, 100.0)
-	target_location = target_location.clamp(Vector2(40, 40), Vector2(2520, 1400))
+	target_location = target_location.clamp(Vector2(100, 100), Vector2(2560 - 100, 1440 - 100))
 	star.hit_box.global_position = target_location
 	if !prep_timer.timeout.is_connected(_on_prep_timer_timeout):
 		prep_timer.timeout.connect(_on_prep_timer_timeout)

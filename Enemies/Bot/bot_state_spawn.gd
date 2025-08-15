@@ -24,7 +24,7 @@ func update(_delta: float) -> void:
 
 
 func physics_update(_delta: float) -> void:
-	bot.modulate = lerp(Color(50, 50, 50, 0), Color(1, 1, 1, 1), 1 - timer.time_left / timer.wait_time)
+	bot.modulate = lerp(Color(38, 38, 38, 0), Color(1, 1, 1, 1), 1 - timer.time_left / timer.wait_time)
 
 
 func _on_timer_timeout() -> void:

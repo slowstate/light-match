@@ -2,6 +2,7 @@ class_name Palette
 extends Node2D
 
 const PALETTE_COLOUR = preload("res://Player/Palette/palette_colour.tscn")
+const PALETTE_PARTICLES = preload("res://Player/Palette/palette_particles.tscn")
 
 var palette_colours: Array[Globals.Colour]
 var current_palette_colour_index: int = 0
@@ -17,6 +18,7 @@ var palette_lockout: float = 3.0
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var grace_period_timer: Timer = $GracePeriodTimer
 @onready var failed_cooldown_timer: Timer = $FailedCooldownTimer
+@onready var palette_completed_overlay: Sprite2D = $PaletteCompletedOverlay/PaletteCompletedOverlay
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,11 +35,13 @@ func _process(delta: float) -> void:
 		var separation = palette_colour_sprites.get_theme_constant("separation")
 		palette_colour_sprites.add_theme_constant_override("separation", lerp(separation, 36, reload_animation_progress / 0.1))
 
-	timer_progress = 0.0
 	if !failed_cooldown_timer.is_stopped():
-		timer_progress = 1.0 - failed_cooldown_timer.time_left / failed_cooldown_timer.wait_time
+		timer_progress += delta * 2
 		for palette_colour_sprite in palette_colour_sprites.get_children():
-			palette_colour_sprite.update_shader_timer_progress(clamp(timer_progress * 2, 0.0, 1.0))
+			palette_colour_sprite.update_shader_timer_progress(clamp(timer_progress, 0.0, 1.0))
+
+	if palette_completed_overlay.modulate.a > 0.0:
+		palette_completed_overlay.modulate.a = lerp(palette_completed_overlay.modulate.a, 0.0, delta / 0.2)
 
 
 func _on_enemy_died(enemy: Enemy) -> void:
@@ -52,12 +56,17 @@ func _on_enemy_died(enemy: Enemy) -> void:
 			on_palette_failed()
 		return
 
+	var palette_particles = PALETTE_PARTICLES.instantiate()
+	palette_particles.modulate = Globals.COLOUR_VISUAL_VALUE[palette_colours[current_palette_colour_index]]
+	palette_particles.global_position = (palette_colour_sprites.get_children()[current_palette_colour_index] as Control).global_position + Vector2(0, -32)
+	palette_particles.emitting = true
+	get_tree().root.add_child(palette_particles)
+
 	if current_palette_colour_index >= palette_colours.size() - 1:
 		on_palette_cleared(enemy)
 		return
 
 	palette_colour_sprites.get_children()[current_palette_colour_index].visible = false
-
 	current_palette_colour_index += 1
 	palette_colour_sprites.get_children()[current_palette_colour_index].update_shader_alpha(1.0)
 	SfxManager.play_sound("PaletteSuccessSFX", -17.0, -15.0, 1.0, 1.0)
@@ -84,6 +93,7 @@ func on_palette_failed() -> void:
 	for palette_colour in palette_colour_sprites.get_children():
 		palette_colour.update_shader_modulate(Color(1.0, 1.0, 1.0, 1.0))
 		palette_colour.update_shader_alpha(0.4)
+	timer_progress = 0.0
 	failed_cooldown_timer.start(palette_lockout)
 	SfxManager.play_sound("PaletteFailSFX", -17.0, -15.0, 1.0, 1.0)
 	for palette_colour_sprite in palette_colour_sprites.get_children():
@@ -108,6 +118,7 @@ func on_palette_cleared(enemy_to_ignore: Enemy = null) -> void:
 	SignalBus.palette_cleared.emit()
 	UpgradeManager.on_palette_cleared(self)
 
+	palette_completed_overlay.modulate.a = 1.0
 	var palette_colours_strings = []
 	for palette_colour in palette_colours:
 		palette_colours_strings.append(Globals.COLOUR_STRING[palette_colour])
@@ -151,8 +162,10 @@ func generate_new_palette(enemy_to_ignore: Enemy = null) -> void:
 	for palette_colour in palette_colours.size():
 		var random_colour = pickable_colours.pop_front()
 		palette_colours[palette_colour] = random_colour
+
 		var palette_colour_sprite: PaletteColour = palette_colour_sprites.get_children()[palette_colour]
-		palette_colour_sprite.update_shader_modulate(Globals.COLOUR_VISUAL_VALUE[random_colour])
+		palette_colour_sprite.update_shader_modulate(Globals.COLOUR_VISUAL_VALUE_NO_GLOW[random_colour])
+
 	current_palette_colour_index = 0
 
 	grace_period_timer.start(grace_period_time)
