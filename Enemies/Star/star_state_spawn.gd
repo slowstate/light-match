@@ -23,7 +23,7 @@ func update(_delta: float) -> void:
 
 
 func physics_update(_delta: float) -> void:
-	star.modulate = lerp(Color(40, 40, 40, 0), Color(1, 1, 1, 1), 1 - timer.time_left / timer.wait_time)
+	star.modulate = lerp(Color(19, 19, 19, 0), Color(1, 1, 1, 1), 1 - timer.time_left / timer.wait_time)
 
 
 func _on_timer_timeout() -> void:

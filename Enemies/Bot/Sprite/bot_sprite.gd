@@ -4,6 +4,9 @@ extends EnemySprite
 @onready var bot_light_1: Sprite2D = $BotLight1
 @onready var bot_light_2: Sprite2D = $BotLight2
 @onready var bot_light_3: Sprite2D = $BotLight3
+@onready var bot_head: Sprite2D = $BotHead
+@onready var bot_left_arm: Sprite2D = $BotLeftArm
+@onready var bot_right_arm: Sprite2D = $BotRightArm
 
 
 func play_move_animation(play: bool) -> void:

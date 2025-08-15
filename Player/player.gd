@@ -85,11 +85,11 @@ func _process(delta: float) -> void:
 		stun_grenade_overlay.scale = lerp(stun_grenade_overlay.scale, Vector2(1.0, 1.0), delta / 0.3)
 
 	if exosuit_overdrive_aura.visible:
-		exosuit_overdrive_aura.modulate.a = lerp(exosuit_overdrive_aura.modulate.a, 0.1, delta / 0.5)
-		exosuit_overdrive_aura.scale = lerp(exosuit_overdrive_aura.scale, Vector2(0.95, 0.95), delta / 0.5)
+		exosuit_overdrive_aura.modulate.a = lerp(exosuit_overdrive_aura.modulate.a, 0.1, delta / 0.2)
+		exosuit_overdrive_aura.scale = lerp(exosuit_overdrive_aura.scale, Vector2(0.75, 0.75), delta / 0.2)
 		if exosuit_overdrive_aura.modulate.a < 0.15:
 			exosuit_overdrive_aura.modulate.a = 0.3
-			exosuit_overdrive_aura.scale = Vector2(1.0, 1.0)
+			exosuit_overdrive_aura.scale = Vector2(0.8, 0.8)
 
 	shield_sprite.visible = true if shield_active else false
 	if !hit_immunity_timer.is_stopped():  # Hit immunity flashing

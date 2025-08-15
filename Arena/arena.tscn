@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=37 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
@@ -86,6 +86,7 @@ font_size = 24
 [sub_resource type="Environment" id="Environment_366ba"]
 background_mode = 3
 glow_enabled = true
+glow_normalized = true
 glow_strength = 1.2
 glow_blend_mode = 1
 
