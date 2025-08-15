@@ -107,6 +107,7 @@ initial_velocity_max = 600.0
 gravity = Vector3(0, 0, 0)
 damping_min = 800.0
 damping_max = 800.0
+scale_min = 0.5
 color_ramp = SubResource("GradientTexture1D_e6r6h")
 alpha_curve = SubResource("CurveTexture_akle4")
 

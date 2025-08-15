@@ -15,11 +15,13 @@
 script = ExtResource("1_wkl1k")
 
 [node name="TankRightLeg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-0.5, 23)
 rotation = -1.5708
 texture = ExtResource("1_qf5jd")
 
 [node name="TankLeftLeg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.5, -23)
 rotation = -1.5708
 texture = ExtResource("2_2qd80")

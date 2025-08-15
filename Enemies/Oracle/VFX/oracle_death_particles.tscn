@@ -28,6 +28,7 @@ initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 damping_min = 300.0
 damping_max = 300.0
+scale_min = 0.2
 scale_curve = SubResource("CurveTexture_0i136")
 alpha_curve = SubResource("CurveTexture_0nmm2")
 
