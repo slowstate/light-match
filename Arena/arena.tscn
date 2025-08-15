@@ -87,11 +87,13 @@ font_size = 24
 background_mode = 3
 glow_enabled = true
 glow_normalized = true
-glow_strength = 1.2
+glow_strength = 0.9
 glow_blend_mode = 1
+glow_hdr_luminance_cap = 10.0
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
+current_round_number = 4
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -100.0
@@ -118,6 +120,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod2"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod3" type="Sprite2D" parent="Decorations"]
@@ -127,6 +130,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod3"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod4" type="Sprite2D" parent="Decorations"]
@@ -136,6 +140,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod4"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod5" type="Sprite2D" parent="Decorations"]
@@ -145,6 +150,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod5"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod6" type="Sprite2D" parent="Decorations"]
@@ -155,6 +161,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod6"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod7" type="Sprite2D" parent="Decorations"]
@@ -165,6 +172,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod7"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod8" type="Sprite2D" parent="Decorations"]
@@ -175,6 +183,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod8"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod9" type="Sprite2D" parent="Decorations"]
@@ -185,6 +194,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod9"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod10" type="Sprite2D" parent="Decorations"]
@@ -195,6 +205,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod10"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod11" type="Sprite2D" parent="Decorations"]
@@ -205,6 +216,7 @@ texture = ExtResource("4_b8tu2")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod11"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
+energy = 2.0
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="Terminal" type="Sprite2D" parent="Decorations"]
@@ -257,7 +269,7 @@ texture = ExtResource("6_impxk")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/TV"]
 position = Vector2(112, -8.00001)
 scale = Vector2(3.51563, 1.9375)
-energy = 0.7
+energy = 1.5
 texture = SubResource("GradientTexture2D_mxxmj")
 
 [node name="TV3" type="Sprite2D" parent="Decorations"]
@@ -267,7 +279,7 @@ texture = ExtResource("6_impxk")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/TV3"]
 position = Vector2(112, -8.00001)
 scale = Vector2(3.51563, 1.9375)
-energy = 0.7
+energy = 1.5
 texture = SubResource("GradientTexture2D_mxxmj")
 
 [node name="TV4" type="Sprite2D" parent="Decorations"]
@@ -277,7 +289,7 @@ texture = ExtResource("6_impxk")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/TV4"]
 position = Vector2(112, -8.00001)
 scale = Vector2(3.51563, 1.9375)
-energy = 0.7
+energy = 1.5
 texture = SubResource("GradientTexture2D_mxxmj")
 
 [node name="TV6" type="Sprite2D" parent="Decorations"]
@@ -287,7 +299,7 @@ texture = ExtResource("6_impxk")
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/TV6"]
 position = Vector2(112, -8.00001)
 scale = Vector2(3.51563, 1.9375)
-energy = 0.7
+energy = 1.5
 texture = SubResource("GradientTexture2D_mxxmj")
 
 [node name="LooseCables" type="Sprite2D" parent="Decorations"]
@@ -319,8 +331,10 @@ position = Vector2(247, 1415)
 texture = ExtResource("8_c1m3y")
 
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/Window"]
+visible = false
 position = Vector2(1.49998, 509.694)
 scale = Vector2(4.42188, 13.7188)
+energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_26yt2")
 offset = Vector2(0, -30.0096)
@@ -350,8 +364,10 @@ position = Vector2(763, 1415)
 texture = ExtResource("8_c1m3y")
 
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/Window2"]
+visible = false
 position = Vector2(1.49998, 509.694)
 scale = Vector2(4.42188, 13.7188)
+energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_26yt2")
 offset = Vector2(0, -30.0096)
@@ -361,8 +377,10 @@ position = Vector2(505, 1415)
 texture = ExtResource("8_c1m3y")
 
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/Window3"]
+visible = false
 position = Vector2(1.49998, 509.694)
 scale = Vector2(4.42188, 13.7188)
+energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_26yt2")
 offset = Vector2(0, -30.0096)
@@ -373,10 +391,11 @@ rotation = 1.5708
 texture = ExtResource("8_c1m3y")
 
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/Window4"]
+visible = false
 position = Vector2(-3.00003, -708.005)
 rotation = 3.14159
 scale = Vector2(4.42188, 20.75)
-energy = 0.75
+energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_26yt2")
 offset = Vector2(0, -30.0096)
@@ -399,10 +418,11 @@ position = Vector2(0, 9)
 occluder = SubResource("OccluderPolygon2D_6g06c")
 
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/Window5"]
+visible = false
 position = Vector2(-3.00003, -708.005)
 rotation = 3.14159
 scale = Vector2(4.42188, 20.75)
-energy = 0.75
+energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_26yt2")
 offset = Vector2(0, -30.0096)
@@ -416,12 +436,6 @@ occluder = SubResource("OccluderPolygon2D_6g06c")
 [node name="CeilingLight5" type="Sprite2D" parent="Lighting"]
 modulate = Color(0.396078, 0.635294, 0.741176, 0.196078)
 position = Vector2(1281, 722)
-texture = ExtResource("10_o7cfw")
-
-[node name="CeilingLight6" type="Sprite2D" parent="Lighting"]
-visible = false
-modulate = Color(0.396078, 0.635294, 0.741176, 0.196078)
-position = Vector2(1283, 1013)
 texture = ExtResource("10_o7cfw")
 
 [node name="CeilingLight" type="Sprite2D" parent="Lighting"]
@@ -591,7 +605,10 @@ one_shot = true
 environment = SubResource("Environment_366ba")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.629675, 0.629675, 0.629675, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+energy = 0.5
 
 [connection signal="timeout" from="StateMachine/RoundActive/EnemySpawnTimer" to="StateMachine/RoundActive" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="StateMachine/ScoreScreen/ScoreInterface/MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]

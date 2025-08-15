@@ -283,7 +283,7 @@ texture = SubResource("GradientTexture2D_vy72v")
 centered = false
 
 [node name="AfterImageTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.1
 
 [node name="StunGrenadeOverlay" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_liuqh")

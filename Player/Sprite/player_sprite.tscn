@@ -309,22 +309,27 @@ _data = {
 script = ExtResource("1_67twl")
 
 [node name="LeftFoot" type="Sprite2D" parent="."]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(-12, -18)
 texture = ExtResource("1_qfhgl")
 
 [node name="RightFoot" type="Sprite2D" parent="."]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(0, 14)
 texture = ExtResource("2_ls50o")
 
 [node name="Torso" type="Sprite2D" parent="."]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(-3, -1)
 texture = ExtResource("1_b0p23")
 
 [node name="LeftForearm" type="Sprite2D" parent="Torso"]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(17, -14)
 texture = ExtResource("4_0dfji")
 
 [node name="LeftArm" type="Sprite2D" parent="Torso/LeftForearm"]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(6.93566, 2.93464)
 texture = ExtResource("5_iqic5")
 offset = Vector2(2.9359, 17.8271)
@@ -342,10 +347,12 @@ position = Vector2(10.4775, -26.8183)
 texture = ExtResource("16_iv4sp")
 
 [node name="Right Forearm" type="Sprite2D" parent="Torso"]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(-4, 27)
 texture = ExtResource("9_b6nlt")
 
 [node name="Right Arm" type="Sprite2D" parent="Torso/Right Forearm"]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(3.5887, 2.38414)
 texture = ExtResource("13_gyih6")
 offset = Vector2(12.4113, -1.38414)
@@ -430,6 +437,7 @@ texture = ExtResource("26_p6c0n")
 offset = Vector2(60, -1.00002)
 
 [node name="Head" type="Sprite2D" parent="."]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 texture = ExtResource("19_1w3kn")
 
 [node name="HeadLight" type="Sprite2D" parent="Head"]

@@ -33,6 +33,7 @@ rotation = -1.5708
 texture = ExtResource("3_v40w2")
 
 [node name="TankBody" type="Sprite2D" parent="."]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(9.5, 0)
 rotation = -1.5708
 texture = ExtResource("4_dm4y5")
