@@ -1,0 +1,191 @@
+[gd_scene load_steps=24 format=3 uid="uid://bihgjnbnsf8se"]
+
+[ext_resource type="Texture2D" uid="uid://pcx5qtsovoii" path="res://Player/Sprite/Torso.png" id="1_nxc4q"]
+[ext_resource type="Script" path="res://Player/VFX/player_death_particles.gd" id="2_c3bm8"]
+[ext_resource type="Texture2D" uid="uid://bllvggk3ceag4" path="res://Player/Sprite/Head.png" id="2_ibgpg"]
+[ext_resource type="Texture2D" uid="uid://dc1qs6jfjedb0" path="res://Player/Sprite/Right Arm.png" id="4_mta82"]
+[ext_resource type="Texture2D" uid="uid://sl81aq3h6cbs" path="res://Player/Sprite/Left Arm.png" id="4_nw13y"]
+[ext_resource type="Texture2D" uid="uid://qhyv8rxrbdba" path="res://Player/Sprite/Gun/Gun Body.png" id="6_3ytdj"]
+[ext_resource type="Texture2D" uid="uid://dnwkfdhiqmyee" path="res://Player/Sprite/Gun/Gun Barrel.png" id="7_kyexc"]
+
+[sub_resource type="Curve" id="Curve_1061a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e15ri"]
+curve = SubResource("Curve_1061a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b2bba"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ic5f1"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r3r2p"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5gkkb"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lxxah"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+damping_min = 250.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_e15ri")
+
+[sub_resource type="Curve" id="Curve_qi5wq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_akle4"]
+curve = SubResource("Curve_qi5wq")
+
+[sub_resource type="Gradient" id="Gradient_bv1a0"]
+offsets = PackedFloat32Array(0, 0.551429, 1)
+colors = PackedColorArray(0, 0.633333, 1, 1, 0.35, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e6r6h"]
+gradient = SubResource("Gradient_bv1a0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y3llw"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 600.0
+gravity = Vector3(0, 0, 0)
+damping_min = 800.0
+damping_max = 800.0
+color_ramp = SubResource("GradientTexture1D_e6r6h")
+alpha_curve = SubResource("CurveTexture_akle4")
+
+[sub_resource type="Gradient" id="Gradient_jaw3d"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a4y14"]
+gradient = SubResource("Gradient_jaw3d")
+width = 4
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_efsj3"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqesr"]
+gradient = SubResource("Gradient_efsj3")
+width = 8
+height = 8
+
+[node name="PlayerDeathParticles" type="GPUParticles2D"]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_b2bba")
+texture = ExtResource("1_nxc4q")
+one_shot = true
+script = ExtResource("2_c3bm8")
+
+[node name="HeadParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ic5f1")
+texture = ExtResource("2_ibgpg")
+one_shot = true
+
+[node name="LeftArmParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_r3r2p")
+texture = ExtResource("4_nw13y")
+one_shot = true
+
+[node name="RightArmParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_5gkkb")
+texture = ExtResource("4_mta82")
+one_shot = true
+
+[node name="GunParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_lxxah")
+texture = ExtResource("6_3ytdj")
+one_shot = true
+
+[node name="GunParticle2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_lxxah")
+texture = ExtResource("7_kyexc")
+one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(5, 5, 5, 1)
+emitting = false
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_y3llw")
+texture = SubResource("GradientTexture2D_a4y14")
+one_shot = true
+explosiveness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_y3llw")
+texture = SubResource("GradientTexture2D_dqesr")
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="finished" from="." to="." method="_on_finished"]

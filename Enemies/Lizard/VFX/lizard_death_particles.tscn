@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bxre6ebtr7wtm"]
+[gd_scene load_steps=39 format=3 uid="uid://bxre6ebtr7wtm"]
 
 [ext_resource type="Script" path="res://Enemies/Lizard/VFX/lizard_death_particles.gd" id="1_4y8cf"]
 [ext_resource type="Texture2D" uid="uid://demfmd5v0bu0i" path="res://Enemies/Lizard/Sprite/Liz Body.png" id="2_nci38"]
@@ -54,13 +54,6 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_v274b"]
 curve = SubResource("Curve_2h268")
 
-[sub_resource type="Curve" id="Curve_lcv74"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72668, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_4wkoc"]
-curve = SubResource("Curve_lcv74")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ikf3j"]
 particle_flag_disable_z = true
 emission_shape = 3
@@ -72,7 +65,6 @@ initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 damping_min = 300.0
 damping_max = 300.0
-scale_curve = SubResource("CurveTexture_4wkoc")
 alpha_curve = SubResource("CurveTexture_v274b")
 
 [sub_resource type="Gradient" id="Gradient_xof63"]
@@ -174,7 +166,7 @@ damping_max = 250.0
 alpha_curve = SubResource("CurveTexture_tcxon")
 
 [sub_resource type="Gradient" id="Gradient_wc020"]
-colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 0.1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_50myv"]
 gradient = SubResource("Gradient_wc020")
@@ -190,7 +182,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_pv86x")
 texture = SubResource("GradientTexture2D_y6x8h")
-lifetime = 30.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 script = ExtResource("1_4y8cf")
@@ -233,7 +225,7 @@ emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_ikf3j")
 texture = SubResource("GradientTexture2D_aihhg")
-lifetime = 30.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 
