@@ -177,7 +177,6 @@ texture = SubResource("GradientTexture2D_8svhs")
 position = Vector2(61, 21)
 
 [node name="SwitchColourFlash" type="Sprite2D" parent="."]
-visible = false
 show_behind_parent = true
 texture = SubResource("GradientTexture2D_ccwe6")
 

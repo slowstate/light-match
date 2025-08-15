@@ -5,7 +5,7 @@
 
 [sub_resource type="Gradient" id="Gradient_62hvk"]
 offsets = PackedFloat32Array(0.502128, 0.953192)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.05)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.01)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7jmt3"]
 gradient = SubResource("Gradient_62hvk")
@@ -44,6 +44,7 @@ one_shot = true
 [node name="PaletteCompletedOverlay" type="CanvasLayer" parent="."]
 
 [node name="PaletteCompletedOverlay" type="Sprite2D" parent="PaletteCompletedOverlay"]
+modulate = Color(1, 1, 1, 0)
 texture = SubResource("GradientTexture2D_7jmt3")
 centered = false
 
