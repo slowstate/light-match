@@ -183,9 +183,11 @@ position = Vector2(0, 13)
 texture = ExtResource("1_p7gks")
 
 [node name="BotHead" type="Sprite2D" parent="."]
+self_modulate = Color(0.601223, 0.601223, 0.601223, 1)
 texture = ExtResource("2_bneqc")
 
 [node name="BotLeftArm" type="Sprite2D" parent="."]
+self_modulate = Color(0.601223, 0.601223, 0.601223, 1)
 position = Vector2(18, 2)
 texture = ExtResource("3_y00nd")
 offset = Vector2(9, 16)
@@ -200,6 +202,7 @@ texture = ExtResource("5_or6tu")
 texture = ExtResource("6_l4ghs")
 
 [node name="BotRightArm" type="Sprite2D" parent="."]
+self_modulate = Color(0.601223, 0.601223, 0.601223, 1)
 position = Vector2(-20, 0.108535)
 texture = ExtResource("7_wwmbe")
 offset = Vector2(-7, 17)
