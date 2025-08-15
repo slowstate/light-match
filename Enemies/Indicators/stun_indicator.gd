@@ -1,4 +1,3 @@
-@tool
 class_name StunIndicator
 extends Sprite2D
 

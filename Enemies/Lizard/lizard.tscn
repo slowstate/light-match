@@ -119,6 +119,7 @@ rotation = -1.5708
 offset = Vector2(-0.149141, 37.3588)
 
 [node name="LizHead" type="Sprite2D" parent="Head/HeadSprite2D"]
+self_modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(0, 18)
 texture = ExtResource("4_w4nmm")
 

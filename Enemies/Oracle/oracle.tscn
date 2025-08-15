@@ -43,9 +43,11 @@ script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb0"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb0"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb0"]
@@ -59,9 +61,11 @@ script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb1"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb1"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb1"]
@@ -75,9 +79,11 @@ script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb2"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb2"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb2"]
@@ -91,9 +97,11 @@ script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb3"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb3"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb3"]
@@ -107,9 +115,11 @@ script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb4"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb4"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb4"]
@@ -123,9 +133,11 @@ script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb5"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb5"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb5"]

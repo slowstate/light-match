@@ -1,13 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8c6s8ng5867s"]
+[gd_scene load_steps=3 format=3 uid="uid://b8c6s8ng5867s"]
 
 [ext_resource type="Script" path="res://Enemies/Indicators/attack_warning_indicator.gd" id="1_1f8pf"]
+[ext_resource type="Texture2D" uid="uid://dxg8xsryr8cj2" path="res://Enemies/Indicators/Warning.png" id="2_3teeb"]
 
 [node name="AttackWarningIndicator" type="Sprite2D"]
 top_level = true
 z_index = 1
 script = ExtResource("1_1f8pf")
 
+[node name="Warning" type="Sprite2D" parent="."]
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+scale = Vector2(0.642857, 0.666667)
+texture = ExtResource("2_3teeb")
+
 [node name="Label" type="Label" parent="."]
+visible = false
 modulate = Color(1, 1, 0, 1)
 anchors_preset = 8
 anchor_left = 0.5
