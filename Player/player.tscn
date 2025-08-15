@@ -182,6 +182,7 @@ show_behind_parent = true
 texture = SubResource("GradientTexture2D_ccwe6")
 
 [node name="ExosuitOverdriveAura" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(2, 2, 2, 0.3)
 show_behind_parent = true
 scale = Vector2(0.8, 0.8)
