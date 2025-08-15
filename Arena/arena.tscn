@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=39 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
@@ -18,6 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="11_gl3pw"]
 [ext_resource type="PackedScene" uid="uid://bfffamsp774mm" path="res://Menus/RoundInformation/round_information.tscn" id="14_fia8t"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5srqq"]
+radius = 30.0
+height = 936.0
+
 [sub_resource type="Gradient" id="Gradient_gucvv"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -35,6 +39,10 @@ gradient = SubResource("Gradient_36lnp")
 fill = 1
 fill_from = Vector2(0.270642, 0.472477)
 fill_to = Vector2(0.688073, 0.43578)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_833fb"]
+radius = 21.0
+height = 72.0
 
 [sub_resource type="Gradient" id="Gradient_qivkg"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -92,6 +100,7 @@ glow_blend_mode = 1
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
+current_round_number = 3
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -100.0
@@ -105,7 +114,24 @@ color = Color(0, 0, 0, 1)
 position = Vector2(1280, 720)
 texture = ExtResource("2_lxqbl")
 
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1590, 1385)
+
 [node name="Decorations" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Decorations"]
+position = Vector2(496, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5srqq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Decorations"]
+position = Vector2(2060, 1385)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/StaticBody2D2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5srqq")
 
 [node name="SpecimenPod" type="Sprite2D" parent="Decorations"]
 position = Vector2(247, 53)
@@ -158,7 +184,7 @@ scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod7" type="Sprite2D" parent="Decorations"]
-position = Vector2(1791, 1390)
+position = Vector2(1922, 1390)
 rotation = 3.14159
 texture = ExtResource("4_b8tu2")
 
@@ -168,7 +194,7 @@ scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod8" type="Sprite2D" parent="Decorations"]
-position = Vector2(1922, 1390)
+position = Vector2(2050, 1390)
 rotation = 3.14159
 texture = ExtResource("4_b8tu2")
 
@@ -178,7 +204,7 @@ scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod9" type="Sprite2D" parent="Decorations"]
-position = Vector2(2050, 1390)
+position = Vector2(2181, 1390)
 rotation = 3.14159
 texture = ExtResource("4_b8tu2")
 
@@ -188,21 +214,11 @@ scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
 
 [node name="SpecimenPod10" type="Sprite2D" parent="Decorations"]
-position = Vector2(2181, 1390)
-rotation = 3.14159
-texture = ExtResource("4_b8tu2")
-
-[node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod10"]
-position = Vector2(-0.999987, 45.5)
-scale = Vector2(1.125, 0.765625)
-texture = SubResource("GradientTexture2D_et5pj")
-
-[node name="SpecimenPod11" type="Sprite2D" parent="Decorations"]
 position = Vector2(2311, 1390)
 rotation = 3.14159
 texture = ExtResource("4_b8tu2")
 
-[node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod11"]
+[node name="PointLight2D" type="PointLight2D" parent="Decorations/SpecimenPod10"]
 position = Vector2(-0.999987, 45.5)
 scale = Vector2(1.125, 0.765625)
 texture = SubResource("GradientTexture2D_et5pj")
@@ -217,6 +233,12 @@ scale = Vector2(2, 1.75)
 energy = 1.5
 texture = SubResource("GradientTexture2D_6w4b7")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Decorations/Terminal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Terminal/StaticBody2D"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_833fb")
+
 [node name="Terminal2" type="Sprite2D" parent="Decorations"]
 position = Vector2(2513, 710)
 rotation = 3.14159
@@ -227,6 +249,12 @@ position = Vector2(24, -8)
 scale = Vector2(2, 1.75)
 energy = 1.5
 texture = SubResource("GradientTexture2D_6w4b7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Decorations/Terminal2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Terminal2/StaticBody2D"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_833fb")
 
 [node name="Terminal3" type="Sprite2D" parent="Decorations"]
 position = Vector2(924, 51)
@@ -454,27 +482,27 @@ position = Vector2(1280, 720)
 [node name="Boundaries" type="Node2D" parent="."]
 
 [node name="RightBoundary" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(2560, 1080)
+position = Vector2(2531, 1080)
 
 [node name="RightBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBoundary"]
 shape = SubResource("WorldBoundaryShape2D_4bo3i")
 
 [node name="BottomBoundary" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(1920, 1440)
+position = Vector2(1280, 1392)
 
 [node name="BottomBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomBoundary"]
 shape = SubResource("WorldBoundaryShape2D_sr50s")
 
 [node name="LeftBoundary" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(0, 1080)
+position = Vector2(30, 1080)
 
 [node name="LeftBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftBoundary"]
 shape = SubResource("WorldBoundaryShape2D_hbnfl")
 
 [node name="TopBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(1280, 50)
 
 [node name="TopBoundaryCollisionShape2D" type="CollisionShape2D" parent="Boundaries/TopBoundary"]
-position = Vector2(1920, 0)
 shape = SubResource("WorldBoundaryShape2D_o1cin")
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
