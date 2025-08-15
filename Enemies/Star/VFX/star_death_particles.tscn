@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2qox8103ia87"]
+[gd_scene load_steps=17 format=3 uid="uid://d2qox8103ia87"]
 
 [ext_resource type="Script" path="res://Enemies/Star/VFX/star_death_particles.gd" id="1_5hl2w"]
 [ext_resource type="Texture2D" uid="uid://du6tcee4d2e6c" path="res://Enemies/Star/Sprite/Star Body.png" id="2_jt4ua"]
@@ -50,13 +50,6 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_io2pr"]
 curve = SubResource("Curve_u5b1x")
 
-[sub_resource type="Curve" id="Curve_wvf2o"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.263736), -1.29081e-06, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_28k3s"]
-curve = SubResource("Curve_wvf2o")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vl85b"]
 particle_flag_disable_z = true
 emission_shape = 6
@@ -71,7 +64,6 @@ initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 damping_min = 300.0
 damping_max = 300.0
-scale_curve = SubResource("CurveTexture_28k3s")
 alpha_curve = SubResource("CurveTexture_io2pr")
 
 [sub_resource type="Gradient" id="Gradient_cjjlx"]
@@ -84,7 +76,7 @@ width = 4
 height = 4
 
 [sub_resource type="Gradient" id="Gradient_pokwe"]
-colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 0.1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_l6vi8"]
 gradient = SubResource("Gradient_pokwe")
@@ -100,7 +92,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_572px")
 texture = SubResource("GradientTexture2D_63ew2")
-lifetime = 30.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 script = ExtResource("1_5hl2w")
@@ -114,7 +106,7 @@ emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_vl85b")
 texture = SubResource("GradientTexture2D_5rnxi")
-lifetime = 30.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 

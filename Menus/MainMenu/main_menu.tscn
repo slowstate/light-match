@@ -914,31 +914,19 @@ texture = ExtResource("9_ke1b8")
 [node name="PlayerSprite" parent="Tutorial" instance=ExtResource("10_a5kyi")]
 position = Vector2(960, 540)
 
-[node name="TorsoLight" parent="Tutorial/PlayerSprite/Torso" index="0"]
+[node name="LeftArmLight" parent="Tutorial/PlayerSprite/Torso/LeftForearm/LeftArm" index="0"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
-[node name="LeftForearmLight" parent="Tutorial/PlayerSprite/Torso/LeftForearm/LeftArm" index="0"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="LeftArmLight" parent="Tutorial/PlayerSprite/Torso/LeftForearm/LeftArm" index="1"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="GunCircleLight" parent="Tutorial/PlayerSprite/Torso/Gun" index="0"]
+[node name="TorsoLight" parent="Tutorial/PlayerSprite/Torso" index="4"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
 [node name="GunLight1" parent="Tutorial/PlayerSprite/Torso/Gun" index="1"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
-[node name="GunLight2" parent="Tutorial/PlayerSprite/Torso/Gun" index="2"]
+[node name="GunLight2" parent="Tutorial/PlayerSprite/Torso/Gun" index="6"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
-[node name="GunLight3" parent="Tutorial/PlayerSprite/Torso/Gun" index="3"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="LeftShoulderLight" parent="Tutorial/PlayerSprite/Torso/LeftShoulder" index="0"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="RightShoulderLight" parent="Tutorial/PlayerSprite/Torso/RightShoulder" index="0"]
+[node name="GunLight3" parent="Tutorial/PlayerSprite/Torso/Gun" index="7"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
 [node name="HeadLight" parent="Tutorial/PlayerSprite/Head" index="0"]

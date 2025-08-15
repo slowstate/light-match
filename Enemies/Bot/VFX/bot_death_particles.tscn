@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bb78eda5ojuxs"]
+[gd_scene load_steps=29 format=3 uid="uid://bb78eda5ojuxs"]
 
 [ext_resource type="Script" path="res://Enemies/Bot/VFX/bot_death_particles.gd" id="1_a4an5"]
 [ext_resource type="Texture2D" uid="uid://chhxpd32t4gp5" path="res://Enemies/Bot/Sprite/Bot Head.png" id="2_b3kt4"]
@@ -52,13 +52,6 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_o36kb"]
 curve = SubResource("Curve_2h268")
 
-[sub_resource type="Curve" id="Curve_lcv74"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72668, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_24n5d"]
-curve = SubResource("Curve_lcv74")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5feou"]
 particle_flag_disable_z = true
 emission_shape = 6
@@ -72,7 +65,6 @@ initial_velocity_min = 50.0
 initial_velocity_max = 200.0
 damping_min = 300.0
 damping_max = 300.0
-scale_curve = SubResource("CurveTexture_24n5d")
 alpha_curve = SubResource("CurveTexture_o36kb")
 
 [sub_resource type="Gradient" id="Gradient_onl2i"]
@@ -145,7 +137,7 @@ damping_max = 250.0
 alpha_curve = SubResource("CurveTexture_t7v0o")
 
 [sub_resource type="Gradient" id="Gradient_8rs85"]
-colors = PackedColorArray(1, 1, 1, 0.75, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 0.1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6nlnm"]
 gradient = SubResource("Gradient_8rs85")
@@ -161,7 +153,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_ghner")
 texture = SubResource("GradientTexture2D_tj5ko")
-lifetime = 30.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 script = ExtResource("1_a4an5")
@@ -186,7 +178,7 @@ emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_5feou")
 texture = SubResource("GradientTexture2D_kvf4m")
-lifetime = 30.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 

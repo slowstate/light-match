@@ -4,6 +4,7 @@ extends GPUParticles2D
 @onready var left_arm_particle: GPUParticles2D = $LeftArmParticle
 @onready var right_arm_particle: GPUParticles2D = $RightArmParticle
 @onready var gun_particle: GPUParticles2D = $GunParticle
+@onready var gun_particle_2: GPUParticles2D = $GunParticle2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,6 +14,7 @@ func _ready() -> void:
 		left_arm_particle.emitting = true
 		right_arm_particle.emitting = true
 		gun_particle.emitting = true
+		gun_particle_2.emitting = true
 
 
 func _on_finished() -> void:

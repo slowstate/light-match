@@ -38,7 +38,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_a4it1"]
 offsets = PackedFloat32Array(0, 0.67234)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 0.2, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8svhs"]
 gradient = SubResource("Gradient_a4it1")
@@ -164,29 +164,25 @@ position = Vector2(0, 1.90735e-06)
 
 [node name="Shadow" type="Sprite2D" parent="PlayerSprite"]
 z_as_relative = false
-rotation = -1.5708
 texture = SubResource("GradientTexture2D_h7qcx")
 
 [node name="BulletSpawnPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(73, 23)
+position = Vector2(47, 22.5)
 
 [node name="MuzzleFlash" type="Sprite2D" parent="PlayerSprite/BulletSpawnPoint"]
-visible = false
 z_index = 1
-rotation = -1.5708
 texture = SubResource("GradientTexture2D_8svhs")
 
 [node name="TipOfBarrelPoint" type="Node2D" parent="PlayerSprite"]
-position = Vector2(86, 22)
+position = Vector2(61, 21)
 
 [node name="SwitchColourFlash" type="Sprite2D" parent="."]
-visible = false
 show_behind_parent = true
 texture = SubResource("GradientTexture2D_ccwe6")
 
 [node name="ExosuitOverdriveAura" type="Sprite2D" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0.5)
+modulate = Color(2.5, 2.5, 2.5, 0.5)
 show_behind_parent = true
 texture = SubResource("GradientTexture2D_oywpf")
 
@@ -194,9 +190,11 @@ texture = SubResource("GradientTexture2D_oywpf")
 texture = ExtResource("5_ssooe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.418879
 shape = SubResource("CapsuleShape2D_wb7x1")
 
 [node name="HurtBox" type="Area2D" parent="."]
+rotation = 0.418879
 collision_layer = 2
 collision_mask = 8
 

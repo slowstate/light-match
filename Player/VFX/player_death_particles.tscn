@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bihgjnbnsf8se"]
+[gd_scene load_steps=15 format=3 uid="uid://bihgjnbnsf8se"]
 
-[ext_resource type="Texture2D" uid="uid://d1qhw7lk8kewq" path="res://Player/Sprite/Torso.png" id="1_nxc4q"]
+[ext_resource type="Texture2D" uid="uid://pcx5qtsovoii" path="res://Player/Sprite/Torso.png" id="1_nxc4q"]
 [ext_resource type="Script" path="res://Player/VFX/player_death_particles.gd" id="2_c3bm8"]
-[ext_resource type="Texture2D" uid="uid://c1um7m7mwmaog" path="res://Player/Sprite/Head.png" id="2_ibgpg"]
-[ext_resource type="Texture2D" uid="uid://cqql4t8gipxdy" path="res://Player/Sprite/Left Forearm.png" id="3_ntqq3"]
-[ext_resource type="Texture2D" uid="uid://kpqlod8xt1ii" path="res://Player/Sprite/Right Arm.png" id="4_mta82"]
-[ext_resource type="Texture2D" uid="uid://dr67l8lyblpd7" path="res://Player/Sprite/Gun.png" id="5_v10vk"]
+[ext_resource type="Texture2D" uid="uid://bllvggk3ceag4" path="res://Player/Sprite/Head.png" id="2_ibgpg"]
+[ext_resource type="Texture2D" uid="uid://dc1qs6jfjedb0" path="res://Player/Sprite/Right Arm.png" id="4_mta82"]
+[ext_resource type="Texture2D" uid="uid://sl81aq3h6cbs" path="res://Player/Sprite/Left Arm.png" id="4_nw13y"]
+[ext_resource type="Texture2D" uid="uid://qhyv8rxrbdba" path="res://Player/Sprite/Gun/Gun Body.png" id="6_3ytdj"]
+[ext_resource type="Texture2D" uid="uid://dnwkfdhiqmyee" path="res://Player/Sprite/Gun/Gun Barrel.png" id="7_kyexc"]
 
 [sub_resource type="Curve" id="Curve_1061a"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -103,7 +104,7 @@ one_shot = true
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_r3r2p")
-texture = ExtResource("3_ntqq3")
+texture = ExtResource("4_nw13y")
 one_shot = true
 
 [node name="RightArmParticle" type="GPUParticles2D" parent="."]
@@ -117,7 +118,14 @@ one_shot = true
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_lxxah")
-texture = ExtResource("5_v10vk")
+texture = ExtResource("6_3ytdj")
+one_shot = true
+
+[node name="GunParticle2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_lxxah")
+texture = ExtResource("7_kyexc")
 one_shot = true
 
 [connection signal="finished" from="." to="." method="_on_finished"]

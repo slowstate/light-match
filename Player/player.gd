@@ -127,8 +127,8 @@ func _process(delta: float) -> void:
 	velocity = move_vec * move_speed
 	if controls_enabled:
 		player_sprite.rotation = (get_global_mouse_position() - global_position).angle()
-		collision_shape_2d.rotation = -velocity.angle()
-		hurt_box.rotation = (get_global_mouse_position() - global_position).angle()
+		collision_shape_2d.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(24)
+		hurt_box.rotation = (get_global_mouse_position() - global_position).angle() + deg_to_rad(24)
 
 	move_and_slide()
 

@@ -8,6 +8,7 @@ point_count = 2
 curve = SubResource("Curve_8fa3u")
 
 [sub_resource type="Gradient" id="Gradient_udaq0"]
+offsets = PackedFloat32Array(0, 0.5)
 colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4x0c7"]
@@ -48,6 +49,7 @@ height = 16
 
 [node name="SlowParticles" type="GPUParticles2D"]
 process_mode = 3
+modulate = Color(1.5, 1.5, 1.5, 1)
 amount = 24
 process_material = SubResource("ParticleProcessMaterial_p1m5h")
 texture = SubResource("GradientTexture2D_r2h34")
