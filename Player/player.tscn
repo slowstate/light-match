@@ -96,12 +96,12 @@ radius = 400.0
 font = ExtResource("5_qrmso")
 font_size = 60
 
-[sub_resource type="Gradient" id="Gradient_qhjbm"]
+[sub_resource type="Gradient" id="Gradient_yrrv4"]
 offsets = PackedFloat32Array(0.502128, 0.953192)
 colors = PackedColorArray(0, 0, 0, 0, 0.5, 0, 0, 0.38)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vy72v"]
-gradient = SubResource("Gradient_qhjbm")
+gradient = SubResource("Gradient_yrrv4")
 width = 1920
 height = 1080
 fill = 1
@@ -279,7 +279,6 @@ position = Vector2(33.5, 0)
 texture = ExtResource("7_u5avh")
 
 [node name="PlayerHitOverlay" type="Sprite2D" parent="PlayerInterface"]
-visible = false
 texture = SubResource("GradientTexture2D_vy72v")
 centered = false
 
