@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cq600o70yc5is"]
+[gd_scene load_steps=16 format=3 uid="uid://cq600o70yc5is"]
 
 [ext_resource type="Texture2D" uid="uid://w6c720n418jd" path="res://Enemies/Lizard/Sprite/Liz Back Left Leg.png" id="1_3p810"]
 [ext_resource type="Script" path="res://Enemies/Lizard/Sprite/lizard_sprite.gd" id="1_6nwxu"]
 [ext_resource type="Texture2D" uid="uid://demfmd5v0bu0i" path="res://Enemies/Lizard/Sprite/Liz Body.png" id="2_7cwab"]
 [ext_resource type="Texture2D" uid="uid://ckooq8a6au6sr" path="res://Enemies/Lizard/Sprite/Liz Tail 1.png" id="3_2ewhc"]
+[ext_resource type="Texture2D" uid="uid://srqsf1itlmlw" path="res://Enemies/Lizard/Sprite/Liz Feet.png" id="3_ft4tu"]
 [ext_resource type="Texture2D" uid="uid://b6qe44as4fuw5" path="res://Enemies/Lizard/Sprite/Liz Tail 2.png" id="4_ty85i"]
 [ext_resource type="Texture2D" uid="uid://rg701ndp6lco" path="res://Enemies/Lizard/Sprite/Liz Tail 3.png" id="5_mvwod"]
 [ext_resource type="Texture2D" uid="uid://da7j3pc0hsdep" path="res://Enemies/Lizard/Sprite/Liz Body Light 1.png" id="6_6712j"]
@@ -341,12 +342,20 @@ texture = ExtResource("1_3p810")
 [node name="LizFrontLeg1(1)" type="Sprite2D" parent="LizFrontLeg1"]
 texture = ExtResource("1_3p810")
 
+[node name="LizFeet" type="Sprite2D" parent="LizFrontLeg1/LizFrontLeg1(1)"]
+position = Vector2(-8.39233e-05, 6.42524)
+texture = ExtResource("3_ft4tu")
+
 [node name="LizBackLeg1" type="Sprite2D" parent="."]
 position = Vector2(12, -23)
 texture = ExtResource("1_3p810")
 
 [node name="LizBackLeg1(1)" type="Sprite2D" parent="LizBackLeg1"]
 texture = ExtResource("1_3p810")
+
+[node name="LizFeet" type="Sprite2D" parent="LizBackLeg1/LizBackLeg1(1)"]
+position = Vector2(-8.39233e-05, 6.42524)
+texture = ExtResource("3_ft4tu")
 
 [node name="LizBackLeg2" type="Sprite2D" parent="."]
 position = Vector2(-13, -23)
@@ -356,6 +365,10 @@ texture = ExtResource("1_3p810")
 position = Vector2(0, 4)
 texture = ExtResource("1_3p810")
 
+[node name="LizFeet" type="Sprite2D" parent="LizBackLeg2/LizBackLeg2(1)"]
+position = Vector2(-8.7738e-05, 7.42524)
+texture = ExtResource("3_ft4tu")
+
 [node name="LizFrontLeg2" type="Sprite2D" parent="."]
 position = Vector2(-15, 15)
 texture = ExtResource("1_3p810")
@@ -363,6 +376,10 @@ texture = ExtResource("1_3p810")
 [node name="LizFrontLeg2(1)" type="Sprite2D" parent="LizFrontLeg2"]
 position = Vector2(0, 5)
 texture = ExtResource("1_3p810")
+
+[node name="LizFeet" type="Sprite2D" parent="LizFrontLeg2/LizFrontLeg2(1)"]
+position = Vector2(-8.39233e-05, 6.42524)
+texture = ExtResource("3_ft4tu")
 
 [node name="LizBody" type="Sprite2D" parent="."]
 texture = ExtResource("2_7cwab")
