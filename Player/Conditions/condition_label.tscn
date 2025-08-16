@@ -2,14 +2,9 @@
 
 [ext_resource type="Script" path="res://Player/Conditions/condition_label.gd" id="1_1a6un"]
 
-[node name="ConditionLabel" type="Control"]
+[node name="ConditionLabel" type="Label"]
 custom_minimum_size = Vector2(0, 15)
-layout_mode = 3
-anchors_preset = 0
+offset_right = 1.0
+offset_bottom = 16.3333
+mouse_filter = 1
 script = ExtResource("1_1a6un")
-
-[node name="NameLabel" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 17.0
-text = "Condition"

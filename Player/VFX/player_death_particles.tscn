@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bihgjnbnsf8se"]
+[gd_scene load_steps=22 format=3 uid="uid://bihgjnbnsf8se"]
 
 [ext_resource type="Texture2D" uid="uid://pcx5qtsovoii" path="res://Player/Sprite/Torso.png" id="1_nxc4q"]
 [ext_resource type="Script" path="res://Player/VFX/player_death_particles.gd" id="2_c3bm8"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dnwkfdhiqmyee" path="res://Player/Sprite/Gun/Gun Barrel.png" id="7_kyexc"]
 
 [sub_resource type="Curve" id="Curve_1061a"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.33, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_e15ri"]
@@ -92,13 +92,6 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_akle4"]
 curve = SubResource("Curve_qi5wq")
 
-[sub_resource type="Gradient" id="Gradient_bv1a0"]
-offsets = PackedFloat32Array(0, 0.551429, 1)
-colors = PackedColorArray(0, 0.633333, 1, 1, 0.35, 1, 0, 1, 1, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_e6r6h"]
-gradient = SubResource("Gradient_bv1a0")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y3llw"]
 particle_flag_disable_z = true
 spread = 180.0
@@ -108,7 +101,6 @@ gravity = Vector3(0, 0, 0)
 damping_min = 800.0
 damping_max = 800.0
 scale_min = 0.5
-color_ramp = SubResource("GradientTexture1D_e6r6h")
 alpha_curve = SubResource("CurveTexture_akle4")
 
 [sub_resource type="Gradient" id="Gradient_jaw3d"]
@@ -134,6 +126,7 @@ emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_b2bba")
 texture = ExtResource("1_nxc4q")
+lifetime = 3.0
 one_shot = true
 script = ExtResource("2_c3bm8")
 
@@ -178,6 +171,7 @@ emitting = false
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_y3llw")
 texture = SubResource("GradientTexture2D_a4y14")
+lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 
@@ -186,6 +180,7 @@ emitting = false
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_y3llw")
 texture = SubResource("GradientTexture2D_dqesr")
+lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 

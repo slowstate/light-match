@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=45 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bdyuxu8blv5f8" path="res://Arena/Decorations/Ceiling Light 2.png" id="10_o7cfw"]
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="11_gl3pw"]
 [ext_resource type="PackedScene" uid="uid://bfffamsp774mm" path="res://Menus/RoundInformation/round_information.tscn" id="14_fia8t"]
+[ext_resource type="Texture2D" uid="uid://c8rwnovtuiom4" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Skip.png" id="17_c5geq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5srqq"]
 radius = 30.0
@@ -39,10 +40,6 @@ gradient = SubResource("Gradient_36lnp")
 fill = 1
 fill_from = Vector2(0.270642, 0.472477)
 fill_to = Vector2(0.688073, 0.43578)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_833fb"]
-radius = 21.0
-height = 72.0
 
 [sub_resource type="Gradient" id="Gradient_qivkg"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -91,6 +88,28 @@ font_size = 60
 [sub_resource type="LabelSettings" id="LabelSettings_fdvfh"]
 font_size = 24
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyjw3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cw5fi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utojm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jdil"]
+bg_color = Color(1, 1, 1, 0.0666667)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82se8"]
+bg_color = Color(0, 0, 0, 0.0666667)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_igwcv"]
+
 [sub_resource type="Environment" id="Environment_366ba"]
 background_mode = 3
 glow_enabled = true
@@ -101,7 +120,6 @@ glow_hdr_luminance_cap = 10.0
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ea2pg")
-current_round_number = 4
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -100.0
@@ -240,12 +258,6 @@ scale = Vector2(2, 1.75)
 energy = 1.5
 texture = SubResource("GradientTexture2D_6w4b7")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Decorations/Terminal"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Terminal/StaticBody2D"]
-position = Vector2(0, -8)
-shape = SubResource("CapsuleShape2D_833fb")
-
 [node name="Terminal2" type="Sprite2D" parent="Decorations"]
 position = Vector2(2513, 710)
 rotation = 3.14159
@@ -256,12 +268,6 @@ position = Vector2(24, -8)
 scale = Vector2(2, 1.75)
 energy = 1.5
 texture = SubResource("GradientTexture2D_6w4b7")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Decorations/Terminal2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Terminal2/StaticBody2D"]
-position = Vector2(0, -8)
-shape = SubResource("CapsuleShape2D_833fb")
 
 [node name="Terminal3" type="Sprite2D" parent="Decorations"]
 position = Vector2(924, 51)
@@ -571,29 +577,39 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -150.5
-offset_top = 350.0
+offset_top = 380.0
 offset_right = 150.5
-offset_bottom = 395.0
+offset_bottom = 425.0
 grow_horizontal = 2
 text = "You reach round 12"
 label_settings = SubResource("LabelSettings_fdvfh")
 horizontal_alignment = 1
 
 [node name="MainMenuButton" type="Button" parent="StateMachine/ScoreScreen/ScoreInterface"]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -87.0
-offset_top = -502.0
-offset_right = 87.0
-offset_bottom = -471.0
+anchor_bottom = 0.5
+offset_left = -70.5
+offset_top = -22.0
+offset_right = 70.5
+offset_bottom = 22.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Return to main menu"
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uyjw3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cw5fi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_utojm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7jdil")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_82se8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_igwcv")
+text = "Main Menu"
+icon = ExtResource("17_c5geq")
+icon_alignment = 1
 
 [node name="MusicManager" parent="." instance=ExtResource("11_gl3pw")]
+process_mode = 3
 visible = false
 
 [node name="Timer0-12s" type="Timer" parent="MusicManager"]
@@ -639,6 +655,7 @@ one_shot = true
 autostart = true
 
 [node name="Fade" type="ColorRect" parent="."]
+visible = false
 z_index = 9
 custom_minimum_size = Vector2(2560, 1440)
 offset_right = 1920.0

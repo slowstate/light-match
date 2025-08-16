@@ -12,7 +12,8 @@ var effect_duration: float = 10.0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.TASER
 	name = "Taser"
-	description = "After clearing 1 Sequence, your bullets temporarily slow enemies"
+	description = "After completing a Sequence, your bullets temporarily slow targets"
+	added_dialogue = "Looks like you've made your first evolutionary adaptation"
 	icon = preload("res://Player/Upgrades/Utility/Taser.png")
 	points_cost = 0
 	effect_timer = super.new_timer()

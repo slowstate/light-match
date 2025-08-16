@@ -17,14 +17,11 @@ func clear_information() -> void:
 
 
 func display_new_condition(condition: Condition) -> void:
-	label.text = "A new Condition has been added..."
-	var new_condition_information = NEW_CONDITION_INFORMATION.instantiate()
-	new_condition_information.condition = condition
-	h_box_container.add_child(new_condition_information)
+	label.text = condition.added_dialogue
 
 
 func display_new_adaptation(upgrade: Upgrade) -> void:
-	label.text = "You have gained a new Adaptation..."
+	label.text = upgrade.added_dialogue
 	var new_adaptation_information = NEW_ADAPTATION_INFORMATION.instantiate()
 	new_adaptation_information.upgrade = upgrade
 	h_box_container.add_child(new_adaptation_information)

@@ -32,6 +32,7 @@ func _ready() -> void:
 	Logger.log_play_data(log_play_data)
 	music_manager.update_music(0.0)
 	timer_0_12s.start()
+	fade.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

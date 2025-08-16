@@ -8,6 +8,7 @@ var heal_amount: int = 1
 func _init() -> void:
 	name = "Photon Absorption"
 	description = "Enemies heal when hit by a different colour"
+	added_dialogue = "Interesting, what if the targets had photon receptors..."
 	points_per_round = 1
 
 

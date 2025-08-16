@@ -32,7 +32,7 @@ static func create(
 	new_oracle.max_health = 3
 	new_oracle.colour = initial_colour
 	new_oracle.orb_colour = initial_orb_colour
-	new_oracle.move_speed = randf_range(250.0, 300.0)
+	new_oracle.move_speed = randf_range(200.0, 250.0)
 	return new_oracle
 
 

@@ -12,10 +12,10 @@ font_size = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy3so"]
 bg_color = Color(1, 1, 1, 0.0666667)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wro0q"]
 bg_color = Color(0, 0, 0, 0.0666667)
@@ -35,7 +35,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.2)
+mouse_filter = 2
+color = Color(0, 0, 0, 0.8)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 15
@@ -43,6 +44,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -50,9 +53,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "A new test condition has been added..."
 label_settings = SubResource("LabelSettings_0f4qa")
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(1920, 500)
+custom_minimum_size = Vector2(1920, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

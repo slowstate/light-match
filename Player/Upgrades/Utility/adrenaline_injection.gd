@@ -3,14 +3,15 @@ extends Upgrade
 @warning_ignore("enum_variable_without_default")
 var effect_timer: Timer
 var speed_amount: float = 0.2
-var effect_duration: float = 5.0
+var effect_duration: float = 6.0
 
 
 # Called when the node enters the scene tree for the first time.
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.ADRENALINE_INJECTION
 	name = "Adrenaline Injection"
-	description = "After clearing 1 Sequence, you temporarily move faster"
+	description = "After completing a Sequence, you temporarily move faster"
+	added_dialogue = "Another adaptation! This should improve your agility"
 	icon = preload("res://Player/Upgrades/Utility/Adrenaline Injection.png")
 	points_cost = 0
 	effect_timer = super.new_timer()

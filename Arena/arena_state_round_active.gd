@@ -42,6 +42,7 @@ func update(delta: float) -> void:
 	round_elapsed_time += delta
 	if no_enemies_remaining_this_round():
 		if arena.current_round_number >= 10:
+			arena.current_round_number += 1
 			transition.emit("ScoreScreen")
 		else:
 			transition.emit("RoundInformation")
@@ -92,9 +93,9 @@ func _on_enemy_spawn_timer_timeout() -> void:
 
 
 func _random_location_in_arena() -> Vector2:
-	var random_location = Vector2(randi_range(0, 2460), randi_range(0, 1340))
+	var random_location = Vector2(randi_range(100, 2460), randi_range(100, 1340))
 	while (random_location - Globals.player.global_position).length() < 200:
-		random_location = Vector2(randi_range(0, 2460), randi_range(0, 1340))
+		random_location = Vector2(randi_range(100, 2460), randi_range(100, 1340))
 	return random_location
 
 

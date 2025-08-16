@@ -1,7 +1,8 @@
+class_name Tutorial
 extends Node2D
 
 const BOT = preload("res://Enemies/Bot/bot.tscn")
-const ARENA = preload("res://Arena/arena.tscn")
+var ARENA = load("res://Arena/arena.tscn")
 
 var dialogue_strings: Array[String] = [
 	"Hello",
@@ -14,11 +15,11 @@ var dialogue_strings: Array[String] = [
 	"Use 1, 2, and 3 or scroll wheel to change your colour",
 	"That worked. Let's calibrate your optic algorithm next",
 	"See those hexagons above your head? Together they're called a Sequence",
-	"Kill enemies that match the colour of each hexagon from left to right to complete the Sequence",
+	"Destroy targets that match the colour of each hexagon from left to right to complete the Sequence",
 	"For every Sequence you complete, you get closer to unlocking your full potential",
-	"Try to complete a Sequence",
-	"Too bad, you failed to complete the Sequence because the enemy was the wrong colour",
-	"If your Sequence doesn't match the colour of the enemies, you can refresh it by pressing R. Give it try",  #14
+	"Try to complete a Sequence by destroying this target",
+	"Too bad, you failed to complete the Sequence because the target was the wrong colour",
+	"If the Sequence doesn't match the colour of the targets, you can refresh it by pressing R. Give it try",
 	"Looks like you've got the hang of it now",
 	"Time for the real test",
 	"3.. 2.. 1.."
@@ -26,6 +27,7 @@ var dialogue_strings: Array[String] = [
 
 var dialogue_index: int = 0
 
+@onready var music_manager: Node2D = $MusicManager
 @onready var player: Player = $Player
 @onready var dialogue_timer: Timer = $DialogueTimer
 @onready var dialogue_label: Label = $BotSprite/DialogueLabel
@@ -45,14 +47,19 @@ func _ready() -> void:
 		SignalBus.palette_cleared.connect(_on_palette_cleared)
 	if !SignalBus.palette_failed.is_connected(_on_palette_failed):
 		SignalBus.palette_failed.connect(_on_palette_failed)
+
+	music_manager.update_music(0.0)
+
 	player.tutorial_movement_controls = false
 	player.tutorial_colour_controls = false
 	player.tutorial_colour_reload_controls = false
 	player.palette.tutorial_palette_enabled = false
 	player.palette.visible = false
 	player.hurt_box.monitoring = false
+	player.player_sprite.rotation = deg_to_rad(-90)
 	dialogue_label.text = dialogue_strings[dialogue_index]
-	dialogue_timer.start(5)
+	dialogue_timer.start(3)
+	fade.visible = true
 	fade_in_timer.start(2)
 
 
@@ -66,7 +73,7 @@ func _process(delta: float) -> void:
 func update_dialogue() -> void:
 	dialogue_index += 1
 	dialogue_label.text = dialogue_strings[dialogue_index]
-	dialogue_timer.start(1 + dialogue_strings[dialogue_index].length() / 10)
+	dialogue_timer.start(2 + dialogue_strings[dialogue_index].length() / 20)
 
 
 func _on_dialogue_timer_timeout() -> void:
@@ -138,7 +145,7 @@ func _on_bot_respawn_timer_timeout() -> void:
 	var enemy_possible_colours = Globals.Colour.values()
 	enemy_possible_colours.erase(player.palette.palette_colours[player.palette.current_palette_colour_index])
 	spawn_enemy(enemy_possible_colours.pick_random())
-	spawn_enemy(enemy_possible_colours.pick_random(), true, Vector2(1280 - 100, 720 + 150))
+	spawn_enemy(enemy_possible_colours.pick_random(), true, Vector2(1280 - 128, 720 + 150))
 	spawn_enemy(enemy_possible_colours.pick_random(), true, Vector2(1280, 720 + 150))
 
 

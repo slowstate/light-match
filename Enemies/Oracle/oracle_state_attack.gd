@@ -37,7 +37,7 @@ func exit() -> void:
 	for orb in oracle.orbs.get_children():
 		orb = orb as Appendage
 		orb.position = orb.original_position
-		orb.scale = Vector2(1.0, 1.0)
+		orb.scale = Vector2(0.5, 0.5)
 
 
 func update(_delta: float) -> void:
@@ -72,12 +72,12 @@ func physics_update(delta: float) -> void:
 		for orb in oracle.orbs.get_children():
 			orb = orb as Appendage
 			orb.position = orb.position.lerp(orb.original_position * 5, ease(1 - expand_timer.time_left / expand_timer.wait_time, 2.0))
-			orb.scale = orb.scale.lerp(Vector2(2.0, 2.0), ease(1 - expand_timer.time_left / expand_timer.wait_time, 2.0))
+			orb.scale = orb.scale.lerp(Vector2(1.0, 1.0), ease(1 - expand_timer.time_left / expand_timer.wait_time, 2.0))
 	elif !shrink_timer.is_stopped():
 		for orb in oracle.orbs.get_children():
 			orb = orb as Appendage
 			orb.position = orb.position.lerp(orb.original_position, ease(1 - shrink_timer.time_left / shrink_timer.wait_time, 2.0))
-			orb.scale = orb.scale.lerp(Vector2(1.0, 1.0), ease(1 - shrink_timer.time_left / shrink_timer.wait_time, 2.0))
+			orb.scale = orb.scale.lerp(Vector2(0.5, 0.5), ease(1 - shrink_timer.time_left / shrink_timer.wait_time, 2.0))
 
 	if !spin_up_timer.is_stopped():
 		attack_rotation_speed = lerpf(

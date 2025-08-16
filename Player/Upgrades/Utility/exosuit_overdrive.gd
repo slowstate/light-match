@@ -10,7 +10,8 @@ var palettes_cleared_counter: int = 0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.BIGGER_BULLET
 	name = "Exosuit Overdrive"
-	description = ("After clearing 3 Sequences, you gain increased firepower")
+	description = "After completing 3 Sequences, you gain increased firepower"
+	added_dialogue = "Looks like you've reached your ultimate evolution"
 	#icon = preload("res://Player/Upgrades/Combat/Exosuit Overdrive.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
