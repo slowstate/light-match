@@ -10,10 +10,9 @@ var palettes_cleared_counter: int = 0
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.BIGGER_BULLET
 	name = "Exosuit Overdrive"
-	description = (
-		"After clearing 3 Chains, you gain " + str(damage_amount) + " bonus damage, " + str(fire_rate_amount * 100) + "% fire rate, and a shield for 10s"
-	)
-	#icon = preload("res://Player/Upgrades/Combat/Exosuit Overdrive.png")
+	description = "After completing 3 Sequences, you gain increased firepower"
+	added_dialogue = "Looks like you've reached your ultimate evolution"
+	icon = preload("res://Player/Upgrades/Combat/Holo Scope.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
@@ -30,8 +29,8 @@ func on_palette_cleared(_palette: Palette) -> void:
 		Globals.player.enable_exosuit_overdrive_aura(true)
 		is_active = true
 		palettes_cleared_counter = 0
+		SfxManager.play_sound("ExosuitOverdriveActiveSFX", -20.0, -18.0, 0.9, 1.0)
 	upgrade_counter_updated.emit(palettes_cleared_counter)
-	SfxManager.play_sound("ExosuitOverdriveActiveSFX", -20.0, -18.0, 0.9, 1.0)
 
 
 func _on_effect_timer_timeout() -> void:

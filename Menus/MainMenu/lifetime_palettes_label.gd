@@ -3,7 +3,7 @@ extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var text_string = """Lifetime Chains: {lifetime_palettes}
+	var text_string = """Lifetime Sequences: {lifetime_palettes}
 	Permanent fire rate gained: {fire_rate}%
 	Permanent max health gained: {max_health}"""
 	var fire_rate = Save.lifetime_palettes * 0.002 * 100

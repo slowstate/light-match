@@ -17,6 +17,7 @@
 radius = 60.0083
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jsqd4"]
+radius = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qpr8m"]
 radius = 13.0
@@ -37,17 +38,16 @@ shape = SubResource("CircleShape2D_7cdws")
 
 [node name="Orb0" type="Area2D" parent="Orbs" node_paths=PackedStringArray("sprite")]
 position = Vector2(50, 0)
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb0"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb0"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb0"]
@@ -55,17 +55,16 @@ shape = SubResource("CircleShape2D_jsqd4")
 
 [node name="Orb1" type="Area2D" parent="Orbs" node_paths=PackedStringArray("sprite")]
 position = Vector2(25, -43)
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb1"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb1"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb1"]
@@ -73,17 +72,16 @@ shape = SubResource("CircleShape2D_jsqd4")
 
 [node name="Orb2" type="Area2D" parent="Orbs" node_paths=PackedStringArray("sprite")]
 position = Vector2(-25, -43)
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb2"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb2"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb2"]
@@ -91,17 +89,16 @@ shape = SubResource("CircleShape2D_jsqd4")
 
 [node name="Orb3" type="Area2D" parent="Orbs" node_paths=PackedStringArray("sprite")]
 position = Vector2(-50, 0)
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb3"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb3"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb3"]
@@ -109,17 +106,16 @@ shape = SubResource("CircleShape2D_jsqd4")
 
 [node name="Orb4" type="Area2D" parent="Orbs" node_paths=PackedStringArray("sprite")]
 position = Vector2(-25, 43)
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb4"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb4"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb4"]
@@ -127,17 +123,16 @@ shape = SubResource("CircleShape2D_jsqd4")
 
 [node name="Orb5" type="Area2D" parent="Orbs" node_paths=PackedStringArray("sprite")]
 position = Vector2(25, 43)
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_rdk7r")
 sprite = NodePath("OracleOrbLight")
 
 [node name="OracleOrb" type="Sprite2D" parent="Orbs/Orb5"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_j71aq")
 
 [node name="OracleOrbLight" type="Sprite2D" parent="Orbs/Orb5"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_v34uc")
 
 [node name="OrbCollisionShape2D" type="CollisionShape2D" parent="Orbs/Orb5"]

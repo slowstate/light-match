@@ -5,7 +5,8 @@ var palette_lockout_amount: float = 3.0
 
 func _init() -> void:
 	name = "Ultraviolet Jamming"
-	description = "The penalty for failing a Chain is increased by " + str(palette_lockout_amount) + "s"
+	description = "After failing your Sequence, it takes longer to refresh"
+	added_dialogue = "Let's slow your Sequence recovery and see how you do..."
 	points_per_round = 0
 
 

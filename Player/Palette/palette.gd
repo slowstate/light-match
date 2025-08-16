@@ -13,6 +13,7 @@ var reload_time: float = 1.0
 var reload_animation_progress: float = 0.0
 var grace_period_time: float = 0.5
 var palette_lockout: float = 3.0
+var tutorial_palette_enabled: bool = true
 
 @onready var palette_colour_sprites: HBoxContainer = $PaletteColourSprites
 @onready var reload_timer: Timer = $ReloadTimer
@@ -48,6 +49,8 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	if enemy == null:
 		return
 
+	if !tutorial_palette_enabled:
+		return
 	if !failed_cooldown_timer.is_stopped() or !reload_timer.is_stopped():
 		return
 
@@ -88,6 +91,7 @@ func _on_reload_timer_timeout() -> void:
 
 func on_palette_failed() -> void:
 	UpgradeManager.on_palette_failed()
+	SignalBus.palette_failed.emit()
 	if !failed_cooldown_timer.is_stopped():
 		return
 	for palette_colour in palette_colour_sprites.get_children():
@@ -171,6 +175,7 @@ func generate_new_palette(enemy_to_ignore: Enemy = null) -> void:
 	grace_period_timer.start(grace_period_time)
 
 	UpgradeManager.on_palette_generated()
+	SignalBus.palette_generated.emit()
 
 
 func _set_palette_sprites() -> void:

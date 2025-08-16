@@ -21,6 +21,8 @@ var palettes_cleared_this_run: int = 0
 @onready var timer_48_60s: Timer = $"MusicManager/Timer48-60s"
 @onready var timer_60_78s: Timer = $"MusicManager/Timer60-78s"
 @onready var timer_78_90s: Timer = $"MusicManager/Timer78-90s"
+@onready var fade_in_timer: Timer = $FadeInTimer
+@onready var fade: ColorRect = $Fade
 
 
 func _ready() -> void:
@@ -30,11 +32,17 @@ func _ready() -> void:
 	Logger.log_play_data(log_play_data)
 	music_manager.update_music(0.0)
 	timer_0_12s.start()
+	fade.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	round_number_label.text = str(current_round_number)
+
+
+func _process(delta: float) -> void:
+	if !fade_in_timer.is_stopped():
+		fade.modulate.a = lerp(1.0, 0.0, 1 - fade_in_timer.time_left / fade_in_timer.wait_time)
 
 
 func _on_timer_012s_timeout() -> void:

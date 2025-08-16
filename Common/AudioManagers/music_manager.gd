@@ -14,13 +14,20 @@ extends Node2D
 var current_state: State
 var enemy_types_to_spawn: Array[Globals.EnemyType]
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-	
+
 func update_music(play_time: float):
-	if get_parent() is Arena:
+	if get_parent() is Tutorial:
+		update_volume(-10.0)
+		beat_base.play(play_time)
+		drums_base.play(play_time)
+		highlight_base.play(play_time)
+		lead_base.play(play_time)
+	elif get_parent() is Arena:
 		enemy_types_to_spawn = get_parent().enemy_types_to_spawn
 		update_volume(-5.0)
 		swell_base.play(play_time)
@@ -63,6 +70,7 @@ func update_music(play_time: float):
 		drums_base.play(play_time)
 		highlight_base.play(play_time)
 		lead_base.play(play_time)
+
 
 func update_volume(volume_db: float):
 	var music_volume = volume_db
