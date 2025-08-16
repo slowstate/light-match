@@ -25,6 +25,7 @@ func enter() -> void:
 		aggro_cooldown_timer.timeout.connect(_on_aggro_cooldown_timer_timeout)
 	aggro_timer.start(aggro_time)
 
+	SfxManager.play_sound("BotAggroSFX", -35.0, -33.0, 0.9, 1.0)
 
 func exit() -> void:
 	pass

@@ -19,7 +19,7 @@ func enter() -> void:
 	if !timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
 	timer.start(charge_time)
-
+	SfxManager.play_sound("StarChargeSFX", -35.0, -33.0, 0.9, 1.0)
 
 func exit() -> void:
 	pass

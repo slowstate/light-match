@@ -31,6 +31,7 @@ func enter() -> void:
 	if !shrink_timer.timeout.is_connected(_on_shrink_timer_timeout):
 		shrink_timer.timeout.connect(_on_shrink_timer_timeout)
 	expand_timer.start(expand_time)
+	SfxManager.play_sound("OracleAttackSFX", -30.0, -28.0, 0.9, 1.0)
 
 
 func exit() -> void:

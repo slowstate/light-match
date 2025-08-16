@@ -21,4 +21,5 @@ func _process(_delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area as Bullet == null:
 		return
-	SfxManager.play_sound("EnemyHitSFX", -25.0, -23.0, 2.0, 2.2)
+	#SfxManager.play_sound("TankShieldSFX", -35.0, -33.0, 0.9, 1.0)
+	SfxManager.play_sound("EnemyDeathSFX", -30.0, -28.0, 2.5, 2.6)

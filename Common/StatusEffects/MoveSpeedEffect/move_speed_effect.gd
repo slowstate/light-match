@@ -32,7 +32,7 @@ func _ready() -> void:
 	effect_timer.start(effect_duration)
 	if parent is Enemy and effect_amount < 0:
 		ConditionManager.on_enemy_slowed(get_parent(), self)
-
+	SfxManager.play_sound("EnemySlowedSFX", -30.0, -28.0, 0.9, 1.0)
 
 func _on_effect_timer_timeout() -> void:
 	get_parent().move_speed /= 1.0 + effect_amount
