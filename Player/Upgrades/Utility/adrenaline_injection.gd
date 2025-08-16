@@ -24,7 +24,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 	Globals.player.enable_after_image(true)
 	effect_timer.start(effect_duration)
 	is_active = true
-
+	SfxManager.play_sound("AdrenalineInjectionActiveSFX", -15.0, -13.0, 0.7, 0.8)
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= clamp(1 + speed_amount + Save.lifetime_palettes * 0.05, 1, 1.4)

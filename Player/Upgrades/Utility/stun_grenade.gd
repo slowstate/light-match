@@ -34,6 +34,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 		Globals.player.display_stun_grenade_overlay()
 		ScreenShaker.shake(0.1, 10.0)
 		palettes_cleared_counter = 0
+		SfxManager.play_sound("StunGrenadeActiveSFX", -15.0, -13.0, 0.9, 1.0)
 
 	upgrade_counter_updated.emit(palettes_cleared_counter)
 

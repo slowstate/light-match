@@ -30,6 +30,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 		is_active = true
 		palettes_cleared_counter = 0
 	upgrade_counter_updated.emit(palettes_cleared_counter)
+	SfxManager.play_sound("ExosuitOverdriveActiveSFX", -20.0, -18.0, 0.9, 1.0)
 
 
 func _on_effect_timer_timeout() -> void:

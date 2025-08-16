@@ -15,3 +15,4 @@ func _ready() -> void:
 		return
 	parent.stun(effect_duration)
 	ConditionManager.on_enemy_stunned(parent)
+	#SfxManager.play_sound("EnemyStunnedSFX", -20.0, -18.0, 0.9, 1.0)

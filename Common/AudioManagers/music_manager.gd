@@ -29,7 +29,7 @@ func update_music(play_time: float):
 		lead_base.play(play_time)
 	elif get_parent() is Arena:
 		enemy_types_to_spawn = get_parent().enemy_types_to_spawn
-		update_volume(-3.0)
+		update_volume(-5.0)
 		swell_base.play(play_time)
 		for enemy_type in enemy_types_to_spawn:
 			if enemy_type == 0:
@@ -63,7 +63,7 @@ func update_music(play_time: float):
 				lead_base.play(play_time)
 				lead_star.stop()
 	else:
-		update_volume(-5.0)
+		update_volume(-7.0)
 		swell_base.play(play_time)
 		bass_base.play(play_time)
 		beat_base.play(play_time)

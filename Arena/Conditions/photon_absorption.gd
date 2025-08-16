@@ -20,3 +20,4 @@ func on_enemy_hit(bullet: Bullet, enemy: Enemy) -> void:
 		heal_particles.modulate.a = 1.0
 		heal_particles.emitting = true
 		enemy.add_child(heal_particles)
+		SfxManager.play_sound("EnemyHealSFX", -40.0, -38.0, 0.7, 0.8)

@@ -319,7 +319,6 @@ func player_hit(enemy: Enemy) -> void:
 		var log_play_data = {"message": "Player shield broken", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
 		UpgradeManager.on_player_shield_break()
-		SfxManager.play_sound("ShieldHitSFX", -15.0, -13.0, 0.95, 1.05)
 		shield_active = false
 		return
 
@@ -330,7 +329,7 @@ func player_hit(enemy: Enemy) -> void:
 	ScreenFreezer.freeze(0.2)
 	ScreenShaker.shake(0.2, 20.0)
 	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
-	SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
+
 	var log_play_data = {"message": "Player hit", "context": log_context_data}
 	Logger.log_play_data(log_play_data)
 
@@ -338,14 +337,15 @@ func player_hit(enemy: Enemy) -> void:
 		set_health(0)
 		log_play_data = {"message": "Player killed", "context": log_context_data}
 		Logger.log_play_data(log_play_data)
-		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 0.9, 1.1)
+		SfxManager.play_sound("PlayerHitSFX", -10.0, -8.0, 0.7, 0.8)
 		visible = false
 		var player_death_particles = PLAYER_DEATH_PARTICLES.instantiate()
 		player_death_particles.emitting = true
 		player_death_particles.global_position = global_position
 		get_tree().root.add_child(player_death_particles)
 		SignalBus.player_died.emit()
-
+	else:
+		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 1.0, 1.1)
 
 func game_over_sequence() -> void:
 	controls_enabled = false

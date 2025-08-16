@@ -11,7 +11,11 @@ func _ready():
 
 
 func play_sound(
-	audio_stream_string: String, volume_db_min: float = 0.0, volume_db_max: float = 0.0, pitch_scale_min: float = 1.0, pitch_scale_max: float = 1.0
+	audio_stream_string: String,
+	volume_db_min: float = 0.0,
+	volume_db_max: float = 0.0,
+	pitch_scale_min: float = 1.0,
+	pitch_scale_max: float = 1.0
 ):
 	var audio_stream = sfx_audio.get(audio_stream_string)
 	audio_stream.volume_db = volume_db_min
