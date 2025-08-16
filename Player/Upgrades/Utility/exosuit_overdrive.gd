@@ -12,7 +12,7 @@ func _init() -> void:
 	name = "Exosuit Overdrive"
 	description = "After completing 3 Sequences, you gain increased firepower"
 	added_dialogue = "Looks like you've reached your ultimate evolution"
-	#icon = preload("res://Player/Upgrades/Combat/Exosuit Overdrive.png")
+	icon = preload("res://Player/Upgrades/Combat/Holo Scope.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
 	effect_timer.connect("timeout", _on_effect_timer_timeout)
