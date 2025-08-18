@@ -19,11 +19,12 @@ size_flags_vertical = 4
 script = ExtResource("1_idobm")
 
 [node name="BG" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
 texture = ExtResource("2_x0ayr")
 centered = false
 
 [node name="UpgradeHex" type="Sprite2D" parent="."]
-position = Vector2(158, 130)
+position = Vector2(158, 162)
 texture = ExtResource("3_w7kdl")
 
 [node name="UpgradeIcon" type="Sprite2D" parent="UpgradeHex"]
@@ -37,8 +38,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -128.0
+offset_top = 32.0
 offset_right = 128.0
-offset_bottom = 25.0
+offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Adaptation Name"
@@ -55,9 +57,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -128.0
-offset_top = 50.0
+offset_top = 82.0
 offset_right = 128.0
-offset_bottom = 67.0
+offset_bottom = 99.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Adaptation description"

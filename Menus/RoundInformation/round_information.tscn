@@ -1,9 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfffamsp774mm"]
+[gd_scene load_steps=12 format=3 uid="uid://bfffamsp774mm"]
 
 [ext_resource type="Texture2D" uid="uid://c8rwnovtuiom4" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Skip.png" id="1_cvnda"]
 [ext_resource type="Script" path="res://Menus/RoundInformation/round_information.gd" id="1_roaae"]
+[ext_resource type="FontFile" uid="uid://pld8anbputlw" path="res://Common/Fonts/exo/Exo-Medium-Italic.otf" id="2_6i8on"]
+[ext_resource type="PackedScene" uid="uid://c5bwgcd6qakrh" path="res://Menus/RoundInformation/NewAdaptationInformation/new_adaptation_information.tscn" id="3_wu8eh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nswbq"]
+bg_color = Color(0, 0, 0, 0.9)
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_0f4qa"]
+font = ExtResource("2_6i8on")
 font_size = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qo32t"]
@@ -49,11 +59,14 @@ theme_override_constants/separation = 32
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_nswbq")
 text = "A new test condition has been added..."
 label_settings = SubResource("LabelSettings_0f4qa")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(1920, 100)
@@ -62,6 +75,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 400
 alignment = 1
+
+[node name="NewAdaptionInformation" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_wu8eh")]
+layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

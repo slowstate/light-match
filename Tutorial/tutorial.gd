@@ -12,17 +12,17 @@ var dialogue_strings: Array[String] = [
 	"In a moment, I will create a target - destroy it",
 	"Press W, A, S, D to move around, mouse to aim, and left-click to fire your gun",
 	"Hm, guess that doesn't work. Try matching colours with the target",
-	"Use 1, 2, and 3 or scroll wheel to change your colour",
-	"That worked. Let's calibrate your optic algorithm next",
+	"Press 1, 2, and 3, or scroll your mouse wheel to change your colour",
+	"That worked. Next, let's calibrate your optic algorithm",
 	"See those hexagons above your head? Together they're called a Sequence",
 	"Destroy targets that match the colour of each hexagon from left to right to complete the Sequence",
-	"For every Sequence you complete, you get closer to unlocking your full potential",
+	"For every Sequence you complete, you get closer to unlocking your evolutionary potential",
 	"Try to complete a Sequence by destroying this target",
 	"Too bad, you failed to complete the Sequence because the target was the wrong colour",
 	"If the Sequence doesn't match the colour of the targets, you can refresh it by pressing R. Give it try",
 	"Looks like you've got the hang of it now",
 	"Time for the real test",
-	"3.. 2.. 1.."
+	"3... 2... 1..."
 ]
 
 var dialogue_index: int = 0

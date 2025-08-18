@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="11_m8ltd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eq6nu"]
+line_spacing = 12.0
 font_size = 24
 
 [sub_resource type="Gradient" id="Gradient_87ap2"]
@@ -102,7 +103,8 @@ offset_right = 296.5
 offset_bottom = 201.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hello Test Subject"
+text = "Hello Test Subject
+Welcome to the training"
 label_settings = SubResource("LabelSettings_eq6nu")
 horizontal_alignment = 1
 autowrap_mode = 3
