@@ -6,7 +6,10 @@
 [ext_resource type="Theme" uid="uid://cvjimjlqhiq6t" path="res://Common/Themes/button.tres" id="3_m2mf3"]
 [ext_resource type="Script" path="res://Menus/Settings/credits.gd" id="3_v8hf4"]
 [ext_resource type="Script" path="res://Menus/Settings/controls.gd" id="5_2xtng"]
+<<<<<<< HEAD
 [ext_resource type="Script" path="res://Menus/Settings/locale_button.gd" id="5_gf37o"]
+=======
+>>>>>>> 23bb1ceec8fc475fc40cc409d581092155f92929
 [ext_resource type="PackedScene" uid="uid://be833cwtu3e0m" path="res://Menus/Settings/control_remapper.tscn" id="6_bhigi"]
 
 [sub_resource type="Gradient" id="Gradient_7orx7"]
@@ -225,6 +228,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ri5wm")
 text = ">"
 
+<<<<<<< HEAD
+[node name="HSeparator" type="HSeparator" parent="SettingsButtons"]
+layout_mode = 2
+=======
 [node name="ScreenShake" type="HBoxContainer" parent="SettingsButtons"]
 layout_mode = 2
 alignment = 1
@@ -239,12 +246,17 @@ text = "SCREEN SHAKE"
 
 [node name="HSeparator" type="HSeparator" parent="SettingsButtons"]
 layout_mode = 2
+>>>>>>> 23bb1ceec8fc475fc40cc409d581092155f92929
 theme_override_constants/separation = 4
 
 [node name="ControlsButton" type="Button" parent="SettingsButtons"]
 layout_mode = 2
+<<<<<<< HEAD
 size_flags_horizontal = 4
 theme = ExtResource("3_m2mf3")
+=======
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+>>>>>>> 23bb1ceec8fc475fc40cc409d581092155f92929
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kxsp3")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
@@ -300,7 +312,11 @@ theme_override_constants/separation = 4
 [node name="CreditsButton" type="Button" parent="SettingsButtons"]
 custom_minimum_size = Vector2(110, 30)
 layout_mode = 2
+<<<<<<< HEAD
 size_flags_horizontal = 4
+=======
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+>>>>>>> 23bb1ceec8fc475fc40cc409d581092155f92929
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hku03")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
@@ -344,7 +360,11 @@ theme_override_constants/separation = 4
 [node name="SettingsBackButton" type="Button" parent="SettingsButtons"]
 custom_minimum_size = Vector2(70, 30)
 layout_mode = 2
+<<<<<<< HEAD
 size_flags_horizontal = 4
+=======
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+>>>>>>> 23bb1ceec8fc475fc40cc409d581092155f92929
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hbp21")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
@@ -570,8 +590,7 @@ text = "SETTINGS_BACK"
 
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/LeftButton" to="SettingsButtons/WindowModePicker" method="_on_left_button_pressed"]
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/RightButton" to="SettingsButtons/WindowModePicker" method="_on_right_button_pressed"]
-[connection signal="mouse_entered" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_mouse_entered"]
-[connection signal="toggled" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_toggled"]
+<<<<<<< HEAD
 [connection signal="mouse_entered" from="SettingsButtons/ControlsButton" to="." method="_on_controls_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/ControlsButton" to="." method="_on_controls_button_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
@@ -581,6 +600,16 @@ text = "SETTINGS_BACK"
 [connection signal="pressed" from="SettingsButtons/HBoxContainer/ESButton" to="SettingsButtons/HBoxContainer/ESButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
+=======
+[connection signal="mouse_entered" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_mouse_entered"]
+[connection signal="toggled" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="mouse_entered" from="SettingsButtons/ControlsButtonHorizontalAligner/ControlsButton" to="." method="_on_controls_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/ControlsButtonHorizontalAligner/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/CreditsButtonHorizontalAligner/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/CreditsButtonHorizontalAligner/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/SettingsButtonHorizontalAligner/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/SettingsButtonHorizontalAligner/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
+>>>>>>> 23bb1ceec8fc475fc40cc409d581092155f92929
 [connection signal="mouse_entered" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_mouse_entered"]
 [connection signal="pressed" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_pressed"]
 [connection signal="mouse_entered" from="Controls/ControlRemapping/ControlsBackButton" to="." method="_on_controls_back_button_mouse_entered"]
