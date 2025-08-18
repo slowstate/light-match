@@ -1,9 +1,11 @@
 class_name MoveSpeedEffect
-extends Node
+extends Node2D
 
 var effect_amount: float = 0.0
 var effect_duration: float = 0.0
 var effect_timer: Timer
+
+@onready var slow_particles: GPUParticles2D = $SlowParticles
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +18,11 @@ func _ready() -> void:
 	if effect_amount == 0.0:
 		queue_free()
 		return
+	if effect_amount < 0.0:
+		slow_particles.emitting = true
+	else:
+		slow_particles.emitting = false
+
 	get_parent().move_speed *= 1.0 + effect_amount
 	effect_timer = Timer.new()
 	effect_timer.one_shot = true
@@ -25,7 +32,7 @@ func _ready() -> void:
 	effect_timer.start(effect_duration)
 	if parent is Enemy and effect_amount < 0:
 		ConditionManager.on_enemy_slowed(get_parent(), self)
-
+	SfxManager.play_sound("EnemySlowedSFX", -30.0, -28.0, 0.9, 1.0)
 
 func _on_effect_timer_timeout() -> void:
 	get_parent().move_speed /= 1.0 + effect_amount

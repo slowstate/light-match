@@ -13,7 +13,7 @@ enum UpgradeTypes {
 	REVOLVER_BARREL,
 	SHIELD_GENERATOR,
 	BIONIC_LEGS,
-	FREEZE_BOMB,
+	STUN_GRENADE,
 	POWER_DIVERTER,
 	REPULSOR_FIELD,
 	SHOCK_BATON,
@@ -24,13 +24,12 @@ enum UpgradeTypes {
 	_3D_PRINTER,
 	_4D_GLASSES,
 	COLOUR_CHANGING_DYE,
-	#KALEIDOSCOPE,
 	LUCKY_DICE,
 	PAINTBALL_GUN,
 	PAINT_BOMB,
 	SILVER_SPOON,
 	SPRAY_PAINT,
-	#STOPWATCH,
+	EXOSUIT_OVERDRIVE,
 }
 
 #region Combat upgrades
@@ -50,13 +49,14 @@ const RoseTintedGlasses = preload("res://Player/Upgrades/Combat/rose_tinted_glas
 const AdrenalineInjection = preload("res://Player/Upgrades/Utility/adrenaline_injection.gd")
 const BionicLegs = preload("res://Player/Upgrades/Utility/bionic_legs.gd")
 const EnergyCollector = preload("res://Player/Upgrades/Utility/energy_collector.gd")
-const FreezeBomb = preload("res://Player/Upgrades/Utility/freeze_bomb.gd")
+const StunGrenade = preload("res://Player/Upgrades/Utility/stun_grenade.gd")
 const PanicBooster = preload("res://Player/Upgrades/Utility/panic_booster.gd")
 const PowerDiverter = preload("res://Player/Upgrades/Utility/power_diverter.gd")
 const RepulsorField = preload("res://Player/Upgrades/Utility/repulsor_field.gd")
 const ShieldGenerator = preload("res://Player/Upgrades/Utility/shield_generator.gd")
 const ShockBaton = preload("res://Player/Upgrades/Utility/shock_baton.gd")
 const Taser = preload("res://Player/Upgrades/Utility/taser.gd")
+const ExosuitOverdrive = preload("res://Player/Upgrades/Utility/exosuit_overdrive.gd")
 #endregion
 
 #region Meta upgrades
@@ -86,7 +86,7 @@ const ALL_UPGRADES: Dictionary = {
 	UpgradeTypes.ADRENALINE_INJECTION: AdrenalineInjection,
 	UpgradeTypes.BIONIC_LEGS: BionicLegs,
 	UpgradeTypes.ENERGY_COLLECTOR: EnergyCollector,
-	UpgradeTypes.FREEZE_BOMB: FreezeBomb,
+	UpgradeTypes.STUN_GRENADE: StunGrenade,
 	UpgradeTypes.PANIC_BOOSTER: PanicBooster,
 	UpgradeTypes.POWER_DIVERTER: PowerDiverter,
 	UpgradeTypes.REPULSOR_FIELD: RepulsorField,
@@ -96,13 +96,12 @@ const ALL_UPGRADES: Dictionary = {
 	UpgradeTypes._3D_PRINTER: _3dPrinter,
 	UpgradeTypes._4D_GLASSES: _4dGlasses,
 	UpgradeTypes.COLOUR_CHANGING_DYE: ColourChangingDye,
-	#UpgradeTypes.KALEIDOSCOPE: Kaleidoscope,
 	UpgradeTypes.LUCKY_DICE: LuckyDice,
 	UpgradeTypes.PAINTBALL_GUN: PaintballGun,
 	UpgradeTypes.PAINT_BOMB: PaintBomb,
 	UpgradeTypes.SILVER_SPOON: SilverSpoon,
 	UpgradeTypes.SPRAY_PAINT: SprayPaint,
-	#UpgradeTypes.STOPWATCH: Stopwatch,
+	UpgradeTypes.EXOSUIT_OVERDRIVE: ExosuitOverdrive,
 }
 
 

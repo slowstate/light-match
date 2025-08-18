@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c7845x7xoc1g2"]
+[gd_scene load_steps=56 format=3 uid="uid://c7845x7xoc1g2"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
 [ext_resource type="Texture2D" uid="uid://r26c27hrvnw1" path="res://Arena/BG Hex Light.png" id="3_dyfs6"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d0dfysmqkrlrt" path="res://Menus/MainMenu/Light.png" id="7_gjco6"]
 [ext_resource type="Texture2D" uid="uid://cqfxbdt8yg400" path="res://Menus/MainMenu/MATCH.png" id="8_7n2il"]
 [ext_resource type="Theme" uid="uid://cvjimjlqhiq6t" path="res://Common/Themes/button.tres" id="8_vbbw2"]
-[ext_resource type="Texture2D" uid="uid://dqs7558opf5lp" path="res://Arena/BG.png" id="9_ke1b8"]
+[ext_resource type="Texture2D" uid="uid://0j3j1ifosde8" path="res://Arena/Background.png" id="9_ke1b8"]
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu_button.gd" id="9_uok7q"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="10_a5kyi"]
 [ext_resource type="Script" path="res://Menus/MainMenu/version_label.gd" id="11_dopid"]
@@ -19,17 +19,17 @@
 [ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="15_b20bq"]
 [ext_resource type="Texture2D" uid="uid://b8vnudmbnrv2m" path="res://Enemies/Lizard/Sprite/Liz Head.png" id="16_3cfnn"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="16_ltpam"]
-[ext_resource type="Texture2D" uid="uid://kcovw5iw32l7" path="res://Player/Upgrades/Combat/Bipod.png" id="16_maefu"]
-[ext_resource type="Texture2D" uid="uid://5gajlo6clh5q" path="res://Player/Upgrades/Combat/Charged Ammo.png" id="17_locs0"]
 [ext_resource type="Texture2D" uid="uid://dxc4jm502rq8t" path="res://Enemies/Lizard/Sprite/Liz Head Light.png" id="17_wvdvq"]
 [ext_resource type="FontFile" uid="uid://dt7ijpr3w8s08" path="res://Common/Fonts/exo/Exo-Bold.otf" id="18_40nhg"]
 [ext_resource type="FontFile" uid="uid://ct74ild18mpl5" path="res://Common/Fonts/exo/Exo-Medium.otf" id="19_bj3y6"]
+[ext_resource type="Texture2D" uid="uid://bum1yyyf3kfbl" path="res://Player/Upgrades/Utility/Taser.png" id="20_vxnj5"]
 [ext_resource type="Texture2D" uid="uid://cf231u6471cib" path="res://Menus/MainMenu/Mouse.png" id="21_s6df7"]
 [ext_resource type="Texture2D" uid="uid://ycuh2y744c8d" path="res://Menus/MainMenu/Left Button Mouse.png" id="23_brnj6"]
 [ext_resource type="Texture2D" uid="uid://cbc5pni83c6y4" path="res://Menus/MainMenu/Right Button Mouse.png" id="24_s1j0b"]
 [ext_resource type="Texture2D" uid="uid://b180nk1o8yx2v" path="res://Menus/MainMenu/Scroll.png" id="25_b51qq"]
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="27_m1d7y"]
 [ext_resource type="PackedScene" uid="uid://8p11gjdp0ijq" path="res://Menus/Settings/settings.tscn" id="30_mfnn7"]
+[ext_resource type="Script" path="res://Menus/MainMenu/lifetime_palettes_label.gd" id="32_4yuew"]
 
 [sub_resource type="Gradient" id="Gradient_dpln6"]
 offsets = PackedFloat32Array(0)
@@ -520,17 +520,30 @@ size = Vector2(248, 52)
 [sub_resource type="CircleShape2D" id="CircleShape2D_52mh4"]
 radius = 20.025
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5g6q"]
-size = Vector2(221, 20)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yk0bt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exyqd"]
-size = Vector2(323, 20)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7uq8"]
+bg_color = Color(1, 1, 1, 0.0431373)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w1v3q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5g6q"]
+size = Vector2(70, 22)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhd0s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o4y3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwa3w"]
-size = Vector2(259.75, 20.5)
+size = Vector2(106, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tohs8"]
-size = Vector2(198.75, 20)
+size = Vector2(48, 22)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bs6sr"]
 font_color = Color(0.5, 0.5, 0.5, 1)
@@ -591,6 +604,9 @@ corner_radius_bottom_left = 4
 expand_margin_left = 4.0
 expand_margin_top = 4.0
 expand_margin_right = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bs6sr"]
+font_color = Color(0.5, 0.5, 0.5, 1)
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_q4nro")
@@ -757,83 +773,76 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_52mh4")
 
 [node name="MenuButtons" type="VBoxContainer" parent="."]
-offset_left = 710.0
-offset_top = 500.0
-offset_right = 1210.0
-offset_bottom = 899.0
-theme_override_constants/separation = 80
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 64.0
+offset_right = 1920.0
+offset_bottom = 1144.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
 
-[node name="StartButton" type="Button" parent="MenuButtons" node_paths=PackedStringArray("collision_shape_2d")]
+[node name="StartButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(78, 25)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("8_vbbw2")
-text = "MAIN_MENU_START"
-script = ExtResource("9_uok7q")
-collision_shape_2d = NodePath("StaticBody2D/CollisionShape2D")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yk0bt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w1v3q")
+text = "START"
+icon_alignment = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/StartButton"]
-collision_mask = 0
+position = Vector2(39, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/StartButton/StaticBody2D"]
-position = Vector2(113, 11)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_f5g6q")
 
-[node name="TutorialButton" type="Button" parent="MenuButtons" node_paths=PackedStringArray("collision_shape_2d")]
+[node name="SettingsButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(116, 25)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("8_vbbw2")
-text = "MAIN_MENU_HOW_TO_PLAY"
-icon_alignment = 1
-script = ExtResource("9_uok7q")
-collision_shape_2d = NodePath("StaticBody2D/CollisionShape2D")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/TutorialButton"]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/TutorialButton/StaticBody2D"]
-position = Vector2(162.5, 11)
-shape = SubResource("RectangleShape2D_exyqd")
-
-[node name="SettingsButton" type="Button" parent="MenuButtons" node_paths=PackedStringArray("collision_shape_2d")]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("8_vbbw2")
-text = "MAIN_MENU_SETTINGS"
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dhd0s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o4y3e")
+text = "SETTINGS"
 icon_alignment = 1
 script = ExtResource("9_uok7q")
 collision_shape_2d = NodePath("StaticBody2D/CollisionShape2D")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/SettingsButton"]
+position = Vector2(59, 10)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/SettingsButton/StaticBody2D"]
-position = Vector2(130.125, 9.75)
 shape = SubResource("RectangleShape2D_uwa3w")
 
-[node name="ExitButton" type="Button" parent="MenuButtons" node_paths=PackedStringArray("collision_shape_2d")]
+[node name="ExitButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(56, 25)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("8_vbbw2")
-text = "MAIN_MENU_EXIT"
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dhd0s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o4y3e")
+text = "EXIT"
 icon_alignment = 1
 script = ExtResource("9_uok7q")
 collision_shape_2d = NodePath("StaticBody2D/CollisionShape2D")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/ExitButton"]
+position = Vector2(29, 10)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/ExitButton/StaticBody2D"]
-position = Vector2(100, 10)
 shape = SubResource("RectangleShape2D_tohs8")
-
-[node name="VersionLabel" type="Label" parent="."]
-offset_left = 10.0
-offset_top = 1052.0
-offset_right = 96.0
-offset_bottom = 1069.0
-text = "Version: 0.6"
-label_settings = SubResource("LabelSettings_bs6sr")
-script = ExtResource("11_dopid")
 
 [node name="BulletSpawnTimer" type="Timer" parent="."]
 one_shot = true
@@ -856,34 +865,19 @@ texture = ExtResource("9_ke1b8")
 [node name="PlayerSprite" parent="Tutorial" instance=ExtResource("10_a5kyi")]
 position = Vector2(960, 540)
 
-[node name="TorsoLight" parent="Tutorial/PlayerSprite/Torso" index="0"]
+[node name="LeftArmLight" parent="Tutorial/PlayerSprite/Torso/LeftForearm/LeftArm" index="0"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
-[node name="LeftForearmLight" parent="Tutorial/PlayerSprite/Torso/LeftForearm/LeftArm" index="0"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="LeftArmLight" parent="Tutorial/PlayerSprite/Torso/LeftForearm/LeftArm" index="1"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="GunCircleLight" parent="Tutorial/PlayerSprite/Torso/Gun" index="0"]
+[node name="TorsoLight" parent="Tutorial/PlayerSprite/Torso" index="4"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
 [node name="GunLight1" parent="Tutorial/PlayerSprite/Torso/Gun" index="1"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
-[node name="GunLight2" parent="Tutorial/PlayerSprite/Torso/Gun" index="2"]
+[node name="GunLight2" parent="Tutorial/PlayerSprite/Torso/Gun" index="6"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
-[node name="GunLight3" parent="Tutorial/PlayerSprite/Torso/Gun" index="3"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="RightForearmLight" parent="Tutorial/PlayerSprite/Torso/Gun" index="5"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="LeftShoulderLight" parent="Tutorial/PlayerSprite/Torso/LeftShoulder" index="0"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
-
-[node name="RightShoulderLight" parent="Tutorial/PlayerSprite/Torso/RightShoulder" index="0"]
+[node name="GunLight3" parent="Tutorial/PlayerSprite/Torso/Gun" index="7"]
 modulate = Color(0.0117647, 0.627451, 1, 1)
 
 [node name="HeadLight" parent="Tutorial/PlayerSprite/Head" index="0"]
@@ -936,7 +930,7 @@ offset_left = -222.0
 offset_top = -45.0
 offset_right = 351.0
 offset_bottom = -8.0
-text = "This is your palette.
+text = "This is your Chain.
 Kill enemies of these colours from left to right to clear it."
 horizontal_alignment = 1
 
@@ -975,6 +969,7 @@ active = false
 [node name="LizardSprite" parent="Tutorial" instance=ExtResource("13_rwsq0")]
 position = Vector2(476, 514)
 rotation = -1.49051
+scale = Vector2(1.2, 1.2)
 
 [node name="LizBodyLight1" parent="Tutorial/LizardSprite" index="6"]
 modulate = Color(1, 0.270588, 0, 1)
@@ -989,8 +984,9 @@ modulate = Color(1, 0.270588, 0, 1)
 modulate = Color(1, 0.270588, 0, 1)
 
 [node name="LizHead" type="Sprite2D" parent="Tutorial"]
-position = Vector2(524, 519)
+position = Vector2(533, 520)
 rotation = -1.49051
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("16_3cfnn")
 
 [node name="LizHeadLight" type="Sprite2D" parent="Tutorial/LizHead"]
@@ -1001,6 +997,7 @@ texture = ExtResource("17_wvdvq")
 [node name="LizardSprite2" parent="Tutorial" instance=ExtResource("13_rwsq0")]
 position = Vector2(441, 764)
 rotation = -1.98618
+scale = Vector2(1.2, 1.2)
 
 [node name="LizBodyLight1" parent="Tutorial/LizardSprite2" index="6"]
 modulate = Color(0, 0.929412, 0, 1)
@@ -1015,8 +1012,9 @@ modulate = Color(0, 0.929412, 0, 1)
 modulate = Color(0, 0.929412, 0, 1)
 
 [node name="LizHead2" type="Sprite2D" parent="Tutorial"]
-position = Vector2(485, 744)
+position = Vector2(493, 740)
 rotation = -1.98618
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("16_3cfnn")
 
 [node name="LizHeadLight" type="Sprite2D" parent="Tutorial/LizHead2"]
@@ -1029,18 +1027,18 @@ texture = ExtResource("17_wvdvq")
 [node name="RoundLabel" type="Label" parent="Tutorial/UserInterface"]
 offset_left = 70.0
 offset_top = 80.0
-offset_right = 167.0
-offset_bottom = 115.0
-text = "Round"
+offset_right = 138.0
+offset_bottom = 116.0
+text = "Test"
 label_settings = SubResource("LabelSettings_d7clj")
 horizontal_alignment = 1
 
 [node name="RoundNumberLabel" type="Label" parent="Tutorial/UserInterface"]
-offset_left = 180.0
+offset_left = 143.0
 offset_top = 80.0
-offset_right = 270.0
-offset_bottom = 115.0
-text = "4"
+offset_right = 233.0
+offset_bottom = 116.0
+text = "3"
 label_settings = SubResource("LabelSettings_5521n")
 
 [node name="PlayerConditionsInterface" type="VBoxContainer" parent="Tutorial/UserInterface"]
@@ -1051,17 +1049,13 @@ offset_bottom = 168.0
 
 [node name="SwarmConditionLabel" type="Label" parent="Tutorial/UserInterface/PlayerConditionsInterface"]
 layout_mode = 2
-text = "Swarm"
-
-[node name="SuperchargedConditionLabel" type="Label" parent="Tutorial/UserInterface/PlayerConditionsInterface"]
-layout_mode = 2
-text = "Supercharged"
+text = "Chromatic Reaction"
 
 [node name="RunInfoHint" type="Panel" parent="Tutorial/UserInterface"]
 offset_left = 58.0
 offset_top = 71.0
-offset_right = 214.0
-offset_bottom = 174.0
+offset_right = 223.0
+offset_bottom = 156.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ml4sl")
 
 [node name="RoundLabel" type="Label" parent="Tutorial/UserInterface/RunInfoHint"]
@@ -1070,7 +1064,7 @@ offset_left = -40.0
 offset_top = -51.0
 offset_right = 191.0
 offset_bottom = -7.0
-text = "The current round. Complete all rounds or die trying."
+text = "The current test. Complete all tests or die trying."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -1078,33 +1072,22 @@ autowrap_mode = 3
 [node name="ConditionsHintLabel" type="Label" parent="Tutorial/UserInterface/RunInfoHint"]
 layout_mode = 0
 offset_left = -40.0
-offset_top = 113.0
+offset_top = 98.0
 offset_right = 191.0
-offset_bottom = 170.0
+offset_bottom = 175.0
 text = "This is a list of active Conditions. Conditions increase the difficulty and grant POINTs for the rest of the run."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Bipod" type="Sprite2D" parent="Tutorial/UserInterface"]
+[node name="Taser" type="Sprite2D" parent="Tutorial/UserInterface"]
 position = Vector2(315, 50)
 texture = ExtResource("15_b20bq")
 centered = false
 offset = Vector2(2, 0)
 
-[node name="IconSprite" type="Sprite2D" parent="Tutorial/UserInterface/Bipod"]
+[node name="IconSprite" type="Sprite2D" parent="Tutorial/UserInterface/Taser"]
 position = Vector2(39, 42)
-texture = ExtResource("16_maefu")
-
-[node name="ChargedAmmo" type="Sprite2D" parent="Tutorial/UserInterface"]
-modulate = Color(1, 1, 1, 0.3)
-position = Vector2(394, 50)
-texture = ExtResource("15_b20bq")
-centered = false
-offset = Vector2(2, 0)
-
-[node name="IconSprite" type="Sprite2D" parent="Tutorial/UserInterface/ChargedAmmo"]
-position = Vector2(39, 42)
-texture = ExtResource("17_locs0")
+texture = ExtResource("20_vxnj5")
 
 [node name="UpgradesInfoHint" type="Panel" parent="Tutorial/UserInterface"]
 offset_left = 300.0
@@ -1120,7 +1103,7 @@ offset_top = 109.0
 offset_right = 601.0
 offset_bottom = 166.0
 text = "Your Adaptations will appear here. Active Adaptations will light up.
-You'll get a chance to purchase up to 3 at the end of every round using POINTs.
+You will periodically receive Adaptations as you progress through tests.
 While playing, hover over them for more information."
 horizontal_alignment = 1
 
@@ -1142,6 +1125,7 @@ Shoot them with matching colours."
 horizontal_alignment = 1
 
 [node name="PointsCounter" type="Control" parent="Tutorial/UserInterface"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1810.0
@@ -1176,6 +1160,7 @@ position = Vector2(33.5, 0)
 texture = ExtResource("16_ltpam")
 
 [node name="PointsCounterHint" type="Panel" parent="Tutorial/UserInterface"]
+visible = false
 offset_left = 1724.0
 offset_top = 894.0
 offset_right = 1894.0
@@ -1452,20 +1437,49 @@ text = "BACK"
 [node name="Settings" parent="." instance=ExtResource("30_mfnn7")]
 visible = false
 
+[node name="VersionLabel" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 1052.0
+offset_right = 96.0
+offset_bottom = 1069.0
+text = "Version: 0.6"
+label_settings = SubResource("LabelSettings_bs6sr")
+script = ExtResource("11_dopid")
+
 [node name="BugReportButton" type="LinkButton" parent="."]
 offset_left = 106.0
 offset_top = 1052.0
-offset_right = 197.0
+offset_right = 223.0
 offset_bottom = 1069.0
 tooltip_text = "This will open a new page in a browser"
 text = "🪲 Report a bug"
 underline = 1
 uri = "https://docs.google.com/forms/d/e/1FAIpQLSesTRUk84vd64ahVYHY6CWUBLzCTzkcQt8Cp85G2fQjj0X66w/viewform?usp=dialog"
 
+[node name="LifetimePalettesLabel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1641.0
+offset_top = 1012.0
+offset_right = 1910.0
+offset_bottom = 1069.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "You gain permanent stats based on the number of Sequences you've completed"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 16
+text = "Lifetime Sequences completed: 100
+Permanent fire rate gained: 50%
+Permanent max health gained: 1"
+horizontal_alignment = 2
+vertical_alignment = 2
+script = ExtResource("32_4yuew")
+
 [connection signal="mouse_entered" from="MenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="mouse_entered" from="MenuButtons/TutorialButton" to="." method="_on_tutorial_button_mouse_entered"]
-[connection signal="pressed" from="MenuButtons/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="mouse_entered" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="mouse_entered" from="MenuButtons/ExitButton" to="." method="_on_exit_button_mouse_entered"]

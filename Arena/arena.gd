@@ -8,12 +8,11 @@ var total_enemies_to_spawn_this_round: int = 0
 var enemy_types_to_spawn: Array[Globals.EnemyType]
 var palette_milestone_1_this_round: int = 0
 var palette_milestone_2_this_round: int = 0
-var palettes_cleared_this_round: int = 0
+var palettes_cleared_this_run: int = 0
 
 @onready var round_number_label: Label = $UserInterface/RoundNumberLabel
 @onready var state_machine: ArenaStateMachine = $StateMachine
 @onready var round_active: RoundActiveState = $StateMachine/RoundActive
-@onready var animation_player: AnimationPlayer = $BG/AnimationPlayer
 @onready var music_manager: Node2D = $MusicManager
 @onready var timer_0_12s: Timer = $"MusicManager/Timer0-12s"
 @onready var timer_12_30s: Timer = $"MusicManager/Timer12-30s"
@@ -22,6 +21,8 @@ var palettes_cleared_this_round: int = 0
 @onready var timer_48_60s: Timer = $"MusicManager/Timer48-60s"
 @onready var timer_60_78s: Timer = $"MusicManager/Timer60-78s"
 @onready var timer_78_90s: Timer = $"MusicManager/Timer78-90s"
+@onready var fade_in_timer: Timer = $FadeInTimer
+@onready var fade: ColorRect = $Fade
 
 
 func _ready() -> void:
@@ -29,14 +30,19 @@ func _ready() -> void:
 	Logger.log_info(log_data)
 	var log_play_data = {"message": "Run started"}
 	Logger.log_play_data(log_play_data)
-	animation_player.play("Arena_Lights")
 	music_manager.update_music(0.0)
 	timer_0_12s.start()
+	fade.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	round_number_label.text = str(current_round_number)
+
+
+func _process(delta: float) -> void:
+	if !fade_in_timer.is_stopped():
+		fade.modulate.a = lerp(1.0, 0.0, 1 - fade_in_timer.time_left / fade_in_timer.wait_time)
 
 
 func _on_timer_012s_timeout() -> void:

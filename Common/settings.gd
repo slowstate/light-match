@@ -8,6 +8,7 @@ const WINDOW_MODE_LABELS = {
 
 var window_mode := DisplayServer.WINDOW_MODE_MAXIMIZED
 var windowed_resolution: Array = [1920, 1080]
+var screen_shake: bool
 
 var preferred_locale: String = "en"
 
@@ -18,6 +19,7 @@ var control_mappings: Dictionary = {
 	"player_blue": OS.get_keycode_string(KEY_1),
 	"player_green": OS.get_keycode_string(KEY_2),
 	"player_red": OS.get_keycode_string(KEY_3),
+	"player_reload": OS.get_keycode_string(KEY_R),
 	"player_move_up": OS.get_keycode_string(KEY_W),
 	"player_move_down": OS.get_keycode_string(KEY_S),
 	"player_move_left": OS.get_keycode_string(KEY_A),
@@ -34,6 +36,10 @@ func set_window_mode(new_window_mode: int) -> void:
 func set_windowed_resolution(new_windowed_resolution: Vector2i) -> void:
 	DisplayServer.window_set_size(new_windowed_resolution)
 	windowed_resolution = [new_windowed_resolution.x, new_windowed_resolution.y]
+
+
+func set_screen_shake(enabled: bool) -> void:
+	screen_shake = enabled
 
 
 func saved_folder_exists() -> bool:
@@ -55,6 +61,7 @@ func save_user_settings() -> void:
 		window_mode = DisplayServer.WINDOW_MODE_MAXIMIZED
 	config.set_value("Display", "window_mode", DisplayServer.window_get_mode())
 	config.set_value("Display", "windowed_resolution", [DisplayServer.window_get_size().x, DisplayServer.window_get_size().y])
+	config.set_value("Gameplay", "screen_shake", screen_shake)
 
 	config.set_value("", "Locale", preferred_locale)
 
@@ -85,6 +92,7 @@ func load_user_settings() -> void:
 	if windowed_resolution.size() != 2:
 		windowed_resolution = [1920, 1080]
 	set_windowed_resolution(Vector2i(windowed_resolution[0], windowed_resolution[1]))
+	screen_shake = config.get_value("Gameplay", "screen_shake", true)
 
 	preferred_locale = config.get_value("", "locale", OS.get_locale_language())
 

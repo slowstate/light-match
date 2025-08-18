@@ -14,57 +14,63 @@ extends Node2D
 var current_state: State
 var enemy_types_to_spawn: Array[Globals.EnemyType]
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-	
+
 func update_music(play_time: float):
-	if get_parent() is Arena:
-		current_state = get_parent().state_machine.current_state
+	if get_parent() is Tutorial:
+		update_volume(-10.0)
+		beat_base.play(play_time)
+		drums_base.play(play_time)
+		highlight_base.play(play_time)
+		lead_base.play(play_time)
+	elif get_parent() is Arena:
 		enemy_types_to_spawn = get_parent().enemy_types_to_spawn
-		if current_state is RoundActiveState:
-			update_volume(-3.0)
-			for enemy_type in enemy_types_to_spawn:
-				if enemy_type == 0:
-					bass_bot.play(play_time)
-					bass_base.stop()
-				else:
-					bass_base.play(play_time)
-					bass_bot.stop()
-				if enemy_type == 1:
-					beat_liz.play(play_time)
-					beat_base.stop()
-				else:
-					beat_base.play(play_time)
-					beat_liz.stop()
-				if enemy_type == 2:
-					drums_tank.play(play_time)
-					drums_base.stop()
-				else:
-					drums_base.play(play_time)
-					drums_tank.stop()
-				if enemy_type == 3:
-					highlight_oracle.play(play_time)
-					highlight_base.stop()
-				else:
-					highlight_base.play(play_time)
-					highlight_oracle.stop()
-				if enemy_type == 4:
-					lead_star.play(play_time)
-					lead_base.stop()
-				else:
-					lead_base.play(play_time)
-					lead_star.stop()
-		else:
-			update_volume(-5.0)
-	else:
 		update_volume(-5.0)
+		swell_base.play(play_time)
+		for enemy_type in enemy_types_to_spawn:
+			if enemy_type == 0:
+				bass_bot.play(play_time)
+				bass_base.stop()
+			else:
+				bass_base.play(play_time)
+				bass_bot.stop()
+			if enemy_type == 1:
+				beat_liz.play(play_time)
+				beat_base.stop()
+			else:
+				beat_base.play(play_time)
+				beat_liz.stop()
+			if enemy_type == 2:
+				drums_tank.play(play_time)
+				drums_base.stop()
+			else:
+				drums_base.play(play_time)
+				drums_tank.stop()
+			if enemy_type == 3:
+				highlight_oracle.play(play_time)
+				highlight_base.stop()
+			else:
+				highlight_base.play(play_time)
+				highlight_oracle.stop()
+			if enemy_type == 4:
+				lead_star.play(play_time)
+				lead_base.stop()
+			else:
+				lead_base.play(play_time)
+				lead_star.stop()
+	else:
+		update_volume(-7.0)
+		swell_base.play(play_time)
 		bass_base.play(play_time)
 		beat_base.play(play_time)
 		drums_base.play(play_time)
 		highlight_base.play(play_time)
 		lead_base.play(play_time)
+
 
 func update_volume(volume_db: float):
 	var music_volume = volume_db

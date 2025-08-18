@@ -17,6 +17,9 @@ var shrink_time: float = 2.0
 func enter() -> void:
 	oracle = owner as Oracle
 	assert(oracle != null, "The state type must be used only in the Oracle scene. It needs the owner to be a Oracle node.")
+
+	oracle.enable_attack_warning_indicator(true)
+
 	attack_rotation_speed = oracle.orb_rotation_speed
 	oracle.sleeping = true
 	if !expand_timer.timeout.is_connected(_on_expand_timer_timeout):
@@ -28,13 +31,14 @@ func enter() -> void:
 	if !shrink_timer.timeout.is_connected(_on_shrink_timer_timeout):
 		shrink_timer.timeout.connect(_on_shrink_timer_timeout)
 	expand_timer.start(expand_time)
+	SfxManager.play_sound("OracleAttackSFX", -30.0, -28.0, 0.9, 1.0)
 
 
 func exit() -> void:
 	for orb in oracle.orbs.get_children():
 		orb = orb as Appendage
 		orb.position = orb.original_position
-		orb.scale = Vector2(1.0, 1.0)
+		orb.scale = Vector2(0.5, 0.5)
 
 
 func update(_delta: float) -> void:
@@ -46,12 +50,20 @@ func physics_update(delta: float) -> void:
 		return
 	if !Globals.player:
 		return
+
 	if oracle.is_stunned():
+		oracle.set_stun_indicator_percentage_completion(1 - oracle.stunned_timer.time_left / oracle.stunned_timer.wait_time)
+		oracle.enable_attack_warning_indicator(false)
+		oracle.enable_stun_indicator(true)
+		oracle.dim_lights(ease(1 - oracle.stunned_timer.time_left / oracle.stunned_timer.wait_time, 0.2) * 0.5)
 		expand_timer.paused = true
 		shrink_timer.paused = true
 		spin_up_timer.paused = true
 		spin_down_timer.paused = true
 		return
+	oracle.enable_stun_indicator(false)
+	oracle.enable_attack_warning_indicator(true)
+	oracle.dim_lights(clampf(oracle.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
 	expand_timer.paused = false
 	shrink_timer.paused = false
 	spin_up_timer.paused = false
@@ -61,12 +73,12 @@ func physics_update(delta: float) -> void:
 		for orb in oracle.orbs.get_children():
 			orb = orb as Appendage
 			orb.position = orb.position.lerp(orb.original_position * 5, ease(1 - expand_timer.time_left / expand_timer.wait_time, 2.0))
-			orb.scale = orb.scale.lerp(Vector2(2.0, 2.0), ease(1 - expand_timer.time_left / expand_timer.wait_time, 2.0))
+			orb.scale = orb.scale.lerp(Vector2(1.0, 1.0), ease(1 - expand_timer.time_left / expand_timer.wait_time, 2.0))
 	elif !shrink_timer.is_stopped():
 		for orb in oracle.orbs.get_children():
 			orb = orb as Appendage
 			orb.position = orb.position.lerp(orb.original_position, ease(1 - shrink_timer.time_left / shrink_timer.wait_time, 2.0))
-			orb.scale = orb.scale.lerp(Vector2(1.0, 1.0), ease(1 - shrink_timer.time_left / shrink_timer.wait_time, 2.0))
+			orb.scale = orb.scale.lerp(Vector2(0.5, 0.5), ease(1 - shrink_timer.time_left / shrink_timer.wait_time, 2.0))
 
 	if !spin_up_timer.is_stopped():
 		attack_rotation_speed = lerpf(

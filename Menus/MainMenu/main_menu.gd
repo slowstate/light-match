@@ -1,8 +1,9 @@
 extends Node2D
 
 const CROSSHAIR = preload("res://HUD/Crosshair.png")
-const ARENA = preload("res://Arena/arena.tscn")
 const BULLET = preload("res://Player/Bullet/bullet.tscn")
+const ARENA = preload("res://Arena/arena.tscn")
+const TUTORIAL = preload("res://Tutorial/tutorial.tscn")
 
 @onready var title_animation_player: AnimationPlayer = $TitleAnimationPlayer
 @onready var bullet_spawn_timer: Timer = $BulletSpawnTimer
@@ -28,26 +29,16 @@ func _on_start_button_mouse_entered() -> void:
 
 func _on_start_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
-	get_tree().change_scene_to_packed(ARENA)
+	if Save.lifetime_palettes > 0:
+		get_tree().change_scene_to_packed(ARENA)
+	else:
+		get_tree().change_scene_to_packed(TUTORIAL)
 
 
 #endregion
 
 
 #region Tutorial
-func _on_tutorial_button_mouse_entered() -> void:
-	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
-
-
-func _on_tutorial_button_pressed() -> void:
-	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
-	tutorial.visible = true
-	bullet_spawn_timer.stop()
-
-	var log_play_data = {"message": "How to play pressed"}
-	Logger.log_play_data(log_play_data)
-
-
 func _on_back_button_mouse_entered() -> void:
 	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
 
@@ -84,8 +75,7 @@ func _on_exit_button_mouse_entered() -> void:
 
 func _on_exit_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
-	Settings.save_user_settings()
-	get_tree().quit()
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 
 #endregion

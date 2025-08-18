@@ -12,6 +12,11 @@ var target_location: Vector2
 func enter() -> void:
 	lizard = owner as Lizard
 	assert(lizard != null, "The state type must be used only in the Lizard scene. It needs the owner to be a Lizard node.")
+
+	lizard.enable_attack_warning_indicator(false)
+	lizard.enable_attack_area_indicator(false)
+	lizard.enable_stun_indicator(true)
+
 	lizard.sleeping = true
 	if !stun_timer.timeout.is_connected(_on_stun_timer_timeout):
 		stun_timer.timeout.connect(_on_stun_timer_timeout)
@@ -30,33 +35,66 @@ func update(_delta: float) -> void:
 	pass
 
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 	if lizard.is_stunned():
-		stun_timer.paused = true
-		charge_timer.paused = true
-		dash_timer.paused = true
+		lizard.set_stun_indicator_percentage_completion(1 - lizard.stunned_timer.time_left / lizard.stunned_timer.wait_time)
+		lizard.enable_attack_warning_indicator(false)
+		lizard.enable_attack_area_indicator(false)
+		lizard.enable_stun_indicator(true)
+		lizard.dim_lights(ease(1 - lizard.stunned_timer.time_left / lizard.stunned_timer.wait_time, 0.2) * 0.5)
+
+		stun_timer.stop()
+		charge_timer.stop()
+		dash_timer.stop()
 		return
-	stun_timer.paused = false
-	charge_timer.paused = false
-	dash_timer.paused = false
+
+	lizard.dim_lights(clampf(lizard.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
+
+	if stun_timer.is_stopped() and charge_timer.is_stopped() and dash_timer.is_stopped():
+		stun_timer.start(0.01)
 
 	if !charge_timer.is_stopped():
 		lizard.rotation = lerp_angle(
 			lizard.rotation, (target_location - lizard.global_position).angle(), ease(1 - charge_timer.time_left / charge_timer.wait_time, -2.0)
 		)
+		lizard.attack_area_indicator.scale.x = lerpf(0.0, 1.0, ease(1 - charge_timer.time_left / charge_timer.wait_time, 0.5))
+		lizard.attack_area_indicator.modulate.a = lerpf(0.0, 1.0, ease(1 - charge_timer.time_left / charge_timer.wait_time, 0.5))
+		lizard.attack_area_indicator.modulate.g = lerpf(1.0, 0.0, ease(1 - charge_timer.time_left / charge_timer.wait_time, 1.0))
 	if !dash_timer.is_stopped():
 		lizard.global_position = lizard.global_position.lerp(target_location, ease(1 - dash_timer.time_left / dash_timer.wait_time, -2.0))
+		if lizard.global_position.x <= 970.0:
+			lizard.global_position = lizard.global_position.clamp(Vector2(65 + 32, 65 + 84), Vector2(2495 - 32, 1385 - 50))
+		elif lizard.global_position.x >= 1590.0:
+			lizard.global_position = lizard.global_position.clamp(Vector2(65 + 32, 65 + 50), Vector2(2495 - 32, 1385 - 84))
+		else:
+			lizard.global_position = lizard.global_position.clamp(Vector2(65 + 32, 65 + 50), Vector2(2495 - 32, 1385 - 50))
+
+	if !stun_timer.is_stopped():
+		lizard.set_stun_indicator_percentage_completion(1 - stun_timer.time_left / stun_timer.wait_time)
+		lizard.dim_lights(ease(1 - stun_timer.time_left / stun_timer.wait_time, 0.2) * 0.5)
 
 
 func _on_stun_timer_timeout() -> void:
+	if lizard.is_stunned():
+		return
+	lizard.attack_area_indicator.scale.x = 0
+	lizard.attack_area_indicator.modulate.a = 0
+	lizard.enable_attack_warning_indicator(true)
+	lizard.enable_attack_area_indicator(true)
+	lizard.enable_stun_indicator(false)
 	target_location = lizard.global_position + (Globals.player.global_position - lizard.global_position).normalized() * randf_range(700.0, 800.0)
-	charge_timer.start(randf_range(0.1, 0.2))
-	lizard.play_attack_animation()
-
+	var texture = lizard.attack_area_indicator.texture as GradientTexture2D
+	texture.width = (target_location - lizard.global_position).length()
+	charge_timer.start(0.5)
+	SfxManager.play_sound("LizardChargeSFX", -20.0, -18.0, 0.9, 1.0)
 
 func _on_charge_timer_timeout() -> void:
-	dash_timer.start(1.0)
-
+	lizard.enable_attack_area_indicator(false)
+	lizard.play_attack_animation()
+	dash_timer.start(1.5)
+	SfxManager.play_sound("LizardDashSFX", -25.0, -23.0, 0.8, 1.0)
 
 func _on_dash_timer_timeout() -> void:
-	stun_timer.start(randf_range(1.0, 1.5))
+	lizard.enable_attack_warning_indicator(false)
+	lizard.enable_stun_indicator(true)
+	stun_timer.start(randf_range(2.0, 4.0))

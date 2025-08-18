@@ -23,6 +23,17 @@ func set_colour(colour: Globals.Colour) -> void:
 	liz_body_light_4.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 
 
+func dim_lights(dim_amount: float) -> void:
+	liz_body_light_1.self_modulate.a = 1.0 - dim_amount
+	liz_body_light_2.self_modulate.a = 1.0 - dim_amount
+	liz_body_light_3.self_modulate.a = 1.0 - dim_amount
+	liz_body_light_4.self_modulate.a = 1.0 - dim_amount
+
+
+func get_dim_lights_amount() -> float:
+	return 1.0 - liz_body_light_1.self_modulate.a
+
+
 func set_health(health: int) -> void:
 	liz_body_light_1.visible = false if health < 1 else true
 	liz_body_light_2.visible = false if health < 2 else true

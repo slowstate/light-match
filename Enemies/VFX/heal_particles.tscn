@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfi7y740litxb"]
+
+[ext_resource type="Texture2D" uid="uid://b75xfa8jkfuyu" path="res://Enemies/VFX/Heal.png" id="1_68jqb"]
+[ext_resource type="Script" path="res://Enemies/VFX/heal_particles.gd" id="1_xxi52"]
+
+[sub_resource type="Curve" id="Curve_f5j8r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vkna0"]
+curve = SubResource("Curve_f5j8r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wtf5a"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(15, 1, 1)
+gravity = Vector3(0, -0.5, 0)
+linear_accel_min = 500.0
+linear_accel_max = 1000.0
+scale_min = 0.1
+scale_max = 0.25
+alpha_curve = SubResource("CurveTexture_vkna0")
+
+[node name="HealParticles" type="GPUParticles2D"]
+process_mode = 3
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_wtf5a")
+texture = ExtResource("1_68jqb")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+script = ExtResource("1_xxi52")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

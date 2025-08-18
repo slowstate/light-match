@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Enemies/Tank/Sprite/tank_sprite.gd" id="1_wkl1k"]
 [ext_resource type="Texture2D" uid="uid://qrfkoor2dh7l" path="res://Enemies/Tank/Sprite/Tank Left Leg-1.png" id="2_2qd80"]
 [ext_resource type="Texture2D" uid="uid://dw68kgmrcpibk" path="res://Enemies/Tank/Sprite/Tank Gun.png" id="3_v40w2"]
-[ext_resource type="Texture2D" uid="uid://yiavaejju3jn" path="res://Enemies/Tank/Sprite/Tank Body.png" id="4_dm4y5"]
+[ext_resource type="Texture2D" uid="uid://cjjy0rqpw61co" path="res://Enemies/Tank/Sprite/Tank Body.png" id="4_dm4y5"]
 [ext_resource type="Texture2D" uid="uid://dt7o1mwgeq5iq" path="res://Enemies/Tank/Sprite/Tank Light 1.png" id="5_fnptv"]
 [ext_resource type="Texture2D" uid="uid://bn1k7lyquj6lp" path="res://Enemies/Tank/Sprite/Tank Light 2.png" id="6_eykph"]
 [ext_resource type="Texture2D" uid="uid://c1gp0qjud6d2c" path="res://Enemies/Tank/Sprite/Tank Light 3.png" id="7_f4n18"]
@@ -14,23 +14,27 @@
 [node name="TankSprite" type="Sprite2D"]
 script = ExtResource("1_wkl1k")
 
-[node name="TankLeftLeg" type="Sprite2D" parent="."]
+[node name="TankRightLeg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-0.5, 23)
 rotation = -1.5708
 texture = ExtResource("1_qf5jd")
 
-[node name="TankLeftLeg-1" type="Sprite2D" parent="."]
+[node name="TankLeftLeg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.5, -23)
 rotation = -1.5708
 texture = ExtResource("2_2qd80")
 
 [node name="TankGun" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(25, 0)
 rotation = -1.5708
 texture = ExtResource("3_v40w2")
 
 [node name="TankBody" type="Sprite2D" parent="."]
-position = Vector2(0.5, 0)
+self_modulate = Color(0.6, 0.6, 0.6, 1)
+position = Vector2(9.5, 0)
 rotation = -1.5708
 texture = ExtResource("4_dm4y5")
 

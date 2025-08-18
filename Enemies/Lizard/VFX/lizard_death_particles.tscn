@@ -1,0 +1,302 @@
+[gd_scene load_steps=39 format=3 uid="uid://bxre6ebtr7wtm"]
+
+[ext_resource type="Script" path="res://Enemies/Lizard/VFX/lizard_death_particles.gd" id="1_4y8cf"]
+[ext_resource type="Texture2D" uid="uid://demfmd5v0bu0i" path="res://Enemies/Lizard/Sprite/Liz Body.png" id="2_nci38"]
+[ext_resource type="Texture2D" uid="uid://be1o44jjfmeg4" path="res://Enemies/Lizard/Sprite/Liz Front Left Leg.png" id="3_7tyih"]
+[ext_resource type="Texture2D" uid="uid://w6c720n418jd" path="res://Enemies/Lizard/Sprite/Liz Back Left Leg.png" id="4_x2bgl"]
+[ext_resource type="Texture2D" uid="uid://b3wyohl8g0lyo" path="res://Enemies/Lizard/Sprite/Liz Front Right Leg.png" id="5_e0ic1"]
+[ext_resource type="Texture2D" uid="uid://cw7mo0sa3ur4o" path="res://Enemies/Lizard/Sprite/Liz Back Right Leg.png" id="6_278tu"]
+[ext_resource type="Texture2D" uid="uid://ckooq8a6au6sr" path="res://Enemies/Lizard/Sprite/Liz Tail 1.png" id="7_i2smv"]
+[ext_resource type="Texture2D" uid="uid://b6qe44as4fuw5" path="res://Enemies/Lizard/Sprite/Liz Tail 2.png" id="8_d3mhy"]
+[ext_resource type="Texture2D" uid="uid://rg701ndp6lco" path="res://Enemies/Lizard/Sprite/Liz Tail 3.png" id="9_2gkkc"]
+
+[sub_resource type="Curve" id="Curve_spkw6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26373, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e5gng"]
+curve = SubResource("Curve_spkw6")
+
+[sub_resource type="Curve" id="Curve_qk5mb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72308, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_u461g"]
+curve = SubResource("Curve_qk5mb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pv86x"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(36, 20, 1)
+angle_min = -90.0
+angle_max = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 300.0
+damping_max = 300.0
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_u461g")
+alpha_curve = SubResource("CurveTexture_e5gng")
+
+[sub_resource type="Gradient" id="Gradient_ouvjw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.141176, 0.137255, 0.137255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y6x8h"]
+gradient = SubResource("Gradient_ouvjw")
+width = 4
+height = 4
+
+[sub_resource type="Curve" id="Curve_2h268"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26374, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v274b"]
+curve = SubResource("Curve_2h268")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ikf3j"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(24, 12, 1)
+angle_min = -90.0
+angle_max = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 300.0
+damping_max = 300.0
+alpha_curve = SubResource("CurveTexture_v274b")
+
+[sub_resource type="Gradient" id="Gradient_xof63"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aihhg"]
+gradient = SubResource("Gradient_xof63")
+width = 4
+height = 4
+
+[sub_resource type="Curve" id="Curve_vlgsq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yo02j"]
+curve = SubResource("Curve_vlgsq")
+
+[sub_resource type="Curve" id="Curve_n264d"]
+min_value = -30.0
+max_value = 30.0
+_data = [Vector2(0, 30), 0.0, -48.956, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tw0al"]
+curve = SubResource("Curve_n264d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fnsln"]
+particle_flag_disable_z = true
+angle_min = -2.99999
+angle_max = -2.99999
+angle_curve = SubResource("CurveTexture_tw0al")
+direction = Vector3(2, 1, 0)
+spread = 30.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_yo02j")
+
+[sub_resource type="Curve" id="Curve_6ybgl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jlucq"]
+curve = SubResource("Curve_6ybgl")
+
+[sub_resource type="Curve" id="Curve_lc6q7"]
+min_value = -30.0
+max_value = 30.0
+_data = [Vector2(0, 30), 0.0, -48.956, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bgwur"]
+curve = SubResource("Curve_lc6q7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n4f5l"]
+particle_flag_disable_z = true
+angle_min = 3.00001
+angle_max = 3.00001
+angle_curve = SubResource("CurveTexture_bgwur")
+direction = Vector3(2, -1, 0)
+spread = 30.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_jlucq")
+
+[sub_resource type="Curve" id="Curve_iygsx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tcxon"]
+curve = SubResource("Curve_iygsx")
+
+[sub_resource type="Curve" id="Curve_sy7j4"]
+min_value = -30.0
+max_value = 30.0
+_data = [Vector2(0, -30), 0.0, 45.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6abkq"]
+curve = SubResource("Curve_sy7j4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpia8"]
+particle_flag_disable_z = true
+angle_min = 3.00001
+angle_max = 3.00001
+angle_curve = SubResource("CurveTexture_6abkq")
+spread = 30.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 200.0
+damping_max = 250.0
+alpha_curve = SubResource("CurveTexture_tcxon")
+
+[sub_resource type="Gradient" id="Gradient_wc020"]
+colors = PackedColorArray(1, 1, 1, 0.1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_50myv"]
+gradient = SubResource("Gradient_wc020")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="LizardDeathParticles" type="GPUParticles2D"]
+process_mode = 3
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_pv86x")
+texture = SubResource("GradientTexture2D_y6x8h")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("1_4y8cf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_nci38")
+
+[node name="FrontLeftLeg" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(15, 15)
+texture = ExtResource("3_7tyih")
+
+[node name="BackLeftLeg" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(12, -23)
+texture = ExtResource("4_x2bgl")
+
+[node name="FrontRightLeg" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-15, 15)
+texture = ExtResource("5_e0ic1")
+
+[node name="BackRightLeg" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-13, -23)
+texture = ExtResource("6_278tu")
+
+[node name="Tail" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0, -39.5)
+texture = ExtResource("7_i2smv")
+
+[node name="Tail2" type="Sprite2D" parent="Sprite2D/Tail"]
+position = Vector2(0, -13)
+texture = ExtResource("8_d3mhy")
+
+[node name="Tail3" type="Sprite2D" parent="Sprite2D/Tail/Tail2"]
+position = Vector2(-1.52588e-05, -14.5)
+texture = ExtResource("9_2gkkc")
+
+[node name="ColouredParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ikf3j")
+texture = SubResource("GradientTexture2D_aihhg")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="FrontLeftLegParticle" type="GPUParticles2D" parent="."]
+position = Vector2(-19, 18)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_fnsln")
+texture = ExtResource("3_7tyih")
+one_shot = true
+
+[node name="BackLeftLegParticle" type="GPUParticles2D" parent="."]
+position = Vector2(28, 15)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_fnsln")
+texture = ExtResource("4_x2bgl")
+one_shot = true
+
+[node name="FrontRightLegParticle" type="GPUParticles2D" parent="."]
+position = Vector2(-18, -18)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_n4f5l")
+texture = ExtResource("5_e0ic1")
+one_shot = true
+
+[node name="BackRightLegParticle" type="GPUParticles2D" parent="."]
+process_mode = 3
+position = Vector2(27, -16)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_n4f5l")
+texture = ExtResource("6_278tu")
+one_shot = true
+
+[node name="Tail1Particle" type="GPUParticles2D" parent="."]
+position = Vector2(47, 0)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_mpia8")
+texture = ExtResource("7_i2smv")
+one_shot = true
+
+[node name="Tail2Particle" type="GPUParticles2D" parent="."]
+position = Vector2(63, 0)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_mpia8")
+texture = ExtResource("8_d3mhy")
+one_shot = true
+
+[node name="Tail3Particle" type="GPUParticles2D" parent="."]
+position = Vector2(80, 0)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_mpia8")
+texture = ExtResource("9_2gkkc")
+one_shot = true
+
+[node name="Flash" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_50myv")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

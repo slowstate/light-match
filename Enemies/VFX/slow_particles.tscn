@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://iptbl2mxx7h6"]
+
+[sub_resource type="Curve" id="Curve_8fa3u"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.504348, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fjlp0"]
+curve = SubResource("Curve_8fa3u")
+
+[sub_resource type="Gradient" id="Gradient_udaq0"]
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4x0c7"]
+gradient = SubResource("Gradient_udaq0")
+
+[sub_resource type="Curve" id="Curve_80e2w"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.504348, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mvb3f"]
+curve = SubResource("Curve_80e2w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p1m5h"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+angle_min = -30.0
+angle_max = 30.0
+direction = Vector3(-1, 0, 0)
+spread = 30.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 50.0
+damping_max = 50.0
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_mvb3f")
+color_ramp = SubResource("GradientTexture1D_4x0c7")
+alpha_curve = SubResource("CurveTexture_fjlp0")
+
+[sub_resource type="Gradient" id="Gradient_dbl7k"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r2h34"]
+gradient = SubResource("Gradient_dbl7k")
+width = 4
+height = 16
+
+[node name="SlowParticles" type="GPUParticles2D"]
+process_mode = 3
+modulate = Color(1.5, 1.5, 1.5, 1)
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_p1m5h")
+texture = SubResource("GradientTexture2D_r2h34")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

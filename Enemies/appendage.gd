@@ -22,4 +22,13 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	SfxManager.play_sound("EnemyHitSFX", -25.0, -23.0, 2.0, 2.2)
 	if bullet.damage > 0:
+		spawn_death_particles()
 		queue_free()
+
+
+func dim_lights(dim_amount: float) -> void:
+	sprite.self_modulate.a = 1.0 - dim_amount
+
+
+func spawn_death_particles(_amplitude: float = 1.0) -> void:
+	pass

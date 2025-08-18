@@ -21,7 +21,7 @@ func _ready() -> void:
 	generate_upgrade_options()
 	generate_condition_options()
 	disable_upgrade_options_that_cannot_be_afforded()
-	continue_bg.visible = false
+	continue_bg.visible = true
 
 
 #region Condition option generation

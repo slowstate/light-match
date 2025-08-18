@@ -4,6 +4,9 @@ extends EnemySprite
 @onready var bot_light_1: Sprite2D = $BotLight1
 @onready var bot_light_2: Sprite2D = $BotLight2
 @onready var bot_light_3: Sprite2D = $BotLight3
+@onready var bot_head: Sprite2D = $BotHead
+@onready var bot_left_arm: Sprite2D = $BotLeftArm
+@onready var bot_right_arm: Sprite2D = $BotRightArm
 
 
 func play_move_animation(play: bool) -> void:
@@ -24,6 +27,16 @@ func set_colour(colour: Globals.Colour) -> void:
 	bot_light_1.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 	bot_light_2.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 	bot_light_3.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
+
+
+func dim_lights(dim_amount: float) -> void:
+	bot_light_1.self_modulate.a = 1.0 - dim_amount
+	bot_light_2.self_modulate.a = 1.0 - dim_amount
+	bot_light_3.self_modulate.a = 1.0 - dim_amount
+
+
+func get_dim_lights_amount() -> float:
+	return 1.0 - bot_light_1.self_modulate.a
 
 
 func set_health(health: int) -> void:

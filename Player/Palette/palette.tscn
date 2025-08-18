@@ -1,105 +1,52 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnshaeplewb85"]
+[gd_scene load_steps=5 format=3 uid="uid://dnshaeplewb85"]
 
 [ext_resource type="Script" path="res://Player/Palette/palette.gd" id="1_u6kec"]
 [ext_resource type="PackedScene" uid="uid://cx7w0mo5dqth5" path="res://Player/Palette/palette_colour.tscn" id="4_k5f8u"]
-[ext_resource type="Shader" path="res://Player/Palette/palette_colour.gdshader" id="5_8vdy6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwrpr"]
-resource_local_to_scene = true
-shader = ExtResource("5_8vdy6")
-shader_parameter/random_number = 1.0
-shader_parameter/timer_progress = 0.0
-shader_parameter/modulation = Color(1, 1, 1, 1)
-shader_parameter/alpha = 1.0
+[sub_resource type="Gradient" id="Gradient_62hvk"]
+offsets = PackedFloat32Array(0.502128, 0.953192)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.01)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pjdl"]
-resource_local_to_scene = true
-shader = ExtResource("5_8vdy6")
-shader_parameter/random_number = null
-shader_parameter/timer_progress = 0.0
-shader_parameter/modulation = Color(1, 1, 1, 1)
-shader_parameter/alpha = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qe77"]
-resource_local_to_scene = true
-shader = ExtResource("5_8vdy6")
-shader_parameter/random_number = null
-shader_parameter/timer_progress = 0.0
-shader_parameter/modulation = Color(1, 1, 1, 1)
-shader_parameter/alpha = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrrhn"]
-resource_local_to_scene = true
-shader = ExtResource("5_8vdy6")
-shader_parameter/random_number = null
-shader_parameter/timer_progress = 0.0
-shader_parameter/modulation = Color(1, 1, 1, 1)
-shader_parameter/alpha = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_seosg"]
-resource_local_to_scene = true
-shader = ExtResource("5_8vdy6")
-shader_parameter/random_number = null
-shader_parameter/timer_progress = 0.0
-shader_parameter/modulation = Color(1, 1, 1, 1)
-shader_parameter/alpha = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d6jno"]
-resource_local_to_scene = true
-shader = ExtResource("5_8vdy6")
-shader_parameter/random_number = null
-shader_parameter/timer_progress = 0.0
-shader_parameter/modulation = Color(1, 1, 1, 1)
-shader_parameter/alpha = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8msia"]
-resource_local_to_scene = true
-shader = ExtResource("5_8vdy6")
-shader_parameter/random_number = null
-shader_parameter/timer_progress = 0.0
-shader_parameter/modulation = Color(1, 1, 1, 1)
-shader_parameter/alpha = 1.0
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7jmt3"]
+gradient = SubResource("Gradient_62hvk")
+width = 1920
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.9)
 
 [node name="Palette" type="Node2D"]
 script = ExtResource("1_u6kec")
 
-[node name="PaletteColour0" parent="." instance=ExtResource("4_k5f8u")]
-texture_filter = 5
-material = SubResource("ShaderMaterial_rwrpr")
-position = Vector2(-108, 0)
+[node name="PaletteColourSprites" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_right = 36.0
+grow_horizontal = 2
+theme_override_constants/separation = 36
+alignment = 1
 
-[node name="PaletteColour1" parent="." instance=ExtResource("4_k5f8u")]
-texture_filter = 5
-material = SubResource("ShaderMaterial_2pjdl")
-position = Vector2(-72, 0)
+[node name="PaletteColour" parent="PaletteColourSprites" instance=ExtResource("4_k5f8u")]
+layout_mode = 2
 
-[node name="PaletteColour2" parent="." instance=ExtResource("4_k5f8u")]
-texture_filter = 5
-material = SubResource("ShaderMaterial_1qe77")
-position = Vector2(-36, 0)
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
 
-[node name="PaletteColour3" parent="." instance=ExtResource("4_k5f8u")]
-texture_filter = 5
-material = SubResource("ShaderMaterial_qrrhn")
-position = Vector2(0, 0)
-
-[node name="PaletteColour4" parent="." instance=ExtResource("4_k5f8u")]
-texture_filter = 5
-material = SubResource("ShaderMaterial_seosg")
-position = Vector2(36, 0)
-
-[node name="PaletteColour5" parent="." instance=ExtResource("4_k5f8u")]
-texture_filter = 5
-material = SubResource("ShaderMaterial_d6jno")
-position = Vector2(72, 0)
-
-[node name="PaletteColour6" parent="." instance=ExtResource("4_k5f8u")]
-texture_filter = 5
-material = SubResource("ShaderMaterial_8msia")
-position = Vector2(108, 0)
+[node name="GracePeriodTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="FailedCooldownTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
+[node name="PaletteCompletedOverlay" type="CanvasLayer" parent="."]
+
+[node name="PaletteCompletedOverlay" type="Sprite2D" parent="PaletteCompletedOverlay"]
+modulate = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_7jmt3")
+centered = false
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="FailedCooldownTimer" to="." method="_on_failed_cooldown_timer_timeout"]

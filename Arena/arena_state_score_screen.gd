@@ -4,6 +4,7 @@ extends State
 var main_menu = load("res://Menus/MainMenu/main_menu.tscn")
 var arena
 
+@onready var game_over_label: Label = $ScoreInterface/GameOverLabel
 @onready var score_interface: CanvasLayer = $ScoreInterface
 @onready var round_label: Label = $ScoreInterface/RoundLabel
 
@@ -16,7 +17,12 @@ func enter() -> void:
 	arena = owner as Arena
 	assert(arena != null, "Arena is null.")
 	Globals.player.game_over_sequence()
-	round_label.text = "You reached round " + str(arena.current_round_number)
+	if arena.current_round_number > 10:
+		game_over_label.text = "Congralutions"
+		round_label.text = "You completed all test stages with " + str(Save.lifetime_palettes) + " lifetime Sequences"
+	else:
+		game_over_label.text = "Test Failed"
+		round_label.text = "You reached test " + str(arena.current_round_number)
 	score_interface.visible = true
 
 	var log_context_data = {"round_number": arena.current_round_number}
@@ -37,4 +43,5 @@ func physics_update(_delta: float) -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
+	Save.lifetime_palettes += arena.palettes_cleared_this_run
 	get_tree().call_deferred("change_scene_to_packed", main_menu)

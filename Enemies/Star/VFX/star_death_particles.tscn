@@ -1,0 +1,118 @@
+[gd_scene load_steps=17 format=3 uid="uid://d2qox8103ia87"]
+
+[ext_resource type="Script" path="res://Enemies/Star/VFX/star_death_particles.gd" id="1_5hl2w"]
+[ext_resource type="Texture2D" uid="uid://du6tcee4d2e6c" path="res://Enemies/Star/Sprite/Star Body.png" id="2_jt4ua"]
+
+[sub_resource type="Curve" id="Curve_0kfwr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26373, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0nmm2"]
+curve = SubResource("Curve_0kfwr")
+
+[sub_resource type="Curve" id="Curve_454a5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.395604), -3.72308, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0i136"]
+curve = SubResource("Curve_454a5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_572px"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 0.0
+angle_min = -90.0
+angle_max = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 300.0
+damping_max = 300.0
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_0i136")
+alpha_curve = SubResource("CurveTexture_0nmm2")
+
+[sub_resource type="Gradient" id="Gradient_ouvjw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.141176, 0.137255, 0.137255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_63ew2"]
+gradient = SubResource("Gradient_ouvjw")
+width = 4
+height = 4
+
+[sub_resource type="Curve" id="Curve_u5b1x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.26374, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_io2pr"]
+curve = SubResource("Curve_u5b1x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vl85b"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 15.0
+emission_ring_inner_radius = 0.0
+angle_min = -90.0
+angle_max = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 300.0
+damping_max = 300.0
+alpha_curve = SubResource("CurveTexture_io2pr")
+
+[sub_resource type="Gradient" id="Gradient_cjjlx"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5rnxi"]
+gradient = SubResource("Gradient_cjjlx")
+width = 4
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_pokwe"]
+colors = PackedColorArray(1, 1, 1, 0.1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l6vi8"]
+gradient = SubResource("Gradient_pokwe")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="StarDeathParticles" type="GPUParticles2D"]
+process_mode = 3
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_572px")
+texture = SubResource("GradientTexture2D_63ew2")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("1_5hl2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-05, 4.76837e-06)
+texture = ExtResource("2_jt4ua")
+
+[node name="ColouredParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_vl85b")
+texture = SubResource("GradientTexture2D_5rnxi")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="Flash" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_l6vi8")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,19 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://cf0dmdildiuky"]
+[gd_scene load_steps=28 format=3 uid="uid://cf0dmdildiuky"]
 
 [ext_resource type="Script" path="res://Common/AudioManagers/sfx_manager.gd" id="1_60cnr"]
 [ext_resource type="AudioStream" uid="uid://de0ay2gpmej8n" path="res://Audio/SFX/ChangeGun2SFX.mp3" id="2_bjo5d"]
 [ext_resource type="AudioStream" uid="uid://dyfthibpjtjr5" path="res://Audio/SFX/ButtonClickSFX.mp3" id="3_qhck8"]
-[ext_resource type="AudioStream" uid="uid://cbvygvtfx531r" path="res://Audio/SFX/Hit3SFX.mp3" id="4_w10d7"]
-[ext_resource type="AudioStream" uid="uid://qw0tecxadfen" path="res://Audio/SFX/ShieldHitSFX.mp3" id="5_wj64p"]
 [ext_resource type="AudioStream" uid="uid://bdk7bg2fhvp4i" path="res://Audio/SFX/Hit4SFX.mp3" id="6_2kafg"]
 [ext_resource type="AudioStream" uid="uid://bcf8r1mlbp33k" path="res://Audio/SFX/Hit2SFX.mp3" id="7_46ew6"]
 [ext_resource type="AudioStream" uid="uid://dl2m0krsmv0od" path="res://Audio/SFX/PaletteClearSFX.mp3" id="8_5xstg"]
 [ext_resource type="AudioStream" uid="uid://bnxojyj8ox3iv" path="res://Audio/SFX/PaletteFailSFX.mp3" id="9_eixmj"]
 [ext_resource type="AudioStream" uid="uid://dgfcjn7tw3jxd" path="res://Audio/SFX/PaletteSuccessSFX.mp3" id="10_6xeby"]
 [ext_resource type="AudioStream" uid="uid://baxf72k18iqpe" path="res://Audio/SFX/ShootingSFX.mp3" id="11_b3vy7"]
+[ext_resource type="AudioStream" uid="uid://0humlytcyoqo" path="res://Audio/SFX2/tank-shield-2.wav" id="12_irlc1"]
 [ext_resource type="AudioStream" uid="uid://hox06njkvlc0" path="res://Audio/SFX/ChangeGunSFX.mp3" id="12_pi8vw"]
 [ext_resource type="AudioStream" uid="uid://dvcdfx1t56gis" path="res://Audio/SFX/ButtonHoverSFX.mp3" id="13_dryqb"]
+[ext_resource type="AudioStream" uid="uid://fgppepudycbj" path="res://Audio/SFX2/enemy-spawn-3.wav" id="13_qwn1e"]
+[ext_resource type="AudioStream" uid="uid://dg088hfw0fpoi" path="res://Audio/SFX2/bot-aggro-1.wav" id="14_sa6wg"]
 [ext_resource type="AudioStream" uid="uid://csnidntsc7s0w" path="res://Audio/SFX/EnemyDeflectSFX.mp3" id="14_u2ty2"]
+[ext_resource type="AudioStream" uid="uid://bmw7xiyus0j5n" path="res://Audio/SFX2/lizard-charge-1.wav" id="15_h7yu7"]
+[ext_resource type="AudioStream" uid="uid://0cgph8w4xhpa" path="res://Audio/SFX2/lizard-charge-3.wav" id="15_tfxqh"]
+[ext_resource type="AudioStream" uid="uid://tvwypy87ilx8" path="res://Audio/SFX2/oracle-attack-1.wav" id="17_52xyc"]
+[ext_resource type="AudioStream" uid="uid://funyu6ovlgcl" path="res://Audio/SFX2/star-charge-2.wav" id="18_dpwkk"]
+[ext_resource type="AudioStream" uid="uid://b6y61ksxbka3e" path="res://Audio/SFX2/star-blink-5.wav" id="19_ak06i"]
+[ext_resource type="AudioStream" uid="uid://c6m8vima4mqy2" path="res://Audio/SFX2/enemy-change-colour-1.wav" id="20_ot66q"]
+[ext_resource type="AudioStream" uid="uid://bcpk6fn4b1lqf" path="res://Audio/SFX2/enemy-heal-1.wav" id="21_5wkyk"]
+[ext_resource type="AudioStream" uid="uid://nth784p0dwbh" path="res://Audio/SFX2/enemy-stunned-2.wav" id="22_ood6w"]
+[ext_resource type="AudioStream" uid="uid://bsiydpjkvbdau" path="res://Audio/SFX/taser-2.wav" id="23_qp60j"]
+[ext_resource type="AudioStream" uid="uid://0clekl5mur3c" path="res://Audio/SFX2/adrenaline-injection-1.wav" id="24_llbj6"]
+[ext_resource type="AudioStream" uid="uid://lyx8mf77eh1l" path="res://Audio/SFX2/stun-grenade-1.wav" id="25_cr6qp"]
+[ext_resource type="AudioStream" uid="uid://blkyw7oqm67l7" path="res://Audio/SFX2/exosuit-overdrive-1.wav" id="26_06jie"]
 
 [node name="SfxManager" type="Node2D"]
 script = ExtResource("1_60cnr")
@@ -27,11 +40,7 @@ stream = ExtResource("3_qhck8")
 bus = &"SFX"
 
 [node name="EnemyDeathSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_w10d7")
-bus = &"SFX"
-
-[node name="ShieldHitSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_wj64p")
+stream = ExtResource("7_46ew6")
 bus = &"SFX"
 
 [node name="PlayerHitSFX" type="AudioStreamPlayer" parent="."]
@@ -68,4 +77,88 @@ bus = &"SFX"
 
 [node name="EnemyDeflectSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_u2ty2")
+bus = &"SFX"
+
+[node name="TankShieldSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_irlc1")
+bus = &"SFX"
+
+[node name="EnemySpawnSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_qwn1e")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="BotAggroSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_sa6wg")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="LizardChargeSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_h7yu7")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="LizardDashSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_tfxqh")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="OracleAttackSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_52xyc")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="StarChargeSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_dpwkk")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="StarBlinkSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_ak06i")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="EnemySlowedSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_irlc1")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="EnemyChangeColourSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_ot66q")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="EnemyHealSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_5wkyk")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="EnemyStunnedSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_ood6w")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="TaserActiveSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_qp60j")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="AdrenalineInjectionActiveSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_llbj6")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="StunGrenadeActiveSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_cr6qp")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="ExosuitOverdriveActiveSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_06jie")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="PaletteReloadSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_pi8vw")
+max_polyphony = 3
 bus = &"SFX"

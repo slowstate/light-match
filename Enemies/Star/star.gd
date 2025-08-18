@@ -2,6 +2,7 @@ class_name Star
 extends Enemy
 
 const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
+const STAR_DEATH_PARTICLES = preload("res://Enemies/Star/VFX/star_death_particles.tscn")
 
 @export var shell_colours: Array[Globals.Colour]
 @export var shell_rotation_speed := 0.5
@@ -13,7 +14,11 @@ const STAR: PackedScene = preload("res://Enemies/Star/star.tscn")
 @onready var shell_2: Area2D = $Shells/Shell2
 @onready var shell_3: Area2D = $Shells/Shell3
 @onready var shell_4: Area2D = $Shells/Shell4
+
 @onready var hit_box: Area2D = $HitBox
+@onready var hurt_box: Area2D = $HurtBox
+@onready var attack_warning_indicator: AttackWarningIndicator = $AttackWarningIndicator
+@onready var stun_indicator: StunIndicator = $StunIndicator
 
 
 static func create(
@@ -36,10 +41,6 @@ static func create(
 	return new_star
 
 
-func _physics_process(_delta: float) -> void:
-	pass
-
-
 func rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
 	sprite.rotate(delta * new_shell_rotation_speed)
 	collision_shape_2d.rotate(delta * new_shell_rotation_speed)
@@ -47,4 +48,39 @@ func rotate_star(delta: float, new_shell_rotation_speed: float) -> void:
 
 
 func get_appendages() -> Array[Appendage]:
-	return [shell_0, shell_1, shell_2, shell_3, shell_4]
+	var appendages: Array[Appendage] = []
+	for appendage in shells.get_children():
+		appendages.append(appendage as Appendage)
+	return appendages
+
+
+func enable_hurtbox(enable: bool) -> void:
+	hurt_box.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+	for shell in get_appendages():
+		shell.set_collision_layer_value(Globals.CollisionLayer.ENEMIES, enable)
+		shell.set_collision_mask_value(Globals.CollisionLayer.BULLETS, enable)
+
+
+func enable_attack_warning_indicator(enable: bool) -> void:
+	attack_warning_indicator.visible = enable
+
+
+func enable_stun_indicator(enable: bool) -> void:
+	stun_indicator.visible = enable
+
+
+func set_stun_indicator_percentage_completion(percentage_complete: float) -> void:
+	stun_indicator.set_stun_percentage_completion(percentage_complete)
+
+
+func spawn_death_particles(amplitude: float = 1.0) -> void:
+	var death_particles = STAR_DEATH_PARTICLES.instantiate()
+	death_particles.global_position = global_position
+	death_particles.rotation = (global_position - Globals.player.global_position).angle()
+	death_particles.set_sprite_global_rotation(global_rotation - deg_to_rad(90))
+	death_particles.set_amplitude(amplitude)
+	death_particles.set_colour(colour)
+	get_tree().root.add_child(death_particles)
+
+	for appendage in get_appendages():
+		appendage.spawn_death_particles()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://8p11gjdp0ijq"]
+[gd_scene load_steps=46 format=3 uid="uid://8p11gjdp0ijq"]
 
 [ext_resource type="PackedScene" uid="uid://cchxi4827hi2" path="res://Menus/Settings/volume_slider.tscn" id="1_5l60q"]
 [ext_resource type="Script" path="res://Menus/Settings/settings.gd" id="1_nbhcb"]
@@ -41,6 +41,21 @@ font_size = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ri5wm"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dnqw"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4syyo"]
+
+[sub_resource type="Theme" id="Theme_iov7f"]
+CheckBox/colors/font_color = Color(1, 1, 1, 1)
+CheckBox/styles/focus = SubResource("StyleBoxFlat_0dnqw")
+CheckButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+CheckButton/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+CheckButton/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+CheckButton/colors/font_hover_pressed_color = Color(0.94902, 0.94902, 0.94902, 1)
+CheckButton/colors/font_pressed_color = Color(0.94902, 0.94902, 0.94902, 1)
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_4syyo")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kxsp3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kprgw"]
@@ -72,8 +87,8 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.196078)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bl27k"]
 gradient = SubResource("Gradient_10eef")
-width = 800
-height = 600
+width = 900
+height = 700
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
@@ -104,6 +119,11 @@ unicode = 50
 device = -1
 keycode = 51
 unicode = 51
+
+[sub_resource type="InputEventKey" id="InputEventKey_5wftn"]
+device = -1
+keycode = 82
+unicode = 114
 
 [sub_resource type="InputEventKey" id="InputEventKey_yehcf"]
 device = -1
@@ -204,6 +224,18 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_xeq87")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ri5wm")
 text = ">"
+
+[node name="ScreenShake" type="HBoxContainer" parent="SettingsButtons"]
+layout_mode = 2
+alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="SettingsButtons/ScreenShake"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_iov7f")
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "SCREEN SHAKE"
 
 [node name="HSeparator" type="HSeparator" parent="SettingsButtons"]
 layout_mode = 2
@@ -369,10 +401,18 @@ theme = ExtResource("3_m2mf3")
 text = "SETTINGS_BACK"
 
 [node name="Controls" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 800.0
-offset_bottom = 600.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -350.0
+offset_right = 450.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_2xtng")
 
 [node name="BG" type="Sprite2D" parent="Controls"]
@@ -392,7 +432,7 @@ offset_right = 227.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 8
 
 [node name="ShootControl" type="HBoxContainer" parent="Controls/ControlRemapping"]
 layout_mode = 2
@@ -484,6 +524,12 @@ control_name = "SETTINGS_CONTROLS_SWITCH_TO_RED"
 action_name = "player_red"
 input_event_key = SubResource("InputEventKey_2unxy")
 
+[node name="ReloadControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
+layout_mode = 2
+control_name = "REFRESH SEQUENCE"
+action_name = "player_reload"
+input_event_key = SubResource("InputEventKey_5wftn")
+
 [node name="MoveUpControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
 layout_mode = 2
 control_name = "SETTINGS_CONTROLS_MOVE_UP"
@@ -524,15 +570,17 @@ text = "SETTINGS_BACK"
 
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/LeftButton" to="SettingsButtons/WindowModePicker" method="_on_left_button_pressed"]
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/RightButton" to="SettingsButtons/WindowModePicker" method="_on_right_button_pressed"]
-[connection signal="mouse_entered" from="SettingsButtons/ControlsButton" to="." method="_on_controls_button_mouse_entered"]
-[connection signal="pressed" from="SettingsButtons/ControlsButton" to="." method="_on_controls_button_pressed"]
-[connection signal="mouse_entered" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
-[connection signal="pressed" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_mouse_entered"]
+[connection signal="toggled" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="mouse_entered" from="SettingsButtons/ControlsButtonHorizontalAligner/ControlsButton" to="." method="_on_controls_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/ControlsButtonHorizontalAligner/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/CreditsButtonHorizontalAligner/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/CreditsButtonHorizontalAligner/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="SettingsButtons/HBoxContainer/ENButton" to="SettingsButtons/HBoxContainer/ENButton" method="_on_pressed"]
 [connection signal="pressed" from="SettingsButtons/HBoxContainer/ENUSButton" to="SettingsButtons/HBoxContainer/ENUSButton" method="_on_pressed"]
 [connection signal="pressed" from="SettingsButtons/HBoxContainer/ESButton" to="SettingsButtons/HBoxContainer/ESButton" method="_on_pressed"]
-[connection signal="mouse_entered" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
-[connection signal="pressed" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/SettingsButtonHorizontalAligner/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/SettingsButtonHorizontalAligner/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
 [connection signal="mouse_entered" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_mouse_entered"]
 [connection signal="pressed" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_pressed"]
 [connection signal="mouse_entered" from="Controls/ControlRemapping/ControlsBackButton" to="." method="_on_controls_back_button_mouse_entered"]

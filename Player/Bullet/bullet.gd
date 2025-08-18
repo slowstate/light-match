@@ -35,6 +35,7 @@ func _ready() -> void:
 	set_collision_mask_value(Globals.CollisionLayer.BOUNDARIES, true)
 	sprite.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 	rotation = angle
+	scale *= 1.0 + (damage - 1.0) / 2.0
 
 
 func _physics_process(delta: float) -> void:
@@ -51,13 +52,9 @@ func _physics_process(delta: float) -> void:
 			spawn_hit_particles()
 			_on_area_entered(collided_shape)
 		elif collided_shape as Area2D != null:
-			if (collided_shape as Area2D).monitorable:
-				spawn_hit_particles()
-				(collided_shape as Area2D)._on_area_entered(self)
-				_on_area_entered(collided_shape)
-			else:
-				global_position += velocity * delta
-				UpgradeManager.on_bullet_travelled_x_pixels(self, velocity.length() * delta)
+			spawn_hit_particles()
+			(collided_shape as Area2D)._on_area_entered(self)
+			_on_area_entered(collided_shape)
 		else:
 			spawn_hit_particles()
 			if collided_shape.get_parent().get_name() == "TitleIcon":

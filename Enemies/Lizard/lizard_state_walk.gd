@@ -3,12 +3,16 @@ extends State
 
 var lizard: Lizard
 var player_detection_distance := randf_range(280.0, 320.0)
-var move_speed := randf_range(180.0, 220.0)
+var move_speed := randf_range(100.0, 150.0)
 
 
 func enter() -> void:
 	lizard = owner as Lizard
 	assert(lizard != null, "The state type must be used only in the Lizard scene. It needs the owner to be a Lizard node.")
+
+	lizard.enable_attack_warning_indicator(false)
+	lizard.enable_attack_area_indicator(false)
+	lizard.enable_stun_indicator(false)
 
 
 func exit() -> void:
@@ -26,7 +30,12 @@ func physics_update(delta: float) -> void:
 		return
 
 	if lizard.is_stunned():
+		lizard.set_stun_indicator_percentage_completion(1 - lizard.stunned_timer.time_left / lizard.stunned_timer.wait_time)
+		lizard.enable_stun_indicator(true)
+		lizard.dim_lights(ease(1 - lizard.stunned_timer.time_left / lizard.stunned_timer.wait_time, 0.2) * 0.5)
 		return
+	lizard.enable_stun_indicator(false)
+	lizard.dim_lights(clampf(lizard.get_dim_lights_amount() - delta * 2.0, 0.0, 1.0))
 
 	if lizard.get_appendages().is_empty():
 		transition.emit("AggroDash")
