@@ -5,24 +5,24 @@ const BOT = preload("res://Enemies/Bot/bot.tscn")
 var ARENA = load("res://Arena/arena.tscn")
 
 var dialogue_strings: Array[String] = [
-	"Hello",
-	"Welcome to Test Facility 003",
-	"I am 4DM1N-D2 and I will be your training coordinator",
-	"First, let's test your basic motor functions",
-	"In a moment, I will create a target - destroy it",
-	"Press W, A, S, D to move around, mouse to aim, and left-click to fire your gun",
-	"Hm, guess that doesn't work. Try matching colours with the target",
-	"Use 1, 2, and 3 or scroll wheel to change your colour",
-	"That worked. Let's calibrate your optic algorithm next",
-	"See those hexagons above your head? Together they're called a Sequence",
-	"Destroy targets that match the colour of each hexagon from left to right to complete the Sequence",
-	"For every Sequence you complete, you get closer to unlocking your full potential",
-	"Try to complete a Sequence by destroying this target",
-	"Too bad, you failed to complete the Sequence because the target was the wrong colour",
-	"If the Sequence doesn't match the colour of the targets, you can refresh it by pressing R. Give it try",
-	"Looks like you've got the hang of it now",
-	"Time for the real test",
-	"3.. 2.. 1.."
+	"TUTORIAL_INTRO_1",  # Hello
+	"TUTORIAL_INTRO_2",  # "Welcome to Test Facility 003"
+	"TUTORIAL_INTRO_3",  # "I am 4DM1N-D2 and I will be your training coordinator"
+	"TUTORIAL_MOVEMENT_1",  # "First, let's test your basic motor functions"
+	"TUTORIAL_MOVEMENT_2",  # "In a moment, I will create a target - destroy it"
+	"TUTORIAL_MOVEMENT_3",  # "Press W, A, S, D to move around, mouse to aim, and left-click to fire your gun"
+	"TUTORIAL_COLOURS_1",  # "Hm, guess that doesn't work. Try matching colours with the target"
+	"TUTORIAL_COLOURS_2",  # "Use 1, 2, and 3 or scroll wheel to change your colour"
+	"TUTORIAL_SEQUENCE_1",  # "That worked. Let's calibrate your optic algorithm next"
+	"TUTORIAL_SEQUENCE_2",  # "See those hexagons above your head? Together they're called a Sequence"
+	"TUTORIAL_SEQUENCE_3",  # "Destroy targets that match the colour of each hexagon from left to right to complete the Sequence"
+	"TUTORIAL_SEQUENCE_4",  # "For every Sequence you complete, you get closer to unlocking your full potential"
+	"TUTORIAL_SEQUENCE_5",  # "Try to complete a Sequence by destroying this target"
+	"TUTORIAL_SEQUENCE_6",  # "Too bad, you failed to complete the Sequence because the target was the wrong colour"
+	"TUTORIAL_SEQUENCE_7",  # "If the Sequence doesn't match the colour of the targets, you can refresh it by pressing R. Give it try"
+	"TUTORIAL_SEQUENCE_8",  # "Looks like you've got the hang of it now"
+	"TUTORIAL_OUTRO_1",  # "Time for the real test"
+	"TUTORIAL_OUTRO_2",  # "3.. 2.. 1.."
 ]
 
 var dialogue_index: int = 0
@@ -57,7 +57,7 @@ func _ready() -> void:
 	player.palette.visible = false
 	player.hurt_box.monitoring = false
 	player.player_sprite.rotation = deg_to_rad(-90)
-	dialogue_label.text = dialogue_strings[dialogue_index]
+	dialogue_label.text = tr(dialogue_strings[dialogue_index])
 	dialogue_timer.start(3)
 	fade.visible = true
 	fade_in_timer.start(2)
@@ -72,8 +72,8 @@ func _process(delta: float) -> void:
 
 func update_dialogue() -> void:
 	dialogue_index += 1
-	dialogue_label.text = dialogue_strings[dialogue_index]
-	dialogue_timer.start(2 + dialogue_strings[dialogue_index].length() / 20)
+	dialogue_label.text = tr(dialogue_strings[dialogue_index])
+	dialogue_timer.start(2 + tr(dialogue_strings[dialogue_index]).length() / 20)
 
 
 func _on_dialogue_timer_timeout() -> void:
@@ -129,7 +129,7 @@ func _on_palette_cleared() -> void:
 
 func _on_palette_failed() -> void:
 	if dialogue_index == 14:
-		dialogue_label.text = "Not quite, give it another try. Press R to refresh the Sequence"
+		dialogue_label.text = tr("TUTORIAL_SEQUENCE_FAILED")  # "Not quite, give it another try. Press R to refresh the Sequence"
 		for bot in get_tree().get_nodes_in_group("Bots"):
 			bot.queue_free()
 		bot_respawn_timer.start(3.1)

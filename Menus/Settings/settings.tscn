@@ -526,7 +526,7 @@ input_event_key = SubResource("InputEventKey_2unxy")
 
 [node name="ReloadControlRemapper" parent="Controls/ControlRemapping" instance=ExtResource("6_bhigi")]
 layout_mode = 2
-control_name = "REFRESH SEQUENCE"
+control_name = "SETTINGS_CONTROLS_REFRESH_SEQUENCE"
 action_name = "player_reload"
 input_event_key = SubResource("InputEventKey_5wftn")
 

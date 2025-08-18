@@ -1442,7 +1442,7 @@ offset_left = 106.0
 offset_top = 1052.0
 offset_right = 223.0
 offset_bottom = 1069.0
-tooltip_text = "This will open a new page in a browser"
+tooltip_text = "MAIN_MENU_REPORT_A_BUG_TOOLTIP"
 text = "🪲 Report a bug"
 underline = 1
 uri = "https://docs.google.com/forms/d/e/1FAIpQLSesTRUk84vd64ahVYHY6CWUBLzCTzkcQt8Cp85G2fQjj0X66w/viewform?usp=dialog"
@@ -1459,7 +1459,7 @@ offset_right = 1910.0
 offset_bottom = 1069.0
 grow_horizontal = 0
 grow_vertical = 0
-tooltip_text = "You gain permanent stats based on the number of Sequences you've completed"
+tooltip_text = "MAIN_MENU_LIFETIME_SEQUENCES_TOOLTIP"
 mouse_filter = 0
 theme_override_font_sizes/font_size = 16
 text = "Lifetime Sequences completed: 100
