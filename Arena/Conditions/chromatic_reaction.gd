@@ -5,9 +5,9 @@ var effect_duration: float = 3.0
 
 
 func _init() -> void:
-	name = "Chromatic Reaction"
-	description = "Targets change to a different colour after taking damage"
-	added_dialogue = "Seems like your optic recognition is working well, let's make those targets a little more dynamic..."
+	name = tr("CONDITION_CHROMATIC_REACTION_NAME")
+	description = tr("CONDITION_CHROMATIC_REACTION_DESCRIPTION")
+	added_dialogue = tr("CONDITION_CHROMATIC_REACTION_DIALOGUE")
 	points_per_round = 0
 
 

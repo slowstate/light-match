@@ -9,9 +9,9 @@ var palettes_cleared_counter: int = 0
 
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.BIGGER_BULLET
-	name = "Exosuit Overdrive"
-	description = "After completing 3 Sequences, you gain increased firepower"
-	added_dialogue = "Looks like you've reached your ultimate evolution"
+	name = tr("CONDITION_EXOSUIT_OVERDRIVE_NAME")
+	description = tr("CONDITION_EXOSUIT_OVERDRIVE_DESCRIPTION")
+	added_dialogue = tr("CONDITION_EXOSUIT_OVERDRIVE_DIALOGUE")
 	icon = preload("res://Player/Upgrades/Combat/Holo Scope.png")
 	points_cost = 0
 	effect_timer = super.new_timer()

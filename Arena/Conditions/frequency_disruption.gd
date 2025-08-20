@@ -2,9 +2,9 @@ extends Condition
 
 
 func _init() -> void:
-	name = "Frequency Disruption"
-	description = "When you're hit, you fail your current Sequence"
-	added_dialogue = "Impressive! One final test. Physical trauma now disrupts your current Sequence..."
+	name = tr("CONDITION_FREQUENCY_DISRUPTION_NAME")
+	description = tr("CONDITION_FREQUENCY_DISRUPTION_DESCRIPTION")
+	added_dialogue = tr("CONDITION_FREQUENCY_DISRUPTION_DIALOGUE")
 	points_per_round = 0
 
 

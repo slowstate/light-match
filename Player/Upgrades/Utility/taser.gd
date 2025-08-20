@@ -11,9 +11,9 @@ var effect_duration: float = 10.0
 # Called when the node enters the scene tree for the first time.
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.TASER
-	name = "Taser"
-	description = "After completing a Sequence, your bullets temporarily slow targets"
-	added_dialogue = "Looks like you've made your first evolutionary adaptation"
+	name = tr("CONDITION_TASER_NAME")
+	description = tr("CONDITION_TASER_DESCRIPTION")
+	added_dialogue = tr("CONDITION_TASER_DIALOGUE")
 	icon = preload("res://Player/Upgrades/Utility/Taser.png")
 	points_cost = 0
 	effect_timer = super.new_timer()

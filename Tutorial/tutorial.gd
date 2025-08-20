@@ -12,17 +12,17 @@ var dialogue_strings: Array[String] = [
 	"TUTORIAL_MOVEMENT_2",  # "In a moment, I will create a target - destroy it"
 	"TUTORIAL_MOVEMENT_3",  # "Press W, A, S, D to move around, mouse to aim, and left-click to fire your gun"
 	"TUTORIAL_COLOURS_1",  # "Hm, guess that doesn't work. Try matching colours with the target"
-	"TUTORIAL_COLOURS_2",  # "Use 1, 2, and 3 or scroll wheel to change your colour"
-	"TUTORIAL_SEQUENCE_1",  # "That worked. Let's calibrate your optic algorithm next"
+	"TUTORIAL_COLOURS_2",  # "Press 1, 2, and 3, or scroll your mouse wheel to change your colour"
+	"TUTORIAL_SEQUENCE_1",  # "That worked. Next, let's calibrate your optic algorithm"
 	"TUTORIAL_SEQUENCE_2",  # "See those hexagons above your head? Together they're called a Sequence"
 	"TUTORIAL_SEQUENCE_3",  # "Destroy targets that match the colour of each hexagon from left to right to complete the Sequence"
-	"TUTORIAL_SEQUENCE_4",  # "For every Sequence you complete, you get closer to unlocking your full potential"
+	"TUTORIAL_SEQUENCE_4",  # "For every Sequence you complete, you get closer to unlocking your evolutionary potential"
 	"TUTORIAL_SEQUENCE_5",  # "Try to complete a Sequence by destroying this target"
 	"TUTORIAL_SEQUENCE_6",  # "Too bad, you failed to complete the Sequence because the target was the wrong colour"
 	"TUTORIAL_SEQUENCE_7",  # "If the Sequence doesn't match the colour of the targets, you can refresh it by pressing R. Give it try"
 	"TUTORIAL_SEQUENCE_8",  # "Looks like you've got the hang of it now"
 	"TUTORIAL_OUTRO_1",  # "Time for the real test"
-	"TUTORIAL_OUTRO_2",  # "3.. 2.. 1.."
+	"TUTORIAL_OUTRO_2",  # "3... 2... 1..."
 ]
 
 var dialogue_index: int = 0

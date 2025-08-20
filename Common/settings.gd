@@ -6,6 +6,8 @@ const WINDOW_MODE_LABELS = {
 	DisplayServer.WINDOW_MODE_MAXIMIZED: "SETTINGS_WINDOW_MODE_MAXIMISED"
 }
 
+const CONFIGURED_LOCALES = ["en, en_US, es"]
+
 var window_mode := DisplayServer.WINDOW_MODE_MAXIMIZED
 var windowed_resolution: Array = [1920, 1080]
 var screen_shake: bool
@@ -63,7 +65,8 @@ func save_user_settings() -> void:
 	config.set_value("Display", "windowed_resolution", [DisplayServer.window_get_size().x, DisplayServer.window_get_size().y])
 	config.set_value("Gameplay", "screen_shake", screen_shake)
 
-	config.set_value("", "Locale", preferred_locale)
+	print("pref locale: " + preferred_locale)
+	config.set_value("", "locale", preferred_locale)
 
 	var bus_index = AudioServer.get_bus_index("Master")
 	config.set_value("Volume", "master", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
@@ -94,7 +97,12 @@ func load_user_settings() -> void:
 	set_windowed_resolution(Vector2i(windowed_resolution[0], windowed_resolution[1]))
 	screen_shake = config.get_value("Gameplay", "screen_shake", true)
 
-	preferred_locale = config.get_value("", "locale", OS.get_locale_language())
+	var loaded_locale = config.get_value("", "locale")
+	if loaded_locale == null and CONFIGURED_LOCALES.has(OS.get_locale_language()):
+		preferred_locale = OS.get_locale_language()
+	else:
+		preferred_locale = loaded_locale
+	TranslationServer.set_locale(preferred_locale)
 
 	var bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "master", 1.0)))
