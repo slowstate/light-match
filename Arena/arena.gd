@@ -10,7 +10,6 @@ var palette_milestone_1_this_round: int = 0
 var palette_milestone_2_this_round: int = 0
 var palettes_cleared_this_run: int = 0
 
-@onready var round_number_label: Label = $UserInterface/RoundNumberLabel
 @onready var state_machine: ArenaStateMachine = $StateMachine
 @onready var round_active: RoundActiveState = $StateMachine/RoundActive
 @onready var music_manager: Node2D = $MusicManager
@@ -37,7 +36,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	round_number_label.text = str(current_round_number)
+	pass
 
 
 func _process(delta: float) -> void:

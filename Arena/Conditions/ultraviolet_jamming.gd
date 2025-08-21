@@ -4,9 +4,9 @@ var palette_lockout_amount: float = 3.0
 
 
 func _init() -> void:
-	name = "Ultraviolet Jamming"
-	description = "After failing your Sequence, it takes longer to refresh"
-	added_dialogue = "Let's slow your Sequence recovery and see how you do..."
+	name = tr("CONDITION_ULTRAVIOLET_JAMMING_NAME")
+	description = tr("CONDITION_ULTRAVIOLET_JAMMING_DESCRIPTION")
+	added_dialogue = tr("CONDITION_ULTRAVIOLET_JAMMING_DIALOGUE")
 	points_per_round = 0
 
 

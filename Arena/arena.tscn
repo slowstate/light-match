@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bhd3exak0ojtj"]
+[gd_scene load_steps=50 format=3 uid="uid://bhd3exak0ojtj"]
 
 [ext_resource type="Script" path="res://Arena/arena.gd" id="1_ea2pg"]
 [ext_resource type="PackedScene" uid="uid://cbfe05uqpe2ww" path="res://Player/player.tscn" id="1_pqj1j"]
@@ -79,14 +79,38 @@ normal = Vector2(0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_p3kqb"]
 font_size = 35
 
-[sub_resource type="LabelSettings" id="LabelSettings_ejvh2"]
-font_size = 35
-
 [sub_resource type="LabelSettings" id="LabelSettings_4pvur"]
 font_size = 60
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6dnc"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_fdvfh"]
+line_spacing = 8.0
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_it324"]
+font_size = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aowyf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cokh5"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llm2r"]
+bg_color = Color(0.0117647, 0.627451, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_oavu3"]
+font_size = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyjw3"]
 
@@ -523,21 +547,12 @@ shape = SubResource("WorldBoundaryShape2D_o1cin")
 [node name="UserInterface" type="CanvasLayer" parent="."]
 
 [node name="RoundLabel" type="Label" parent="UserInterface"]
-offset_left = 70.0
+offset_left = 40.0
 offset_top = 80.0
-offset_right = 139.0
+offset_right = 138.0
 offset_bottom = 116.0
-text = "Test"
+text = "Round"
 label_settings = SubResource("LabelSettings_p3kqb")
-horizontal_alignment = 1
-
-[node name="RoundNumberLabel" type="Label" parent="UserInterface"]
-offset_left = 143.0
-offset_top = 80.0
-offset_right = 233.0
-offset_bottom = 116.0
-text = "1"
-label_settings = SubResource("LabelSettings_ejvh2")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_53yap")
@@ -559,44 +574,89 @@ script = ExtResource("8_p700b")
 
 [node name="ScoreInterface" type="CanvasLayer" parent="StateMachine/ScoreScreen"]
 
-[node name="GameOverLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -163.0
-offset_top = 236.0
-offset_right = 163.0
-offset_bottom = 319.0
-grow_horizontal = 2
-text = "GAME OVER"
-label_settings = SubResource("LabelSettings_4pvur")
-horizontal_alignment = 1
-
-[node name="RoundLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.5
-offset_top = 380.0
-offset_right = 150.5
-offset_bottom = 425.0
-grow_horizontal = 2
-text = "You reach round 12"
-label_settings = SubResource("LabelSettings_fdvfh")
-horizontal_alignment = 1
-
-[node name="MainMenuButton" type="Button" parent="StateMachine/ScoreScreen/ScoreInterface"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StateMachine/ScoreScreen/ScoreInterface"]
+custom_minimum_size = Vector2(450, 500)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.5
-offset_top = -22.0
-offset_right = 70.5
-offset_bottom = 22.0
+offset_left = -225.0
+offset_top = -250.0
+offset_right = 225.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
+text = "YOU FAILED"
+label_settings = SubResource("LabelSettings_4pvur")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_h6dnc")
+
+[node name="ScoreInfoLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
+text = "You reached round 12
+You completed 10 Sequences
+Fire rate gained: 2%"
+label_settings = SubResource("LabelSettings_fdvfh")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_h6dnc")
+
+[node name="MaxHealthProgressLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
+text = "ARENA_PROGRESS_UNTIL_GAINING_MAX_HEALTH"
+label_settings = SubResource("LabelSettings_it324")
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_h6dnc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_aowyf")
+
+[node name="MaxHealthProgressBar" type="ProgressBar" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 24)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cokh5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_llm2r")
+step = 1.0
+value = 50.0
+
+[node name="MaxHealthProgressBarTimer" type="Timer" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer/HBoxContainer/MaxHealthProgressBar"]
+one_shot = true
+
+[node name="MaxHealthGainedLabel" type="Label" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "+1 HP"
+label_settings = SubResource("LabelSettings_oavu3")
+
+[node name="HSeparator4" type="HSeparator" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_h6dnc")
+
+[node name="MainMenuButton" type="Button" parent="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uyjw3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_cw5fi")
@@ -604,7 +664,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_utojm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7jdil")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_82se8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_igwcv")
-text = "Main Menu"
+text = "ARENA_MAIN_MENU"
 icon = ExtResource("17_c5geq")
 icon_alignment = 1
 
@@ -663,8 +723,9 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="StateMachine/RoundActive/EnemySpawnTimer" to="StateMachine/RoundActive" method="_on_enemy_spawn_timer_timeout"]
-[connection signal="mouse_entered" from="StateMachine/ScoreScreen/ScoreInterface/MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]
-[connection signal="pressed" from="StateMachine/ScoreScreen/ScoreInterface/MainMenuButton" to="StateMachine/ScoreScreen" method="_on_main_menu_button_pressed"]
+[connection signal="timeout" from="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer/HBoxContainer/MaxHealthProgressBar/MaxHealthProgressBarTimer" to="StateMachine/ScoreScreen" method="_on_max_health_progress_bar_timer_timeout"]
+[connection signal="mouse_entered" from="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]
+[connection signal="pressed" from="StateMachine/ScoreScreen/ScoreInterface/VBoxContainer/MainMenuButton" to="StateMachine/ScoreScreen" method="_on_main_menu_button_pressed"]
 [connection signal="timeout" from="MusicManager/Timer0-12s" to="." method="_on_timer_012s_timeout"]
 [connection signal="timeout" from="MusicManager/Timer12-30s" to="." method="_on_timer_1230s_timeout"]
 [connection signal="timeout" from="MusicManager/Timer30-39s" to="." method="_on_timer_3039s_timeout"]

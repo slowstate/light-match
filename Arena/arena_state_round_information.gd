@@ -4,12 +4,14 @@ extends State
 var arena
 
 @onready var round_information: RoundInformation = $RoundInformation
+@onready var round_label: Label = $"../../UserInterface/RoundLabel"
 
 
 func enter() -> void:
 	arena = owner as Arena
 	assert(arena != null, "Arena is null.")
 	arena.current_round_number += 1
+	round_label.text = tr("ARENA_ROUND") + " " + str(arena.current_round_number)
 	if !round_information.round_information_continue.is_connected(_on_round_information_continue):
 		round_information.round_information_continue.connect(_on_round_information_continue)
 	Globals.player.controls_enabled = false

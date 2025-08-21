@@ -9,9 +9,9 @@ var palettes_cleared_counter: int = 0
 
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.STUN_GRENADE
-	name = "Stun Grenade"
-	description = "After completing 4 Sequences, stun all targets"
-	added_dialogue = "Fascinating, this adaptation disrupts nearby electronics"
+	name = tr("CONDITION_STUN_GRENADE_NAME")
+	description = tr("CONDITION_STUN_GRENADE_DESCRIPTION")
+	added_dialogue = tr("CONDITION_STUN_GRENADE_DIALOGUE")
 	icon = preload("res://Player/Upgrades/Utility/Stun Grenade.png")
 	points_cost = 0
 	effect_timer = super.new_timer()

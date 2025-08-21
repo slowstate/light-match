@@ -23,7 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://c6m8vima4mqy2" path="res://Audio/SFX2/enemy-change-colour-1.wav" id="20_ot66q"]
 [ext_resource type="AudioStream" uid="uid://bcpk6fn4b1lqf" path="res://Audio/SFX2/enemy-heal-1.wav" id="21_5wkyk"]
 [ext_resource type="AudioStream" uid="uid://nth784p0dwbh" path="res://Audio/SFX2/enemy-stunned-2.wav" id="22_ood6w"]
-[ext_resource type="AudioStream" uid="uid://bsiydpjkvbdau" path="res://Audio/SFX/taser-2.wav" id="23_qp60j"]
+[ext_resource type="AudioStream" uid="uid://bsiydpjkvbdau" path="res://Audio/SFX2/taser-2.wav" id="23_qp60j"]
 [ext_resource type="AudioStream" uid="uid://0clekl5mur3c" path="res://Audio/SFX2/adrenaline-injection-1.wav" id="24_llbj6"]
 [ext_resource type="AudioStream" uid="uid://lyx8mf77eh1l" path="res://Audio/SFX2/stun-grenade-1.wav" id="25_cr6qp"]
 [ext_resource type="AudioStream" uid="uid://blkyw7oqm67l7" path="res://Audio/SFX2/exosuit-overdrive-1.wav" id="26_06jie"]

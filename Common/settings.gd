@@ -1,12 +1,18 @@
 extends Node
 
 const WINDOW_MODE_LABELS = {
-	DisplayServer.WINDOW_MODE_FULLSCREEN: "FULLSCREEN", DisplayServer.WINDOW_MODE_WINDOWED: "WINDOWED", DisplayServer.WINDOW_MODE_MAXIMIZED: "MAXIMISED"
+	DisplayServer.WINDOW_MODE_FULLSCREEN: "SETTINGS_WINDOW_MODE_FULLSCREEN",
+	DisplayServer.WINDOW_MODE_WINDOWED: "SETTINGS_WINDOW_MODE_WINDOWED",
+	DisplayServer.WINDOW_MODE_MAXIMIZED: "SETTINGS_WINDOW_MODE_MAXIMISED"
 }
+
+const CONFIGURED_LOCALES = ["en", "es"]
 
 var window_mode := DisplayServer.WINDOW_MODE_MAXIMIZED
 var windowed_resolution: Array = [1920, 1080]
 var screen_shake: bool
+
+var preferred_locale: String = "en"
 
 #region Control Mapping defaults
 var control_mappings: Dictionary = {
@@ -59,12 +65,14 @@ func save_user_settings() -> void:
 	config.set_value("Display", "windowed_resolution", [DisplayServer.window_get_size().x, DisplayServer.window_get_size().y])
 	config.set_value("Gameplay", "screen_shake", screen_shake)
 
+	config.set_value("", "locale", preferred_locale)
+
 	var bus_index = AudioServer.get_bus_index("Master")
-	config.set_value("Volume", "Master", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
+	config.set_value("Volume", "master", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
 	bus_index = AudioServer.get_bus_index("Music")
-	config.set_value("Volume", "Music", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
+	config.set_value("Volume", "music", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
 	bus_index = AudioServer.get_bus_index("SFX")
-	config.set_value("Volume", "SFX", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
+	config.set_value("Volume", "sfx", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
 
 	for control_mapping in control_mappings.keys():
 		config.set_value("Controls", control_mapping, control_mappings[control_mapping])
@@ -88,12 +96,19 @@ func load_user_settings() -> void:
 	set_windowed_resolution(Vector2i(windowed_resolution[0], windowed_resolution[1]))
 	screen_shake = config.get_value("Gameplay", "screen_shake", true)
 
+	var loaded_locale = null
+	if config.has_section_key("", "locale"):
+		loaded_locale = config.get_value("", "locale", OS.get_locale_language())
+		if CONFIGURED_LOCALES.has(loaded_locale):
+			preferred_locale = loaded_locale
+	TranslationServer.set_locale(preferred_locale)
+
 	var bus_index = AudioServer.get_bus_index("Master")
-	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "Master", 1.0)))
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "master", 1.0)))
 	bus_index = AudioServer.get_bus_index("Music")
-	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "Music", 1.0)))
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "music", 1.0)))
 	bus_index = AudioServer.get_bus_index("SFX")
-	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "SFX", 1.0)))
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(config.get_value("Volume", "sfx", 1.0)))
 
 	if config.has_section("Controls"):
 		for control in config.get_section_keys("Controls"):
