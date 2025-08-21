@@ -335,13 +335,6 @@ text = "EN"
 script = ExtResource("5_gf37o")
 locale = "en"
 
-[node name="ENUSButton" type="Button" parent="SettingsButtons/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_m2mf3")
-text = "US"
-script = ExtResource("5_gf37o")
-locale = "en_US"
-
 [node name="ESButton" type="Button" parent="SettingsButtons/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_m2mf3")
@@ -364,6 +357,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_fgfmy")
 text = "SETTINGS_BACK"
 
 [node name="Credits" type="Control" parent="."]
+visible = false
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
@@ -650,7 +644,6 @@ text = "SETTINGS_BACK"
 [connection signal="mouse_entered" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="SettingsButtons/HBoxContainer/ENButton" to="SettingsButtons/HBoxContainer/ENButton" method="_on_pressed"]
-[connection signal="pressed" from="SettingsButtons/HBoxContainer/ENUSButton" to="SettingsButtons/HBoxContainer/ENUSButton" method="_on_pressed"]
 [connection signal="pressed" from="SettingsButtons/HBoxContainer/ESButton" to="SettingsButtons/HBoxContainer/ESButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
