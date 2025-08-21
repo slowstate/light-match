@@ -61,7 +61,7 @@ func save_user_settings() -> void:
 	var config = ConfigFile.new()
 	if !WINDOW_MODE_LABELS.has(DisplayServer.window_get_mode()):
 		window_mode = DisplayServer.WINDOW_MODE_MAXIMIZED
-	config.set_value("Display", "window_mode", DisplayServer.window_get_mode())
+	config.set_value("Display", "window_mode", window_mode)
 	config.set_value("Display", "windowed_resolution", [DisplayServer.window_get_size().x, DisplayServer.window_get_size().y])
 	config.set_value("Gameplay", "screen_shake", screen_shake)
 
@@ -89,7 +89,10 @@ func load_user_settings() -> void:
 	if err != OK:
 		return
 
-	set_window_mode(config.get_value("Display", "window_mode", DisplayServer.WINDOW_MODE_MAXIMIZED))
+	var loaded_window_mode = config.get_value("Display", "window_mode", DisplayServer.WINDOW_MODE_MAXIMIZED)
+	if !WINDOW_MODE_LABELS.has(loaded_window_mode):
+		loaded_window_mode = DisplayServer.WINDOW_MODE_MAXIMIZED
+	set_window_mode(loaded_window_mode)
 	windowed_resolution = config.get_value("Display", "windowed_resolution", [1920, 1080])
 	if windowed_resolution.size() != 2:
 		windowed_resolution = [1920, 1080]
