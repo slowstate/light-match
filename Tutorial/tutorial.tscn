@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b2myeafehcosh" path="res://Common/AudioManagers/music_manager.tscn" id="11_m8ltd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eq6nu"]
+line_spacing = 12.0
 font_size = 24
 
 [sub_resource type="Gradient" id="Gradient_87ap2"]
