@@ -56,7 +56,7 @@ TUTORIAL_SEQUENCE_6,"Too bad, you failed to complete the Sequence because the ta
 TUTORIAL_SEQUENCE_7,"If the Sequence doesn't match the color of the targets, you can refresh it by pressing R. Give it try",
 TUTORIAL_SEQUENCE_8,Looks like you've got the hang of it now,
 TUTORIAL_OUTRO_1,Time for the real test,
-TUTORIAL_OUTRO_2,3.. 2.. 1..,
+TUTORIAL_OUTRO_2,3... 2... 1...,
 TUTORIAL_SEQUENCE_FAILED,"Not quite, give it another try. Press R to refresh the Sequence",
 ARENA_ROUND,Round,
 ARENA_SEQUENCES_COMPLETED,Sequences completed,
