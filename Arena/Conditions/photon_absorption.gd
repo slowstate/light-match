@@ -7,8 +7,8 @@ var heal_amount: int = 1
 
 func _init() -> void:
 	name = tr("CONDITION_PHOTON_ABSORPTION_NAME")
-	description = tr("CONDITION_PHOTON_ABSORPTION__DESCRIPTION")
-	added_dialogue = tr("CONDITION_PHOTON_ABSORPTION__DIALOGUE")
+	description = tr("CONDITION_PHOTON_ABSORPTION_DESCRIPTION")
+	added_dialogue = tr("CONDITION_PHOTON_ABSORPTION_DIALOGUE")
 	points_per_round = 1
 
 
