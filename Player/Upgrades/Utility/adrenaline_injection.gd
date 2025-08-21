@@ -9,9 +9,9 @@ var effect_duration: float = 6.0
 # Called when the node enters the scene tree for the first time.
 func _init() -> void:
 	type = UpgradeManager.UpgradeTypes.ADRENALINE_INJECTION
-	name = "Adrenaline Injection"
-	description = "After completing a Sequence, you temporarily move faster"
-	added_dialogue = "Another adaptation! This should improve your agility"
+	name = tr("CONDITION_ADRENALINE_INJECTION_NAME")
+	description = tr("CONDITION_ADRENALINE_INJECTION_DESCRIPTION")
+	added_dialogue = tr("CONDITION_ADRENALINE_INJECTION_DIALOGUE")
 	icon = preload("res://Player/Upgrades/Utility/Adrenaline Injection.png")
 	points_cost = 0
 	effect_timer = super.new_timer()
@@ -25,6 +25,7 @@ func on_palette_cleared(_palette: Palette) -> void:
 	effect_timer.start(effect_duration)
 	is_active = true
 	SfxManager.play_sound("AdrenalineInjectionActiveSFX", -15.0, -13.0, 0.7, 0.8)
+
 
 func _on_effect_timer_timeout() -> void:
 	Globals.player.move_speed /= clamp(1 + speed_amount + Save.lifetime_palettes * 0.05, 1, 1.4)

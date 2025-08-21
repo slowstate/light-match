@@ -238,9 +238,9 @@ offset_right = 355.0
 offset_bottom = 90.0
 
 [node name="PlayerConditionsInterface" type="VBoxContainer" parent="PlayerInterface"]
-offset_left = 70.0
+offset_left = 40.0
 offset_top = 128.0
-offset_right = 110.0
+offset_right = 80.0
 offset_bottom = 168.0
 
 [node name="PlayerPoints" type="Control" parent="PlayerInterface"]

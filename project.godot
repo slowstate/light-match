@@ -149,6 +149,10 @@ player_reload={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Common/Localisation/locales.en.translation", "res://Common/Localisation/locales.es.translation")
+
 [layer_names]
 
 2d_physics/layer_1="Boundaries"
