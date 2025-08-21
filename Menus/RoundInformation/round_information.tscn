@@ -76,7 +76,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_uw7wr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_dy3so")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wro0q")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0akc4")
-text = "Continue"
+text = "ARENA_CONTINUE"
 icon = ExtResource("1_cvnda")
 icon_alignment = 1
 

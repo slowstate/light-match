@@ -5,7 +5,7 @@ const BOT = preload("res://Enemies/Bot/bot.tscn")
 var ARENA = load("res://Arena/arena.tscn")
 
 var dialogue_strings: Array[String] = [
-	"TUTORIAL_INTRO_1",  # Hello
+	"TUTORIAL_INTRO_1",  # "Hello"
 	"TUTORIAL_INTRO_2",  # "Welcome to Test Facility 003"
 	"TUTORIAL_INTRO_3",  # "I am 4DM1N-D2 and I will be your training coordinator"
 	"TUTORIAL_MOVEMENT_1",  # "First, let's test your basic motor functions"
