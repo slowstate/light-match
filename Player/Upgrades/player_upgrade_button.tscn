@@ -1,21 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf27r8vjqk6av"]
+[gd_scene load_steps=5 format=3 uid="uid://cf27r8vjqk6av"]
 
 [ext_resource type="Script" path="res://Player/Upgrades/player_upgrade_button.gd" id="1_k3qr4"]
 [ext_resource type="Texture2D" uid="uid://c4mwjq8jwfkrt" path="res://Player/Upgrades/Meta/Lucky Dice.png" id="3_7mng6"]
 [ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="3_oop5q"]
-[ext_resource type="Texture2D" uid="uid://d0jeqndrjomyx" path="res://Player/Upgrades/Tooltip Line.png" id="4_k32ef"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li3vt"]
-bg_color = Color(0.211, 0.278, 0.344, 0.848)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.433021, 0.533658, 0.632984, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_nvcbo"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_cbqto"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mevve"]
 
@@ -37,48 +24,6 @@ texture = ExtResource("3_oop5q")
 modulate = Color(1, 1, 1, 0.5)
 texture = ExtResource("3_7mng6")
 
-[node name="Tooltip" type="Sprite2D" parent="."]
-visible = false
-self_modulate = Color(0.707967, 0.707967, 0.707967, 1)
-z_index = 2
-z_as_relative = false
-texture = ExtResource("4_k32ef")
-centered = false
-offset = Vector2(-5, -8)
-
-[node name="HoverTooltipName" type="Panel" parent="Tooltip"]
-offset_left = 33.0
-offset_top = 1.0
-offset_right = 100.0
-offset_bottom = 36.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_li3vt")
-
-[node name="HoverTooltipNameLabel" type="Label" parent="Tooltip/HoverTooltipName"]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 57.0
-offset_bottom = 27.0
-pivot_offset = Vector2(-5, 0)
-text = "NAME"
-label_settings = SubResource("LabelSettings_nvcbo")
-
-[node name="HoverTooltipDescription" type="Panel" parent="Tooltip"]
-offset_left = 33.0
-offset_top = 43.0
-offset_right = 142.0
-offset_bottom = 78.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_li3vt")
-
-[node name="HoverTooltipDescriptionLabel" type="Label" parent="Tooltip/HoverTooltipDescription"]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 99.0
-offset_bottom = 27.0
-text = "Description"
-label_settings = SubResource("LabelSettings_cbqto")
-
 [node name="CounterLabel" type="Label" parent="."]
 z_index = 1
 layout_mode = 0
@@ -92,5 +37,3 @@ horizontal_alignment = 1
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
-[connection signal="resized" from="Tooltip/HoverTooltipName/HoverTooltipNameLabel" to="." method="_on_hover_tooltip_name_label_resized"]
-[connection signal="resized" from="Tooltip/HoverTooltipDescription/HoverTooltipDescriptionLabel" to="." method="_on_hover_tooltip_description_label_resized"]
