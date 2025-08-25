@@ -13,6 +13,7 @@ const TUTORIAL = preload("res://Tutorial/tutorial.tscn")
 
 
 func _ready() -> void:
+	get_tree().paused = false
 	var log_data = {"message": "Scene ready"}
 	Logger.log_info(log_data)
 	Input.set_custom_mouse_cursor(CROSSHAIR, Input.CURSOR_ARROW, Vector2(26, 17))
@@ -33,23 +34,6 @@ func _on_start_button_pressed() -> void:
 		get_tree().change_scene_to_packed(ARENA)
 	else:
 		get_tree().change_scene_to_packed(TUTORIAL)
-
-
-#endregion
-
-
-#region Tutorial
-func _on_back_button_mouse_entered() -> void:
-	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
-
-
-func _on_back_button_pressed() -> void:
-	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
-	tutorial.visible = false
-	bullet_spawn_timer.start()
-
-	var log_play_data = {"message": "Return to main menu pressed"}
-	Logger.log_play_data(log_play_data)
 
 
 #endregion
