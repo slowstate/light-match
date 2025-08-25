@@ -14,6 +14,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("player_cancel"):
 		visible = !visible
 		get_tree().paused = visible
+		SignalBus.paused.emit(visible)
 
 
 func _on_settings_button_mouse_entered() -> void:
@@ -42,3 +43,4 @@ func _on_back_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
 	visible = false
 	get_tree().paused = false
+	SignalBus.paused.emit(visible)
