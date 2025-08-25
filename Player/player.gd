@@ -42,6 +42,7 @@ var hit_immunity_time: float = 1.0
 @onready var shield_sprite: Sprite2D = $ShieldSprite
 @onready var health_bar_inner: Sprite2D = $HealthBar/HealthBarInner
 @onready var health_label: Label = $HealthBar/HealthLabel
+@onready var health_bar: VBoxContainer = $PlayerInterface/HealthBar
 
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
@@ -290,9 +291,15 @@ func set_health(new_health: int) -> void:
 		health_bar_inner.visible = false
 	else:
 		health_bar_inner.visible = true
-	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
-	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
-	health_label.text = str(health)
+
+	var health_sprites = health_bar.get_children()
+	for health_sprite in health_sprites:
+		health_sprite.visible = false
+	for i in health:
+		health_sprites[i].visible = true
+	#var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
+	#health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
+	#health_label.text = str(health)
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
@@ -346,6 +353,7 @@ func player_hit(enemy: Enemy) -> void:
 		SignalBus.player_died.emit()
 	else:
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 1.0, 1.1)
+
 
 func game_over_sequence() -> void:
 	controls_enabled = false
