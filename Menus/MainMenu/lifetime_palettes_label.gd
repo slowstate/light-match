@@ -1,8 +1,7 @@
 extends Label
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _physics_process(delta: float) -> void:
 	var text_string = tr("MAIN_MENU_LIFETIME_SEQUENCES") + ": {lifetime_palettes}\n"
 	text_string += tr("MAIN_MENU_FIRE_RATE") + ": {fire_rate}%\n"
 	text_string += tr("MAIN_MENU_MAX_HEALTH") + ": {max_health}"
