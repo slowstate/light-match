@@ -14,3 +14,5 @@ signal palette_failed
 signal upgrade_removed(upgrade: Upgrade)
 @warning_ignore("unused_signal")
 signal player_died
+@warning_ignore("unused_signal")
+signal paused(is_paused: bool)

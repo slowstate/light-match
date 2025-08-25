@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://8p11gjdp0ijq"]
+[gd_scene load_steps=55 format=3 uid="uid://8p11gjdp0ijq"]
 
 [ext_resource type="PackedScene" uid="uid://cchxi4827hi2" path="res://Menus/Settings/volume_slider.tscn" id="1_5l60q"]
 [ext_resource type="Script" path="res://Menus/Settings/settings.gd" id="1_nbhcb"]
@@ -8,10 +8,11 @@
 [ext_resource type="Script" path="res://Menus/Settings/controls.gd" id="5_2xtng"]
 [ext_resource type="Script" path="res://Menus/Settings/locale_button.gd" id="5_gf37o"]
 [ext_resource type="PackedScene" uid="uid://be833cwtu3e0m" path="res://Menus/Settings/control_remapper.tscn" id="6_bhigi"]
+[ext_resource type="Script" path="res://Menus/Settings/reset_data.gd" id="9_koon4"]
 
 [sub_resource type="Gradient" id="Gradient_7orx7"]
 offsets = PackedFloat32Array(0.998, 1)
-colors = PackedColorArray(0, 0, 0, 0.784314, 1, 1, 1, 1)
+colors = PackedColorArray(0, 0, 0, 0.9, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gdq2v"]
 gradient = SubResource("Gradient_7orx7")
@@ -60,6 +61,10 @@ CheckButton/styles/focus = SubResource("StyleBoxEmpty_4syyo")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kprgw"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dw7c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axio4"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hku03"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncs3v"]
@@ -67,31 +72,6 @@ CheckButton/styles/focus = SubResource("StyleBoxEmpty_4syyo")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbp21"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgfmy"]
-
-[sub_resource type="Gradient" id="Gradient_e7n77"]
-offsets = PackedFloat32Array(0.998, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fsxx7"]
-gradient = SubResource("Gradient_e7n77")
-width = 600
-height = 500
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="LabelSettings" id="LabelSettings_qtrof"]
-font_size = 20
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pr03h"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_3lql1"]
-font_size = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_v32cw"]
-line_spacing = 12.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgx7f"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50w45"]
 
 [sub_resource type="Gradient" id="Gradient_10eef"]
 offsets = PackedFloat32Array(0.998, 1)
@@ -168,8 +148,35 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0pac8"]
 
+[sub_resource type="Gradient" id="Gradient_e7n77"]
+offsets = PackedFloat32Array(0.998, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fsxx7"]
+gradient = SubResource("Gradient_e7n77")
+width = 600
+height = 520
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fq72"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qtrof"]
+font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pr03h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3lql1"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_v32cw"]
+line_spacing = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgx7f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50w45"]
+
 [node name="Settings" type="Control"]
-z_index = 1
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 offset_left = 560.0
@@ -305,6 +312,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 bus_name = "SFX"
 
+[node name="ResetDataButton" type="Button" parent="SettingsButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1dw7c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_axio4")
+text = "SETTINGS_RESET_DATA"
+
 [node name="HSeparator3" type="HSeparator" parent="SettingsButtons"]
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -355,116 +371,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_hbp21")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fgfmy")
 text = "SETTINGS_BACK"
-
-[node name="Credits" type="Control" parent="."]
-visible = false
-z_index = 2
-layout_mode = 3
-anchors_preset = 0
-offset_left = 100.0
-offset_top = 50.0
-offset_right = 700.0
-offset_bottom = 550.0
-script = ExtResource("3_v8hf4")
-
-[node name="BG" type="Sprite2D" parent="Credits"]
-texture = SubResource("GradientTexture2D_fsxx7")
-centered = false
-
-[node name="CreditsBackButton" type="Button" parent="Credits"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = 147.0
-offset_right = 31.0
-offset_bottom = 177.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_m2mf3")
-text = "SETTINGS_BACK"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
-custom_minimum_size = Vector2(400, 300)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = -150.0
-offset_right = 180.0
-offset_bottom = 150.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 32
-alignment = 1
-
-[node name="3HPLabel" type="Label" parent="Credits/VBoxContainer"]
-layout_mode = 2
-text = "SETTINGS_CREDITS_A_GAME_BY_3HP"
-label_settings = SubResource("LabelSettings_qtrof")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Credits/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_pr03h")
-
-[node name="SpecialThanksToLabel" type="Label" parent="Credits/VBoxContainer"]
-layout_mode = 2
-text = "SETTINGS_CREDITS_SPECIAL_THANKS_TO"
-label_settings = SubResource("LabelSettings_3lql1")
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Credits/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="SpecialThanksListLabel" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Mel C
-Bryony A"
-label_settings = SubResource("LabelSettings_v32cw")
-horizontal_alignment = 1
-
-[node name="VSeparator" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_cgx7f")
-
-[node name="SpecialThanksListLabel2" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Andrew B
-Cameron K"
-label_settings = SubResource("LabelSettings_v32cw")
-horizontal_alignment = 1
-
-[node name="VSeparator2" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_50w45")
-
-[node name="SpecialThanksListLabel3" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Lin K
-Caleb B"
-label_settings = SubResource("LabelSettings_v32cw")
-horizontal_alignment = 1
-
-[node name="VSeparator3" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_50w45")
-
-[node name="SpecialThanksListLabel4" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-label_settings = SubResource("LabelSettings_v32cw")
-horizontal_alignment = 1
 
 [node name="Controls" type="Control" parent="."]
 visible = false
@@ -635,19 +541,195 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i2yk0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0pac8")
 text = "SETTINGS_BACK"
 
+[node name="ResetData" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 40.0
+offset_right = 700.0
+offset_bottom = 560.0
+script = ExtResource("9_koon4")
+
+[node name="Sprite2D" type="Sprite2D" parent="ResetData"]
+texture = SubResource("GradientTexture2D_fsxx7")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResetData"]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 520.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ConfirmResetLabel" type="Label" parent="ResetData/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SETTINGS_PLEASE_CONFIRM_RESET"
+horizontal_alignment = 1
+
+[node name="DataLabel" type="Label" parent="ResetData/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Lifetime Sequences: 100
+Permanent fire rate: 20%
+Permanent max health: 1"
+horizontal_alignment = 1
+
+[node name="CannotBeUndoneLabel" type="Label" parent="ResetData/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SETTINGS_CANNOT_BE_UNDONE"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="ResetData/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+theme_override_styles/separator = SubResource("StyleBoxEmpty_7fq72")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResetData/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="ConfirmResetDataButton" type="Button" parent="ResetData/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS_CONFIRM_RESET"
+
+[node name="CancelButton" type="Button" parent="ResetData/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS_CANCEL_RESET"
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 40.0
+offset_right = 700.0
+offset_bottom = 560.0
+script = ExtResource("3_v8hf4")
+
+[node name="BG" type="Sprite2D" parent="Credits"]
+texture = SubResource("GradientTexture2D_fsxx7")
+centered = false
+
+[node name="CreditsBackButton" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = 147.0
+offset_right = 31.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_m2mf3")
+text = "SETTINGS_BACK"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -150.0
+offset_right = 180.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="3HPLabel" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS_CREDITS_A_GAME_BY_3HP"
+label_settings = SubResource("LabelSettings_qtrof")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pr03h")
+
+[node name="SpecialThanksToLabel" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS_CREDITS_SPECIAL_THANKS_TO"
+label_settings = SubResource("LabelSettings_3lql1")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="SpecialThanksListLabel" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mel C
+Bryony A"
+label_settings = SubResource("LabelSettings_v32cw")
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cgx7f")
+
+[node name="SpecialThanksListLabel2" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Andrew B
+Cameron K"
+label_settings = SubResource("LabelSettings_v32cw")
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_50w45")
+
+[node name="SpecialThanksListLabel3" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lin K
+Caleb B"
+label_settings = SubResource("LabelSettings_v32cw")
+horizontal_alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_50w45")
+
+[node name="SpecialThanksListLabel4" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+label_settings = SubResource("LabelSettings_v32cw")
+horizontal_alignment = 1
+
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/LeftButton" to="SettingsButtons/WindowModePicker" method="_on_left_button_pressed"]
 [connection signal="pressed" from="SettingsButtons/WindowModePicker/RightButton" to="SettingsButtons/WindowModePicker" method="_on_right_button_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_mouse_entered"]
 [connection signal="toggled" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="mouse_entered" from="SettingsButtons/ControlsButton" to="." method="_on_controls_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/ResetDataButton" to="." method="_on_reset_data_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/ResetDataButton" to="." method="_on_reset_data_button_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="SettingsButtons/HBoxContainer/ENButton" to="SettingsButtons/HBoxContainer/ENButton" method="_on_pressed"]
 [connection signal="pressed" from="SettingsButtons/HBoxContainer/ESButton" to="SettingsButtons/HBoxContainer/ESButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
-[connection signal="mouse_entered" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_mouse_entered"]
-[connection signal="pressed" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_pressed"]
 [connection signal="mouse_entered" from="Controls/ControlRemapping/ControlsBackButton" to="." method="_on_controls_back_button_mouse_entered"]
 [connection signal="pressed" from="Controls/ControlRemapping/ControlsBackButton" to="." method="_on_controls_back_button_pressed"]
+[connection signal="mouse_entered" from="ResetData/VBoxContainer/HBoxContainer/ConfirmResetDataButton" to="." method="_on_confirm_reset_data_button_mouse_entered"]
+[connection signal="pressed" from="ResetData/VBoxContainer/HBoxContainer/ConfirmResetDataButton" to="." method="_on_confirm_reset_data_button_pressed"]
+[connection signal="mouse_entered" from="ResetData/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_mouse_entered"]
+[connection signal="pressed" from="ResetData/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="mouse_entered" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_mouse_entered"]
+[connection signal="pressed" from="Credits/CreditsBackButton" to="." method="_on_credits_back_button_pressed"]
