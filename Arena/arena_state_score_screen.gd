@@ -26,7 +26,7 @@ func enter() -> void:
 	Globals.player.game_over_sequence()
 	if arena.current_round_number > 10:
 		game_over_label.text = tr("ARENA_CONGRATULATIONS")
-		score_info_label.text = tr("ARENA_CONGRATULATIONS_ROUNDS_COMPLETED")
+		score_info_label.text = tr("ARENA_CONGRATULATIONS_ROUNDS_COMPLETED") + "\n"
 	else:
 		game_over_label.text = tr("ARENA_YOU_FAILED")
 		score_info_label.text = tr("ARENA_YOU_FAILED_ROUNDS_COMPLETED") + " " + str(arena.current_round_number) + "\n"

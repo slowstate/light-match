@@ -2,7 +2,9 @@ class_name Tutorial
 extends Node2D
 
 const BOT = preload("res://Enemies/Bot/bot.tscn")
+
 var ARENA = load("res://Arena/arena.tscn")
+var MAIN_MENU = load("res://Menus/MainMenu/main_menu.tscn")
 
 var dialogue_strings: Array[String] = [
 	"TUTORIAL_INTRO_1",  # "Hello"
@@ -21,11 +23,9 @@ var dialogue_strings: Array[String] = [
 	"TUTORIAL_SEQUENCE_6",  # "Too bad, you failed to complete the Sequence because the target was the wrong colour"
 	"TUTORIAL_SEQUENCE_7",  # "If the Sequence doesn't match the colour of the targets, you can refresh it by pressing R. Give it try"
 	"TUTORIAL_SEQUENCE_8",  # "Looks like you've got the hang of it now"
-	"TUTORIAL_OUTRO_1",  # "Time for the real test"
-	"TUTORIAL_OUTRO_2",  # "3... 2... 1..."
 ]
 
-var dialogue_index: int = 0
+var dialogue_index: int = 15
 
 @onready var music_manager: Node2D = $MusicManager
 @onready var player: Player = $Player
@@ -103,9 +103,8 @@ func _on_dialogue_timer_timeout() -> void:
 		player.tutorial_colour_reload_controls = true
 	if dialogue_index == 14:
 		return
-	if dialogue_index == 16:
+	if dialogue_index == 15:
 		fade_out_timer.start(3)
-	if dialogue_index == 17:
 		return
 	update_dialogue()
 
@@ -151,4 +150,4 @@ func _on_bot_respawn_timer_timeout() -> void:
 
 func _on_fade_out_timer_timeout() -> void:
 	Save.lifetime_palettes += 1
-	get_tree().change_scene_to_packed(ARENA)
+	get_tree().change_scene_to_packed(MAIN_MENU)

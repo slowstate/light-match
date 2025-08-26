@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cbfe05uqpe2ww"]
+[gd_scene load_steps=30 format=3 uid="uid://cbfe05uqpe2ww"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_plba5"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="2_ekdli"]
@@ -9,23 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="5_ssooe"]
 [ext_resource type="Texture2D" uid="uid://d36h547sfej1u" path="res://HUD/PaletteMilestone1.png" id="6_wpbjh"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="7_u5avh"]
-[ext_resource type="PackedScene" uid="uid://buu7xkduxj6vb" path="res://HUD/health.tscn" id="10_q3au7"]
-
-[sub_resource type="Gradient" id="Gradient_2j6n7"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 0.270588, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wyict"]
-gradient = SubResource("Gradient_2j6n7")
-height = 12
-
-[sub_resource type="Gradient" id="Gradient_osjcn"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0, 0.929412, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vvlfp"]
-gradient = SubResource("Gradient_osjcn")
-height = 12
+[ext_resource type="PackedScene" uid="uid://b2xneu6ijsyjr" path="res://HUD/health.tscn" id="10_q3au7"]
 
 [sub_resource type="Gradient" id="Gradient_6n8lw"]
 offsets = PackedFloat32Array(0, 0.699187)
@@ -109,6 +93,22 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.9)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6v768"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 8.0
+expand_margin_top = 6.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
 [sub_resource type="Gradient" id="Gradient_8ndxk"]
 offsets = PackedFloat32Array(0.708333, 0.786111, 0.846674, 0.9177, 0.928974, 0.997917, 1)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.2, 1, 1, 1, 0.5, 1, 1, 1, 0.2, 1, 1, 1, 0.2, 1, 1, 1, 0.5, 1, 1, 1, 0)
@@ -135,27 +135,6 @@ limit_bottom = 1440
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("2_rraco")
-
-[node name="HealthBar" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-32, 44)
-texture = SubResource("GradientTexture2D_wyict")
-centered = false
-
-[node name="HealthBarInner" type="Sprite2D" parent="HealthBar"]
-texture = SubResource("GradientTexture2D_vvlfp")
-centered = false
-
-[node name="HealthLabel" type="Label" parent="HealthBar"]
-offset_right = 64.0
-offset_bottom = 16.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 15
-text = "3"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="ShieldSprite" type="Sprite2D" parent="."]
 visible = false
@@ -234,16 +213,21 @@ shape = SubResource("CircleShape2D_qy1jw")
 [node name="PlayerInterface" type="CanvasLayer" parent="."]
 
 [node name="PlayerUpgradesInterface" type="HBoxContainer" parent="PlayerInterface"]
-offset_left = 315.0
-offset_top = 50.0
-offset_right = 355.0
-offset_bottom = 90.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 80.0
+offset_bottom = 80.0
 
 [node name="PlayerConditionsInterface" type="VBoxContainer" parent="PlayerInterface"]
-offset_left = 40.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -231.0
 offset_top = 128.0
-offset_right = 80.0
+offset_right = -40.0
 offset_bottom = 168.0
+grow_horizontal = 0
+size_flags_horizontal = 8
 
 [node name="PlayerPoints" type="Control" parent="PlayerInterface"]
 visible = false
@@ -323,6 +307,97 @@ layout_mode = 2
 
 [node name="Health9" parent="PlayerInterface/HealthBar" instance=ExtResource("10_q3au7")]
 layout_mode = 2
+
+[node name="ColourIndicators" type="HBoxContainer" parent="PlayerInterface"]
+offset_left = 872.0
+offset_top = 1020.0
+offset_right = 1048.0
+offset_bottom = 1060.0
+theme_override_constants/separation = 88
+alignment = 1
+
+[node name="Blue" type="Control" parent="PlayerInterface/ColourIndicators"]
+layout_mode = 2
+
+[node name="BlueHex" type="Sprite2D" parent="PlayerInterface/ColourIndicators/Blue"]
+modulate = Color(0.0117647, 0.627451, 1, 1)
+position = Vector2(0, -44)
+texture = ExtResource("5_ssooe")
+
+[node name="BlueButtonHint" type="Label" parent="PlayerInterface/ColourIndicators/Blue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -10.1667
+offset_right = 2.5
+offset_bottom = 10.1667
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6v768")
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Green" type="Control" parent="PlayerInterface/ColourIndicators"]
+layout_mode = 2
+
+[node name="GreenHex" type="Sprite2D" parent="PlayerInterface/ColourIndicators/Green"]
+modulate = Color(0, 0.929412, 0, 1)
+position = Vector2(0, -44)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_ssooe")
+
+[node name="GreenButtonHint" type="Label" parent="PlayerInterface/ColourIndicators/Green"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -10.1667
+offset_right = 2.5
+offset_bottom = 10.1667
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6v768")
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Red" type="Control" parent="PlayerInterface/ColourIndicators"]
+layout_mode = 2
+
+[node name="RedHex" type="Sprite2D" parent="PlayerInterface/ColourIndicators/Red"]
+modulate = Color(1, 0.270588, 0, 1)
+position = Vector2(0, -44)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_ssooe")
+
+[node name="RedButtonHint" type="Label" parent="PlayerInterface/ColourIndicators/Red"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -10.1667
+offset_right = 2.5
+offset_bottom = 10.1667
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6v768")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AfterImageTimer" type="Timer" parent="."]
 wait_time = 0.1
