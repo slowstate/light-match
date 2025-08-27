@@ -275,9 +275,10 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
 offset_top = -300.0
-offset_right = 40.0
+offset_right = 78.0
 offset_bottom = -60.0
 grow_vertical = 0
+tooltip_text = "ARENA_HP"
 theme_override_constants/separation = 30
 alignment = 2
 
@@ -320,7 +321,7 @@ alignment = 1
 layout_mode = 2
 
 [node name="BlueHex" type="Sprite2D" parent="PlayerInterface/ColourIndicators/Blue"]
-modulate = Color(0.0117647, 0.627451, 1, 1)
+modulate = Color(0.0862745, 1, 1, 1)
 position = Vector2(0, -44)
 texture = ExtResource("5_ssooe")
 
@@ -347,7 +348,7 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="GreenHex" type="Sprite2D" parent="PlayerInterface/ColourIndicators/Green"]
-modulate = Color(0, 0.929412, 0, 1)
+modulate = Color(0.0627451, 1, 0.0627451, 1)
 position = Vector2(0, -44)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("5_ssooe")
@@ -375,7 +376,7 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="RedHex" type="Sprite2D" parent="PlayerInterface/ColourIndicators/Red"]
-modulate = Color(1, 0.270588, 0, 1)
+modulate = Color(1, 0.415686, 0.054902, 1)
 position = Vector2(0, -44)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("5_ssooe")

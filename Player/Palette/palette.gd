@@ -85,6 +85,7 @@ func reload_palette() -> void:
 	reload_timer.start(reload_time)
 	SfxManager.play_sound("PaletteReloadSFX", -15.0, -13.0, 0.90, 1.0)
 
+
 func _on_reload_timer_timeout() -> void:
 	generate_new_palette()
 
@@ -185,6 +186,3 @@ func _set_palette_sprites() -> void:
 	for i in palette_size:
 		var palette_colour = PALETTE_COLOUR.instantiate()
 		palette_colour_sprites.add_child(palette_colour)
-		palette_colour.update_shader_alpha(0.4)
-		if i == 0:
-			palette_colour.update_shader_alpha(1.0)
