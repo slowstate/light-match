@@ -568,12 +568,28 @@ shape = SubResource("WorldBoundaryShape2D_o1cin")
 [node name="UserInterface" type="CanvasLayer" parent="."]
 
 [node name="RoundLabel" type="Label" parent="UserInterface"]
-offset_left = 40.0
-offset_top = 80.0
-offset_right = 138.0
-offset_bottom = 116.0
-text = "Round"
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -138.0
+offset_top = 50.0
+offset_right = -40.0
+offset_bottom = 86.0
+grow_horizontal = 0
+text = "Round 1/10"
 label_settings = SubResource("LabelSettings_p3kqb")
+horizontal_alignment = 2
+
+[node name="SequencesCompletedLabel" type="Label" parent="UserInterface"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 90.0
+offset_right = -40.0
+offset_bottom = 106.333
+grow_horizontal = 0
+horizontal_alignment = 2
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_53yap")

@@ -40,8 +40,7 @@ var hit_immunity_time: float = 1.0
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var palette: Palette = $Palette
 @onready var shield_sprite: Sprite2D = $ShieldSprite
-@onready var health_bar_inner: Sprite2D = $HealthBar/HealthBarInner
-@onready var health_label: Label = $HealthBar/HealthLabel
+@onready var health_bar: VBoxContainer = $PlayerInterface/HealthBar
 
 @onready var gun_cooldown_timer: Timer = $GunCooldownTimer
 @onready var gun_switch_cooldown_timer: Timer = $GunSwitchCooldownTimer
@@ -56,6 +55,12 @@ var hit_immunity_time: float = 1.0
 @onready var player_upgrades_interface: HBoxContainer = $PlayerInterface/PlayerUpgradesInterface
 @onready var player_points_label: Label = $PlayerInterface/PlayerPoints/PlayerPointsLabel
 @onready var player_hit_overlay: Sprite2D = $PlayerInterface/PlayerHitOverlay
+@onready var blue_hex: Sprite2D = $PlayerInterface/ColourIndicators/Blue/BlueHex
+@onready var blue_button_hint: Label = $PlayerInterface/ColourIndicators/Blue/BlueButtonHint
+@onready var green_hex: Sprite2D = $PlayerInterface/ColourIndicators/Green/GreenHex
+@onready var green_button_hint: Label = $PlayerInterface/ColourIndicators/Green/GreenButtonHint
+@onready var red_hex: Sprite2D = $PlayerInterface/ColourIndicators/Red/RedHex
+@onready var red_button_hint: Label = $PlayerInterface/ColourIndicators/Red/RedButtonHint
 
 
 func _init() -> void:
@@ -64,11 +69,13 @@ func _init() -> void:
 
 func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
+	SignalBus.paused.connect(_on_paused)
 	set_health(base_health)
-	base_health += floori(Save.lifetime_palettes / 100)
+	base_health += clampi(floori(Save.lifetime_palettes / 100), 0, 6)
 	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.002))
 	player_sprite.set_colour(current_colour)
 	Globals.set_crosshair_colour(current_colour)
+	update_colour_indicator_button_hints()
 	palette.generate_new_palette()
 	player_points_label.text = str(points)
 	player_hit_overlay.modulate.a = 0
@@ -216,10 +223,32 @@ func change_colour(new_colour: Globals.Colour) -> void:
 	switch_colour_flash.modulate = Globals.COLOUR_VISUAL_VALUE[current_colour]
 	switch_colour_flash.modulate.a = 1.0
 	Globals.set_crosshair_colour(current_colour)
+
+	blue_hex.scale = Vector2(0.6, 0.6)
+	green_hex.scale = Vector2(0.6, 0.6)
+	red_hex.scale = Vector2(0.6, 0.6)
+	match current_colour:
+		Globals.Colour.BLUE:
+			blue_hex.scale = Vector2(1.0, 1.0)
+		Globals.Colour.GREEN:
+			green_hex.scale = Vector2(1.0, 1.0)
+		Globals.Colour.RED:
+			red_hex.scale = Vector2(1.0, 1.0)
 	player_sprite.play_change_colour_animation()
 	SfxManager.play_sound("ChangeGunSFX", -15.0, -13.0, 0.95, 1.05)
 	gun_switch_cooldown_timer.start(gun_switch_cooldown)
 	UpgradeManager.on_gun_colour_switch(gun_cooldown_timer)
+
+
+func _on_paused(is_paused: bool) -> void:
+	if !is_paused:
+		update_colour_indicator_button_hints()
+
+
+func update_colour_indicator_button_hints() -> void:
+	blue_button_hint.text = Settings.control_mappings["player_blue"]
+	green_button_hint.text = Settings.control_mappings["player_green"]
+	red_button_hint.text = Settings.control_mappings["player_red"]
 
 
 func add_upgrade(new_upgrade: Upgrade) -> void:
@@ -286,13 +315,12 @@ func add_points(points_to_add: int) -> void:
 
 func set_health(new_health: int) -> void:
 	health = new_health
-	if health <= 0:
-		health_bar_inner.visible = false
-	else:
-		health_bar_inner.visible = true
-	var health_bar_inner_gradient = health_bar_inner.texture as GradientTexture2D
-	health_bar_inner_gradient.width = clampf(float(health) / base_health * 64.0, 1, 64.0)
-	health_label.text = str(health)
+
+	var health_sprites = health_bar.get_children()
+	for health_sprite in health_sprites:
+		health_sprite.visible = false
+	for i in health:
+		health_sprites[i - 1].visible = true
 
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
@@ -346,6 +374,7 @@ func player_hit(enemy: Enemy) -> void:
 		SignalBus.player_died.emit()
 	else:
 		SfxManager.play_sound("PlayerHitSFX", -15.0, -13.0, 1.0, 1.1)
+
 
 func game_over_sequence() -> void:
 	controls_enabled = false

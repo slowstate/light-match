@@ -7,4 +7,5 @@ custom_minimum_size = Vector2(0, 15)
 offset_right = 1.0
 offset_bottom = 16.3333
 mouse_filter = 1
+horizontal_alignment = 2
 script = ExtResource("1_1a6un")

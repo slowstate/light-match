@@ -10,6 +10,7 @@ var concurrent_enemies_alive: int = 0
 var round_elapsed_time: float
 
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
+@onready var sequences_completed_label: Label = $"../../UserInterface/SequencesCompletedLabel"
 
 
 func enter() -> void:
@@ -26,6 +27,7 @@ func enter() -> void:
 	round_elapsed_time = 0.0
 	_load_round(arena.current_round_number)
 	Globals.player.set_health(Globals.player.base_health)
+	sequences_completed_label.text = tr("ARENA_SEQUENCES_COMPLETED") + ": " + str(arena.palettes_cleared_this_run)
 
 	var log_context_data = {"round_number": arena.current_round_number}
 	var log_play_data = {"message": "Round started", "context": log_context_data}
@@ -106,6 +108,7 @@ func on_enemy_died(_enemy: Enemy) -> void:
 
 func _on_palette_cleared() -> void:
 	arena.palettes_cleared_this_run += 1
+	sequences_completed_label.text = tr("ARENA_SEQUENCES_COMPLETED") + ": " + str(arena.palettes_cleared_this_run)
 
 
 func no_enemies_remaining_this_round() -> bool:
