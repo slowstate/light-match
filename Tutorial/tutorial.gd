@@ -25,7 +25,7 @@ var dialogue_strings: Array[String] = [
 	"TUTORIAL_SEQUENCE_8",  # "Looks like you've got the hang of it now"
 ]
 
-var dialogue_index: int = 15
+var dialogue_index: int = 0
 
 @onready var music_manager: Node2D = $MusicManager
 @onready var player: Player = $Player
