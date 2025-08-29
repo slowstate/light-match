@@ -22,6 +22,7 @@ var palettes_cleared_this_run: int = 0
 @onready var timer_78_90s: Timer = $"MusicManager/Timer78-90s"
 @onready var fade_in_timer: Timer = $FadeInTimer
 @onready var fade: ColorRect = $Fade
+@onready var lighting: Node2D = $Lighting
 
 
 func _ready() -> void:
@@ -36,7 +37,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	pass
+	lighting.position.x = -clamp(get_viewport().get_camera_2d().global_position.x, 1920 / 2, 2160 - 1920 / 2) / 10
+	lighting.position.y = -clamp(get_viewport().get_camera_2d().global_position.y, 1080 / 2, 1440 - 1080 / 2) / 10
 
 
 func _process(delta: float) -> void:

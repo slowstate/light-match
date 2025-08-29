@@ -1,6 +1,7 @@
 extends Area2D
 
 signal player_hit
+signal enemy_hit
 
 
 func _ready() -> void:
@@ -13,3 +14,4 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	var enemy = owner as Enemy
 	enemy._on_area_entered(area)
+	enemy_hit.emit()

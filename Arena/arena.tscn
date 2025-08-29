@@ -763,6 +763,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 script = ExtResource("19_8arc5")
 
 [node name="PauseMenuBG" type="ColorRect" parent="PauseMenu"]
