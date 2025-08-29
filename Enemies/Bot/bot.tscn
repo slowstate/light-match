@@ -106,4 +106,5 @@ custom_offset = Vector2(0, -50)
 position = Vector2(0, -50)
 custom_offset = Vector2(0, -50)
 
+[connection signal="enemy_hit" from="HurtBox" to="StateMachine/Idle" method="_on_hurt_box_enemy_hit"]
 [connection signal="player_hit" from="HurtBox" to="StateMachine/Aggro" method="_on_hurt_box_player_hit"]

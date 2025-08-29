@@ -74,3 +74,9 @@ func _set_random_location() -> void:
 	var random_y := bot.global_position.y + randf_range(-300.0, 300.0) + vector_to_player.y * randf_range(50.0, 100.0)
 
 	desired_location = Vector2(clampf(random_x, 100.0, 2460.0), clampf(random_y, 100.0, 1340.0))
+
+
+func _on_hurt_box_enemy_hit() -> void:
+	if bot.is_stunned() or bot.dumdum:
+		return
+	transition.emit("Aggro")
