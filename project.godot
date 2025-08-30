@@ -10,13 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Light Match"
-config/version="0.8"
-run/main_scene="res://Menus/MainMenu/main_menu.tscn"
+config/name="CHROMACORE"
+config/version="0.9"
+run/main_scene="res://Menus/Bootsplash/bootsplash.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="3HP/Light Match"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://favicon.png"
+config/windows_native_icon="res://favicon.ico"
 
 [audio]
 
