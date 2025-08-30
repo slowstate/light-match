@@ -31,7 +31,7 @@ func enter() -> void:
 		game_over_label.text = tr("ARENA_YOU_FAILED")
 		score_info_label.text = tr("ARENA_YOU_FAILED_ROUNDS_COMPLETED") + " " + str(arena.current_round_number) + "\n"
 	score_info_label.text += tr("ARENA_SEQUENCES_COMPLETED_1") + " " + str(arena.palettes_cleared_this_run) + " " + tr("ARENA_SEQUENCES_COMPLETED_2") + "\n"
-	score_info_label.text += tr("ARENA_FIRE_RATE_GAINED") + ": " + str(arena.palettes_cleared_this_run * 0.002) + "%\n"
+	score_info_label.text += tr("ARENA_FIRE_RATE_GAINED") + ": " + str(arena.palettes_cleared_this_run * 0.002 * 100) + "%\n"
 	score_interface.visible = true
 	max_health_progress_bar_timer.start(2)
 	var log_context_data = {"round_number": arena.current_round_number}
