@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbtshg8lfy76e"]
+
+[ext_resource type="Script" path="res://Menus/Bootsplash/bootsplash.gd" id="1_aic4n"]
+[ext_resource type="FontFile" uid="uid://c3o3pxfu3prkr" path="res://Common/Fonts/GlacialIndifference-Bold.otf" id="2_ckybu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vute3"]
+font = ExtResource("2_ckybu")
+font_size = 32
+
+[node name="Bootsplash" type="ColorRect"]
+custom_minimum_size = Vector2(1920, 1080)
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_aic4n")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -19.0
+offset_right = 115.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A GAME BY 3HP"
+label_settings = SubResource("LabelSettings_vute3")
+
+[node name="FadeInTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StillTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FadeOutTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FadeInTimer" to="." method="_on_fade_in_timer_timeout"]
+[connection signal="timeout" from="StillTimer" to="." method="_on_still_timer_timeout"]
+[connection signal="timeout" from="FadeOutTimer" to="." method="_on_fade_out_timer_timeout"]

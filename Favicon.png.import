@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b21vg6skfy02i"
-path="res://.godot/imported/Favicon.png-08f7cf637a5f1a7d2575d64cdc070138.ctex"
+uid="uid://yymfk77gma4f"
+path="res://.godot/imported/favicon.png-05a5f25b7b35b567a640a7daf7751a8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Favicon.png"
-dest_files=["res://.godot/imported/Favicon.png-08f7cf637a5f1a7d2575d64cdc070138.ctex"]
+source_file="res://favicon.png"
+dest_files=["res://.godot/imported/favicon.png-05a5f25b7b35b567a640a7daf7751a8e.ctex"]
 
 [params]
 
