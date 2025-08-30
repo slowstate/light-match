@@ -531,7 +531,7 @@ expand_margin_top = 4.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w1v3q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5g6q"]
-size = Vector2(221, 30)
+size = Vector2(68, 20)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhd0s"]
 
@@ -781,25 +781,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 64
 alignment = 1
-
-[node name="StartButton2" type="Button" parent="MenuButtons"]
-visible = false
-custom_minimum_size = Vector2(78, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yk0bt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_w1v3q")
-text = "COMING SOON"
-icon_alignment = 1
-
-[node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/StartButton2"]
-position = Vector2(39, 10)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/StartButton2/StaticBody2D"]
-position = Vector2(73.5, 4)
-shape = SubResource("RectangleShape2D_f5g6q")
 
 [node name="StartButton" type="Button" parent="MenuButtons"]
 custom_minimum_size = Vector2(78, 25)
@@ -1493,8 +1474,6 @@ script = ExtResource("32_4yuew")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[connection signal="mouse_entered" from="MenuButtons/StartButton2" to="." method="_on_start_button_mouse_entered"]
-[connection signal="pressed" from="MenuButtons/StartButton2" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="MenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
