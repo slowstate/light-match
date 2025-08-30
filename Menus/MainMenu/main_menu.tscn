@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
 [ext_resource type="Texture2D" uid="uid://r26c27hrvnw1" path="res://Arena/BG Hex Light.png" id="3_dyfs6"]
 [ext_resource type="Texture2D" uid="uid://djmsyh0ew3c4r" path="res://Menus/MainMenu/Title BG Hex.png" id="4_3xn7e"]
-[ext_resource type="Texture2D" uid="uid://b2dxxetvv75o" path="res://Menus/MainMenu/CHROMACORE.png" id="4_5gw5x"]
 [ext_resource type="Texture2D" uid="uid://dius2cv6xw7tn" path="res://Menus/MainMenu/Title Icon Light.png" id="5_mxm7f"]
 [ext_resource type="Texture2D" uid="uid://chw3egawgm1vl" path="res://Menus/MainMenu/Title Icon.png" id="6_eufb3"]
+[ext_resource type="Texture2D" uid="uid://d0dfysmqkrlrt" path="res://Menus/MainMenu/Light.png" id="7_gjco6"]
 [ext_resource type="Texture2D" uid="uid://cqfxbdt8yg400" path="res://Menus/MainMenu/MATCH.png" id="8_7n2il"]
 [ext_resource type="Texture2D" uid="uid://0j3j1ifosde8" path="res://Arena/Background.png" id="9_ke1b8"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="10_a5kyi"]
@@ -510,7 +510,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ynt0"]
-size = Vector2(574, 53)
+size = Vector2(199, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_di3wf"]
 size = Vector2(248, 52)
@@ -531,7 +531,7 @@ expand_margin_top = 4.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w1v3q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5g6q"]
-size = Vector2(221, 30)
+size = Vector2(70, 22)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhd0s"]
 
@@ -732,36 +732,33 @@ modulate = Color(1, 1, 1, 0.05)
 position = Vector2(960, 540)
 texture = ExtResource("4_3xn7e")
 
-[node name="Chromacore" type="Sprite2D" parent="."]
-position = Vector2(959, 370)
-texture = ExtResource("4_5gw5x")
+[node name="Light" type="Sprite2D" parent="."]
+position = Vector2(770, 370)
+texture = ExtResource("7_gjco6")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Chromacore"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Light"]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chromacore/StaticBody2D"]
-position = Vector2(0, -0.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Light/StaticBody2D"]
+position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_4ynt0")
 
 [node name="Match" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(1177, 370)
 texture = ExtResource("8_7n2il")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Match"]
-visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Match/StaticBody2D"]
-visible = false
 shape = SubResource("RectangleShape2D_di3wf")
 
 [node name="TitleIconLight" type="Sprite2D" parent="."]
-position = Vector2(1120, 370)
+position = Vector2(960, 370)
 texture = ExtResource("5_mxm7f")
 
 [node name="TitleIcon" type="Sprite2D" parent="."]
-position = Vector2(1120, 370)
+position = Vector2(960, 370)
 texture = ExtResource("6_eufb3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TitleIcon"]
@@ -781,25 +778,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 64
 alignment = 1
-
-[node name="StartButton2" type="Button" parent="MenuButtons"]
-visible = false
-custom_minimum_size = Vector2(78, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yk0bt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_w1v3q")
-text = "COMING SOON"
-icon_alignment = 1
-
-[node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/StartButton2"]
-position = Vector2(39, 10)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/StartButton2/StaticBody2D"]
-position = Vector2(73.5, 4)
-shape = SubResource("RectangleShape2D_f5g6q")
 
 [node name="StartButton" type="Button" parent="MenuButtons"]
 custom_minimum_size = Vector2(78, 25)
@@ -1491,10 +1469,6 @@ horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("32_4yuew")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[connection signal="mouse_entered" from="MenuButtons/StartButton2" to="." method="_on_start_button_mouse_entered"]
-[connection signal="pressed" from="MenuButtons/StartButton2" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="MenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
@@ -1502,6 +1476,8 @@ script = ExtResource("32_4yuew")
 [connection signal="mouse_entered" from="MenuButtons/ExitButton" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="BulletSpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]
+[connection signal="mouse_entered" from="Tutorial/BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="pressed" from="Tutorial/BackButton" to="." method="_on_back_button_pressed"]
 
 [editable path="Tutorial/PlayerSprite"]
 [editable path="Tutorial/BotSprite"]
