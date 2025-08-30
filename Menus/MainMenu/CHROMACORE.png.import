@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwcivc3lijiff"
-path="res://.godot/imported/exe Icon.png-caf62f2ef61b402bf022a29419cdbea2.ctex"
+uid="uid://b2dxxetvv75o"
+path="res://.godot/imported/CHROMACORE.png-1a35e5045b1114302072f79d83087a35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://exe Icon.png"
-dest_files=["res://.godot/imported/exe Icon.png-caf62f2ef61b402bf022a29419cdbea2.ctex"]
+source_file="res://Menus/MainMenu/CHROMACORE.png"
+dest_files=["res://.godot/imported/CHROMACORE.png-1a35e5045b1114302072f79d83087a35.ctex"]
 
 [params]
 
