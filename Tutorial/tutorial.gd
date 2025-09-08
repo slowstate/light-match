@@ -30,11 +30,12 @@ var dialogue_index: int = 0
 @onready var music_manager: Node2D = $MusicManager
 @onready var player: Player = $Player
 @onready var dialogue_timer: Timer = $DialogueTimer
-@onready var dialogue_label: Label = $BotSprite/DialogueLabel
+@onready var dialogue_label: Label = $DialogueLabel
 @onready var bot_respawn_timer: Timer = $BotRespawnTimer
 @onready var fade: ColorRect = $Fade
 @onready var fade_in_timer: Timer = $FadeInTimer
 @onready var fade_out_timer: Timer = $FadeOutTimer
+@onready var bot_sprite: Sprite2D = $BotSprite
 
 
 # Called when the node enters the scene tree for the first time.
@@ -68,12 +69,16 @@ func _process(delta: float) -> void:
 		fade.modulate.a = lerp(1.0, 0.0, 1 - fade_in_timer.time_left / fade_in_timer.wait_time)
 	if !fade_out_timer.is_stopped():
 		fade.modulate.a = lerp(0.0, 1.0, 1 - fade_out_timer.time_left / fade_out_timer.wait_time)
+	if bot_sprite.modulate.r > 2.0:
+		bot_sprite.modulate = bot_sprite.modulate - Color(delta, delta, delta, 0)
+		bot_sprite.modulate.clamp(Color(2.0, 2.0, 2.0, 1.0), Color(2.5, 2.5, 2.5, 1.0))
 
 
 func update_dialogue() -> void:
+	bot_sprite.modulate = Color(3.0, 3.0, 3.0, 1.0)
 	dialogue_index += 1
 	dialogue_label.text = tr(dialogue_strings[dialogue_index])
-	dialogue_timer.start(2 + tr(dialogue_strings[dialogue_index]).length() / 20)
+	dialogue_timer.start(3 + tr(dialogue_strings[dialogue_index]).length() / 20)
 
 
 func _on_dialogue_timer_timeout() -> void:
