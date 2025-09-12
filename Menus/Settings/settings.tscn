@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://8p11gjdp0ijq"]
+[gd_scene load_steps=38 format=3 uid="uid://8p11gjdp0ijq"]
 
 [ext_resource type="PackedScene" uid="uid://cchxi4827hi2" path="res://Menus/Settings/volume_slider.tscn" id="1_5l60q"]
 [ext_resource type="Script" path="res://Menus/Settings/settings.gd" id="1_nbhcb"]
@@ -6,7 +6,6 @@
 [ext_resource type="Theme" uid="uid://cvjimjlqhiq6t" path="res://Common/Themes/button.tres" id="3_m2mf3"]
 [ext_resource type="Script" path="res://Menus/Settings/credits.gd" id="3_v8hf4"]
 [ext_resource type="Script" path="res://Menus/Settings/controls.gd" id="5_2xtng"]
-[ext_resource type="Script" path="res://Menus/Settings/locale_button.gd" id="5_gf37o"]
 [ext_resource type="PackedScene" uid="uid://be833cwtu3e0m" path="res://Menus/Settings/control_remapper.tscn" id="6_bhigi"]
 [ext_resource type="Script" path="res://Menus/Settings/reset_data.gd" id="9_koon4"]
 
@@ -24,23 +23,8 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="LabelSettings" id="LabelSettings_q71aq"]
 font_size = 24
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2tyw"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7uq8"]
-bg_color = Color(1, 1, 1, 0.0431373)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0oiyo"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_d8670"]
 font_size = 20
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xeq87"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ri5wm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dnqw"]
 bg_color = Color(1, 1, 1, 1)
@@ -57,21 +41,9 @@ CheckButton/colors/font_hover_pressed_color = Color(0.94902, 0.94902, 0.94902, 1
 CheckButton/colors/font_pressed_color = Color(0.94902, 0.94902, 0.94902, 1)
 CheckButton/styles/focus = SubResource("StyleBoxEmpty_4syyo")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kxsp3"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkc7a"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kprgw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dw7c"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axio4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hku03"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncs3v"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbp21"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgfmy"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xvtt0"]
 
 [sub_resource type="Gradient" id="Gradient_10eef"]
 offsets = PackedFloat32Array(0.998, 1)
@@ -137,17 +109,6 @@ device = -1
 keycode = 68
 unicode = 100
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3d7km"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2yk0"]
-bg_color = Color(1, 1, 1, 0.0431373)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0pac8"]
-
 [sub_resource type="Gradient" id="Gradient_e7n77"]
 offsets = PackedFloat32Array(0.998, 1)
 
@@ -170,10 +131,6 @@ font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_v32cw"]
 line_spacing = 12.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgx7f"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50w45"]
 
 [node name="Settings" type="Control"]
 z_index = 2
@@ -221,10 +178,8 @@ script = ExtResource("2_0c5lk")
 [node name="LeftButton" type="Button" parent="SettingsButtons/WindowModePicker"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_c2tyw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_0oiyo")
+size_flags_horizontal = 4
+theme = ExtResource("3_m2mf3")
 text = "<"
 
 [node name="WindowModeLabel" type="Label" parent="SettingsButtons/WindowModePicker"]
@@ -238,10 +193,7 @@ vertical_alignment = 1
 [node name="RightButton" type="Button" parent="SettingsButtons/WindowModePicker"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xeq87")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ri5wm")
+theme = ExtResource("3_m2mf3")
 text = ">"
 
 [node name="ScreenShake" type="HBoxContainer" parent="SettingsButtons"]
@@ -264,10 +216,6 @@ theme_override_constants/separation = 4
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_m2mf3")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kxsp3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_kprgw")
 text = "SETTINGS_CONTROLS"
 
 [node name="HSeparator2" type="HSeparator" parent="SettingsButtons"]
@@ -312,64 +260,46 @@ layout_mode = 2
 size_flags_horizontal = 4
 bus_name = "SFX"
 
-[node name="ResetDataButton" type="Button" parent="SettingsButtons"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_1dw7c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_axio4")
-text = "SETTINGS_RESET_DATA"
-
 [node name="HSeparator3" type="HSeparator" parent="SettingsButtons"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="CreditsButton" type="Button" parent="SettingsButtons"]
-custom_minimum_size = Vector2(110, 30)
+[node name="TutorialButton" type="Button" parent="SettingsButtons"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_hku03")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ncs3v")
-text = "SETTINGS_CREDITS"
+theme = ExtResource("3_m2mf3")
+text = "SETTINGS_TUTORIAL"
 
 [node name="HSeparator4" type="HSeparator" parent="SettingsButtons"]
 layout_mode = 2
 theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kkc7a")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsButtons"]
+[node name="ResetDataButton" type="Button" parent="SettingsButtons"]
 layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="ENButton" type="Button" parent="SettingsButtons/HBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("3_m2mf3")
-text = "EN"
-script = ExtResource("5_gf37o")
-locale = "en"
-
-[node name="ESButton" type="Button" parent="SettingsButtons/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_m2mf3")
-text = "ES"
-script = ExtResource("5_gf37o")
-locale = "es"
+text = "SETTINGS_RESET_DATA"
 
 [node name="HSeparator5" type="HSeparator" parent="SettingsButtons"]
 layout_mode = 2
 theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xvtt0")
 
-[node name="SettingsBackButton" type="Button" parent="SettingsButtons"]
-custom_minimum_size = Vector2(70, 30)
+[node name="CreditsButton" type="Button" parent="SettingsButtons"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_hbp21")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fgfmy")
+theme = ExtResource("3_m2mf3")
+text = "SETTINGS_CREDITS"
+
+[node name="HSeparator6" type="HSeparator" parent="SettingsButtons"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SettingsBackButton" type="Button" parent="SettingsButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_m2mf3")
 text = "SETTINGS_BACK"
 
 [node name="Controls" type="Control" parent="."]
@@ -535,13 +465,11 @@ layout_mode = 2
 custom_minimum_size = Vector2(70, 30)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3d7km")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i2yk0")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_0pac8")
+theme = ExtResource("3_m2mf3")
 text = "SETTINGS_BACK"
 
 [node name="ResetData" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 40.0
@@ -593,16 +521,15 @@ alignment = 1
 
 [node name="ConfirmResetDataButton" type="Button" parent="ResetData/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("3_m2mf3")
 text = "SETTINGS_CONFIRM_RESET"
 
 [node name="CancelButton" type="Button" parent="ResetData/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("3_m2mf3")
 text = "SETTINGS_CANCEL_RESET"
 
 [node name="Credits" type="Control" parent="."]
-visible = false
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
@@ -623,10 +550,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -39.0
+offset_left = -94.0
 offset_top = 147.0
-offset_right = 31.0
-offset_bottom = 177.0
+offset_right = 86.0
+offset_bottom = 169.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_m2mf3")
@@ -666,48 +593,22 @@ text = "SETTINGS_CREDITS_SPECIAL_THANKS_TO"
 label_settings = SubResource("LabelSettings_3lql1")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Credits/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="SpecialThanksListLabel" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
+[node name="SpecialThanksListLabel" type="Label" parent="Credits/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Mel C
-Bryony A"
+size_flags_horizontal = 4
+text = "Mel C               Bryony A               bianster"
 label_settings = SubResource("LabelSettings_v32cw")
 horizontal_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
+[node name="SpecialThanksListLabel4" type="Label" parent="Credits/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_cgx7f")
-
-[node name="SpecialThanksListLabel2" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Andrew B
-Cameron K"
-label_settings = SubResource("LabelSettings_v32cw")
-horizontal_alignment = 1
-
-[node name="VSeparator2" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_50w45")
-
-[node name="SpecialThanksListLabel3" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Lin K
-Caleb B"
-label_settings = SubResource("LabelSettings_v32cw")
-horizontal_alignment = 1
-
-[node name="VSeparator3" type="VSeparator" parent="Credits/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_50w45")
-
-[node name="SpecialThanksListLabel4" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
+size_flags_horizontal = 4
+text = "Cammmoy          Lin K          Lionel L          Alex Y"
 label_settings = SubResource("LabelSettings_v32cw")
 horizontal_alignment = 1
 
@@ -717,12 +618,12 @@ horizontal_alignment = 1
 [connection signal="toggled" from="SettingsButtons/ScreenShake/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="mouse_entered" from="SettingsButtons/ControlsButton" to="." method="_on_controls_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButtons/TutorialButton" to="." method="_on_tutorial_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButtons/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/ResetDataButton" to="." method="_on_reset_data_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/ResetDataButton" to="." method="_on_reset_data_button_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="SettingsButtons/HBoxContainer/ENButton" to="SettingsButtons/HBoxContainer/ENButton" method="_on_pressed"]
-[connection signal="pressed" from="SettingsButtons/HBoxContainer/ESButton" to="SettingsButtons/HBoxContainer/ESButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_mouse_entered"]
 [connection signal="pressed" from="SettingsButtons/SettingsBackButton" to="." method="_on_settings_back_button_pressed"]
 [connection signal="mouse_entered" from="Controls/ControlRemapping/ControlsBackButton" to="." method="_on_controls_back_button_mouse_entered"]

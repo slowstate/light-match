@@ -52,9 +52,9 @@ func on_palette_failed(player: Player) -> void:
 		condition.on_palette_failed(player)
 
 
-func on_round_loaded(round: Round) -> void:
+func on_round_loaded(loaded_round: Round) -> void:
 	for condition in get_player_conditions():
-		condition.on_round_loaded(round)
+		condition.on_round_loaded(loaded_round)
 
 
 func on_enemy_spawned(enemy: Enemy) -> void:

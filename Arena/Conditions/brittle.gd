@@ -9,5 +9,5 @@ func _init() -> void:
 	points_per_round = 3
 
 
-func on_condition_added(condition: Condition) -> void:
+func on_condition_added(_condition: Condition) -> void:
 	Globals.player.base_health = maxi(Globals.player.base_health - 1, 1)

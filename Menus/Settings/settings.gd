@@ -1,8 +1,11 @@
 extends Control
 
+var TUTORIAL = load("res://Tutorial/tutorial.tscn")
+
 @onready var controls: Control = $Controls
 @onready var credits: Control = $Credits
 @onready var reset_data_button: Button = $SettingsButtons/ResetDataButton
+@onready var tutorial_button: Button = $SettingsButtons/TutorialButton
 @onready var reset_data: Control = $ResetData
 
 
@@ -10,6 +13,7 @@ func _ready() -> void:
 	visible = false
 	if get_parent() is Arena:
 		reset_data_button.disabled = true
+		tutorial_button.disabled = true
 
 
 func _input(event: InputEvent) -> void:
@@ -68,13 +72,13 @@ func _on_credits_button_pressed() -> void:
 	credits.visible = true
 
 
-func _on_credits_back_button_mouse_entered() -> void:
+func _on_tutorial_button_mouse_entered() -> void:
 	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
 
 
-func _on_credits_back_button_pressed() -> void:
+func _on_tutorial_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
-	credits.visible = false
+	get_tree().change_scene_to_packed(TUTORIAL)
 
 
 func _on_reset_data_button_mouse_entered() -> void:
@@ -85,6 +89,15 @@ func _on_reset_data_button_pressed() -> void:
 	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
 	reset_data.update_data()
 	reset_data.visible = true
+
+
+func _on_credits_back_button_mouse_entered() -> void:
+	SfxManager.play_sound("ButtonHoverSFX", -7.0, -5.0, 0.95, 1.05)
+
+
+func _on_credits_back_button_pressed() -> void:
+	SfxManager.play_sound("ButtonClickSFX", -20.0, -18.0, 0.95, 1.05)
+	credits.visible = false
 
 
 func _on_confirm_reset_data_button_mouse_entered() -> void:

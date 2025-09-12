@@ -37,11 +37,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	lighting.position.x = -clamp(get_viewport().get_camera_2d().global_position.x, 1920 / 2, 2160 - 1920 / 2) / 10
-	lighting.position.y = -clamp(get_viewport().get_camera_2d().global_position.y, 1080 / 2, 1440 - 1080 / 2) / 10
+	lighting.position.x = -clamp(get_viewport().get_camera_2d().global_position.x, 1920.0 / 2.0, 2160.0 - 1920.0 / 2.0) / 10.0
+	lighting.position.y = -clamp(get_viewport().get_camera_2d().global_position.y, 1080.0 / 2.0, 1440.0 - 1080.0 / 2.0) / 10.0
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !fade_in_timer.is_stopped():
 		fade.modulate.a = lerp(1.0, 0.0, 1 - fade_in_timer.time_left / fade_in_timer.wait_time)
 

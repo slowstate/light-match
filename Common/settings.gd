@@ -6,7 +6,7 @@ const WINDOW_MODE_LABELS = {
 	DisplayServer.WINDOW_MODE_MAXIMIZED: "SETTINGS_WINDOW_MODE_MAXIMISED"
 }
 
-const CONFIGURED_LOCALES = ["en", "es"]
+const CONFIGURED_LOCALES = ["en"]
 
 var window_mode := DisplayServer.WINDOW_MODE_MAXIMIZED
 var windowed_resolution: Array = [1920, 1080]
@@ -30,7 +30,7 @@ var control_mappings: Dictionary = {
 #endregion
 
 
-func set_window_mode(new_window_mode: int) -> void:
+func set_window_mode(new_window_mode: DisplayServer.WindowMode) -> void:
 	window_mode = new_window_mode
 	DisplayServer.window_set_mode(window_mode)
 
@@ -66,7 +66,6 @@ func save_user_settings() -> void:
 	config.set_value("Gameplay", "screen_shake", screen_shake)
 
 	config.set_value("", "locale", preferred_locale)
-
 	var bus_index = AudioServer.get_bus_index("Master")
 	config.set_value("Volume", "master", db_to_linear(AudioServer.get_bus_volume_db(bus_index)))
 	bus_index = AudioServer.get_bus_index("Music")

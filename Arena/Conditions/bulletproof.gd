@@ -13,6 +13,6 @@ func on_enemy_spawned(enemy: Enemy) -> void:
 	enemy.health_regen += 1
 
 
-func on_enemy_hit(bullet: Bullet, enemy: Enemy) -> void:
+func on_enemy_hit(bullet: Bullet, _enemy: Enemy) -> void:
 	if randf_range(0.0, 1.0) < chance_to_ignore_damage:
 		bullet.damage = 0

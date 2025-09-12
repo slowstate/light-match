@@ -15,7 +15,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var global_mouse_position = get_global_mouse_position()
 	_set_active(upgrade.is_active)
 
 

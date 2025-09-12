@@ -32,7 +32,7 @@ func _on_effect_timer_timeout() -> void:
 	Globals.player.enable_taser_particles(false)
 
 
-func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
+func on_enemy_hit(_bullet: Bullet, enemy: Enemy = null) -> void:
 	if is_active:
 		var move_speed_effect = MOVE_SPEED_EFFECT.instantiate()
 		move_speed_effect.effect_amount = -slow_amount

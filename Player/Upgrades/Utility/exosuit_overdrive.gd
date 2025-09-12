@@ -43,6 +43,6 @@ func on_gun_cooldown_start(gun_cooldown_timer: Timer) -> void:
 		gun_cooldown_timer.start(gun_cooldown_timer.wait_time * (1 / (1 + fire_rate_amount)))
 
 
-func on_enemy_hit(bullet: Bullet, enemy: Enemy = null) -> void:
+func on_enemy_hit(bullet: Bullet, _enemy: Enemy = null) -> void:
 	if is_active:
 		bullet.damage += 1

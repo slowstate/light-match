@@ -61,8 +61,9 @@ func _ready() -> void:
 	ConditionManager.on_enemy_spawned(self)
 	UpgradeManager.on_enemy_spawned(self)
 	_setup()
-	
+
 	SfxManager.play_sound("EnemySpawnSFX", -45.0, -43.0, 0.9, 1.0)
+
 
 # This function should be overriden by inheriting classes; no code should be added to this class
 func _setup() -> void:
@@ -96,15 +97,15 @@ func set_colour(new_colour: Globals.Colour) -> void:
 	sprite.set_colour(new_colour)
 
 
-func enable_hurtbox(enable: bool) -> void:
+func enable_hurtbox(_enable: bool) -> void:
 	pass
 
 
-func enable_attack_warning_indicator(enable: bool) -> void:
+func enable_attack_warning_indicator(_enable: bool) -> void:
 	pass
 
 
-func enable_stun_indicator(enable: bool) -> void:
+func enable_stun_indicator(_enable: bool) -> void:
 	pass
 
 
@@ -112,7 +113,7 @@ func move_forward(delta: float, desired_location: Vector2 = Globals.player.globa
 	if is_stunned() or !knock_back_timer.is_stopped():
 		play_move_animation(false)
 		return
-	if global_position.distance_to(desired_location) <= 10:
+	if global_position.distance_to(desired_location) <= 20:
 		sleeping = true
 		play_move_animation(false)
 		return
@@ -204,6 +205,7 @@ func _on_area_entered(area: Area2D) -> void:
 		queue_free()
 	else:
 		SfxManager.play_sound("EnemyHitSFX", -20.0, -18.0, 1, 1.2)
+
 
 func _on_regen_timer_timeout() -> void:
 	if health < base_health:

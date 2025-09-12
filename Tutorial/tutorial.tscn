@@ -56,7 +56,6 @@ texture = ExtResource("2_rcrtg")
 
 [node name="BotSprite" type="Sprite2D" parent="."]
 modulate = Color(2, 2, 2, 1)
-self_modulate = Color(3, 3, 3, 1)
 position = Vector2(1280, 420)
 offset = Vector2(-19, 3)
 
@@ -90,17 +89,16 @@ position = Vector2(-20, 0.108535)
 texture = ExtResource("9_fimif")
 offset = Vector2(-7, 17)
 
-[node name="DialogueLabel" type="Label" parent="BotSprite"]
-modulate = Color(0.8, 0.7, 0.7, 1)
+[node name="DialogueLabel" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -303.5
-offset_top = 51.5
-offset_right = 296.5
-offset_bottom = 201.5
+offset_left = 977.0
+offset_top = 472.0
+offset_right = 1577.0
+offset_bottom = 622.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Hello Test Subject"

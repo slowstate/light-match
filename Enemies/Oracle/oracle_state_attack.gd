@@ -21,6 +21,10 @@ func enter() -> void:
 	oracle.enable_attack_warning_indicator(true)
 
 	attack_rotation_speed = oracle.orb_rotation_speed
+	var random_duration: float = randf_range(3.0, 5.0)
+	spin_up_time = random_duration / 2.0
+	spin_down_time = random_duration / 2.0
+
 	oracle.sleeping = true
 	if !expand_timer.timeout.is_connected(_on_expand_timer_timeout):
 		expand_timer.timeout.connect(_on_expand_timer_timeout)

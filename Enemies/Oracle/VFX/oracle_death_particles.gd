@@ -16,7 +16,7 @@ func _ready() -> void:
 	proc_mat.initial_velocity_max = 200.0 * amplitude
 	proc_mat.damping_min = 300.0 * amplitude
 	proc_mat.damping_max = 300.0 * amplitude
-	amount = 50.0 * amplitude
+	amount = roundi(50.0 * amplitude)
 	coloured_particles.modulate = Globals.COLOUR_VISUAL_VALUE[colour]
 
 	var coloured_proc_mat = coloured_particles.process_material as ParticleProcessMaterial
@@ -24,7 +24,7 @@ func _ready() -> void:
 	coloured_proc_mat.initial_velocity_max = 200.0 * amplitude
 	coloured_proc_mat.damping_min = 300.0 * amplitude
 	coloured_proc_mat.damping_max = 300.0 * amplitude
-	coloured_particles.amount = 20.0 * amplitude
+	coloured_particles.amount = roundi(20.0 * amplitude)
 
 	flash.scale *= amplitude
 
@@ -40,8 +40,8 @@ func set_amplitude(new_amplitude: float = 1.0) -> void:
 	amplitude = new_amplitude
 
 
-func set_sprite_global_rotation(global_rotation: float) -> void:
-	sprite_global_rotation = global_rotation
+func set_sprite_global_rotation(new_global_rotation: float) -> void:
+	sprite_global_rotation = new_global_rotation
 
 
 func set_colour(new_colour: Globals.Colour) -> void:

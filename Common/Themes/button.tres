@@ -11,6 +11,14 @@ spacing_bottom = -4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qckfq"]
 bg_color = Color(1, 1, 1, 0.0431373)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_opg3a"]
 
@@ -22,6 +30,10 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)

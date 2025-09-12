@@ -60,6 +60,7 @@ func physics_update(delta: float) -> void:
 
 
 func _on_roam_timer_timeout() -> void:
+	bot.play_move_animation(false)
 	idle_timer.start(randf_range(3.0, 5.0))
 
 

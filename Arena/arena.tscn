@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c8rwnovtuiom4" path="res://Menus/UpgradeSelectionMenu/UpgradeOption/Upgrade Skip.png" id="17_c5geq"]
 [ext_resource type="Script" path="res://Arena/pause_menu.gd" id="19_8arc5"]
 [ext_resource type="Shader" path="res://Arena/pause_menu.gdshader" id="19_muqpf"]
+[ext_resource type="Theme" uid="uid://cvjimjlqhiq6t" path="res://Common/Themes/button.tres" id="21_kqtqm"]
 [ext_resource type="PackedScene" uid="uid://8p11gjdp0ijq" path="res://Menus/Settings/settings.tscn" id="21_ltl84"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5srqq"]
@@ -154,13 +155,29 @@ font_size = 60
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxchf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntcbj"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xm18s"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05a8v"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agxol"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3lyin"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ax5r"]
 
 [node name="Arena" type="Node2D"]
 process_mode = 1
@@ -611,7 +628,6 @@ one_shot = true
 script = ExtResource("8_p700b")
 
 [node name="ScoreInterface" type="CanvasLayer" parent="StateMachine/ScoreScreen"]
-visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StateMachine/ScoreScreen/ScoreInterface"]
 custom_minimum_size = Vector2(450, 500)
@@ -776,7 +792,7 @@ offset_left = 679.5
 offset_top = 290.0
 offset_right = 1240.5
 offset_bottom = 790.0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 32
 alignment = 1
 
 [node name="PausedLabel" type="Label" parent="PauseMenu/VBoxContainer"]
@@ -788,19 +804,23 @@ horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxEmpty_wxchf")
 
 [node name="SettingsButton" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("21_kqtqm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ntcbj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xm18s")
 text = "ARENA_PAUSED_SETTINGS"
 
 [node name="MainMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("21_kqtqm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ntcbj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xm18s")
 text = "ARENA_PAUSED_MAIN_MENU"
 
 [node name="HSeparator2" type="HSeparator" parent="PauseMenu/VBoxContainer"]
@@ -811,13 +831,10 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_05a8v")
 [node name="BackButton" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_styles/focus = SubResource("StyleBoxEmpty_agxol")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3lyin")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7jdil")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_82se8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_3ax5r")
+theme = ExtResource("21_kqtqm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ntcbj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xm18s")
 text = "ARENA_PAUSED_BACK"
-icon = ExtResource("17_c5geq")
 icon_alignment = 1
 
 [node name="Settings" parent="PauseMenu" instance=ExtResource("21_ltl84")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c7845x7xoc1g2"]
+[gd_scene load_steps=50 format=3 uid="uid://c7845x7xoc1g2"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/main_menu.gd" id="1_q4nro"]
 [ext_resource type="Texture2D" uid="uid://r26c27hrvnw1" path="res://Arena/BG Hex Light.png" id="3_dyfs6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b2dxxetvv75o" path="res://Menus/MainMenu/CHROMACORE.png" id="4_5gw5x"]
 [ext_resource type="Texture2D" uid="uid://dius2cv6xw7tn" path="res://Menus/MainMenu/Title Icon Light.png" id="5_mxm7f"]
 [ext_resource type="Texture2D" uid="uid://chw3egawgm1vl" path="res://Menus/MainMenu/Title Icon.png" id="6_eufb3"]
+[ext_resource type="Theme" uid="uid://cvjimjlqhiq6t" path="res://Common/Themes/button.tres" id="7_07mas"]
 [ext_resource type="Texture2D" uid="uid://0j3j1ifosde8" path="res://Arena/Background.png" id="9_ke1b8"]
 [ext_resource type="PackedScene" uid="uid://b13uvvo3pvlly" path="res://Player/Sprite/player_sprite.tscn" id="10_a5kyi"]
 [ext_resource type="Script" path="res://Menus/MainMenu/version_label.gd" id="11_dopid"]
@@ -514,30 +515,14 @@ size = Vector2(574, 53)
 [sub_resource type="CircleShape2D" id="CircleShape2D_52mh4"]
 radius = 20.025
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yk0bt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7uq8"]
-bg_color = Color(1, 1, 1, 0.0431373)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_top = 4.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w1v3q"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5g6q"]
-size = Vector2(68, 20)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhd0s"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o4y3e"]
+size = Vector2(68, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwa3w"]
-size = Vector2(106, 22)
+size = Vector2(105, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tohs8"]
-size = Vector2(48, 22)
+size = Vector2(47, 21)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ml4sl"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -768,56 +753,44 @@ theme_override_constants/separation = 64
 alignment = 1
 
 [node name="StartButton" type="Button" parent="MenuButtons"]
-custom_minimum_size = Vector2(78, 25)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yk0bt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_w1v3q")
+theme = ExtResource("7_07mas")
 text = "START"
 icon_alignment = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/StartButton"]
-position = Vector2(39, 10)
+position = Vector2(35, 11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/StartButton/StaticBody2D"]
-position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_f5g6q")
 
 [node name="SettingsButton" type="Button" parent="MenuButtons"]
-custom_minimum_size = Vector2(116, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dhd0s")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_o4y3e")
+theme = ExtResource("7_07mas")
 text = "SETTINGS"
 icon_alignment = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/SettingsButton"]
-position = Vector2(59, 10)
+position = Vector2(54, 9)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/SettingsButton/StaticBody2D"]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_uwa3w")
 
 [node name="ExitButton" type="Button" parent="MenuButtons"]
-custom_minimum_size = Vector2(56, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dhd0s")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i7uq8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_o4y3e")
+theme = ExtResource("7_07mas")
 text = "EXIT"
 icon_alignment = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="MenuButtons/ExitButton"]
-position = Vector2(29, 10)
+position = Vector2(25, 11)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButtons/ExitButton/StaticBody2D"]
