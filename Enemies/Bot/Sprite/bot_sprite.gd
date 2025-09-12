@@ -15,7 +15,7 @@ func play_move_animation(play: bool) -> void:
 			return
 		animation_player.play("Bot_Move")
 	if !play and animation_player.current_animation == "Bot_Move":
-		animation_player.stop()
+		animation_player.pause()
 
 
 func play_attack_animation() -> void:
