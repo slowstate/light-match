@@ -9,6 +9,6 @@ func _init() -> void:
 	points_per_round = 3
 
 
-func on_round_loaded(round: Round) -> void:
-	var increased_total_enemies_to_spawn = roundi(float(round.total_enemies_to_spawn) * (1 + spawn_limit_increase))
-	round.concurrent_enemies_spawn_limit = increased_total_enemies_to_spawn
+func on_round_loaded(loaded_round: Round) -> void:
+	var increased_total_enemies_to_spawn = roundi(float(loaded_round.total_enemies_to_spawn) * (1 + spawn_limit_increase))
+	loaded_round.concurrent_enemies_spawn_limit = increased_total_enemies_to_spawn

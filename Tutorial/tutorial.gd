@@ -78,7 +78,7 @@ func update_dialogue() -> void:
 	bot_sprite.modulate = Color(3.0, 3.0, 3.0, 1.0)
 	dialogue_index += 1
 	dialogue_label.text = tr(dialogue_strings[dialogue_index])
-	dialogue_timer.start(3 + tr(dialogue_strings[dialogue_index]).length() / 20)
+	dialogue_timer.start(3 + tr(dialogue_strings[dialogue_index]).length() / 20.0)
 
 
 func _on_dialogue_timer_timeout() -> void:
@@ -114,12 +114,12 @@ func _on_dialogue_timer_timeout() -> void:
 	update_dialogue()
 
 
-func _on_enemy_hit_with_wrong_colour(enemy: Enemy) -> void:
+func _on_enemy_hit_with_wrong_colour(_enemy: Enemy) -> void:
 	if dialogue_index == 5:
 		update_dialogue()
 
 
-func _on_enemy_died(enemy: Enemy) -> void:
+func _on_enemy_died(_enemy: Enemy) -> void:
 	if dialogue_index == 7:
 		update_dialogue()
 	if dialogue_index == 12:

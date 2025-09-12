@@ -5,7 +5,7 @@ var min_offset: float = -200
 var max_offset: float = 200
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Globals.player.controls_enabled:
 		desired_offset = (get_global_mouse_position() - Globals.player.global_position) * 0.2
 		desired_offset.x = clampf(desired_offset.x, min_offset, max_offset)

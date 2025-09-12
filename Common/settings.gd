@@ -30,7 +30,7 @@ var control_mappings: Dictionary = {
 #endregion
 
 
-func set_window_mode(new_window_mode: int) -> void:
+func set_window_mode(new_window_mode: DisplayServer.WindowMode) -> void:
 	window_mode = new_window_mode
 	DisplayServer.window_set_mode(window_mode)
 

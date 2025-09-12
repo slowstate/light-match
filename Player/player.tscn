@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bnu7ashmt28b4" path="res://Player/Upgrades/Player Upgrade Button.png" id="5_ssooe"]
 [ext_resource type="Texture2D" uid="uid://d36h547sfej1u" path="res://HUD/PaletteMilestone1.png" id="6_wpbjh"]
 [ext_resource type="Texture2D" uid="uid://2u5mv3jdgtjm" path="res://HUD/PaletteMilestone2.png" id="7_u5avh"]
-[ext_resource type="PackedScene" path="res://HUD/health.tscn" id="10_q3au7"]
+[ext_resource type="PackedScene" uid="uid://b2xneu6ijsyjr" path="res://HUD/health.tscn" id="10_q3au7"]
 
 [sub_resource type="Gradient" id="Gradient_6n8lw"]
 offsets = PackedFloat32Array(0, 0.699187)

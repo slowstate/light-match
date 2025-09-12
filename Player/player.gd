@@ -71,7 +71,7 @@ func _ready() -> void:
 	SignalBus.upgrade_removed.connect(remove_upgrade)
 	SignalBus.paused.connect(_on_paused)
 	set_health(base_health)
-	base_health += clampi(floori(Save.lifetime_palettes / 100), 0, 6)
+	base_health += clampi(floori(Save.lifetime_palettes / 100.0), 0, 6)
 	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.002))
 	player_sprite.set_colour(current_colour)
 	Globals.set_crosshair_colour(current_colour)
@@ -358,13 +358,13 @@ func player_hit(enemy: Enemy) -> void:
 	ScreenShaker.shake(0.2, 20.0)
 	log_context_data.merge({"enemy_damage": enemy.damage, "player_health": health})
 
-	var log_play_data = {"message": "Player hit", "context": log_context_data}
-	Logger.log_play_data(log_play_data)
+	var log_play_data_player_hit = {"message": "Player hit", "context": log_context_data}
+	Logger.log_play_data(log_play_data_player_hit)
 
 	if health <= 0:
 		set_health(0)
-		log_play_data = {"message": "Player killed", "context": log_context_data}
-		Logger.log_play_data(log_play_data)
+		log_play_data_player_hit = {"message": "Player killed", "context": log_context_data}
+		Logger.log_play_data(log_play_data_player_hit)
 		SfxManager.play_sound("PlayerHitSFX", -10.0, -8.0, 0.7, 0.8)
 		visible = false
 		var player_death_particles = PLAYER_DEATH_PARTICLES.instantiate()

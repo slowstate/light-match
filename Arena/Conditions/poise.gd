@@ -9,9 +9,9 @@ func _init() -> void:
 	points_per_round = 1
 
 
-func on_enemy_pre_slowed(enemy: Enemy, move_speed_effect: MoveSpeedEffect) -> void:
+func on_enemy_pre_slowed(_enemy: Enemy, move_speed_effect: MoveSpeedEffect) -> void:
 	move_speed_effect.effect_duration *= slow_and_stun_duration_reduction
 
 
-func on_enemy_pre_stunned(enemy: Enemy, stun_effect: StunEffect) -> void:
+func on_enemy_pre_stunned(_enemy: Enemy, stun_effect: StunEffect) -> void:
 	stun_effect.effect_duration *= slow_and_stun_duration_reduction

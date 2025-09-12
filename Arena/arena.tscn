@@ -628,7 +628,6 @@ one_shot = true
 script = ExtResource("8_p700b")
 
 [node name="ScoreInterface" type="CanvasLayer" parent="StateMachine/ScoreScreen"]
-visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StateMachine/ScoreScreen/ScoreInterface"]
 custom_minimum_size = Vector2(450, 500)
@@ -780,6 +779,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 script = ExtResource("19_8arc5")
 
 [node name="PauseMenuBG" type="ColorRect" parent="PauseMenu"]

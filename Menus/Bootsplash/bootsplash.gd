@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !fade_in_timer.is_stopped():
 		label.modulate.a = lerp(0.0, 1.0, 1 - fade_in_timer.time_left / fade_in_timer.wait_time)
 	if !fade_out_timer.is_stopped():
