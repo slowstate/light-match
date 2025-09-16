@@ -1,8 +1,6 @@
 class_name ControlRemapper
 extends HBoxContainer
 
-signal control_remapping(control_remapper: ControlRemapper)
-
 @export var control_name: String = "Control Name"
 @export var action_name: String = "Action Name"
 @export var input_event_key: InputEventKey = InputEventKey.new()

@@ -50,10 +50,6 @@ func update(delta: float) -> void:
 			transition.emit("RoundInformation")
 
 
-func physics_update(_delta: float) -> void:
-	pass
-
-
 func _load_round(round_number: int) -> void:
 	var round_resource_path = "res://Arena/Rounds/%s.tres"
 	var round_number_string := str(round_number)

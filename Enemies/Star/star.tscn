@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://duvsa2r7f53oy"]
+[gd_scene load_steps=28 format=3 uid="uid://duvsa2r7f53oy"]
 
 [ext_resource type="Script" path="res://Enemies/Star/star.gd" id="1_a0cwb"]
 [ext_resource type="PackedScene" uid="uid://1d5okjmxlrdj" path="res://Enemies/Star/Sprite/star_sprite.tscn" id="2_iui8m"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://Enemies/hurt_box.gd" id="14_wdnoj"]
 [ext_resource type="Texture2D" uid="uid://b1ly852qklum0" path="res://Enemies/Star/Shell/Star Shell Light 3.png" id="15_8lkfx"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_machine.gd" id="15_hndjk"]
-[ext_resource type="Script" path="res://Enemies/Star/hit_box.gd" id="15_iuvkl"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_idle.gd" id="16_3cf8m"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_charge.gd" id="17_5rcwd"]
 [ext_resource type="Script" path="res://Enemies/Star/star_state_spawn.gd" id="17_7wqf0"]
@@ -184,7 +183,6 @@ shape = SubResource("CircleShape2D_5tbji")
 modulate = Color(1, 1, 0, 0)
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("15_iuvkl")
 
 [node name="Sprite2D" type="Sprite2D" parent="HitBox"]
 texture = SubResource("GradientTexture2D_wwhx6")

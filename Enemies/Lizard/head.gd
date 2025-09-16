@@ -16,7 +16,7 @@ func play_attack_animation() -> void:
 	animation_player.play("Liz_Attack")
 
 
-func spawn_death_particles(amplitude: float = 1.0) -> void:
+func spawn_death_particles(_amplitude: float = 1.0) -> void:
 	var death_particles = LIZARD_HEAD_DEATH_PARTICLES.instantiate()
 	death_particles.global_position = liz_head.global_position
 	death_particles.set_angle(-get_parent().rotation_degrees + 90)

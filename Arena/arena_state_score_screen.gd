@@ -45,13 +45,12 @@ func exit() -> void:
 
 func update(_delta: float) -> void:
 	if score_interface.visible:
-		if floori((Save.lifetime_palettes - arena.palettes_cleared_this_run) / 100) < floori((Save.lifetime_palettes) / 100):
+		if floori((Save.lifetime_palettes - arena.palettes_cleared_this_run) / 100.0) < floori((Save.lifetime_palettes) / 100.0):
 			max_health_progress_bar.value = lerpf(0.0, 100.0, ease(1 - max_health_progress_bar_timer.time_left / max_health_progress_bar_timer.wait_time, 0.5))
 		else:
 			max_health_progress_bar.value = lerpf(
 				0.0, float((Save.lifetime_palettes) % 100), ease(1 - max_health_progress_bar_timer.time_left / max_health_progress_bar_timer.wait_time, 0.5)
 			)
-		# TODO: Change colour of progress bar when value == 100
 
 
 func physics_update(_delta: float) -> void:
@@ -63,5 +62,8 @@ func _on_main_menu_button_pressed() -> void:
 
 
 func _on_max_health_progress_bar_timer_timeout() -> void:
-	if floori((Save.lifetime_palettes - arena.palettes_cleared_this_run) / 100) < floori((Save.lifetime_palettes) / 100):
-		max_health_gained_label.text = "+" + str(floori(arena.palettes_cleared_this_run) / 100) + " " + tr("ARENA_HP")
+	if max_health_progress_bar.value >= 100.0:
+		var fill_style = max_health_progress_bar.get_theme_stylebox("fill") as StyleBoxFlat
+		fill_style.bg_color = Color(0, 0.93, 0, 1.0)
+	if floori((Save.lifetime_palettes - arena.palettes_cleared_this_run) / 100.0) < floori((Save.lifetime_palettes) / 100.0):
+		max_health_gained_label.text = "+" + str(floori(arena.palettes_cleared_this_run / 100.0) + 1) + " " + tr("ARENA_HP")
