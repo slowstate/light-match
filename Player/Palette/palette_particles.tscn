@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpgdyvljbq0rp"]
+[gd_scene load_steps=7 format=3 uid="uid://codxr2cvdi0oj"]
 
 [ext_resource type="Script" path="res://Player/Palette/palette_particles.gd" id="1_lip25"]
 
@@ -42,6 +42,7 @@ width = 8
 height = 8
 
 [node name="PaletteParticles" type="GPUParticles2D"]
+process_mode = 3
 emitting = false
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_qcre3")

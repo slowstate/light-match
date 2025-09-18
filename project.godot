@@ -14,8 +14,9 @@ config/name="CHROMACORE"
 config/version="1.0"
 run/main_scene="res://Menus/Bootsplash/bootsplash.tscn"
 config/use_custom_user_dir=true
-config/custom_user_dir_name="3HP/Light Match"
+config/custom_user_dir_name="3HP/CHROMACORE"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://Menus/Bootsplash/bootsplash_image.png"
 config/icon="res://favicon.png"
 config/windows_native_icon="res://favicon.ico"
 

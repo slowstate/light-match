@@ -47,6 +47,7 @@ width = 4
 height = 16
 
 [node name="TaserParticles" type="GPUParticles2D"]
+process_mode = 3
 modulate = Color(1.5, 1.5, 1.5, 1)
 z_index = 1
 z_as_relative = false
