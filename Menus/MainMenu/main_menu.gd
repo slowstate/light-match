@@ -14,6 +14,7 @@ const TUTORIAL = preload("res://Tutorial/tutorial.tscn")
 
 func _ready() -> void:
 	get_tree().paused = false
+	SignalBus.paused.emit(false)
 	var log_data = {"message": "Scene ready"}
 	Logger.log_info(log_data)
 	Input.set_custom_mouse_cursor(CROSSHAIR, Input.CURSOR_ARROW, Vector2(26, 17))

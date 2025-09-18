@@ -68,8 +68,10 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	SignalBus.upgrade_removed.connect(remove_upgrade)
-	SignalBus.paused.connect(_on_paused)
+	if !SignalBus.upgrade_removed.is_connected(remove_upgrade):
+		SignalBus.upgrade_removed.connect(remove_upgrade)
+	if !SignalBus.paused.is_connected(_on_paused):
+		SignalBus.paused.connect(_on_paused)
 	set_health(base_health)
 	base_health += clampi(floori(Save.lifetime_palettes / 100.0), 0, 6)
 	gun_cooldown = 1 / (1 / gun_cooldown * (1 + Save.lifetime_palettes * 0.002))
